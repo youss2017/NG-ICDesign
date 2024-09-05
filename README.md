@@ -2,11 +2,9 @@
 <hr/>
 
 <ol>
-
     <li>
         Background of Company/Organization:  Provide a brief overview of the company and/or organization and the specific project location here. Northrop Grumman solves the toughest problems in space, aeronautics, defense, and cyberspace to meet the ever-evolving needs of our customers worldwide. Our 95,000 employees are Defining Possible every day using science, technology and engineering to create and deliver advanced systems, products and services.
     </li>
-
     <li>
         Statement and Scope of the Problem(s):  Provide the problem statement.  Please be as specific as possible to help us understand the scope of the problem, and thus the scope of the project, specifically the design content. 
         <ul>
@@ -18,7 +16,6 @@
             </li>
         </ul>
     </li>
-
     <li>
         Overall Project Goal(s):  Describe the overall goals of the project.
         <ul>
@@ -26,7 +23,6 @@
             <li>Senior Design Focus: Successfully tapeout an Application Specific Integrated Circuit (ASIC) implementing the RISC-V instruction set using existing electronic design automation (EDA) tools and relevant design technology libraries (~45nm or less). Goals of the team should include gaining relevant knowledge surrounding the ASIC design flow, Cadence tooling, troubleshooting, and the development of project documentation.</li>
         </ul>
     </li>
-
     <li>
         Project Objectives:  Describe the project objectives that will help achieve the goals of the project. Please be as specific as possible.
         <ul>
@@ -41,7 +37,6 @@
             <li>
                 </ul>
             </li>
-            
             <li>Test the performance and system-level functionality of the design by creating and executing test cases in RV32I assembly.</li>
             <li><b>Phase 2</b>
                 <ul>
@@ -51,7 +46,6 @@
             <li>Use physical design techniques such as design rule checking (DRC) to establish design manufacturability and layout versus schematic (LVS) to ensure correctness of the physical design.</li>
                 </ul>
             </li>
-            
             <li>
                 <b>Stretch goals</b>
                 <ul>
@@ -62,7 +56,6 @@
             </li>
         </ul>
     </li>
-
     <li>
         Expected Project Deliverables:  Describe the expected project deliverables. Please be as specific as possible.
         <ul>
@@ -72,7 +65,6 @@
 	        <li>Leverage the Cadence resources including training resources and Rapid Adoption Kits (RAKs) to acclimate students to the ASIC design flow and accelerate project completion.</li>
         </ul>
     </li>
-
     <li>
         Core Competencies and Experience of Team:  Please list required competencies, experience and/or knowledge needed by the project team members that will facilitate successful project execution. 
 Students should have fundamental knowledge of:

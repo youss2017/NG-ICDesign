@@ -21,7 +21,7 @@ module tri_driver #(
   
   // Main logic
 
-  assign data_out = (data_en) ?  data_in : 'bz;
+  assign data_out = (data_en) ?  data_in : 'bZ;
 
 
 endmodule

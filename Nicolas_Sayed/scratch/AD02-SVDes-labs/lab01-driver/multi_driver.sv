@@ -17,15 +17,18 @@ module multidriver #(
     input  logic [WIDTH-1:0]   datin1,    // Data input for first driver
     input  logic [WIDTH-1:0]   datin2,    // Data input for second driver
 
-    inout  wire [WIDTH-1:0]   dataout    // Shared data output bus
-);
+    output wire [WIDTH-1:0]    dataout // Shared data output bus 
+); 
+
+    wire [WIDTH-1:0] tri1_dataout;
+    wire [WIDTH-1:0] tri2_dataout;
 
     // Instantiate first tri_driver
     tri_driver #(
         .WIDTH(WIDTH)
     ) tri_driver_inst1 (
         .data_in(datin1),
-        .data_out(dataout),
+        .data_out(tri1_dataout),
         .data_en(ena1)
     );
 
@@ -34,9 +37,11 @@ module multidriver #(
         .WIDTH(WIDTH)
     ) tri_driver_inst2 (
         .data_in(datin2),
-        .data_out(dataout),
+        .data_out(tri2_dataout),
         .data_en(ena2)
     );
+
+    assign dataout = (ena1) ? tri1_dataout : (ena2) ? tri2_dataout : 'bZ;
 
 endmodule
 

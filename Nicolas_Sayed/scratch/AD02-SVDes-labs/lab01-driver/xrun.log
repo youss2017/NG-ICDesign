@@ -1,5 +1,5 @@
 xrun: 23.09-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun	23.09-s006: Started on Oct 15, 2024 at 22:49:23 EDT
+TOOL:	xrun	23.09-s006: Started on Oct 15, 2024 at 23:37:56 EDT
 xrun
 	-f lab1.f
 		driver_test.sv
@@ -18,7 +18,6 @@ file: tri_driver.sv
 	Elaborating the design hierarchy:
 	Top level design units:
 		drivertest
-		tri_driver
   multidriver Ux (.ena1, .ena2, .datin1, .datin2, .dataout); 
                                       |
 xmelab: *W,CUVMPW (./driver_test.sv,8|38): port sizes differ in port connection(4/8) for the instance(drivertest) .
@@ -30,26 +29,27 @@ xmelab: *W,CUVMPW (./driver_test.sv,8|47): port sizes differ in port connection(
 xmelab: *W,CUVMPW (./driver_test.sv,8|57): port sizes differ in port connection(4/8) for the instance(drivertest) .
 	Building instance overlay tables: .................... Done
 	Generating native compiled code:
-		worklib.tri_driver:sv <0x668053e1>
-			streams:   0, words:     0
-		worklib.multidriver:sv <0x06846f3e>
-			streams:   1, words:   872
-		worklib.multidriver:sv <0x44bb6a87>
-			streams:   1, words:   890
+		worklib.tri_driver:sv <0x62023056>
+			streams:   1, words:   239
+		worklib.multidriver:sv <0x4526d38b>
+			streams:   1, words:   432
+		worklib.tri_driver:sv <0x3b322734>
+			streams:   1, words:   250
+		worklib.multidriver:sv <0x30251923>
+			streams:   1, words:   447
 		worklib.drivertest:sv <0x7da1f64d>
 			streams:   6, words:  8190
 	Building instance specific data structures.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		              Instances  Unique
-		Modules:              4       3
-		Registers:            8       7
+		Modules:              7       3
+		Registers:            9       6
 		Scalar wires:         8       -
 		Expanded wires:      12       2
-		Vectored wires:       5       -
-		Always blocks:        2       1
+		Vectored wires:      12       -
 		Initial blocks:       1       1
-		Cont. assignments:    0       1
+		Cont. assignments:    6       2
 		Pseudo assignments:   4       -
 	Writing initial simulation snapshot: worklib.drivertest:sv
 Loading snapshot worklib.drivertest:sv .................... Done
@@ -65,8 +65,8 @@ including the logfile that contains this error message.
   TOOL:	xmsim	23.09-s006 (CL: 587028 )
   HOSTNAME: net1583
   OPERATING SYSTEM: Linux 4.18.0-513.9.1.el8_9.x86_64 #1 SMP Wed Nov 29 18:55:19 UTC 2023 x86_64
-  MESSAGE: T(0): sv_seghandler - trapno -1 addr(0xcb6efac)
+  MESSAGE: T(0): sv_seghandler - trapno -1 addr(0xc93058c)
 	Stream rts_xfer
 -----------------------------------------------------------------
-csi-xmsim - CSI: Cadence Support Investigation, sending details to /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xmsim_2695634.err
-csi-xmsim - CSI: investigation complete, send /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xmsim_2695634.err to Cadence Support
+csi-xmsim - CSI: Cadence Support Investigation, sending details to /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xmsim_2723246.err
+csi-xmsim - CSI: investigation complete, send /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xmsim_2723246.err to Cadence Support

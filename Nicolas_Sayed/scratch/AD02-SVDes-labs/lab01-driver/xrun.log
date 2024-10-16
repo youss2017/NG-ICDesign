@@ -1,0 +1,72 @@
+xrun: 23.09-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun	23.09-s006: Started on Oct 15, 2024 at 22:49:23 EDT
+xrun
+	-f lab1.f
+		driver_test.sv
+		multi_driver.sv
+		tri_driver.sv
+file: driver_test.sv
+	module worklib.drivertest:sv
+		errors: 0, warnings: 0
+file: multi_driver.sv
+	module worklib.multidriver:sv
+		errors: 0, warnings: 0
+file: tri_driver.sv
+	module worklib.tri_driver:sv
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		drivertest
+		tri_driver
+  multidriver Ux (.ena1, .ena2, .datin1, .datin2, .dataout); 
+                                      |
+xmelab: *W,CUVMPW (./driver_test.sv,8|38): port sizes differ in port connection(4/8) for the instance(drivertest) .
+  multidriver Ux (.ena1, .ena2, .datin1, .datin2, .dataout); 
+                                               |
+xmelab: *W,CUVMPW (./driver_test.sv,8|47): port sizes differ in port connection(4/8) for the instance(drivertest) .
+  multidriver Ux (.ena1, .ena2, .datin1, .datin2, .dataout); 
+                                                         |
+xmelab: *W,CUVMPW (./driver_test.sv,8|57): port sizes differ in port connection(4/8) for the instance(drivertest) .
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.tri_driver:sv <0x668053e1>
+			streams:   0, words:     0
+		worklib.multidriver:sv <0x06846f3e>
+			streams:   1, words:   872
+		worklib.multidriver:sv <0x44bb6a87>
+			streams:   1, words:   890
+		worklib.drivertest:sv <0x7da1f64d>
+			streams:   6, words:  8190
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		              Instances  Unique
+		Modules:              4       3
+		Registers:            8       7
+		Scalar wires:         8       -
+		Expanded wires:      12       2
+		Vectored wires:       5       -
+		Always blocks:        2       1
+		Initial blocks:       1       1
+		Cont. assignments:    0       1
+		Pseudo assignments:   4       -
+	Writing initial simulation snapshot: worklib.drivertest:sv
+Loading snapshot worklib.drivertest:sv .................... Done
+xcelium> source /home/cadence/installs/XCELIUM2309/tools/xcelium/files/xmsimrc
+xcelium> run
+xmsim: *F,INTERR: INTERNAL EXCEPTION
+Observed simulation time : 0 FS + 0
+-----------------------------------------------------------------
+The tool has encountered an unexpected condition and must exit.
+Contact Cadence Design Systems customer support about this
+problem and provide enough information to help us reproduce it,
+including the logfile that contains this error message.
+  TOOL:	xmsim	23.09-s006 (CL: 587028 )
+  HOSTNAME: net1583
+  OPERATING SYSTEM: Linux 4.18.0-513.9.1.el8_9.x86_64 #1 SMP Wed Nov 29 18:55:19 UTC 2023 x86_64
+  MESSAGE: T(0): sv_seghandler - trapno -1 addr(0xcb6efac)
+	Stream rts_xfer
+-----------------------------------------------------------------
+csi-xmsim - CSI: Cadence Support Investigation, sending details to /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xmsim_2695634.err
+csi-xmsim - CSI: investigation complete, send /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xmsim_2695634.err to Cadence Support

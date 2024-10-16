@@ -1,0 +1,12 @@
+/home/cadence/installs/XCELIUM2309/tools.lnx86/inca/bin/xmsim
+Obtained 10 stack frames.
+/home/cadence/installs/XCELIUM2309/tools.lnx86/inca/bin/../../lib/libcbreakpad.so(_Z13use_backtracev+0xa1) [0xf7a432b0]
+/home/cadence/installs/XCELIUM2309/tools.lnx86/inca/bin/../../lib/libcbreakpad.so(cbpad_generate_dump_on_demand+0x90) [0xf7a4362b]
+xmsim() [0x9715460]
+xmsim(serror+0x1a) [0x9716d2a]
+xmsim() [0x8841bc1]
+xmsim() [0x88423e3]
+linux-gate.so.1(__kernel_rt_sigreturn+0) [0xf7f31150]
+[0xcb6efac]
+[0xff9e1b88]
+xmsim() [0x89d78f3]

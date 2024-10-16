@@ -1,0 +1,37 @@
+csi-xmsim - CSI: Command line:
+xmsim
+    -f /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xcelium.d/run.lnx86.23.09.d/net1583_ce3ed164-6fb3-40fd-8703-138cfe92427d/xmsim.args
+        -MESSAGES
+        +EMGRLOG xrun.log
+        -XLSTIME 1729046963
+        -XLKEEP
+        -XLMODE ./xcelium.d/run.lnx86.23.09.d
+        -RUNMODE
+        -CDSLIB ./xcelium.d/run.lnx86.23.09.d/cds.lib
+        -HDLVAR ./xcelium.d/run.lnx86.23.09.d/hdl.var
+        -XLNAME xrun
+        -XLVERSION TOOL:	xrun	23.09-s006
+        -XLNAME ./xcelium.d/run.lnx86.23.09.d/net1583_ce3ed164-6fb3-40fd-8703-138cfe92427d
+    -CHECK_VERSION TOOL:	xrun	23.09-s006
+    -LOG_FD 4
+    -LOG_FD_NAME xrun.log
+    -cmdnopsim
+    -runlock /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xcelium.d/run.lnx86.23.09.d/.xmlib.lock
+    -runscratch /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xcelium.d/run.lnx86.23.09.d/net1583_ce3ed164-6fb3-40fd-8703-138cfe92427d
+
+csi-xmsim - CSI: *F,INTERR: INTERNAL EXCEPTION
+Observed simulation time : 0 FS + 0
+-----------------------------------------------------------------
+The tool has encountered an unexpected condition and must exit.
+Contact Cadence Design Systems customer support about this
+problem and provide enough information to help us reproduce it,
+including the logfile that contains this error message.
+  TOOL:	xmsim	23.09-s006 (CL: 587028 )
+  HOSTNAME: net1583
+  OPERATING SYSTEM: Linux 4.18.0-513.9.1.el8_9.x86_64 #1 SMP Wed Nov 29 18:55:19 UTC 2023 x86_64
+  MESSAGE: T(0): sv_seghandler - trapno -1 addr(0xcb6efac)
+	Stream rts_xfer
+-----------------------------------------------------------------
+
+csi-xmsim - CSI: Cadence Support Investigation, recording details
+csi-xmsim - CSI: investigation complete took 0.000 secs, send this file to Cadence Support

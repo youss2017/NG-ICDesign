@@ -2,8 +2,8 @@
 // Module: multidriver
 // Author: Nicolas Sayed
 // Date  : 10/15/2024
-// Description: A multi-driver module that manages multiple
-//              data inputs based on enable signals.
+// Description: Multi-driver module that manages multiple
+//              tri-state drivers to control a shared data bus.
 //=========================================================
 
 module multidriver #(
@@ -11,29 +11,32 @@ module multidriver #(
     parameter int WIDTH = 8
 ) (
     // Define input/output ports
-    input  wire         ena1,            // Enable signal for datin1
-    input  wire         ena2,            // Enable signal for datin2
+    input  wire                ena1,      // Enable signal for first driver
+    input  wire                ena2,      // Enable signal for second driver
 
-    input  logic [WIDTH-1:0] datin1,     // Data input 1
-    input  logic [WIDTH-1:0] datin2,     // Data input 2
+    input  logic [WIDTH-1:0]   datin1,    // Data input for first driver
+    input  logic [WIDTH-1:0]   datin2,    // Data input for second driver
 
-    output logic [WIDTH-1:0] dataout     // Data output
+    inout  wire [WIDTH-1:0]   dataout    // Shared data output bus
 );
 
-    // Main logic: Determine dataout based on enable signals
-    always_comb begin
-        if (ena1 && ~ena2) begin
-            dataout = datin1;
-        end
-        else if (~ena1 && ena2) begin
-            dataout = datin2;
-        end
-        else if (ena1 && ena2) begin
-            dataout = 'X; // Conflict: Both drivers enabled
-        end
-        else begin
-            dataout = 'Z; // No driver enabled
-        end
-    end
+    // Instantiate first tri_driver
+    tri_driver #(
+        .WIDTH(WIDTH)
+    ) tri_driver_inst1 (
+        .data_in(datin1),
+        .data_out(dataout),
+        .data_en(ena1)
+    );
+
+    // Instantiate second tri_driver
+    tri_driver #(
+        .WIDTH(WIDTH)
+    ) tri_driver_inst2 (
+        .data_in(datin2),
+        .data_out(dataout),
+        .data_en(ena2)
+    );
 
 endmodule
+

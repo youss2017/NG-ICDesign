@@ -41,7 +41,7 @@ module multidriver #(
         .data_en(ena2)
     );
 
-    assign dataout = (ena1) ? tri1_dataout : (ena2) ? tri2_dataout : 'bZ;
+    assign dataout = (ena1 & ena2) ? 'bX : (ena1) ? tri1_dataout : (ena2) ? tri2_dataout : 'bZ;
 
 endmodule
 

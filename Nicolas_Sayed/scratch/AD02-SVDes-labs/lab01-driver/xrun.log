@@ -1,18 +1,15 @@
 xrun: 23.09-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun	23.09-s006: Started on Oct 15, 2024 at 23:37:56 EDT
+TOOL:	xrun	23.09-s006: Started on Oct 15, 2024 at 23:43:43 EDT
 xrun
 	-f lab1.f
 		driver_test.sv
 		multi_driver.sv
 		tri_driver.sv
-file: driver_test.sv
-	module worklib.drivertest:sv
-		errors: 0, warnings: 0
+Recompiling... reason: file './multi_driver.sv' is newer than expected.
+	expected: Tue Oct 15 23:37:12 2024
+	actual:   Tue Oct 15 23:43:38 2024
 file: multi_driver.sv
 	module worklib.multidriver:sv
-		errors: 0, warnings: 0
-file: tri_driver.sv
-	module worklib.tri_driver:sv
 		errors: 0, warnings: 0
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
@@ -29,16 +26,10 @@ xmelab: *W,CUVMPW (./driver_test.sv,8|47): port sizes differ in port connection(
 xmelab: *W,CUVMPW (./driver_test.sv,8|57): port sizes differ in port connection(4/8) for the instance(drivertest) .
 	Building instance overlay tables: .................... Done
 	Generating native compiled code:
-		worklib.tri_driver:sv <0x62023056>
-			streams:   1, words:   239
 		worklib.multidriver:sv <0x4526d38b>
-			streams:   1, words:   432
-		worklib.tri_driver:sv <0x3b322734>
-			streams:   1, words:   250
+			streams:   1, words:   571
 		worklib.multidriver:sv <0x30251923>
-			streams:   1, words:   447
-		worklib.drivertest:sv <0x7da1f64d>
-			streams:   6, words:  8190
+			streams:   1, words:   586
 	Building instance specific data structures.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
@@ -65,8 +56,8 @@ including the logfile that contains this error message.
   TOOL:	xmsim	23.09-s006 (CL: 587028 )
   HOSTNAME: net1583
   OPERATING SYSTEM: Linux 4.18.0-513.9.1.el8_9.x86_64 #1 SMP Wed Nov 29 18:55:19 UTC 2023 x86_64
-  MESSAGE: T(0): sv_seghandler - trapno -1 addr(0xc93058c)
+  MESSAGE: T(0): sv_seghandler - trapno -1 addr(0xcfb65ec)
 	Stream rts_xfer
 -----------------------------------------------------------------
-csi-xmsim - CSI: Cadence Support Investigation, sending details to /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xmsim_2723246.err
-csi-xmsim - CSI: investigation complete, send /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xmsim_2723246.err to Cadence Support
+csi-xmsim - CSI: Cadence Support Investigation, sending details to /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xmsim_2726506.err
+csi-xmsim - CSI: investigation complete, send /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/AD02-SVDes-labs/lab01-driver/xmsim_2726506.err to Cadence Support

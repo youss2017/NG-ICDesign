@@ -1,0 +1,115 @@
+
+<html><head><title>Examples for Cold/Warm Run</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223236" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Examples for Cold/Warm Run" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="reference" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE,MSIE," />
+<meta name="prod_subfeature" content="Cold run,Warm run," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223236" />
+<meta name="NextFile" content="Disk_Cloning_Option_for_Replicated_Hierarchies.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Using_Warm_Run_Flow.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Examples for Cold/Warm Run" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Using_Warm_Run_Flow.html" title="Using_Warm_Run_Flow">Using_Warm_Run_Flow</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Disk_Cloning_Option_for_Replicated_Hierarchies.html" title="Disk_Cloning_Option_for_Replicated_Hierarchies">Disk_Cloning_Option_for_Replic ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Examples for Cold/Warm Run</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span class="inline-comment-marker" data-ref="4bd137cd-94df-4829-bc37-33a88d444899">The f</span>ollowing example can be used for Cold Run and Warm Run flows.</p>
+<p style="text-align: left;"><em><strong><code>//File: Intf.sv</code> </strong> </em></p>
+<p style="text-align: left;"><code>interface myintf;</code> <br /><code>&#160; parameter p = 1;</code> <br /><code>&#160; reg r;</code> <br /><code>endinterface</code> <br /><code>module sub;</code> <br /><code>&#160; reg rs;</code> <br /><code>endmodule</code></p>
+<p style="text-align: left;"><em> <strong> <code>//File: prim1.sv</code> </strong> </em></p>
+<p style="text-align: left;"><code>module prim1;</code> <br /><code>&#160; virtual myintf #(1) v1;</code></p>
+<p style="text-align: left;"><code>&#160; myintf #(1) i1(); //HREF would have entry</code> <br /><code>&#160; myintf #(2) i2(); //HREF would have NO entry (no vifc)</code> <br /><code>&#160; myintf #(3) i3(); //HREF would have entry</code> <br /><code>&#160; myintf #(5) i5(); //HREF would have entry</code> <br /><code>&#160; sub sub1();</code> <br /><code>endmodule</code></p>
+<p style="text-align: left;"><em> <strong> <code>//File: prim2.sv</code> </strong> </em></p>
+<p style="text-align: left;"><code>module prim2;</code> <br /><code>&#160; virtual myintf #(3) v3;</code> <br /><code>&#160; reg r;</code> <br /><code>&#160; sub sub2();</code> <br /><code>endmodule</code></p>
+<p style="text-align: left;"><em> <strong> <code>//File: prim3.sv</code> </strong> </em></p>
+<p style="text-align: left;"><code>module prim3;</code> <br /><code>&#160; myintf #(2) i32(); //HREF would have NO entry (no vifc)</code> <br /><code>&#160; reg r;</code> <br /><code>&#160; sub sub2();</code> <br /><code>endmodule</code></p>
+<p style="text-align: left;"><em> <strong> <code>//File: incr.sv</code> </strong> </em></p>
+<p style="text-align: left;"><code>module top;</code> <br /><code>&#160; virtual myintf #(4) v4;</code> <br /><code>&#160; virtual myintf #(5) v5;</code> <br /><code>&#160; myintf #(2) ti22(); //HREF would have NO entry (no vifc)</code> <br /><code>&#160; myintf #(4) ti4(); //HREF would have NO entry (incr only instance)</code> <br /><code>&#160; myintf #(5) ti5(); //HREF would have entry</code></p>
+<p style="text-align: left;"><code>&#160; prim1 prim1();</code> <br /><code>&#160; prim2 prim2();</code> <br /><code>&#160; prim3 prim3();</code> <br /><code>endmodule</code></p>
+<p style="text-align: left;"><strong> <code>Cold Run:</code> </strong></p>
+<p style="text-align: left;"><code>xrun -clean -xmlibdirname commond -compile<span>&#160;</span>intf.sv</code> <br /><code>xrun -clean -xmlibdirname prim1d -reflib commond/worklib -mkprimary -top prim1<span>&#160;</span>prim1.sv<span>&#160;</span>-msieunlock cw_intf_optm</code> <br /><code>xrun -clean -xmlibdirname prim2d -reflib commond/worklib -mkprimary -top prim2<span>&#160;</span>prim2.sv<span>&#160;</span>-msieunlock cw_intf_optm</code> <br /><code>xrun -clean -xmlibdirname prim3d -reflib commond/worklib -mkprimary -top prim3<span>&#160;</span>prim3.sv<span>&#160;</span>-msieunlock cw_intf_optm</code> <br /><code>xrun -clean -reflib commond/worklib -primlibdir prim1d -primlibdir prim2d -primlibdir prim3d -primbind -top top<span>&#160;</span>incr.sv<span>&#160;</span>-msieunlock cw_intf_optm</code></p>
+<p style="text-align: left;"><em> <strong> <code>//Incremental elab log file with error HREFPI/HREFPE message denoting sanity check failure</code> </strong> </em></p>
+<p style="text-align: left;"><code>xmelab: *N,HREFPI: Interface (myintf) signature has virtual interface declaration but missing entry in href file.</code> <br /><code>xmelab: *N,HREFPI: Interface (myintf) signature has virtual interface declaration but missing entry in href file.</code> <br /><code>xmelab: *N,HREFPI: Interface (myintf) signature has virtual interface declaration but missing entry in href file.</code> <br /><code>Wrote HREF file: autohref.txt</code> <br /><code>Primary models that need to be re-elaborated:</code> <br /><code>worklib.prim2:sv</code> <br /><code>worklib.prim1:sv</code> <br /><em> <strong> <code>xmelab: *E,HREFPE: Terminating due to missing virtual interface signatures (generating HREF file: autohref.txt).</code> </strong> </em> <br /><code>xmelab: *F,HREFIF: Terminating due to hierarchical reference permission problems (generated HREF file: autohref.txt).</code> <br /><code>xrun: *E,ELBERR: Error during elaboration (status 2), exiting</code></p>
+<p style="text-align: left;"><em> <strong> <code>//autohref.txt file generated due to sanity check failure</code> </strong> </em></p>
+<p style="text-align: left;"><code>#VERSION : TOOL: xmelab 21.09-a001-20210822</code> <br /><code>#TIME : 2021-8-23 10:46:46</code> <br /><code>V myintf#(32&#39;h00000005)</code> <br /><code>V myintf#(32&#39;h00000001)</code> <br /><code>V myintf#(32&#39;h00000003)</code></p>
+<p style="text-align: left;"><strong> <code>Warm Run:</code> </strong></p>
+<p style="text-align: left;"><code>xrun -clean -xmlibdirname commond -compile<span>&#160;</span>intf.sv</code> <br /><code>xrun -clean -xmlibdirname prim1d -reflib commond/worklib -mkprimary -top prim1<span>&#160;</span>prim1.sv<span>&#160;</span>-msieunlock cw_intf_optm -href autohref.txt</code> <br /><code>xrun -clean -xmlibdirname prim2d -reflib commond/worklib -mkprimary -top prim2<span>&#160;</span>prim2.sv<span>&#160;</span>-msieunlock cw_intf_optm -href autohref.txt</code> <br /><code>xrun -clean -xmlibdirname prim3d -reflib commond/worklib -mkprimary -top prim3<span>&#160;</span>prim3.sv<span>&#160;</span>-msieunlock cw_intf_optm -href autohref.txt</code> <br /><code>xrun -clean -reflib commond/worklib -primlibdir prim1d -primlibdir prim2d -primlibdir prim3d -primbind -top top<span>&#160;</span>incr.sv<span>&#160;</span>-msieunlock cw_intf_optm</code></p>
+<p style="text-align: left;"><em> <strong> <code>//Warm run would finish successfully</code> </strong> </em></p>
+<p style="text-align: left;"><code>Design hierarchy summary:</code> <br /><code>Instances Unique</code> <br /><code>Modules: 1 5</code> <br /><code>Interfaces: 3 1</code> <br /><code>Registers: 5 8</code></p>
+<p style="text-align: left;"><code>Writing incremental snapshot: worklib.top:sv</code> <br /><code>Loading snapshot worklib.top:sv .................... Done</code></p>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Using_Warm_Run_Flow.html" id="prev" title="Using_Warm_Run_Flow">Using_Warm_Run_Flow</a></em></b><b><em><a href="Disk_Cloning_Option_for_Replicated_Hierarchies.html" id="nex" title="Disk_Cloning_Option_for_Replicated_Hierarchies">Disk_Cloning_Option_for_Replic ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

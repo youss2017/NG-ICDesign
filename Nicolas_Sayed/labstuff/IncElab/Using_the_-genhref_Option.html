@@ -1,0 +1,180 @@
+
+<html><head><title>Using the -genhref Option</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223232" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Using the -genhref Option" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="task" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="genref," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223232" />
+<meta name="NextFile" content="Generating_a_Type-based_href_File.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Generating_an_href_File_When_Elaborating_the_Simulation_Snapshot.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Using the -genhref Option" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Generating_an_href_File_When_Elaborating_the_Simulation_Snapshot.html" title="Generating_an_href_File_When_Elaborating_the_Simulation_Snapshot">Generating_an_href_File_When_E ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Generating_a_Type-based_href_File.html" title="Generating_a_Type-based_href_File">Generating_a_Type-based_href_F ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Using the -genhref Option</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span class="confluence-anchor-link" id="UsingthegenhrefOption-63691"></span>To generate an href file use the <code>-genhref</code> option (<code>xmelab -genhref</code> or <code>xrun -genhref</code>).</p>
+
+<p>Elaborating with the <code>-genhref</code> option does not create a snapshot. Instead, the software elaborates the full design to a point where hierarchical references can be resolved. The elaborator identifies any references that cross partition boundaries, keeping track of the permissions that each reference requires. When all names have been resolved, the elaborator dumps an href file that you can use when elaborating the primary snapshots.</p>
+
+<p>You can use this option in two ways:</p>
+<ul><li><a href="#UsingthegenhrefOption-28293">When a Primary Snapshot Does Not Exist</a></li><li><a href="#UsingthegenhrefOption-46828">When a Primary Snapshot Already Exists</a></li></ul><h2 id="UsingthegenhrefOption-28293WhenaPrimarySnapshotDoesNotExist"><span class="confluence-anchor-link" id="UsingthegenhrefOption-28293"></span>When a Primary Snapshot Does Not Exist</h2>
+
+<p>If a primary snapshot does not exist, use the same command line that you would use to elaborate the whole design into one snapshot, and add the <code>-genhref</code> option with either <code>-incrtop</code> and/or <code>-primtop</code> to specify how to partition the design.</p>
+<ul><li>If all partition boundaries are incremental design units instantiated by primary partitions, use <code>-incrtop</code> option(s) to identify these design units. Any top-level units of the overall design left unspecified are assumed to be part of the primary partition.</li><li>If all partition boundaries are primaries being instantiated by another partition, use <code>-primtop</code> option(s) to identify the design units in primary partitions that are instantiated by the other partition. Any top-level units of the overall design left unspecified are assumed to be part of the incremental partition.</li><li>Otherwise, use both <code>-incrtop</code> and <code>-primtop</code> option(s) to identify all design units instantiated at partition boundaries. No assumptions can be made about top-level units of the overall design, so one of these two options must be used to specify which kind of partition contains each top-level unit.</li></ul><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>When using the <code>-genhref</code> option, the elaborator generates an error if you use the <code>-primbind</code> or <code>-primsnap</code> options on the same command line as either the <code>-incrtop</code> or <code>-primtop</code> options.</p>
+</div>
+</div>
+<h4 id="UsingthegenhrefOption-AutomaticallyGeneratinganexterns.vFile">Automatically Generating an externs.v File</h4>
+
+<p>When elaborating Verilog or SystemVerilog designs, the <code>-genhref</code> option generates a <code>primary</code> <code>_externs.v</code> file automatically for a primary partition if a design unit in that primary needs access to some other part of the design or if the design needs access to some shared object that is in the incremental or another primary partition.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>The elaborator saves the <code>primary</code> <code>_externs.v</code> file(s) in the same location as the generated href file. Do not modify the <code>primary</code> <code>_externs.v</code> file(s).</p>
+</div>
+</div>
+
+<p>For example, if a primary partition <code>prim1</code> includes a shared object that is required by the full design, then the elaborator generates the file <code>prim1_externs.v</code>. This file contains a top-level module <code>prim1_externs</code> that maps to real targets in the design.</p>
+
+<p>To use the <code>prim1_externs</code> module, you must compile the <code>prim1_externs.v</code> file as part of the corresponding primary build. During primary elaboration, specify the top-level <code>prim1_externs</code> module as an additional top module on the <code>xmelab</code> command line. At incremental elaboration time, all the <code>prim1_externs</code> objects merge with their real targets in other partitions.</p>
+
+<p>Or, if you are using <em>xrun</em>, then add the <code>prim1_externs.v</code> source file to the <code>xrun</code> command line. However, if your xrun command uses <code>-top</code> options to explicitly specify every top module, then you must also specify the <code>prim1_externs</code> module as an additional top.</p>
+<h3 id="UsingthegenhrefOption-Example:IncrementalInstantiatesthePrimary">Example: Incremental Instantiates the Primary</h3>
+
+<p>Given the following source files:</p>
+<pre><code>// primary.v -- primary top module (DUT)</code></pre><pre><code>module dut(input inp, output outp);</code></pre><pre><code>  wire w;</code></pre><pre><code>  buf (w, inp);</code></pre><pre><code>  buf (outp, w);</code></pre><pre><code>endmodule</code></pre><pre><code>// incremental.v -- incremental top module (TB)</code></pre><pre><code>module tb;</code></pre><pre><code>  wire x, y;</code></pre><pre><code>  dut dut_inst (x, y);</code></pre><pre><code>  initial $display(dut_inst.w);</code></pre><pre><code>endmodule</code></pre>
+<p>You can use the <code>-genhref</code> option to generate an href file:</p>
+<h4 id="UsingthegenhrefOption-DirectInvocationMode">Direct Invocation Mode</h4>
+<pre><code># Compile the source files for the design.</code></pre><pre><code>% <strong>xmvlog primary.v incremental.v</strong></code></pre><pre><code># Generate the href file. No snapshot is generated.</code></pre><pre><code>% <strong>xmelab tb -genhref href.txt -primtop dut</strong>  </code></pre><pre><code>        Elaborating the design hierarchy:</code></pre><pre><code>                Caching library &#39;worklib&#39; ....... Done</code></pre><pre><code>        Wrote HREF file: href.txt</code><code>
+</code></pre>
+<p>Use the <code>-href</code> option to specify the href file, when you create the primary snapshot:</p>
+<pre><code>% <strong>xmelab dut -mkprimsnap -href href.txt</strong><br /></code></pre><pre><code>        Elaborating the design hierarchy (primary partition):</code></pre><pre><code>...</code></pre><pre><code>        Writing primary snapshot: worklib.dut:module</code></pre><pre><code># Create the incremental snapshot.</code></pre><pre><code>% <strong>xmelab tb -primsnap dut</strong><br /></code></pre><pre><code>        Elaborating the design hierarchy (incremental partition):</code></pre><pre><code>        [MSIE] Instance tb.dut_inst is bound to module worklib.dut:module <br />        in primary snapshot worklib.dut:module</code></pre><pre><code>...</code></pre><pre><code>        Writing incremental snapshot: worklib.tb:module</code></pre><pre><code># Simulate the design.</code></pre><pre><code>% <strong>xmsim tb</strong>  </code></pre><h4 id="UsingthegenhrefOption-xrunMulti-StepMode">xrun Multi-Step Mode</h4>
+<pre><code># Generate the href file. No snapshot is created.</code></pre><pre><code>% <strong>xrun primary.v incremental.v -primtop dut -genhref href.txt</strong>
+  </code></pre><pre><code># Create the primary snapshot. Use -href to specify the href file.</code></pre><pre><code>% <strong>xrun primary.v -mkprimsnap -href href.txt -snapshot dut</strong>
+  </code></pre><pre><code># Create the incremental snapshot and simulate.</code></pre><pre><code>% <strong>xrun incremental.v -primname dut</strong><br /></code></pre><h3 id="UsingthegenhrefOption-Example:PrimaryinstantiatestheIncrementalandAnotherPrimary">Example: Primary instantiates the Incremental and Another Primary</h3>
+
+<p>Given the following source files:</p>
+<pre><code>// primary1.v</code></pre><pre><code>module dut1;</code></pre><pre><code>  reg dut1_reg = 1&#39;b0;</code></pre><pre><code>endmodule</code></pre><pre><code>
+//primary2.v</code></pre><pre><code>module dut2;</code></pre><pre><code>  initial $display(&quot;%b %b\n&quot;, tb.tb_reg, tb.dut1_inst.dut1_reg);</code></pre><pre><code>endmodule</code></pre><pre><code>
+//test.v</code></pre><pre><code>module tb;</code></pre><pre><code>  reg tb_reg = 1&#39;b1;</code></pre><pre><code>  dut1 dut1_inst();</code></pre><pre><code>  dut2 dut2_inst();</code></pre><pre><code>endmodule</code></pre>
+<p>You can use the <code>-genhref</code> option to generate an href file and the necessary <code>&lt;</code> <code>primary</code> <code>&gt;_externs.v</code> files for each primary build:</p>
+<h4 id="UsingthegenhrefOption-DirectInvocationMode:">Direct Invocation Mode:</h4>
+<pre><code># Compile source files for the design.</code></pre><pre><code>% <strong>xmvlog primary1.v primary2.v test.v</strong>
+  </code></pre><pre><code># Generate the href file. No snapshot is generated.</code></pre><pre><code>% <strong>xmelab -primtop dut1 -primtop dut2 tb -access +rwc -genhref href.txt</strong>
+  </code></pre><pre><code>       Elaborating the design hierarchy:</code></pre><pre><code>               Caching library &#39;worklib&#39; ....... Done</code></pre><pre><code>        Wrote HREF file: href.txt</code></pre><pre><code># Compile the generated &lt;<code>primary</code>&gt;_externs.v file.</code></pre><pre><code>
+    <strong>% xmvlog dut2_externs.v</strong>
+  </code></pre>
+<p>Use the <code>-href</code> option to specify the href file, when you create each primary snapshot. Specify the top-level <code>primary</code> <code>_externs</code> module as an additional top module to the corresponding primary build.</p>
+<pre><code>
+    <strong>% xmelab dut1 -mkprimsnap -access +rwc -href href.txt</strong><br /></code></pre><pre><code>
+    <strong>% xmelab dut2 -mkprimsnap -access +rwc dut2_externs -href href.txt</strong>
+  </code></pre><pre><code># Create the incremental snapshot. During elaboration, </code></pre><pre><code># the dut2_externs objects merge with their target obejects.</code></pre><pre><code>% xmelab -primsnap dut1 -primsnap dut2 tb -access +rwc</code></pre><pre><code>Loading primary snapshot worklib.dut1:module .................... Done</code></pre><pre><code>Loading primary snapshot worklib.dut2:module .................... Done</code></pre><pre><code>        Elaborating the design hierarchy (incremental partition):</code></pre><pre><code>        [MSIE] Instance tb.dut1_inst is bound to module worklib.dut1:module in primary snapshot worklib.dut1:module</code></pre><pre><code>        [MSIE] Instance tb.dut2_inst is bound to module worklib.dut2:module in primary snapshot worklib.dut2:module</code></pre><pre><code>        [MSIE] Top level design units from primary snapshots:</code></pre><pre><code>...</code></pre><pre><code>        Writing incremental snapshot: worklib.tb:module</code></pre><pre><code># Simulate the design.</code></pre>
+<p><code>
+    <strong>% xmsim tb</strong>
+  </code></p>
+<h4 id="UsingthegenhrefOption-xrunMulti-StepMode:">xrun Multi-Step Mode:</h4>
+<pre><code># Generate the href file and any necessary &lt;<code>primary</code>&gt;_externs.v files.</code></pre><pre><code># No snapshot is created at this time.</code></pre><pre><code>% <strong>xrun primary1.v primary2.v test.v -primtop dut2 -genhref href.txt</strong>
+  </code></pre><pre><code># Create the primary snapshot(s) and add the generated &lt;<code>primary</code>&gt;_externs.v file(s)</code></pre><pre><code># to the corresponding primary builds. Use -href to specify the href file.</code></pre><pre><code>% <strong>xrun primary1.v -mkprimsnap -href href.txt -snapshot dut1</strong>
+  </code></pre><pre><code>% <strong>xrun primary2.v dut2_externs.v -mkprimsnap -href href.txt -snapshot dut2</strong>
+  </code></pre><pre><code># Create the incremental snapshot and simulate.</code></pre><pre><code>% <strong>xrun test.v -primname dut1 -primname dut2</strong><br /></code></pre><h2 id="UsingthegenhrefOption-46828WhenaPrimarySnapshotAlreadyExists"><span class="confluence-anchor-link" id="UsingthegenhrefOption-46828"></span>When a Primary Snapshot Already Exists</h2>
+
+<p>If a primary snapshot already exists, use the same command line that you would use to elaborate the incremental snapshot, and just add the <code>-genhref</code> option. For example, given the following source files:<br /><code>
+// primary.v -- primary top module (DUT)</code></p>
+<pre><code>module dut();</code></pre><pre><code>  reg [3:0] status;</code></pre><pre><code>  test test_inst();</code></pre><pre><code>endmodule</code></pre><pre><code>// incremental.v -- incremental top module (TEST)</code></pre><pre><code>module test;</code></pre><pre><code>  wire [3:0] status;</code></pre><pre><code>  assign status=dut.status;</code></pre><pre><code>endmodule</code></pre>
+<p>You could use the <code>-genhref</code> option as follows:</p>
+<h3 id="UsingthegenhrefOption-ExampleWherethePrimaryInstantiatestheIncremental">Example Where the Primary Instantiates the Incremental</h3>
+<h4 id="UsingthegenhrefOption-DirectInvocationMode:.1">Direct Invocation Mode:</h4>
+<pre><code># Compile the source files for the primary partition.</code></pre><pre><code>% <strong>xmvlog primary.v</strong>
+  </code></pre><pre><code># Create primary snapshot.</code></pre><pre><code>% <strong>xmelab -mkprimsnap -incrbind test dut -snapshot top -messages</strong>
+  </code></pre><pre><code>        Elaborating the design hierarchy:</code></pre><pre><code>        [MSIE] Instance dut.test_inst will be bound to another snapshot</code></pre><pre><code>
+# Compile source files for incremental partition.</code></pre><pre><code>% <strong>xmvlog incremental.v</strong>
+  </code></pre><pre><code># Include the -genhref option on the command to create the simulation snapshot.</code></pre><pre><code># The elaborator generates the href file and no snapshot is generated.</code></pre><pre><code>% <strong>xmelab -primsnap top -genhref href.txt dut -messages</strong>
+  </code></pre><pre><code>        Elaborating the design hierarchy:</code></pre><pre><code>                Caching library &#39;worklib&#39; ....... Done</code></pre><pre><code>        [MSIE] Instance dut.test_inst in primary snapshot worklib.top:module is bound to module worklib.test:module in the incremental partition</code></pre><pre><code>        [MSIE] Top level design units from primary snapshots:</code></pre><pre><code>                Module dut (worklib.top:module)</code></pre><pre><code>        Wrote HREF file: href.txt</code></pre>
+<p>Use the <code>-href</code> option to specify the href file when you create the primary snapshot:</p>
+<pre><code>% <strong>xmelab -mkprimsnap -incrbind test -href href.txt dut -snapshot top</strong> </code></pre><pre><code>% <strong>xmelab -primsnap top dut</strong>  </code></pre><pre><code>% <strong>xmsim dut</strong>
+  </code></pre>
+<p>Or you can use the <code>-primhrefupdate</code> option to automatically update the href file and rebuild the primary snapshot during incremental elaboration.</p>
+<pre><code>% <strong>xmelab -primsnap top primary -primhrefupdate</strong>  </code></pre><pre><code>% <strong>xmsim primary</strong>
+  </code></pre>
+<p><code>
+</code></p>
+<h4 id="UsingthegenhrefOption-xrunMulti-StepMode:.1">xrun Multi-Step Mode:</h4>
+<pre><code># Compile the source files for the primary partition and create the</code></pre><pre><code># primary snapshot.</code></pre><pre><code>% <strong>xrun primary.v -mkprimsnap -incrbind test -snapshot top</strong>
+  </code></pre><pre><code># Include the -genhref option on the command to create the incremental snapshot.</code></pre><pre><code># Elaborator generates the href file href.txt. No snapshot is generated.</code></pre><pre><code>% <strong>xrun incremental.v -primname top -genhref href.txt</strong>
+  </code></pre>
+<p>Use the <code>-href</code> option to specify the href file when you create the primary snapshot:</p>
+<pre><code>% <strong>xrun primary.v -mkprimsnap -incrbind test -href href.txt -snapshot top</strong><br /></code></pre><pre><code>% <strong>xrun incremental.v -primname top</strong>  </code></pre>
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Generating_an_href_File_When_Elaborating_the_Simulation_Snapshot.html" id="prev" title="Generating_an_href_File_When_Elaborating_the_Simulation_Snapshot">Generating_an_href_File_When_E ...</a></em></b><b><em><a href="Generating_a_Type-based_href_File.html" id="nex" title="Generating_a_Type-based_href_File">Generating_a_Type-based_href_F ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

@@ -1,0 +1,179 @@
+
+<html><head><title>Running xrun in Single-Step Mode</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223202" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Running xrun in Single-Step Mode" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="task" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="Single-Step Invocation," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223202" />
+<meta name="NextFile" content="Customizing_Primary_Snapshots.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Running_MSIE_with_xrun.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Running xrun in Single-Step Mode" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Running_MSIE_with_xrun.html" title="Running_MSIE_with_xrun">Running_MSIE_with_xrun</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Customizing_Primary_Snapshots.html" title="Customizing_Primary_Snapshots">Customizing_Primary_Snapshots</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Running xrun in Single-Step Mode</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span id="Running xrun in Single-Step Mode-marker_1073981"></span><span class="confluence-anchor-link" id="RunningxruninSingleStepMode-74371"></span>For single-step <em>xrun</em> invocation mode, the software takes care of all parameter overrides internally. For instance, if the same primary snapshot is instantiated multiple times with different parameter values, <em>xrun</em>&#160;automatically creates different versions of that primary snapshot by identifying the combination of parameter values specified and passing these values on to separate configurations.</p>
+
+<p>See <a href="Customizing_Primary_Snapshots.html">Customizing Primary Snapshots</a>.</p>
+
+<p>MSIE allows parameters of string datatype at partition boundary.</p>
+
+<p>Run <em>xrun</em> to compile, elaborate, and simulate a complete MSIE model.</p>
+
+<p>The following options provide partition boundary information:</p>
+<div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col /><col /></colgroup><tbody><tr><td class="confluenceTd" colspan="1" rowspan="1"><code>-primtop</code></td>
+<td class="confluenceTd" colspan="1" rowspan="1">Specifies a top level of a primary partition.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1"><code>-incrtop</code></td>
+<td class="confluenceTd" colspan="1" rowspan="1">Specifies a top level of the incremental partition.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1"><code>-makeprim</code></td>
+<td class="confluenceTd" colspan="1" rowspan="1">Specifies the beginning of a list of top-level design units and options for a primary partition.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1"><code>-endprim</code></td>
+<td class="confluenceTd" colspan="1" rowspan="1">Specifies the end of the list of top-level design units and options for a primary partition.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1"><code>-nopreelab</code></td>
+<td class="confluenceTd" colspan="1" rowspan="1"><div class="content-wrapper">
+<p>Skips the initial step of analyzing the design for hierarchical references and primary parameter values. This saves some time, but it then becomes your responsibility to manage hrefs and parameterization of primaries.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>When specifying this option, take care when naming and using primary partitions.</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1"><code>-primparallelelab</code></td>
+<td class="confluenceTd" colspan="1" rowspan="1"><div class="content-wrapper">
+<p>Elaborates primary partitions in parallel. Use this option to specify a <code>number</code> of parallel primary elaborations to run.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>You can also specify the amount of primary parallel elaborations to run using the <code>PRIMMAXPARALLEL</code> environment variable. When specifying both the environment variable and the command-line option, the environment variable takes precedence.</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Syntax:</strong></p>
+
+<p><code>% xrun files [-primtop primary][-primtop ...]| </code><br /><code>&#160; [{-makeprim primary &lt;other_options&gt; -endprim}][{-makeprim ...}]\</code><br /><code>&#160; [-incrtop incremental] \</code><br /><code>&#160; [-nopreelab] \    [-primparallelelab number]</code></p>
+
+<p>For single-step invocation mode, the <code>-primtop</code> or <code>-makeprim</code> command-line options are required when specifying the top-level module or entity of a primary partition. The following example specifies the <code>dut</code> as the top of the primary partition:</p>
+
+<p><code><strong>% xrun dut.v tb_top.v -primtop dut</strong></code></p>
+
+<p>or</p>
+
+<p><code><strong>% xun dut.v tb_top.v -makeprim dut &lt;</strong><strong><em>other_options</em></strong><strong>&gt; -endprim</strong></code></p>
+
+<p>To create a model where the primary partition instantiates the incremental partition, use the <code>-incrtop</code> option. For instance, when simulating an MSIE model, a test program can be included that is instantiated in <code>tb_top</code> along with a <code>dut</code> module. With the following command, the <code>-incrtop</code> option explicitly specifies the test program as the top of the incremental:</p>
+
+<p><code><strong>% xrun dut.v tb_top.v testprog.v -primtop tb_top -incrtop testprog</strong></code></p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>Top-level modules that are not explicitly put in the primary with a <code>-primtop</code> option, as <code>tb_top</code> is above, are in the incremental partition.</p>
+</div>
+</div>
+
+<p>Multiple primary partitions are allowed. To specify multiple primaries, use multiple <code>-primtop</code> options or specify multiple <code>-makeprim</code> collections as shown:</p>
+
+<p><code><strong>% xrun ip1.v ip2.v soc.v tb.v \<br /></strong><strong> -primtop soc -primtop ip1 -primtop ip2</strong></code></p>
+
+<p>or:</p>
+
+<p><code><strong>% xrun ip1.v ip2.v soc.v tb.v \</strong></code></p>
+
+<p><code><strong>&#160; -makeprim soc -endprim \<br />&#160; -makeprim ip1 -endprim \<br />&#160; -makeprim ip2 -endprim</strong></code></p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>Only one main top-level module is allowed within a <code>-makeprim</code> collection. If other top-level modules are required to be in the same primary snapshot, use the <code>-top</code> option within the same collections to add them.</p>
+</div>
+</div>
+
+<p>Typically, there is little need to put multiple tops into primaries when using the single-step <em>xrun</em> flow. However, there are some cases where an additional top module may need to be forced into a given primary. For instance, there may be modules that have additional objects needed by that primary. These top modules are ancillary to the primary, which means that they cannot fulfill an instance in another partition and therefore become top-level modules in the overall design.</p>
+
+<p>For example, the <code>xrun</code> command below adds the top-level module <code>myglobals</code> to the top-level primary <code>soc</code>:</p>
+
+<p><code><strong>% xrun ip1.v ip2.v soc.v tb.v \</strong></code></p>
+
+<p><code><strong>&#160; -makeprim soc -top myglobals <em>&lt;other_options&gt;</em> -endprim \<br />&#160; -makeprim ip1 <em>&lt;other_options&gt;</em> -endprim \<br />&#160; -makeprim ip2 <em>&lt;other_options&gt;</em> -endprim</strong></code></p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>If the <code>-incrtop</code> option is used within a <code>-makeprim</code> collection, then it applies only to instances of the given module within that primary.</p>
+</div>
+</div>
+<h6 id="RunningxruninSingleStepMode-RelatedTopics">Related Topics</h6><ul><li><a href="Customizing_Primary_Snapshots.html">Customizing Primary Snapshots</a></li><li><a href="Specifying_Paths_to_Hierarchical_Instances.html">Specifying Paths to Hierarchical Instances</a></li><li><a href="Partitioning_Verilog_Configurations.html">Partitioning Verilog Configurations</a></li><li><a href="Running_MSIE_in_a_Distributed_Computing_Environment_with_Single-Step_xrun.html">Running MSIE in a Distributed Computing Environment with Single-Step xrun</a></li><li><a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od000000050NlEAI&amp;pageName=ArticleContent&amp;sq=005d00000043eocAAA_2017411104032899" rel="nofollow">Demystifying the -incrtop and -incrbind Options for Multi-Snapshot Incremental Elaboration (MSIE)</a></li></ul>
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Running_MSIE_with_xrun.html" id="prev" title="Running_MSIE_with_xrun">Running_MSIE_with_xrun</a></em></b><b><em><a href="Customizing_Primary_Snapshots.html" id="nex" title="Customizing_Primary_Snapshots">Customizing_Primary_Snapshots</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

@@ -1,0 +1,245 @@
+
+<html><head><title>Building Snapshots</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="anishap" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223215" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Building Snapshots" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="Snapshot," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223215" />
+<meta name="NextFile" content="Partition_Points_for_Partitioner.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Flexible_Partitioning_for_Complex_SOCs.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Building Snapshots" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Flexible_Partitioning_for_Complex_SOCs.html" title="Flexible_Partitioning_for_Complex_SOCs">Flexible_Partitioning_for_Comp ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Partition_Points_for_Partitioner.html" title="Partition_Points_for_Partitioner">Partition_Points_for_Partition ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Building Snapshots</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p>Different configurations of the SOC can be achieved either by naming different primaries on the command line with the <code>-primsnap</code> option, or by giving the <code>-primbind</code> option and using a Verilog configuration to direct the bindings of each IP to particular primaries or to specific VSTs (in which case the IP would be part of the incremental).</p>
+
+<p>As with the previous partitioning examples, the <code>-primbind</code> or <code>-primsnap</code> options are used when building the simulation snapshot. The elaborator picks up and uses the primaries created in the previous step to create the final partition model.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>It is possible for a simulation snapshot to consist of only primaries and have no incremental partition.</p>
+</div>
+</div>
+<h3 id="BuildingSnapshots-Example1">Example 1</h3>
+
+<p>In this example, the Verilog source files for a SOC are listed in an argument file called <code>socsrc.f</code>. The testbench has a top-level module called <code>tb</code> defined in a source file called <code>test.v</code>. This testbench module instantiates a module called <code>soc</code>. This <code>TB</code>/<code>SOC</code> combination instantiates multiple independent IP models, where each IP is in a separate primary snapshot. Source files for the IPs are listed in <code>ip1src.f</code>, <code>ip2src.f</code>, and <code>ip3src.f</code>.</p>
+<h4 id="BuildingSnapshots-RunninginDirectInvocationMode">Running in Direct Invocation Mode</h4>
+
+<p>In direct invocation mode, you run the test as follows:</p>
+
+<p><code># Compile the SOC and testbench.</code><br /><code><strong>% xmvlog -f socsrc.f -f ip1src.f -f ip2src.f -f ip3src.f test.v</strong></code></p>
+
+<p><code>
+# Build the primary snapshots for the IP models.</code><br /><code># Separate xmelab -mkprimsnap commands create the independent primary snapshots.</code><br /><code><strong>% xmelab ip1 -mkprimsnap<br /></strong><strong>% xmelab ip2 -mkprimsnap<br /></strong><strong>% xmelab ip3 -mkprimsnap</strong></code></p>
+
+<p><code>
+# Build the primary snapshot for the TB/SOC.</code><br /><code># -incrbind omits the specified modules</code><br /><code># and leaves them unbound in the TB/SOC primary.</code><br /><code><strong>% xmelab tb -incrbind ip1 -incrbind ip2 -incrbind ip3</strong></code></p>
+
+<p><code>
+# Create the simulation snapshot.</code><br /><code># The -primbind option binds tb to the primary snapshot and links</code><br /><code># the unbound IP specified in order to create the MSIE model.</code><br /><code><strong>% xmelab tb -primbind</strong></code></p>
+
+<p><code># Run the test.</code><br /><code><strong>% xmsim tb</strong></code></p>
+<h4 id="BuildingSnapshots-Runningwithxrun">Running with xrun</h4>
+
+<p>If you are simulating with single-step <em>xrun</em>, use the command below:</p>
+
+<p><code># Compile, elaborate, and simulate the complete MSIE model and run the test.</code><br /><code><strong>% xrun -f socsrc.f -f ip1src.f -f ip2src.f -f ip3src.f test.v \<br /></strong><strong>&#160; -primtop ip1 \<br /></strong>&#160; -primtop ip2 \</code><br /><code>&#160; -primtop ip3</code></p>
+
+<p>If you are simulating with multi-step <em>xrun</em>, you can run the test with the following commands:</p>
+
+<p><code># Build the primary snapshots for each IP block.<br /><strong>% xrun -mkprimsnap -top ip1 -name ip1_top -f ip1src.f -xmlibdirname ip1.d -bbox_create ip1_bbox -work ip1_work<br /></strong><strong>% xrun -mkprimsnap -top ip2 -name ip2_top -f ip2src.f&#160;-xmlibdirname ip2.d -bbox_create ip2_bbox -work ip2_work<br /></strong><strong>% xrun -mkprimsnap -top ip3 -name ip3_top -f ip3src.f&#160;-xmlibdirname ip3.d -bbox_create ip3_bbox -work ip3_work</strong></code></p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>For <em>xrun</em>, the <code>-top</code> option is not required for Verilog designs where the top-level module(s) can be automatically detected. If the design has a top-level VHDL definition, or you want to control the top-level units, then the <code>-top</code> option must be used. When using the <code>-top</code> option, automatic calculation of top levels is disabled and all the top-level units must be specified using <code>-top</code>.</p>
+</div>
+</div>
+
+<p><code>
+# Compile the SOC and testbench, build the TB/SOC primary snapshot.</code><br /><code><strong>% xrun -mkprimsnap -top tb -incrbind ip1_top -incrbind ip2_top \<br /></strong><strong>-incrbind ip3_top -name tb -f socsrc.f test.v<br /></strong></code></p>
+
+<p><code># Build the simulation snapshot with -primname on the command line.</code><br /><code>% xrun -top tb -xmlibdirname tb_incr.d \<br /></code><code> -primname ip1_top@ip1.d&#160;-bbox_link ip1_bbox \<br /> -primname ip2_top@ip2.d -bbox_link ip2_bbox \<br /> -primname ip3_top@ip3.d&#160;-bbox_link ip3_bbox&#160;</code></p>
+<h3 id="BuildingSnapshots-Example2">Example 2</h3>
+
+<p>In this example, a file <code>test.v</code> contains a module <code>soc</code> that instantiates two IPs. You can plug and play between the real and black-boxed IP models as primaries. Create the primary partitions as follows:</p>
+
+<p><code># Compile the real and black-boxed IP models<br /><strong>% xmvlog -sv real_ips.v -work real_lib<br /></strong><strong>% xmvlog bbox_ips.v -work bbox_lib</strong></code></p>
+
+<p><code>
+# Build the primary snapshots for the real IP models<br /><strong>% xmelab ip1 -mkprimsnap -snapshot prim1 -work real_lib<br /></strong><strong>% xmelab ip2 -mkprimsnap -snapshot prim2 -work real_lib</strong></code></p>
+
+<p><code>
+# Build the primary snapshots for the black-boxed IP models<br /><strong>% xmelab ip1 -mkprimsnap -work bbox_lib<br /></strong><strong>% xmelab ip2 -mkprimsnap -work bbox_lib</strong></code></p>
+
+<p><code>
+# Compile the testbench<br /><strong>% xmvlog test.v<br /></strong><strong>% xmelab tb -incrbind ip1 -incrbind ip2</strong></code></p>
+
+<p>Once the primary snapshots have been created, multiple configurations can be created by picking up the right combination of IP primaries. You can do this with the <code>-primsnap</code> option if you know that each independent primary is instantiated at least once. Otherwise, you can use a Verilog configuration, as shown:</p>
+<h4 id="BuildingSnapshots-Configuration1:RealModelsofIP1andIP2">Configuration 1: Real Models of IP1 and IP2</h4>
+
+<p><code>//config1.v</code><br /><code>config config1;</code><br /><code>&#160; design tb;</code><br /><code>&#160; default liblist real_lib worklib;</code><br /><code>endconfig</code></p>
+
+<p><code>
+# Compile the Verilog configuration for two real IP models<br /><strong>% xmvlog -compcnfg config1.v</strong></code></p>
+
+<p><code>
+# Create the simulation snapshot and run the test<br /><strong>% xmelab config1 -primbind<br /></strong><strong>% xmsim config1</strong></code></p>
+<h4 id="BuildingSnapshots-Configuration2:BlackboxedmodelofIPandRealModelofIP2">Configuration 2: Blackboxed model of IP and Real Model of IP2</h4>
+
+<p><code>//config2.v</code><br /><code>config config2;</code><br /><code>&#160; design tb</code><br /><code>&#160; default liblist real_lib worklib;</code><br /><code>cell ip1 liblist bbox_lib;</code><br /><code>endconfig</code></p>
+
+<p><code>
+# Compile the Verilog configuration file</code><br /><code># for one blackboxed IP model and one real IP model</code><br /><code><strong>% xmvlog -compcnfg config2.v</strong></code></p>
+
+<p><code>
+# Create the simulation snapshot and run the test<br /><strong>% xmelab config2 -primbind<br /></strong><strong>% xmsim config2</strong></code></p>
+<h4 id="BuildingSnapshots-Configuration3:Instance-specificConfiguration">Configuration 3: Instance-specific Configuration</h4>
+
+<p>You can also use multiple instance clauses in the configuration to specify the different primaries to bind to each instance. For example:</p>
+
+<p><code>module soc;</code><br /><code>&#160; ip1 ip1_inst1();</code><br /><code>&#160; ip1 ip1_inst2();</code><br /><code>endmodule</code></p>
+
+<p>To make the first instance real and blackbox the second instance, use the following configuration:</p>
+
+<p><code>//config3.v<br />config config3;</code><br /><code>&#160; design tb;</code><br /><code>&#160; default liblist real_lib worklib;</code><br /><code>&#160; instance tb.soc.ip1_inst2 liblist bbox_lib;</code><br /><code>endconfig</code></p>
+
+<p><code>
+# Compile the Verilog configuration<br /><strong>% xmvlog -compcnfg config3.v</strong></code></p>
+
+<p><code>
+# Create the simulation snapshot and run the test<br /><strong>% xmelab config3 -primbind<br /></strong><strong>% xmsim config3</strong></code></p>
+<h3 id="BuildingSnapshots-23633Example3"><span class="confluence-anchor-link" id="BuildingSnapshots-23633"></span>Example 3</h3>
+
+<p>In this example, flexible partitioning is extended to include multiple primary snapshot layers in a &quot;sandwich&quot; configuration. The Verilog source file <code>test.v</code> contains the SOC that is in its own primary snapshot. The SOC instantiates <code>IP1</code>. <code>IP2</code> is a separate independent IP model elaborated as a primary snapshot that is instantiated under <code>IP1</code>. At the top level, there is the testbench, which instantiates the SOC and is a part of the incremental partition.</p>
+
+<p><code># Compile the testbench<br /><strong>% xmvlog test.v</strong></code></p>
+
+<p><code># Build the independent primary snapshot for IP2<br /><strong>% xmelab -mkprimsnap ip2</strong></code></p>
+
+<p><code># Build the primary snapshots for IP1 and the SOC<br /># -incrbind omits the specified modules and leaves them unbound in other primaries.</code><br /><code><strong>% xmelab ip1 -incrbind ip2<br /></strong><strong>% xmelab soc -incrbind ip1</strong></code></p>
+
+<p><code># Build the simulation snapshot with the testbench and run the test<br /><strong>% xmelab tb -primbind<br /></strong><strong>% xmsim tb</strong></code></p>
+
+<p>When the elaborator resolves the testbench <code>tb</code> on the command line, it does not find a primary. Instead, it finds the VST for the module <code>tb</code>. When an instance or top-level unit binds to a VST or AST design unit instead of a primary, it becomes part of the incremental partition.</p>
+
+<p>To build a model with a block in the incremental partition when the primary for that block exists, the library or view name of the primary must differ from that of the VST. If this is true, then you can use a configuration file or the <code>-binding</code> option to choose which name to use. You can also use the <code>-binding</code> option to override <code>-primbind</code> in those cases where a VST or AST has the same library name as a primary. The <code>-binding</code> option&#8217;s argument always refers to a VST or AST, never to a primary.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>The <code>-binding</code> option applies to all instances of the given cell name.</p>
+</div>
+</div>
+<h3 id="BuildingSnapshots-Example4">Example 4</h3>
+
+<p>This example is another SOC in which some IPs should be blackboxed and some IPs should be real. However, instead of creating blackboxed primaries, the blackboxed IPs go into the incremental partition as they are presumably very small.</p>
+
+<p><code>// real_ips.v<br />module ip1;</code><br /><code>&#160; initial $display (&quot;ip1_real&quot;);</code><br /><code>endmodule</code></p>
+
+<p><code>
+module ip2;<br />&#160; initial $display (&quot;ip2_real&quot;);</code><br /><code>endmodule</code></p>
+
+<p><code>
+// bbox_ips.v<br />module ip1;</code><br /><code>&#160; initial $display (&quot;ip1_bbox&quot;);</code><br /><code>endmodule</code></p>
+
+<p><code>
+module ip2;<br />&#160; initial $display (&quot;ip2_bbox&quot;);</code><br /><code>endmodule</code></p>
+
+<p><code>
+// test.v<br />module soc;</code><br /><code>&#160; ip1 ip1_inst();</code><br /><code>&#160; ip2 ip2_inst();</code><br /><code>endmodule</code></p>
+
+<p><code>
+module tb;<br />&#160; soc soc_inst1();</code><br /><code>&#160; soc soc_inst2();</code><br /><code>endmodule</code></p>
+
+<p><code>
+<strong>%&#160;xrun -elaborate -top real_lib.ipl -mkprimsnap -name ip1 -xmlibdirname ip1_elab.d -work ip1_work -bbox_create ip1_bbox -reflib real_compile.d/real_lib<br /></strong><strong>%&#160;xrun -elaborate -top real_lib.ip2 -mkprimsnap -name ip2 -xmlibdirname ip2_elab.d -work ip2_work -bbox_create ip2_bbox -reflib real_compile.d/real_lib<br /></strong><strong>%&#160;xrun -compile test.v -work test_lib -xmlibdirname test.d -roelab -fast_recompilation<br /></strong><strong>% xrun -elaborate -top soc -incrbind ip1 -incrbind ip2 -mkprimsnap -name soc -work soc_work -bbox_create soc_bbox -reflib real_compile.d/real_lib -reflib test.d/test_lib</strong></code></p>
+
+<p><br /></p>
+
+<p>For incremental:<br /><strong><code>% xrun -top tb -xmlibdirname tb_incr.d -work tb_incr -reflib test.d/test_lib \</code></strong><br /><strong><code>-primname ip1_top @ip1.d -bbox_link ip1 _bbox \</code></strong><br /><strong><code>-primname ip2_top @ip2.d -bbox_link ip2_bbox \</code></strong><br /><strong><code>-primname soc @soc.d -bbox_link soc_bbox</code></strong></p>
+
+<p>Using the <code>-snapshot</code> option in the above command, the SOC primary has been written to a different library. You can use this name to create a Verilog configuration file and select which primaries to use during incremental elaboration. Once the primaries have been elaborated, you can create different plug and play configurations. For instance:</p>
+
+<p><code>// config.v<br />config config1;</code><br /><code>&#160; design tb;</code><br /><code>&#160; default liblist real_lib, worklib;</code><br /><code>&#160; instance tb.soc_inst1 use worklib.soc:prim;</code><br /><code>&#160; instance tb.soc_inst1.ip1_inst liblist bbox_lib;</code><br /><code>&#160; instance tb.soc_isnt2.ip2_inst liblist bbox_lib;</code><br /><code>endconfig</code></p>
+
+<p><code>
+<strong>% xmvlog -compcnfg config.v<br /></strong><strong>% xmelab config1 -primbind<br /></strong><strong>% xmsim config1</strong></code></p>
+
+<p><code><strong>% xrun tb_top.v mod1.v mod2.v mod3.v -libmap top.cfg -top cfg -primbind \</strong></code></p>
+
+<p><code><strong>-makeprim tb -snapshot prim -endprim \</strong></code></p>
+
+<p><code><strong>-incrtop mod1 \</strong></code></p>
+
+<p><code><strong>-incrtop mod2</strong></code></p>
+<pre><br /></pre><pre><code>xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.</code></pre><pre><code>file: tb_top.v</code></pre><pre><code>        module worklib.tb:v</code></pre><pre><code>...</code></pre><pre><code>file: mod1.v</code></pre><pre><code>        module worklib.mymod1:v</code></pre><pre><code>...</code></pre><pre><code>file: mod2.v</code></pre><pre><code>        module worklib.mymod2:v</code></pre><pre><code>...</code></pre><pre><code>file: mod3.v</code></pre><pre><code>        module worklib.mymod3:v</code></pre><pre><code>...</code></pre><pre><code>        Elaborating the design hierarchy:</code></pre><pre><code>        Top level design units:</code></pre><pre><code>                tb</code></pre><pre><code>        Wrote HREF file: ./xcelium.d/run.lnx86.14.10.d/href_internal.txt</code></pre><pre><code>        Elaborating the design hierarchy (primary partition):</code></pre><pre><code>        [MSIE] Instance tb.mod1_inst will be bound to another snapshot</code></pre><pre><code>        [MSIE] Instance tb.mod2_inst will be bound to another snapshot</code></pre><pre><code>        Top level design units:</code></pre><pre><code>                tb</code></pre><pre><code>...</code></pre><pre><code>        Writing primary snapshot: worklib.prim:v</code></pre><pre><code>        Elaborating the design hierarchy (incremental partition):</code></pre><pre><code>        Top level design units:</code></pre><pre><code>                tb</code></pre><pre><code>...</code></pre><pre><code>Writing incremental snapshot: worklib.cfg:v</code></pre><pre><code>Loading snapshot worklib.cfg:v .................... Done</code></pre><pre><code>...</code></pre><pre><code>xmsim&gt; run</code></pre><pre><code>xmsim: *W,RNQUIE: Simulation is complete.</code></pre><pre><code>xmsim&gt; exit</code></pre>
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Flexible_Partitioning_for_Complex_SOCs.html" id="prev" title="Flexible_Partitioning_for_Complex_SOCs">Flexible_Partitioning_for_Comp ...</a></em></b><b><em><a href="Partition_Points_for_Partitioner.html" id="nex" title="Partition_Points_for_Partitioner">Partition_Points_for_Partition ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

@@ -1,0 +1,110 @@
+
+<html><head><title>Passing Full-Design Access</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="anishap" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223192" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Passing Full-Design Access" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE,MSIE," />
+<meta name="prod_subfeature" content="X-Propagation," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="null" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223192" />
+<meta name="NextFile" content="Resolve_Hierarchical_References_that_Originate_from_a_Primary.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Binding_to_Primaries_Automatically.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Passing Full-Design Access" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Binding_to_Primaries_Automatically.html" title="Binding_to_Primaries_Automatically">Binding_to_Primaries_Automatic ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Resolve_Hierarchical_References_that_Originate_from_a_Primary.html" title="Resolve_Hierarchical_References_that_Originate_from_a_Primary">Resolve_Hierarchical_Reference ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Passing Full-Design Access</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p>MSIE can process access, timing, and X-propagation files that have hierarchical paths relative to the full design. Simply include the <code>-afile</code>, <code>-tfile,</code> or <code>-xfile</code> options on each of the <code>xmelab</code> or <code>xrun</code> command lines that build the partitions affected by these files. When using direct invocation or multi-step <em>xrun</em> to elaborate a primary partition that is not instantiated at the top of the full model, the <code><a href="../XceliumSC_Ref/-incrpath.html">-incrpath</a></code>&#160;option is required. This option defines the hierarchical path from the top of the overall model to the top(s) of the partition(s) being elaborated, which is needed to tell the elaborator how to extract the relevant data.</p>
+
+<p>For example, consider a design called <code>soc</code> which instantiates two IP blocks <code>ip1</code> and <code>ip2</code>. The <code>soc</code> design is then instantiated in a testbench called <code>test</code>, and the following timing file <code>tfile.txt</code> is specified to disable timing checks:</p>
+
+<p><code>// tfile.txt</code><br /><code>PATH test.soc_inst.ip1_inst.ip1_subblk -tcheck</code><br /><code>PATH test.soc_inst.ip2_inst.ip2_subblk -tcheck</code><br /><code>PATH test.soc_inst.subblk -tcheck</code></p>
+
+<p>The design is partitioned using the commands below, such that <code>ip1</code> and <code>ip2</code> are pre-built as primaries while the <code>soc</code> and <code>test</code> modules become parts of the incremental partition:</p>
+
+<p>Direct Invocation Mode:</p>
+
+<p><span style=""><code>% xmvlog ip1.v ip2.v soc.v test.v</code></span><br /><span style=""><code>% xmelab -mkprimsnap ip1 -incrpath test.soc_inst.ip1_inst -tfile tfile.txt</code></span><br /><span style=""><code>% xmelab -mkprimsnap ip2 -incrpath test.soc_inst.ip2_inst -tfile tfile.txt</code></span><br /><span style=""><code>% xmelab test&#160;-primsnap ip1 -primsnap ip2 -tfile tfile.txt</code></span><br /><span style=""><code>% xmsim test</code></span></p>
+
+<p>Multi-step <em>xrun</em> Invocation Mode:</p>
+
+<p><span style=""><code>% xrun ip1.v ip2.v soc.v test.v -compile</code></span><br /><span style=""><code>% xrun -mkprimsnap -name ip1 -top ip1 -incrpath test.soc_inst.ip1_inst -tfile tfile.txt</code></span><br /><span style=""><code>% xrun -mkprimsnap -name ip2&#160;-top ip2 -incrpath test.soc_inst.ip2_inst -tfile tfile.txt</code></span><br /><span style=""><code>% xrun test.v -primname ip1 -primname ip2 -tfile tfile.txt</code></span></p>
+
+<p>When using single-step <em>xrun</em> mode, add the <code>-tfile</code> option only. The <code>-incrpath</code> option is handled by the software internally.</p>
+
+<p><code>% xrun ip1.v ip2.v soc.v test.v -primtop ip1 -primtop ip2 -tfile tfile.txt</code></p>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Binding_to_Primaries_Automatically.html" id="prev" title="Binding_to_Primaries_Automatically">Binding_to_Primaries_Automatic ...</a></em></b><b><em><a href="Resolve_Hierarchical_References_that_Originate_from_a_Primary.html" id="nex" title="Resolve_Hierarchical_References_that_Originate_from_a_Primary">Resolve_Hierarchical_Reference ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

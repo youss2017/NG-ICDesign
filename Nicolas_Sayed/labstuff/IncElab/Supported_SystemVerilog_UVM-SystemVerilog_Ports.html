@@ -1,0 +1,181 @@
+
+<html><head><title>Supported SystemVerilog/UVM-SystemVerilog Ports</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="anishap" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223222" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Supported SystemVerilog/UVM-SystemVerilog Ports" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="Design Partitioning," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223222" />
+<meta name="NextFile" content="Hierarchical_References.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Ports_Supported_in_Mixed-Language_Design__Verilog_and_VHDL_.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Supported SystemVerilog/UVM-SystemVerilog Ports" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Ports_Supported_in_Mixed-Language_Design__Verilog_and_VHDL_.html" title="Ports_Supported_in_Mixed-Language_Design__Verilog_and_VHDL_">Ports_Supported_in_Mixed-Langu ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Hierarchical_References.html" title="Hierarchical_References">Hierarchical_References</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Supported SystemVerilog/UVM-SystemVerilog Ports</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span class="inline-comment-marker" data-ref="3ea98045-9b05-4cd6-b999-a3e655cbc57d">The</span> following SystemVerilog/UVM-SystemVerilog ports are supported.</p>
+<ul><li><a href="#SupportedSystemVerilog/UVMSystemVerilogPorts-interface_ports">SystemVerilog Interface Ports</a></li><li><a href="#SupportedSystemVerilog/UVMSystemVerilogPorts-variable_ports">SystemVerilog Variable Ports</a></li></ul><h2 id="SupportedSystemVerilog/UVMSystemVerilogPorts-SystemVerilogInterfacePorts">SystemVerilog Interface Ports</h2>
+
+<p><span class="confluence-anchor-link" id="SupportedSystemVerilog/UVMSystemVerilogPorts-interface_ports"></span>At a primary-instantiates-incremental boundary, the boundary port list can include SystemVerilog interface ports and modports. The interface is instanced in the primary partition and passed through the port to the incremental partition, either directly or via a modport.</p>
+
+<p>At primary-instantiates-primary boundaries, and at incremental-instantiates-primary boundaries, interface ports are also supported, but with the following limitations:</p>
+<ul><li>Parameterized interface port with type parameters<ul><li>Test case:<br /><p class="webflare-pre-block webflare-courier-new"><code>//msie.sv
+          </code> <br /><code>interface intf #(type T = int)(input a); </code> <br /><code>T intf_int;</code> <br /><code>endinterface</code></p>
+<p class="webflare-pre-block webflare-courier-new"><code>module prim(intf ifc);</code> <br /><code>endmodule</code></p>
+</li><li>Command line:<br /><p class="webflare-pre-block webflare-courier-new"><code>xrun msie.sv -primtop prim</code></p>
+</li><li>Error message:<br /><p class="webflare-pre-block webflare-courier-new"><code>xmelab: *E,DYNIFP (./msie.sv,1|22): Interface port at the top of primary partition has unsupported parameter data type.</code></p>
+</li></ul></li><li>Parameterized interface with parameter data types of array of strings and union<ul><li>Test case:<br /><p class="webflare-pre-block webflare-courier-new"><code>//msie.sv
+          </code> <br /><code>interface intf #(string sa[2]={&quot;M&quot;,&quot;S&quot;})();</code> <br /><code>endinterface</code></p>
+<p class="webflare-pre-block webflare-courier-new"><code>module prim(intf ifc);</code> <br /><code>endmodule</code></p>
+<p class="webflare-pre-block webflare-courier-new"><code>module incr;</code> <br /><code>intf #({&quot;I&quot;, &quot;E&quot;}) intf_inst ();</code> <br /><code>&#160; prim prim(.ifc(intf_inst));</code> <br /><code>initial $display(prim.ifc.sa[1]);</code> <br /><code>endmodule</code></p>
+</li><li>Command line:<br /><p class="webflare-pre-block webflare-courier-new"><code>xrun msie.sv -primtop prim -top incr -clean</code></p>
+</li><li>Error Message:<br /><p class="webflare-pre-block webflare-courier-new"><code>interface intf #(string sa[2]={&quot;M&quot;,&quot;S&quot;})();</code> <br /><code>&#160; &#160; &#160; &#160; &#160;|</code> <br /><code>xmelab: *E,DYNIFP (./msie.sv,1|25): Interface port at the top of primary partition has unsupported parameter data type.</code></p>
+</li></ul></li><li>Primary interfaces at the ports of a primary partition<ul><li>Test case:<br /><p class="webflare-pre-block webflare-courier-new"><code>//  msie.sv
+          </code> <br /><code>interface intf();</code> <br /><code>endinterface</code></p>
+<p class="webflare-pre-block webflare-courier-new"><code>module prim(intf ifc);</code> <br /><code>endmodule</code></p>
+<p class="webflare-pre-block webflare-courier-new"><code>module incr;</code> <br /><code>intf intf_inst ();</code> <br /><code>&#160; prim prim(.ifc(intf_inst));</code> <br /><code>endmodule</code></p>
+</li><li>Command line:<br /><p class="webflare-pre-block webflare-courier-new"><code>xrun msie.sv -primtop prim -top incr -clean -primtop intf</code></p>
+</li><li>Error Message:<br /><p class="webflare-pre-block webflare-courier-new"><code>prim prim(.ifc(intf_inst));</code> <br /><code>&#160; &#160; &#160; &#160; &#160;|</code> <br /><code>xmelab: *E,DYNIPN (./msie.sv,9|10): Interface port at the top of primary partition is itself a primary</code></p>
+</li></ul></li><li>Interface port having ports of interface type itself<ul><li>Test case:<br /><p class="webflare-pre-block webflare-courier-new"><code>//msie.sv
+          </code> <br /><code>interface intf_l(input clk);</code> <br /><code>endinterface</code></p>
+<p class="webflare-pre-block webflare-courier-new"><code>interface intf_u(intf_l intf_l_inst_1);</code> <br /><code>endinterface</code></p>
+<p class="webflare-pre-block webflare-courier-new"><code>module prim(intf_u ifc);</code> <br /><code>endmodule</code></p>
+<p class="webflare-pre-block webflare-courier-new"><code>module incr;</code> <br /><code>logic clk;</code> <br /><code>intf_l intf_l_inst_2(clk);</code> <br /><code>intf_u intf_inst(.intf_l_inst_1(intf_l_inst_2));</code> <br /><code>&#160; prim prim(.ifc(intf_inst));</code> <br /><code>endmodule</code></p>
+</li><li>Command line:<br /><p class="webflare-pre-block webflare-courier-new"><code>xrun msie.sv -primtop prim -top incr -clean</code></p>
+</li><li>Error Message:<br /><p class="webflare-pre-block webflare-courier-new"><code>interface intf_u(intf_l intf_l_inst_1);</code> <br /><code>&#160; &#160; &#160; &#160; &#160;|</code> <br /><code>xmelab: *E,DYNIIP (./msie.sv,4|36): Interface port at the top of primary partition itself has interface port type.</code> <br /><code>xrun: *E,ELBERR: Error during elaboration (status 1), exiting.</code></p>
+</li></ul></li><li>Interface port at the partition boundary which has instance hierarchy underneath<ul><li>Test case:<br /><p class="webflare-pre-block webflare-courier-new"><code>//msie.sv
+          </code> <br /><code>interface intf_l();</code> <br /><code>logic clk;</code> <br /><code>endinterface</code></p>
+<p class="webflare-pre-block webflare-courier-new"><code>interface intf_u();</code> <br /><code>intf_l intf_l_inst();</code> <br /><code>endinterface</code></p>
+<p class="webflare-pre-block webflare-courier-new"><code>module prim(intf_u ifc);</code> <br /><code>endmodule</code> <br /><code>module incr;</code> <br /><code>intf_u intf_inst ();</code> <br /><code>prim prim(.ifc(intf_inst));</code> <br /><code>endmodule</code></p>
+</li><li>Command line:<br /><p class="webflare-pre-block webflare-courier-new"><code>xrun msie.sv -primtop prim -top incr -clean -primtop intf</code></p>
+</li><li>Error Message:<br /><p class="webflare-pre-block webflare-courier-new"><code>intf_l intf_l_inst();<br />|</code> <br /><code>xmelab: *E,DYNIHN (./msie.sv,6|17): Interface port at the top of primary partition has instance hierarchy underneath.</code></p>
+</li></ul></li></ul>
+<p>To implement interface ports at the top of a primary partition, a dummy instance of the interface is generated into an extern file (see <a href="Resolve_Hierarchical_References_that_Originate_from_a_Primary.html">Resolve Hierarchical References that Originate from a Primary</a>).&#160;This dummy instance is associated with the port when the primary snapshot is elaborated. During final elaboration, the objects in the dummy instance are &quot;mirrored&quot; with the objects in the actual instance that is passed to the primary port from the parent partition.</p>
+<h2 id="SupportedSystemVerilog/UVMSystemVerilogPorts-SystemVerilogVariablePorts">SystemVerilog Variable Ports</h2>
+
+<p><span class="confluence-anchor-link" id="SupportedSystemVerilog/UVMSystemVerilogPorts-variable_ports"></span>Input variable ports are supported for SystemVerilog, but there are limitations. These are:</p>
+<ul><li>Input variable ports across mixed language boundary are not supported.</li><li>Input variable ports where primary instantiates incremental or another primary are not supported (see&#160;<a href="#SupportedSystemVerilog/UVMSystemVerilogPorts-27740">Input Port connectivity limitations for Primary- Instantiates- (Incremental or Primary)</a>).</li></ul>
+<p>Inout variable ports have limitations. For inout ports, a <code>DSSUFL</code> error is generated (see <a href="#SupportedSystemVerilog/UVMSystemVerilogPorts-47837">Inout Port connectivity limitations for Primary- Instantiates- (Incremental or Primary)</a>).</p>
+
+<p>Connecting a variable (reg) to an inout or output port at the boundary is not allowed. The elaborator generates a <code>PCIONC</code> error (for inout) and a <code>DSSVAR</code> error (for output) (see <a href="#SupportedSystemVerilog/UVMSystemVerilogPorts-36949">Output Port connectivity limitations for Primary- Instantiates- (Incremental or Primary)</a>).</p>
+
+<p>The tables below describe the Port Connectivity limitations for Primary-Instantiates-Incremental and Primary-Instantiates-Primary, and also the scenarios in which they are reported:</p>
+<div class="pbi_avoid"><span class="content-title" id="Table-9d127004a9e0461a81fa89466cdf7ffc"><strong>Table 6.1:</strong> <span class="confluence-anchor-link" id="SupportedSystemVerilog/UVMSystemVerilogPorts-27740"></span>Input Port connectivity limitations for Primary- Instantiates- (Incremental or Primary)</span><div class="table-wrap"><table class="relative-table wrapped confluenceTable"><colgroup> <col style="width: 26.9293%;" /> <col style="width: 54.5461%;" /> <col style="width: 9.28201%;" /> <col style="width: 9.16741%;" /> </colgroup><tbody><tr><th class="confluenceTh" colspan="1" rowspan="1"><strong>Error Mnemonic</strong></th><th class="confluenceTh" colspan="1" rowspan="1"><strong>Error testcase (mod1 and mod2 are in separate partitions)</strong></th><th class="confluenceTh" colspan="1" rowspan="1"><strong>Single-Step MSIE</strong></th><th class="confluenceTh" colspan="1" rowspan="1"><strong>Multi-Step MSIE</strong></th></tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1"><code>DSSUSZ:
+</code>unsized literal is connected to input wire</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><code>module mod1(input [1:0] a);</code> <code>&#8230;</code> <code>module mod2(); </code> <code>mod1 mod1(&#39;b0); //*E,DSSUSZ</code> <code>&#8230;</code></td>
+<td class="confluenceTd" colspan="1" rowspan="1">Supported</td>
+<td class="confluenceTd" colspan="1" rowspan="1">Unsupported</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1"><code>DSSSIZE:
+</code>different size variable/expression is connected to input wire</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><code>module mod1(input [1:0] a); </code> <code>&#8230;</code> <code>module mod2(); </code> <code>mod1 mod1(1&#39;b0); //*E,DSSSIZE</code> <code>&#8230;</code></td>
+<td class="confluenceTd" colspan="1" rowspan="1">Supported</td>
+<td class="confluenceTd" colspan="1" rowspan="1">Unsupported</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1"><code>DSSUFL:
+</code>wire/variable is connected to input variable port</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><code>module mod1(input var logic a[1:0);</code> <code>&#8230;</code> <code>module mod2 (input a2[1:0] );</code> <code>mod1 mod1(a2);//*E,DSSUFL</code> <code>&#8230;</code></td>
+<td class="confluenceTd" colspan="1" rowspan="1">Supported</td>
+<td class="confluenceTd" colspan="1" rowspan="1">Unsupported</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="pbi_avoid"><span class="content-title" id="Table-66f13a6375b145debd93208b60db4a80"><strong>Table 6.2:</strong> <span class="confluence-anchor-link" id="SupportedSystemVerilog/UVMSystemVerilogPorts-36949"></span>Output Port connectivity limitations for Primary- Instantiates- (Incremental or Primary)</span><div class="table-wrap"><table class="relative-table wrapped confluenceTable"><colgroup> <col style="width: 21.24%;" /> <col style="width: 58.81%;" /> <col style="width: 9.76%;" /> <col style="width: 10.17%;" /> </colgroup><tbody><tr><th class="confluenceTh" colspan="1" rowspan="1"><strong>Error Mnemonic</strong></th><th class="confluenceTh" colspan="1" rowspan="1"><strong>Error testcase (mod1 and mod2 are in separate partitions)</strong></th><th class="confluenceTh" colspan="1" rowspan="1"><strong>Single-Step MSIE</strong></th><th class="confluenceTh" colspan="1" rowspan="1"><strong>Multi-Step MSIE</strong></th></tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1"><code>DSSVAR: </code>variable is connected to output port</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><code>module mod1(output a1);</code> <code>&#8230;</code> <code>module mod2(output logic a2);</code> <code>mod1 mod1(a2); //*E, DSSVAR</code> <code>&#8230;</code></td>
+<td class="confluenceTd" colspan="1" rowspan="1">Supported</td>
+<td class="confluenceTd" colspan="1" rowspan="1">Supported</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="pbi_avoid"><span class="content-title" id="Table-17d9268dc22a42e7bbe597d58a6e7572"><strong>Table 6.3:</strong> <span class="confluence-anchor-link" id="SupportedSystemVerilog/UVMSystemVerilogPorts-47837"></span>Inout Port connectivity limitations for Primary- Instantiates- (Incremental or Primary)</span><div class="table-wrap"><table class="relative-table wrapped confluenceTable"><colgroup> <col style="width: 21.75%;" /> <col style="width: 58.64%;" /> <col style="width: 9.35%;" /> <col style="width: 10.24%;" /> </colgroup><tbody><tr><th class="confluenceTh" colspan="1" rowspan="1"><strong>Error Mnemonic</strong></th><th class="confluenceTh" colspan="1" rowspan="1"><strong>Error testcase (mod1 and mod2 are in separate partitions)</strong></th><th class="confluenceTh" colspan="1" rowspan="1"><strong>Single-Step MSIE</strong></th><th class="confluenceTh" colspan="1" rowspan="1"><strong>Multi-Step MSIE</strong></th></tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1"><code>PCIONC:
+</code>variable connection to inout port is found</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><code>module mod1(inout a1);</code> <code>endmodule</code> <code>module mod2();</code> <code>  logic a2;</code> <code>  mod1 mod1(a2);</code> <code>endmodule</code></td>
+<td class="confluenceTd" colspan="1" rowspan="1">Unsupported</td>
+<td class="confluenceTd" colspan="1" rowspan="1">Unsupported</td>
+</tr>
+</tbody></table></div>
+</div>
+<h2 id="SupportedSystemVerilog/UVMSystemVerilogPorts-UnsupportedSystemVerilogPortTypes">Unsupported SystemVerilog Port Types</h2>
+
+<p>The following SystemVerilog port types are not supported at the partition boundary:</p>
+<ul><li>Associative Array</li><li>Type parameter</li><li>String/Class/Union/Unpacked Struct</li><li>Real</li><li>Event</li><li>Chandle</li><li>Virtual Interface</li><li>Dynamic/Unpacked Array</li><li>Queue</li><li>Mailbox</li><li>Semaphore</li></ul>
+<p>The elaborator generates an <code>INCUSC</code> error if unsupported port connection types are used.</p>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Ports_Supported_in_Mixed-Language_Design__Verilog_and_VHDL_.html" id="prev" title="Ports_Supported_in_Mixed-Language_Design__Verilog_and_VHDL_">Ports_Supported_in_Mixed-Langu ...</a></em></b><b><em><a href="Hierarchical_References.html" id="nex" title="Hierarchical_References">Hierarchical_References</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

@@ -1,0 +1,228 @@
+
+<html><head><title>Auto-MSIE : Single-Step Invocation Parallel and Incremental Build</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223190" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Auto-MSIE : Single-Step Invocation Parallel and Incremental Build" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE,MSIE," />
+<meta name="prod_subfeature" content="Multi-Step Invocation,Single-Step Invocation," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="null" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223190" />
+<meta name="NextFile" content="Binding_to_Primaries_Automatically.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="MSIE_Features.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Auto-MSIE : Single-Step Invocation Parallel and Incremental Build" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="MSIE_Features.html" title="MSIE_Features">MSIE_Features</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Binding_to_Primaries_Automatically.html" title="Binding_to_Primaries_Automatically">Binding_to_Primaries_Automatic ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Auto-MSIE : Single-Step Invocation Parallel and Incremental Build</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p>As the design becomes huge and complex, it takes more time to elaborate it.&#160;<span style="">In the monolithic elaboration flow of Xcelium, the entire design hierarchy is elaborated. This entails too much repetitive work for designs that have a high replication factor.&#160;</span>The instrumentation of information such as SDF annotation, coverage, X-prop, etc at the elaboration stage could add to more build time. Hence long build time becomes a concern in the fresh and incremental build with a minimal code change. Verification environment is complex so generally users are not aware of the complete design.</p>
+
+<p>&#160;<span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" data-base-url="https://rdwiki.cadence.com" data-image-src="attachments/502972476/502972477.png" data-linked-resource-container-id="502972476" data-linked-resource-container-version="1" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2023-2-16_20-31-44.png" data-linked-resource-id="502972477" data-linked-resource-type="attachment" data-linked-resource-version="1" data-unresolved-comment-count="0" src="attachments/502972476/502972477.png" width="600" /></span></p>
+
+<p>In Parallel and Incremental Build flow Xcelium allows splitting the design into different partitions and stitching at the end when creating the final snapshot for simulator. Manual efforts are required to identify such bigger blocks. Hence creating the primary snapshot using <em>xrun</em> option like <code>-primtop</code> or <code>-mkprimsnap</code> becomes a challenge. User is not aware of where to partition the design from. It is also required to have knowledge of different executable xrun options which can be plugged for a better performance gain. Generally, designers may have different sets of wrappers establishing their <em>xrun</em> monolithic flow. Users may be aware of their internal wrappers to add or modify any xrun option. Since such environment is little complex, it is a bit challenging to adopt another technology such as Parallel and Incremental Build.</p>
+<h2 id="AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-Auto-MSIEFlow">Auto-MSIE Flow</h2>
+
+<p>Auto-MSIE offers a simpler way to utilize Parallel and Incremental Build flow. All build tasks (partitioning of replicated/non-replicated design blocks, cross-partition analysis, building primaries in parallel, and finally building the simulateable model) are automatically performed under the hood when <code>-AUTOMSIE</code>&#160;option is used with the <em>xrun</em> command.&#160;</p>
+
+<p>Auto-MSIE partitioner does the complete design analysis internally to find the best primaries (replicated and non-replicated blocks) and generates the partition file. Auto-MSIE partitioner also analyzes multiple replicated instances of the same module for optimization. It gives higher priority to finding those replicated partitions. Because it leverages cloning build gain from those replicated instances for all such cloned instances and there will be disk space saving too.</p>
+
+<p>Users are not required to identify the primaries and pass <code>-primtop</code> option separately. After the complete design analysis, it uses the partition file and builds primary partitions in parallel using multi-core elaboration. This reduces the overall build time and then stitches together to the final snapshot as simulation model. During the incremental build, all untouched primary snapshots will be reused and hence saves a good amount of build time. Auto-MSIE solution is very easy to deploy in the established monolithic environment. User just needs to add <code>-AUTOMSIE</code>&#160;option along with monolithic <em>xrun</em> options.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>Using <code>-AUTOMSIE</code>&#160;option, you can attain scratch parallel elaboration gain in the range of 1.2x to 2x+ and can have simulation overhead of &lt;15%.</p>
+</div>
+</div>
+
+<p><br /></p>
+
+<p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" data-base-url="https://rdwiki.cadence.com" data-image-src="attachments/502972476/502972478.png" data-linked-resource-container-id="502972476" data-linked-resource-container-version="1" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2023-2-16_20-28-21.png" data-linked-resource-id="502972478" data-linked-resource-type="attachment" data-linked-resource-version="1" data-unresolved-comment-count="0" src="attachments/502972476/502972478.png" width="500" /></span></p>
+
+<p>The Auto-MSIE flow can be used in two scenarios:</p>
+<ul><li><a href="#AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-no_part_file">No partition file exists/Elaborating the Design for the first time</a></li><li><a href="#AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-using_part_file">Partition file exists/No Change in the Design</a></li></ul><h2 id="AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-NoPartitionFileExists/ElaboratingtheDesignfortheFirstTime">No Partition File Exists/Elaborating the Design for the First Time</h2>
+
+<p><span class="confluence-anchor-link" id="AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-no_part_file"></span>The below syntax shows the basic monolithic flow command line:</p>
+<p style="margin-left: 30.0px;"><code>xrun&#160;&lt;source file&gt; </code></p>
+
+<p>The equivalent Auto-MSIE command would be:</p>
+<p style="margin-left: 30.0px;"><code>xrun&#160;&lt;source file&gt;&#160;-AUTOMSIE</code></p>
+
+<p>As you can see here, auto-MSIE flow is very easy to use. It just needs only one extra <em>xrun</em> option (<code>-AUTOMSIE)</code>. The following steps are performed under the hood:</p>
+<ul><li>Partitioning the entire design including testbench.</li><li>Cross-partition analysis (AKA genhref, Analyzing MSIE Partitioning)</li><li>Building primaries in parallel,</li><li>And finally building the simulateable model</li></ul>
+<p>For doing all the above steps, the <code>-AUTOMSIE</code>&#160;option executes two <em>xrun</em> commands serially. The first <em>xrun</em> command compiles the design files along with the testbench. Then the partitioner elaborator divides the entire design into approximately 12 (default value) parts/primaries based on design source code and partition boundary datatypes.</p>
+
+<p>The below figure represents the Auto-MSIE flow containing many different stages:</p>
+
+<p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" data-base-url="https://rdwiki.cadence.com" data-image-src="attachments/502972476/502972479.png" data-linked-resource-container-id="502972476" data-linked-resource-container-version="1" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2023-2-16_12-35-40.png" data-linked-resource-id="502972479" data-linked-resource-type="attachment" data-linked-resource-version="1" data-unresolved-comment-count="0" height="250" src="attachments/502972476/502972479.png" /></span></p>
+
+<p>As shown above, the first <em>xrun</em> compiles and partitions the design :</p>
+
+<p><code>xrun&#160;&lt;source file&gt; [other options] -GENPARTITION&#160;&lt;partition-file&gt;&#160;-MSIEUNLOCK ALL</code></p>
+
+<p>Following is how the output&#160;primtop&#160;file looks:</p>
+
+<p>-primtop prim1<br />-primtop prim2<br />&#8230;<br />-primtop prim12</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>The&#160;<code>-genpartition</code>&#160;option needs to be specified along with all the other&#160;<em>xmelab</em>/<em>xrun</em>&#160;options.&#160;<span style="">To set the name of the partition file, use the<span>&#160;</span> </span> <code>-genpartition<span>&#160;</span>
+        <em>&lt;partition-file&gt;</em>
+      </code> <span style=""> <span>&#160;</span>option, where<span>&#160;</span> </span> <code>partition-file</code> <span style=""> <span>&#160;</span>is an absolute/relative path.</span></p>
+</div>
+</div>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>The partition file is stored in <em>xcelium.d/run.d/ </em>directory.&#160;</p>
+</div>
+</div>
+
+<p>The second <em>xrun</em> command skips compilation and reuses the data from the pre-compiled libraries. It resumes before the last partitioner elaboration (with all supported MSIE partition boundary datatypes). It also starts analysing the&#160;cross-partition boundaries, such as if there are any out-of-module references or heirrichal referencing, also called href.&#160;Once the partition alanysis is done, the primary partition build phase is initiated. The partitions are elaborated parallelly due to <code>-primparallelelab</code> option passed internally. This method helps achieve higher build gain. By default, 8 primaries are built in parallel out of 12 generated partitions. Once all the primary snapshots have been built, the final top is identified for elaboration. All the primaries will be loaded in the incremental snapshot. This is known as simulatable snapshot. The final snapshot is then loaded in the simulator for simulation.&#160;</p>
+
+<p><code>xrun &lt;elaboration&gt; -RESUME_BEFORE_ELAB -f xcelium.d/run.d/partition.txt -MSIEUNLOCK ALL -PRIMPARALLELELAB 8</code></p>
+<h2 id="AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-using_part_filePartitionFileExists/MinimalChangeintheDesign"><span class="confluence-anchor-link" id="AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-using_part_file"></span>Partition File Exists/Minimal Change in the Design</h2>
+
+<p>In the very first scratch build, user can run Auto-MSIE flow and a partition file (<em>xcelium.d/run.d/partition.txt) </em>will be generated.</p>
+
+<p>You can copy the partition file&#160;<em>xcelium.d/run.d/partition.txt </em>to an accessible destination and can reuse that file with <em>xrun</em> option&#160;<code>-MSIE_USEPARTITIONFILE</code>. This will reduce overall build time by saving the paritioner run. You<span style="text-decoration: none;">&#160;can continue re-using the partition file, if there are no significant changes in the structure of the design.&#160;</span></p>
+
+<p><span style="text-decoration: none;">The use model is very simple as below:</span></p>
+
+<p><br /></p>
+
+<p><code>xrun -AUTOMSIE -MSIE_USEPARTITIONFILE partition.txt -CLEAN</code></p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>You are recommended to use <code>-MSIE_USEPARTITIONFILE</code>&#160;option <span style="text-decoration: none;">when the design has not changed significantly, and&#160;minor changes in the design do not impact partitioning</span>.</p>
+</div>
+</div>
+<h2 id="AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" data-base-url="https://rdwiki.cadence.com" data-image-src="attachments/502972476/502972480.png" data-linked-resource-container-id="502972476" data-linked-resource-container-version="1" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2023-2-16_20-29-31.png" data-linked-resource-id="502972480" data-linked-resource-type="attachment" data-linked-resource-version="1" data-unresolved-comment-count="0" src="attachments/502972476/502972480.png" width="640" /></span></h2>
+<h2 id="AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-OverridingtheAuto-MSIEDefaultBehavior">Overriding the Auto-MSIE Default Behavior</h2>
+
+<p>You can also override the default <code>-AUTOMSIE</code> behavior.</p>
+<ul><li>You can configure the number of primary partitions to be created by adding the <code>-XMSIENUMPARTITION &lt;num_partitons&gt;</code> switch. For example, the following command can help you divide the design into 20 partitions (overriding the default value of 12 partitions):<br /><code>xrun -AUTOMSIE -XMSIENUMPARTITION 20</code></li><li>You can configure the number of xmelab processes launched in parallel by adding the <code>-PRIMPARALLELELAB</code> &lt;number&gt; switch. In the following example, the value has been modified from a default value of 8 to 15:<br /><code>xrun -AUTOMSIE -XMSIENUMPARTITION 20 -PRIMPARALLELELAB 15</code></li><li>If you want to lock a particular cone of hierarchy to be either primary or incremental, you can use the <code>-ADDPRIMTOP </code>or <code>-ADDINCRTOP</code>&#160;option, respectively:<br /><code>xrun -AUTOMSIE -ADDPRIMTOP &lt;PRIMARY_BLOCK_NAME&gt; -ADDINCRTOP &lt;INCREMENTAL_BLOCK_NAME&gt;</code></li><li>
+<p>Use the <code>-XMSIEPERFSTAT</code>&#160;option to measure the performance of the partitioner.</p>
+</li><li>
+<p><span style="">Use<span>&#160;</span> <code>-XMSIENUMCLONEDPARTITIONS &lt;N&gt;</code> <span>&#160;</span>to enable partitions having more than 12 (default) cloning. This option could be used to reduce or increase the default cloning limit set by the partitioner.</span></p>
+</li><li><span style="">By default, all the processes (compilation, partitioning, genhref, parallel primaries, and incremental) run on the same machine. You can have parallel primaries submitted on the farm machine with an extra option<code> -PREFIX_PRIMELAB &lt;bsub.sh&gt;</code>&#160;.</span></li></ul><h2 id="AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-Auto-MSIEExample"><span style="">Auto-MSIE Example</span></h2>
+
+<p><code>//test.sv </code> <br /><code>module tb();</code> <br /><code>&#160; soc1 soc1();</code> <br /><code>&#160; soc2 soc2();</code> <br /><code>&#160; soc3 soc3();</code> <br /><code>&#160; soc4 soc4();</code> <br /><code>&#160; soc5 soc5();</code> <br /><code>&#160; soc6 soc6();</code> <br /><code>&#160; soc7 soc7();</code> <br /><code>endmodule</code></p>
+
+<p><code>module soc7;</code> <br /><code>&#160; genvar i;</code> <br /><code>&#160; generate for (i = 0; i &lt;100; i = i + 1) begin</code> <br /><code>&#160; &#160; ip7 ip7_inst();</code> <br /><code>&#160; end<br />
+  </code> <code>&#160; endgenerate</code> <br /><code>endmodule</code></p>
+
+<p><code>module soc6;</code> <br /><code>&#160; genvar i;</code> <br /><code>&#160; generate for (i = 0; i &lt;90; i = i + 1) begin</code> <br /><code>&#160; &#160; ip6 ip6_inst();</code> <br /><code>&#160; end<br />
+  </code> <code>&#160; endgenerate<br />
+  </code> <code>endmodule</code></p>
+
+<p><code>module soc5;</code> <br /><code>&#160; genvar i;</code> <br /><code>&#160; generate for (i = 0; i &lt;100; i = i + 1) begin</code> <br /><code>&#160; &#160; ip5 ip5_inst();<br />
+  </code> <code>&#160; end<br />
+  </code> <code>&#160; endgenerate<br />
+  </code> <code>endmodule</code></p>
+
+<p><code>module soc4;</code> <br /><code>&#160; genvar i;</code> <br /><code>&#160; generate for (i = 0; i &lt;90; i = i + 1) begin</code> <br /><code>&#160; &#160; ip4 ip4_inst();</code> <br /><code>&#160; end<br />
+  </code> <code>&#160; endgenerate</code> <br /><code>endmodule</code></p>
+
+<p><code>module soc3;</code> <br /><code>&#160; genvar i;</code> <br /><code>&#160; generate for (i = 0; i &lt;80; i = i + 1) begin</code> <br /><code>&#160; &#160; ip3 ip3_inst();</code> <br /><code>&#160; end<br />
+  </code> <code>&#160; endgenerate</code> <br /><code>endmodule</code></p>
+
+<p><code>module soc2;</code> <br /><code>&#160; genvar i;</code> <br /><code>&#160; generate for (i = 0; i &lt;70; i = i + 1) begin</code> <br /><code>&#160; &#160; ip2 ip2_inst();</code> <br /><code>&#160; end<br />
+  </code> <code>&#160; endgenerate</code> <br /><code>endmodule</code></p>
+
+<p><code>module soc1;</code> <br /><code>&#160; genvar i;</code> <br /><code>&#160; generate for (i = 0; i &lt;60; i = i + 1) begin</code> <br /><code>&#160; &#160; ip1 ip1_inst();</code> <br /><code>&#160; end<br />
+  </code> <code>&#160; endgenerate</code> <br /><code>endmodule</code></p>
+
+<p><code>module ip7();</code> <br /><code>&#160; reg<span>&#160;</span> <span class="error">[1023:0]</span> <span>&#160;</span>A;</code> <br /><code>&#160; leaf leaf();</code> <br /><code>endmodule</code></p>
+
+<p><code>module ip6();</code> <br /><code>&#160; reg<span>&#160;</span> <span class="error">[1023:0]</span> <span>&#160;</span>A;</code> <br /><code>&#160; leaf leaf();</code> <br /><code>endmodule</code></p>
+
+<p><code>module ip5();</code> <br /><code>&#160; reg<span>&#160;</span> <span class="error">[1023:0]</span> <span>&#160;</span>A;</code> <br /><code>&#160; leaf leaf();</code> <br /><code>endmodule</code></p>
+
+<p><code>module ip4();</code> <br /><code>&#160; reg<span>&#160;</span> <span class="error">[1023:0]</span> <span>&#160;</span>A;</code> <br /><code>&#160; leaf leaf();</code> <br /><code>endmodule</code></p>
+
+<p><code>module ip3();</code> <br /><code>&#160; reg<span>&#160;</span> <span class="error">[1023:0]</span> <span>&#160;</span>A;</code> <br /><code>&#160; leaf leaf();</code> <br /><code>endmodule</code></p>
+
+<p><code>module ip2();</code> <br /><code>&#160; reg<span>&#160;</span> <span class="error">[1023:0]</span> <span>&#160;</span>A;</code> <br /><code>&#160; leaf leaf();</code> <br /><code>endmodule</code></p>
+
+<p><code>module ip1();</code> <br /><code>&#160; reg<span>&#160;</span> <span class="error">[1023:0]</span> <span>&#160;</span>A;</code> <br /><code>&#160; leaf leaf();</code> <br /><code>endmodule</code></p>
+
+<p><code>module leaf();</code> <br /><code>&#160; genvar i;</code> <br /><code>&#160; generate for (i = 0; i &lt;2000; i = i + 1) begin</code> <br /><code>&#160; &#160; lowleaf lowleaf();&#160;</code> <br /><code>&#160; end<br />
+  </code> <code>&#160; endgenerate</code> <br /><code>endmodule</code></p>
+
+<p><code>module lowleaf();</code> <br /><code>endmodule</code></p>
+
+<p><strong>Monolithic Command :&#160; &#160;<br /></strong> <code>xrun test.sv -clean</code></p>
+
+<p><strong>Auto-MSIE Parallel/Incremental Build Command (Very first scratch build w/o any existing partition file): <br /></strong> <code>xrun test.sv&#160;-<strong>AUTOMSIE</strong> -clean</code></p>
+<ul><li>The above command runs all the steps automatically and also finishes the simulation.&#160;</li><li>The partition file is generated at the path:<ul><li><em>$ cat xcelium.d/run.d/partition.txt</em> <br /><code>#VERSION : TOOL: xmelab(64) 23.03-a071-20230220</code> <br /><code>#TIME : 2023-2-19 22:24:46</code> <br /><code>-primtop ip1</code> <br /><code>-primtop ip2</code> <br /><code>-primtop ip3</code> <br /><code>-primtop ip4</code> <br /><code>-primtop ip6</code> <br /><code>-primtop ip5</code> <br /><code>-primtop ip7</code> <br /><code>-primtop tb</code> <br /><code>-primtop soc7</code> <br /><code>-primtop soc5</code> <br /><code>-primtop soc6</code> <br /><code>-primtop soc4</code></li></ul></li></ul>
+<p><strong>Auto-MSIE Parallel/Incremental Build Command (Scratch build with existing partition file): <br /></strong> <code>xrun test.sv&#160;<strong>-AUTOMSIE</strong> -clean <strong>-MSIE_USEPARTITIONFILE partition.txt</strong>
+  <br />
+  </code>The above command runs all the steps automatically (except partitioning as it reuses the partition file. This saves the build time).</p>
+<h2 id="AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-Limitations"><span style="">Limitations</span></h2>
+<ul><li><span style="">Only Verilog-Verilog partition boundaries would be considered.</span></li><li><span style="">By default, it allows maximum 100 instances of any clone partition. To enable more/less number of clone instances, either option -XMSIENUMCLONEDPARTITIONS&#160;&lt;N&gt; or -setenv AMSIE_CLONING_LIMIT=&lt;N&gt; is required.</span></li><li>If there is an LP CPF file specified, the partitioner interprets that there is LP in the design and, therefore, it is not worth partitioning the design into multiple primaries because we currently do not support LP with multiple primaries. In such a case, the partitioner would throw a fatal error and force quit.</li><li>The partitioner is currently incapable of catching all the AMS restrictions and filtering out the primtops based on the same.</li><li><span style="">The forward class declaration issue is not handled by the partitioner by default and can result in the<span>&#160;</span> <code>CUVUNF</code> <span>&#160;</span>error.&#160;Additional option -ENABLE_FORWARD_CLASS is needed to enable the same.</span></li><li><span style="">By default, MSIE simulation performance optimizations are not enabled. So there could be more than 15% simulation performance overhead with respect to default monolithic elaboration. To apply MSIE simulation performance optimizations, you need to add an extra umbrella option <code>-MSIEUNLOCK SIMPERF</code>. Adding this option may elongate the cross-partition analysis time as more processing is required to enable simulation performance optimization in MSIE flow.</span></li><li><span style="">Currently, design containing DMS will generate only 3 partitions in AutoMSIE flow. As an experimental run, you can use <code>-MSIE_MS_RELAX_PARNUM</code> option to generate 12 partitions.</span></li></ul><h6 id="AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-RelatedTopics">Related Topics</h6><ul><li><span style=""> <a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1O0V000006AlXEUA0&amp;pageName=ArticleContent" rel="nofollow" style="text-decoration: none;">How to enable Auto MSIE (Multi Snapshot Incremental Elaboration) and parallelize the elaboration of design partitions</a> </span></li><li><span style=""> <a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1O3w00000AHCg1EAH&amp;pageName=ArticleContent" rel="nofollow" style="text-decoration: none;">Auto-MSIE Parallel and Incremental Build Flow - Basic</a>&#160;(Video)</span></li><li><span style=""> <a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1O3w00000AHCgLEAX&amp;pageName=ArticleContent" rel="nofollow" style="text-decoration: none;">Auto-MSIE Parallel and Incremental Build Flow - Advance</a>&#160;(Video)</span></li></ul>
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="MSIE_Features.html" id="prev" title="MSIE_Features">MSIE_Features</a></em></b><b><em><a href="Binding_to_Primaries_Automatically.html" id="nex" title="Binding_to_Primaries_Automatically">Binding_to_Primaries_Automatic ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

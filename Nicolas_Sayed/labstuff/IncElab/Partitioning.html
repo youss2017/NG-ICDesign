@@ -1,0 +1,142 @@
+
+<html><head><title>Partitioning</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223207" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Partitioning" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="task" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="Design Partitioning," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223207" />
+<meta name="NextFile" content="UVM_Test_Modification_Partitions.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Running_xrun_in_Multi-Step_Mode.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Partitioning" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Running_xrun_in_Multi-Step_Mode.html" title="Running_xrun_in_Multi-Step_Mode">Running_xrun_in_Multi-Step_Mod ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="UVM_Test_Modification_Partitions.html" title="UVM_Test_Modification_Partitions">UVM_Test_Modification_Partitio ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <div style="width: 100%; font-size: 32px; text-align: left;               font-weight: bold;">6</div>
+<h1 style="margin: 4px 0 4px;"><span>Partitioning</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span class="confluence-anchor-link" id="Partitioning-partitioning"></span><span class="confluence-anchor-link" id="Partitioning-marker-1091145"></span><span class="confluence-anchor-link" id="Partitioning-marker-1091146"></span><span id="Partitioning-marker_1084264"></span>A new MSIE model is built by first elaborating a portion of the design into one or more primary snapshots. Primary snapshots can have instances that are left unbound for later. These unbound instances may ultimately bind to other primary snapshots or they may be elaborated as part of the incremental partition. You control the partitioning of the design by building primary snapshots and specifying binding rules that select them. You can also directly specify which primary snapshots to use on the elaborator command line.</p>
+<div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col /><col /></colgroup><tbody><tr><th class="confluenceTh">Partitioning&#160;</th><th class="confluenceTh">Description</th></tr>
+<tr><td class="confluenceTd">Partitioning a Test Module in the Incremental</td>
+<td class="confluenceTd"><div class="content-wrapper"><span id="Partitioning-marker_1073198"></span><span id="Partitioning-marker_1073203"></span><span style="letter-spacing: 0.0px;">In one typical scenario, a top-level testbench may instantiate the DUT and a test module. The test module contains a particular test for the DUT, and there is one version of it for each test in a regression suite. The testbench and the DUT are the same in each test. MSIE partitions the design such that the test module is in the incremental partition. With the rest of the model in a primary partition, only the test module has to be elaborated to run each test.</span>
+<p>In this style of partitioning, the primary snapshot contains the top-level of the design, and the incremental partition is instantiated within the primary.</p>
+
+<p>See <a href="UVM_Test_Modification_Partitions.html">UVM Test Modification Partitions</a>.</p>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd">Partitioning a Test Module in the Incremental that is Not Instantiated in the Primary</td>
+<td class="confluenceTd"><div class="content-wrapper"><span id="Partitioning-marker_1085412"></span><span id="Partitioning-marker_1085411"></span>In this special use case, the incremental partition contains a part of the testbench that directs the testing, but it is not instantiated in the testbench. It may be a module that interacts with the primary partition only through hierarchical and package references rather than ports, or it may simply be a package that extends classes in a UVM testbench.&#160;
+<p>See <a href="UVM_Test_Modification_Partitions.html#UVMTestModificationPartitions-57709">Parallel Partitioning</a>.</p>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd">Partitioning a DUT in the Primary</td>
+<td class="confluenceTd"><div class="content-wrapper">
+<p><span id="Partitioning-marker_1084263"></span><span id="Partitioning-marker_1084264"></span>In this scenario, a top-level testbench instantiates the DUT. The testbench may be under development and therefore changes frequently, while the DUT is unchanging. MSIE partitions the design such that the testbench is in the incremental partition and the DUT is in a primary partition.</p>
+
+<p>See <a href="Partitioning_for_a_Stable_DUT.html">Partitioning for a Stable DUT</a>.</p>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd">An SOC and Multiple IP Models in Multiple Primaries</td>
+<td class="confluenceTd"><div class="content-wrapper"><span id="Partitioning-marker_1085389"></span><span style="letter-spacing: 0.0px;">When building complex Systems on Chip, it may also be necessary to pre-build IPs that instantiate other pre-built IPs, and have the ability to select from multiple versions of these during final elaboration. Furthermore, a design may require the ability to include certain IPs in the incremental partition while the SOC that instantiates them is prebuilt, and at the same time allows the testbench that instantiates the SOC to be in the incremental partition. MSIE now allows for this flexibility.</span>
+<p>See <a href="Flexible_Partitioning_for_Complex_SOCs.html">Flexible Partitioning for Complex SOCs</a>.</p>
+</div>
+</td>
+</tr>
+</tbody></table></div>
+<h2 id="Partitioning-SpecifyingTop-LevelDesignUnitsforanMSIEModel">Specifying Top-Level Design Units for an MSIE Model</h2>
+
+<p>When building the simulation snapshot, a given top-level unit can be a primary snapshot. For example, given a testbench with the top module <code>TB</code> which is to be a top-level primary partition:</p>
+<ol><li>Build a primary snapshot. The <code>-incrbind</code> option identifies a module to be bound to another partition, in this case, the incremental partition.<br /><p class="webflare-pre-block webflare-courier-new"><code>xmelab TB -incrbind TESTPROG</code></p>
+</li><li>Build the simulation snapshot.<br /><p class="webflare-pre-block webflare-courier-new"><code>xmelab TB -primbind</code></p>
+
+<p>or</p>
+<p class="webflare-pre-block webflare-courier-new"><code>xmelab TB -primsnap TB</code></p>
+
+<p>The <code>-primbind</code> option tells the elaborator to include and give precedence to primary snapshots when searching for a unit named <code>TB</code> in the libraries. The <code>-primsnap</code> option causes the primary <code>TB</code> to be included in the model, and this causes the elaborator to find the top-level unit name (also TB) in the list of top-level units of the primary. In either case, the instance of <code>TB</code> at the top of the primary becomes the top of the final model, and the elaborator automatically fills in the missing instance of TESTPROG in the primary with the TESTPROG module using normal binding rules.</p>
+</li></ol>
+<p>In the above example, the top-level VST, the primary snapshot, and the simulation snapshot are all called <code>TB</code>. This is verified by running the <code>xmls</code> command, as shown:</p>
+<p style="margin-left: 30.0px;"><code>% xmls -lib worklib</code><br /><code>module worklib.TB:module (VST)</code><br /><code>primary snapshot worklib.TB:module (PRM)</code><br /><code>snapshot worklib.TB:module (SSS)</code></p>
+
+<p>In some cases, using the <code>-snapshot</code> option may be necessary when building a primary snapshot, or the simulation snapshot, to eliminate confusion and give greater control when creating a model.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>Either the <code>-primbind</code> or <code>-primsnap</code> option is required to build any MSIE model, even if the primary snapshot is the only unit with the given name. Without these options, the elaborator only looks for VST or AST design units when resolving the given unit names.</p>
+</div>
+</div>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Running_xrun_in_Multi-Step_Mode.html" id="prev" title="Running_xrun_in_Multi-Step_Mode">Running_xrun_in_Multi-Step_Mod ...</a></em></b><b><em><a href="UVM_Test_Modification_Partitions.html" id="nex" title="UVM_Test_Modification_Partitions">UVM_Test_Modification_Partitio ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

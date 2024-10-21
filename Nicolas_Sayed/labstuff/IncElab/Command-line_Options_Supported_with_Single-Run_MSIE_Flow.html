@@ -1,0 +1,228 @@
+
+<html><head><title>Command-line Options Supported with Single-Run MSIE Flow</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="anishap" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223196" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Command-line Options Supported with Single-Run MSIE Flow" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="" />
+<meta name="prod_subfeature" content="" />
+<meta name="new_topic" content="" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223196" />
+<meta name="NextFile" content="Command-line_Options_Supported_in_Multi-Step_MSIE_Flow.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Command-Line_Options_for_MSIE.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Command-line Options Supported with Single-Run MSIE Flow" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Command-Line_Options_for_MSIE.html" title="Command-Line_Options_for_MSIE">Command-Line_Options_for_MSIE</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Command-line_Options_Supported_in_Multi-Step_MSIE_Flow.html" title="Command-line_Options_Supported_in_Multi-Step_MSIE_Flow">Command-line_Options_Supported ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Command-line Options Supported with Single-Run MSIE Flow</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p>The following commands are supported with the Single-run MSIE flow.</p>
+<div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col /><col /></colgroup><tbody><tr><th class="confluenceTh">Option</th><th class="confluenceTh">Description</th></tr>
+<tr><td class="confluenceTd" colspan="1"><code>-makeprim &lt;OPTIONS&gt;-endprim</code></td>
+<td class="confluenceTd" colspan="1">Specifies the end of the list of top-level design units and options for a primary partition.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code><span style="">-libverbose</span></code></td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>This option prints verbose messages about instance binding.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p><span style="">By default <code>-libverbose</code>&#160;option is not enabled on MSIE genhref stage in single xrun MSIE flow. You can enable this option by specifying&#160;<code>-enable_libverbose_genhref</code>&#160;on command-line.</span></p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd"><div class="content-wrapper">
+<p><code>-nopreelab</code><span id="Command-line Options Supported with Single-Run MSIE Flow-marker_1088204"></span><span id="Command-line Options Supported with Single-Run MSIE Flow-marker_1088205"></span></p>
+</div>
+</td>
+<td class="confluenceTd"><div class="content-wrapper">
+<p>Skips the initial step of analyzing the design for hierarchical references and primary parameter values. This saves some time, but it then becomes your responsibility to manage hrefs and parameterization of primaries.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>When specifying this option, take care when naming and using primary partitions.</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd"><code>-prefix_primelab &lt;User_DRM_Script&gt;</code></td>
+<td class="confluenceTd">
+<p>When you run <em>xrun</em> in the single-step mode, you can run MSIE with any DRM (distributed resource management) system to distribute the primary builds when you have multiple primary partitions.</p>
+
+<p><code>-prefix_primelab</code> specifies a DRM command or script that distributes the builds on the DRM system. You must also specify <code>-primparallelelab</code>, to run in single-xrun parallel mode. See <a href="Running_xrun_in_Single-Step_Mode.html">Running xrun in Single-Step Mode</a>.</p>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-primparallelelab</code> <span id="Command-line Options Supported with Single-Run MSIE Flow-marker_1088220"></span><span id="Command-line Options Supported with Single-Run MSIE Flow-marker_1088221"></span><code><em>number</em></code></p>
+</div>
+
+<p><br /></p>
+</td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>Elaborates primary partitions in parallel. Use this option to specify the number of parallel primary elaborations to run.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>You can also specify the number of primary parallel elaborations to run using the <code>PRIMMAXPARALLEL</code> environment variable. When specifying both the environment variable and the command-line option, the environment variable takes precedence.</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd"><code>-msie_verbose</code></td>
+<td class="confluenceTd">Prints information about MSIE partition boundaries. The&#160;<code>-msie_genhref_verbose</code> option provides href and OOPR verbosity.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-xmsie_verbose</code></td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>Prints messages about verbosity automatic partitioner.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>The <code>-xmsie_verbose&#160;</code>option is enabled by default under <code>-AUTOMSIE</code> option.</p>
+</div>
+</div>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>By default, the&#160;<code>-xmsie_verbose </code>option is not enabled&#160;with <code>-GENPARTITION</code> option. To have partitioner verbosity with <code>-GENPARITION</code> option, <code>-xmsie_verbose&#160;</code>option is required.</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-xmsiepartitiontop &lt;BLOCK_NAME&gt;</code></td>
+<td class="confluenceTd" colspan="1">Specify top level of the hierarchy to be partitioned.&#160;Generally, this option is used for re-running the partitioner for breaking the long pole primary.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-xmsienumpartitions</code></td>
+<td class="confluenceTd" colspan="1">Specifies number of partitions for MSIE partitioner.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-xmsienumclonepartitions</code></td>
+<td class="confluenceTd" colspan="1">Specifies the cloning limit for MSIE partitioner.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-xmsieclonedonly</code></td>
+<td class="confluenceTd" colspan="1">Used with -automsie to generate only replicated partitions.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-xmsiepkgsweight</code></td>
+<td class="confluenceTd" colspan="1">Includes SystemVerilog package weight in AutoMSIE partitioning</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-xmsieperfstat</code></td>
+<td class="confluenceTd" colspan="1">Prints performance status of the AutoMSIE.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-gdbelab</code></td>
+<td class="confluenceTd" colspan="1">Runs <em>xmelab</em> under gdb.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-gdbhref</code></td>
+<td class="confluenceTd" colspan="1">Runs&#160;<code>-genhref</code> under gdb.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-gdbprim</code></td>
+<td class="confluenceTd" colspan="1">Runs primary builds under gdb.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-msieunlock all</code></td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>Enables new MSIE features like complex OOPR cases, Verilog configurations, and so on.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>With <code>-AUTOMSIE</code> option the <code>-msieunlock_all</code> option is enabled by default.</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-msieunlock simperf</code></td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>Enables simulation performance optimizations in MSIE flow. Enabling this option may elongate the build time by increasing the genhref (Analyzing MSIE Partition) phase time. This is due to the reason that the tool has to do more deeper simulation performance analysis and dump data and then apply to respective primaries.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>With&#160;<code>-AUTOMSIE</code> option, the <code>-msieunlock simperf</code> option&#160;does not get enabled by default.</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-href <em>&lt;href_file&gt;</em></code></td>
+<td class="confluenceTd" colspan="1">Uses the given href file for the primary snapshot. Applicable in only <code>-nopreelab</code>.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-hrefforce</code></td>
+<td class="confluenceTd" colspan="1">Force href file in single xrun MSIE flow, especially in nopreelab flow where we want to avoid genhref elbaoration phase.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-primbind</code></td>
+<td class="confluenceTd" colspan="1">To apply verilog configuration in single xrun MSIE flow.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-enable_forward_class</code></td>
+<td class="confluenceTd" colspan="1">Enables SystemVerilog forward class&#160; declaration (typedef).&#160;</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-enable_smart_cuscope</code></td>
+<td class="confluenceTd" colspan="1">Enabled new smart global compilation unit scope features. This breaks the cuscope into two parts: one for cuscope binds and another for others cuscope declarations. Also, with this feature, primaries which are not dependent upon any cuscope,&#160; dot not get $unit content and thus scratch and incremental build time gets reduced.&#160; W/o this feature, primary (irrespective of cuscope dependency), gets entire $unit content.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-showcudep</code>/<code>-cudep_file &lt;<em>arg_log file</em>&gt;</code></td>
+<td class="confluenceTd" colspan="1">
+<p>This option when used with <code>-enable_smart_cuscope</code>&#160;option helps to find out the different primaries/incremental dependencies to single or multiple global compilation units ($unit). It explains why a certain cuscope was loaded on a specific primary with the corresponding module (belonging to that particular primary) using cuscope target/source information.&#160;&#160;</p>
+
+<p>This option can also be run along with parser option <code>-parseinfo cuscope_verbose.</code>&#160;</p>
+</td>
+</tr>
+</tbody></table></div>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Command-Line_Options_for_MSIE.html" id="prev" title="Command-Line_Options_for_MSIE">Command-Line_Options_for_MSIE</a></em></b><b><em><a href="Command-line_Options_Supported_in_Multi-Step_MSIE_Flow.html" id="nex" title="Command-line_Options_Supported_in_Multi-Step_MSIE_Flow">Command-line_Options_Supported ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

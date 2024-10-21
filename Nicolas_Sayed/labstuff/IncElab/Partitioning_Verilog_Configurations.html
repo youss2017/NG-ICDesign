@@ -1,0 +1,146 @@
+
+<html><head><title>Partitioning Verilog Configurations</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="anishap" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223205" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Partitioning Verilog Configurations" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="Design Partitioning," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223205" />
+<meta name="NextFile" content="Running_MSIE_in_a_Distributed_Computing_Environment_with_Single-Step_xrun.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Specifying_Paths_to_Hierarchical_Instances.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Partitioning Verilog Configurations" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Specifying_Paths_to_Hierarchical_Instances.html" title="Specifying_Paths_to_Hierarchical_Instances">Specifying_Paths_to_Hierarchic ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Running_MSIE_in_a_Distributed_Computing_Environment_with_Single-Step_xrun.html" title="Running_MSIE_in_a_Distributed_Computing_Environment_with_Single-Step_xrun">Running_MSIE_in_a_Distributed_ ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Partitioning Verilog Configurations</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span class="confluence-anchor-link" id="PartitioningVerilogConfigurations-30022"></span>A Verilog configuration is a set of rules that specify the exact source code description the software should use to represent certain instances in a design. There are two methods of specifying Verilog configurations:</p>
+<ul><li>With an external file, called a <em>library map file</em>, which is included with the <code>-libmap</code> option and partitioned automatically.<br />See <a href="../xceliumSCUG/Specifying_the_Configuration_in_a_Library_Map_File.html">Specifying the Configuration in a Library Map File</a>.</li><li>As part of a Verilog source file, which is compiled using the <code>-compcnfg</code> option when building the primary snapshot.<br />See <a href="../xceliumSCUG/Specifying_the_Configuration_in_a_Verilog_Source_File.html">Specifying the Configuration in a Verilog Source File</a>.</li></ul><h2 id="PartitioningVerilogConfigurations-AutomaticPartitioningofVerilogConfigurationsUsing-libmap">Automatic Partitioning of Verilog Configurations Using -libmap</h2>
+
+<p>If there is a Verilog configuration specified for the complete design using the <code>-libmap</code> option, the tool internally partitions the Verilog configuration and extracts the rules that need to apply for each partition and creates a separate Verilog configuration for each primary. Each primary build then gets its own respective internally generated configuration. This ensures that even if the top-level configuration contains rules that apply to cells instantiated deep inside a primary, the correct set of rules apply when building the primary partition.</p>
+
+<p>To automatically partition a Verilog configuration using single-step invocation mode, specify a library map file on the command line using the <code>-libmap</code> option. To specify a top-level configuration, use the <code>-top</code> option as shown:</p>
+
+<p><code>% xrun files -libmap library_map_file -top configuration_name \<br />&#160; &#160;[other_options]</code></p>
+
+<p>Or, instead of a top-level configuration, if there is already a configuration for each primary partition, then you can specify one of these primary configurations as the top-level design unit for that partition. To do so, specify the primary configuration as an argument to either <code>-primtop</code> or <code>-makeprim</code>.</p>
+
+<p><code>% xrun files -libmap library_map_file -primtop configuration_name \<br />&#160; &#160;[other_options]</code></p>
+
+<p>or</p>
+
+<p><code>% xrun files -libmap library_map_file [other_options] \<br />&#160; &#160;-makeprim configuration_name -endprim</code></p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>For automatic partitioning, the software does not generate multiple configuration rules for multiple instances. If multiple instances of a primary do exist, then <em>xrun</em>&#160;uses the first instance of the primary to generate the configuration rules for all other instances.</p>
+</div>
+</div>
+
+<p>For example, a module <code>dut</code> is built as part of a design file <code>prim.v</code>, which includes a parameter value controlling the hierarchy. The library map file <code>lib.map</code> contains the top-level Verilog configuration <code>cfg</code>.</p>
+
+<p><code>//prim.v</code><br /><code>module dut;</code><br /><code>parameter control = 0;</code><br /><code>generate</code><br /><code>if (control)</code><br /><code>begin</code><br /><code>bot bot_inst();</code><br /><code>end</code><br /><code>endgenerate</code><br /><code>initial $display(control);</code><br /><code>endmodule</code><br /><code>module bot;</code><br /><code>initial $display(&quot;REAL IP&quot;);</code><br /><code>endmodule</code></p>
+
+<p><code>//top.v</code><br /><code>module top;</code><br /><code>dut dut_inst1();</code><br /><code>dut dut_inst2();</code><br /><code>endmodule</code></p>
+
+<p><code>//lib.map</code><br /><code>config cfg;</code><br /><code>design top;</code><br /><code>instance top.dut_inst1 use worklib.real;</code><br /><code>instance top.dut_inst2 use worklib.bbox;</code><br /><code>endconfig</code></p>
+
+<p>The <code>dut</code> module can be elaborated into two different primary snapshots with the default having a control value of <code>0</code>, creating a black-boxed model, and the override having a control value of <code>1</code>, specifying the real IP. The MSIE model is built using the following single-step <em>xrun</em> command:</p>
+
+<p><code># The -libmap option specifies lib.map, which contains a Verilog configuration.</code><br /><code># The -top option is required, because cfg is a top-level configuration.</code><br /><code># The -defparam option overrides the parameter specified in prim.v.</code></p>
+
+<p><code><strong>% xrun prim.v top.v -libmap lib.map -top cfg -primbind \</strong></code></p>
+
+<p><code><strong> -makeprim dut -defparam dut.control=1 -snapshot real -endprim \<br /></strong>    <strong>-makeprim dut -defparam dut.control=0 -snapshot bbox -endprim</strong></code></p>
+<h2 id="PartitioningVerilogConfigurations-ManualPartitioningofVerilogConfigurationsinthePrimary">Manual Partitioning of Verilog Configurations in the Primary</h2>
+
+<p>Use the <code><a href="../XceliumSC_Ref/-compcnfg.html">-compcnfg</a></code>&#160;option to compile a Verilog configuration that is in a source file when building the primary snapshot. Doing so enables you to include a compiled Verilog configuration in place of a model or entity as the argument to the command-line options <code>-makeprim</code> and <code>-primtop</code>. For example, the source file <code>config.v</code> below defines the Verilog configurations <code>soc_cfg1</code> and <code>soc_cfg2</code> for design units <code>soc1</code> and <code>soc2</code>:</p>
+
+<p><code>//config.v</code><br /><code>config soc_cfg1;</code><br /><code>design soc1;</code><br /><code>default liblist lib1 ;</code><br /><code>cell IP use lib2.IP;</code><br /><code>instance soc1.m1_inst use lib2.m1;</code><br /><code>instance soc1.soc_mid_inst.IP_inst use lib3.IP;</code><br /><code>instance soc1.soc_mid_inst.I1 use lib1.dut1;</code><br /><code>instance soc1.soc_mid_inst.I2 use lib1.dut2;</code><br /><code>endconfig</code></p>
+
+<p><code>config soc_cfg2;</code><br /><code>design soc2;</code><br /><code>default liblist lib4 ;</code><br /><code>cell IP use lib1.IP;</code><br /><code>instance soc2.m2_inst use lib1.m2;</code><br /><code>instance soc2.soc_mid_inst.IP_inst use lib3.IP;</code><br /><code>instance soc2.soc_mid_inst.I1 use lib2.dut1;</code><br /><code>instance soc2.soc_mid_inst.I2 use lib2.dut2;</code><br /><code>endconfig</code></p>
+
+<p><code>config sub_cfg2;</code><br /><code>design mid2;</code><br /><code>default liblist lib3 lib1 ;</code><br /><code>instance mid2.soc1_inst use soc_cfg1:config;</code><br /><code>instance mid2.soc2_inst use soc_cfg2:config;</code><br /><code>endconfig</code></p>
+
+<p><code>config sub_cfg1;</code><br /><code>design mid;</code><br /><code>default liblist lib3 lib1 ;</code><br /><code>instance mid.mid2_inst use sub_cfg2:config;</code><br /><code>endconfig</code></p>
+
+<p><code>config cfg;</code><br /><code>design tb;</code><br /><code>default liblist lib1;</code><br /><code>instance tb.mid_inst liblist lib2;</code><br /><code>instance tb.mid_inst use sub_cfg1:config;</code><br /><code>cell dut2 use lib2.dut2;</code><br /><code>cell dut1 use lib1.dut1;</code><br /><code>endconfig</code></p>
+
+<p>The complete SOC design may have multiple IP models that you want to precompile into separate libraries: <code>lib1</code>, <code>lib2</code>, <code>lib3</code>, and <code>lib4</code>. You may also want to elaborate soc1 and soc2 as primary partitions. The following command elaborates the primary partitions using the defined Verilog configurations:</p>
+
+<p><code><strong>% xrun test.v -compcnfg config.v \</strong></code></p>
+
+<p><code><strong>&#160; -makelib lib1 lib1_IP.v dut1.v dut2.v lib1_m1.v lib1_m2.v -endlib \<br />&#160; -makelib lib2 lib2_IP.v dut1.v dut2.v lib2_m1.v lib2_m2.v -endlib \<br />&#160; -makelib lib3 lib3_IP.v -endlib \<br />&#160; -makelib lib4 lib4_IP.v -endlib \<br />&#160; -makeprim soc_cfg1 -endprim \<br />&#160; -makeprim soc_cfg2 -endprim</strong></code></p>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Specifying_Paths_to_Hierarchical_Instances.html" id="prev" title="Specifying_Paths_to_Hierarchical_Instances">Specifying_Paths_to_Hierarchic ...</a></em></b><b><em><a href="Running_MSIE_in_a_Distributed_Computing_Environment_with_Single-Step_xrun.html" id="nex" title="Running_MSIE_in_a_Distributed_Computing_Environment_with_Single-Step_xrun">Running_MSIE_in_a_Distributed_ ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

@@ -1,0 +1,98 @@
+
+<html><head><title>Identification of the Right MSIE Flow</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="anishap" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223187" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Identification of the Right MSIE Flow" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE,MSIE," />
+<meta name="prod_subfeature" content="Multi-Step Invocation,Single-Step Invocation," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223187" />
+<meta name="NextFile" content="MSIE_Features.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Types_of_MSIE_Flows.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Identification of the Right MSIE Flow" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Types_of_MSIE_Flows.html" title="Types_of_MSIE_Flows">Types_of_MSIE_Flows</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="MSIE_Features.html" title="MSIE_Features">MSIE_Features</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Identification of the Right MSIE Flow</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span style=""><span class="confluence-anchor-link" id="IdentificationoftheRightMSIEFlow-choosing_msie_flow"></span>Depending upon the environment, the available user scripts, and the elaboration goals, you can select either the single-step invocation flow or the multi-step invocation flow. The single-step invocation flow is primarily focused on usability, with less control with the user because most of the actions (<code>href,</code> extern module,<code> incrpath</code>, and parameterization) are performed under the hood by the tool.</span></p>
+<h3 id="IdentificationoftheRightMSIEFlow-Single-StepInvocationFlow"><span style="">Single-Step Invocation Flow</span></h3>
+
+<p>Single-step invocation flow is suitable in the following situations:</p>
+<ul><li><span style="">If you do not have a separate file script for the sublevel blocks.</span></li><li><span style="">If you know about the changing and non-changing module names of the design. Single-step&#160;invocation flow, at a minimum, requires <code>-primtop</code> or <code>-makeprim&#160;</code>/&#160;<code>-endprim</code> with the non-changing module name (in the single xrun monolithic script) to instruct the tool to make those as primary snapshots.</span></li><li><span style="">If you do not know about the design partitioning and want tool to generate the partitions, then you can use the Auto-MSIE feature by adding <code>-genpartition &lt;file.f&gt;</code> on the monolithic command line. This file contains 12 partitions of the design which can be used in MSIE run.</span></li><li><span style="">Additionally, to tune the use of parallelism using the available compute resources, if you know about the total number of CPU cores (and its hyper-threaded number) available on their machine, you can optimally set the option <code>-primparallelelab &lt;N&gt;</code>, to instruct the tool to run <code>&lt;N&gt;</code> number of primaries to elaborate in parallel and cut down the time.</span></li><li><span style="">If you want to specify some part of the design to be put in incremental, this can be controlled by adding <code>-incrtop &lt;module_name&gt;</code>&#160;option.</span></li><li><span style="">It is not necessary to take the extra step of generating the <code>href extern</code> module. With single-step&#160;invocation flow,&#160;the <code>href extern</code> module is created under the hood.</span></li><li><span style="">It is not necessary to find out <code>incrpath</code>. With single-step&#160;invocation MSIE, <code>incrpath</code> resolution is done under the hood.</span></li><li><span style="">It is not necessary to change the testcase setup/code to pass parameter values from incremental to primary. With single-step&#160;invocation flow, parameter passing from incremental to primary is done under the hood.</span></li><li><span style="">If you want to leverage the DRM (Distributed Resource Management) capability with each primary snapshot built in parallel or sequentially on different machines.</span></li></ul><h3 id="IdentificationoftheRightMSIEFlow-Multi-StepInvocationMSIEFlow"><span style="">Multi-Step Invocation&#160;MSIE Flow</span></h3>
+
+<p>Multi-step invocation&#160;MSIE flow is suitable in the following situations:</p>
+<ul><li><span style="">If you have separate file scripts for different sublevel blocks.</span></li><li><span style="">If you want more control of each snapshot&#8217;s management with support for different directory paths.</span></li><li><span style="">If you want to have different flavors of the primary snapshot, such as different types (SystemC Verilog, VHDL) or the ability to choose different versions of source code.</span></li><li><span style="">If you want to use the elaboration time black-boxing, and speed up elaboration time and simulation time. With Verilog configuration, you can use any flavor of the primary snapshot. By using the light model version snapshot, you can black-box particular portions of the design, and speed up the elaboration as well as simulation runtime.</span></li><li><span style="">If you want to share same primary snapshot with multiple models at the same time.</span></li><li><span style="">If you want to leverage the DRM (Distributed Resource Management) capability with each primary snapshot built in parallel or sequentially on different machines. The incremental snapshot can also be built on a different machine after all the primary snapshots are built.</span></li></ul><h6 id="IdentificationoftheRightMSIEFlow-RelatedTopic">Related Topic</h6><ul><li><span style=""><a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od000000056GNEAY&amp;pageName=ArticleContent&amp;sq=005d0000001T3qIAAS_201745144658924" rel="nofollow">Choosing the Right MSIE Flow: 1-xrun or Multi-xrun/xmelab</a></span></li></ul>
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Types_of_MSIE_Flows.html" id="prev" title="Types_of_MSIE_Flows">Types_of_MSIE_Flows</a></em></b><b><em><a href="MSIE_Features.html" id="nex" title="MSIE_Features">MSIE_Features</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

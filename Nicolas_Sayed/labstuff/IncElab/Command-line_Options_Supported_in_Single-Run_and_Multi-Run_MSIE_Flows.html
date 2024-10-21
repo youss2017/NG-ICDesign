@@ -1,0 +1,157 @@
+
+<html><head><title>Command-line Options Supported in Single-Run and Multi-Run MSIE Flows</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="anishap" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223198" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Command-line Options Supported in Single-Run and Multi-Run MSIE Flows" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="" />
+<meta name="prod_subfeature" content="" />
+<meta name="new_topic" content="" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223198" />
+<meta name="NextFile" content="Multi-Snapshot_Simulation.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Command-line_Options_Supported_in_Multi-Step_MSIE_Flow.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Command-line Options Supported in Single-Run and Multi-Run MSIE Flows" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Command-line_Options_Supported_in_Multi-Step_MSIE_Flow.html" title="Command-line_Options_Supported_in_Multi-Step_MSIE_Flow">Command-line_Options_Supported ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Multi-Snapshot_Simulation.html" title="Multi-Snapshot_Simulation">Multi-Snapshot_Simulation</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Command-line Options Supported in Single-Run and Multi-Run MSIE Flows</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p>The following options are supported both in Single-step and Multi-step MSIE flows.</p>
+<div class="table-wrap"><table class="relative-table confluenceTable" style="width: 89.4247%;"><colgroup><col style="width: 27.3452%;" /><col style="width: 44.3286%;" /><col style="width: 28.3262%;" /></colgroup><tbody><tr><th class="confluenceTh">Option</th><th class="confluenceTh">Single-xrun MSIE Usage Description</th><th class="confluenceTh" colspan="1">Multi-xrun MSIE Usage Description</th></tr>
+<tr><td class="confluenceTd"><div class="content-wrapper">
+<p><code>-incrtop</code> <span id="Command-line Options Supported in Single-Run and Multi-Run MSIE Flows-marker_1088189"></span><span id="Command-line Options Supported in Single-Run and Multi-Run MSIE Flows-marker_1088190"></span><code><em>module_name</em></code></p>
+</div>
+</td>
+<td class="confluenceTd">
+<p>For primary instantiating incremental flow, -incrtop &lt;module_name&gt; is needed.</p>
+
+<p><br /></p>
+</td>
+<td class="confluenceTd" colspan="1">
+<p>Identifies the top level of the incremental partition when using the <code>-genhref</code> flow to generate a hierarchical permission file.</p>
+
+<p>The <code>-genhref</code> option generates a hierarchical permission file before creating a primary snapshot. See <a href="Hierarchical_References.html#HierarchicalReferences-58243">Generating an href File</a>. To identify unbound modules in the incremental partition, add the <code>-incrtop</code> option to the command line.</p>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-msie_verbose</code></td>
+<td class="confluenceTd" colspan="1">
+<p>Includes information in the elaboration output and log file about what primary snapshots were used and to what instances they were bound.</p>
+</td>
+<td class="confluenceTd" colspan="1">Includes information in the elaboration output and log file about what primary snapshots were used and to what instances they were bound.</td>
+</tr>
+<tr><td class="confluenceTd"><div class="content-wrapper">
+<p><code>-msietopsok<span id="Command-line Options Supported in Single-Run and Multi-Run MSIE Flows-marker_1088250"></span><span id="Command-line Options Supported in Single-Run and Multi-Run MSIE Flows-marker_1088251"></span></code></p>
+</div>
+</td>
+<td class="confluenceTd">
+<p>Allows identically named top-level primaries when building the simulation snapshot.</p>
+
+<p>When a primary snapshot is included in a simulation snapshot, and that primary snapshot has some top-level design units that are not instantiated within the hierarchy, these uninstantiated top-level units become top levels in the simulation snapshot. If a simulation snapshot has more than one top-level design unit with the same name, then the simulator attempts to merge the duplicate top-level modules automatically.</p>
+
+<p>Only those duplicate top modules that are not instantiated within the hierarchy are merged. Otherwise, the simulator generates an error when attempting to merge multiple copies. Use this option to change the error to a warning and allow multiple instantiated top-level design units with the same name to co-exist.</p>
+</td>
+<td class="confluenceTd" colspan="1">Same behavior as in single xrun MSIE flow.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-primtop</code><span id="Command-line Options Supported in Single-Run and Multi-Run MSIE Flows-marker_1088224"></span><span id="Command-line Options Supported in Single-Run and Multi-Run MSIE Flows-marker_1088225"></span> <code><em>module_name</em></code></p>
+</div>
+</td>
+<td class="confluenceTd" colspan="1">
+<p>Single xrun MSIE flow is enabled with -primtop and -incrtop options.</p>
+
+<p>For example:</p>
+<pre><code>% <strong>xrun -f dutsrc.f tb_top.v test1.v -primtop dut&#160;-primtop&#160;dut_sub \<br />&#160;-primparallelelab&#160;2&#160;-top&#160;tb_top</strong></code></pre><pre><br /></pre></td>
+<td class="confluenceTd" colspan="1">
+<p>Identifies the top level of the primary partition when using the <code>-genhref</code> flow to generate a hierarchical permission file.</p>
+
+<p>The <code>-genhref</code> option generates a hierarchical permission file before creating a primary snapshot. See <a href="Hierarchical_References.html#HierarchicalReferences-58243">Generating an href File</a>. To identify unbound modules in the primary partition, add the <code>-primtop</code> option.</p>
+
+<p>For example:</p>
+<pre><code>% <strong>xrun -f dutsrc.f tb_top.v test1.v -genhref href.txt -primtop dut</strong></code></pre></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-primbind</code></td>
+<td class="confluenceTd" colspan="1">Used for applying verilog configuration rules in single xrun MSIE flow.</td>
+<td class="confluenceTd" colspan="1">
+<p>Used for loading all the primaries lying in same xmlibdirname.</p>
+
+<p><code>-primbind</code> will mean all <code>-primname &lt;primary_snapshot_name&gt;</code></p>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-msie_href_verbose</code></td>
+<td class="confluenceTd" colspan="1">Provides verbosity related href and extern file.</td>
+<td class="confluenceTd" colspan="1">Same behavior as in single-xrun MSIE flow.</td>
+</tr>
+</tbody></table></div>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Command-line_Options_Supported_in_Multi-Step_MSIE_Flow.html" id="prev" title="Command-line_Options_Supported_in_Multi-Step_MSIE_Flow">Command-line_Options_Supported ...</a></em></b><b><em><a href="Multi-Snapshot_Simulation.html" id="nex" title="Multi-Snapshot_Simulation">Multi-Snapshot_Simulation</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

@@ -1,0 +1,108 @@
+
+<html><head><title>Running Simulation in Multi-Step Mode</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223200" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Running Simulation in Multi-Step Mode" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="task" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="Multi-Step Invocation," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223200" />
+<meta name="NextFile" content="Running_MSIE_with_xrun.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Multi-Snapshot_Simulation.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Running Simulation in Multi-Step Mode" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Multi-Snapshot_Simulation.html" title="Multi-Snapshot_Simulation">Multi-Snapshot_Simulation</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Running_MSIE_with_xrun.html" title="Running_MSIE_with_xrun">Running_MSIE_with_xrun</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Running Simulation in Multi-Step Mode</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span id="Running Simulation in Multi-Step Mode-marker_1072560"></span><span class="confluence-anchor-link" id="RunningSimulationinMultiStepMode-58049"></span>For both direct invocation mode and multi-step <em>xrun</em> invocation mode, the elaborator generates an error if the incremental elaboration attempts to change the value of a parameter or generic in a primary partition. Use the <code>-primparamsok</code>&#160;option (<code>xmelab -primparamsok</code>) when elaborating the simulation snapshot to indicate that any defparams or parameter overrides that would change parameter and generic values in a primary should be quietly ignored instead of generating an error.&#160;<span style="">This is illustrated below:&#160;</span></p>
+
+<p><span style=""><code>xmelab: *E,DYNDFP (./tb.v,2|7): Cannot change value of a parameter in the primary snapshot.</code></span></p>
+
+<p><span style="">A <code>defparam</code> statement or parameter override in the incremental partition&#160;may be trying to change the value of a parameter in the primary&#160;partition. This is not allowed. Make sure the parameter is given&#160;the desired value when the primary partition is elaborated.&#160; The&#160;name shown in the error message can be used with a <code>-GPG</code> or <code>-DEFPARAM</code>&#160;option when elaborating the primary partition.&#160; Use <code>-PRIMPARAMSOK</code> on&#160;the incremental elaboration command line to silently ignore this attempt&#160;to change the parameter or generic value.</span></p>
+
+<p>In multi-step (direct invocation) mode, the primary snapshot(s) and the simulation snapshots are built using <code>xmelab</code>.</p>
+<ol><li>
+<p>Compile the source files for the primary partition and elaborate a primary snapshot.<br /><br />To build a primary snapshot, use the <code>-mkprimsnap</code> option.&#160;Depending on your partitioning style, use one or more <code>-incrbind</code> options on the <code>xmelab</code> command line to identify unbound modules or program blocks that are in another partition. Multiple primary snapshots are allowed.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>In direct invocation mode, the <code>-incrbind</code> option implies <code>-mkprimsnap</code>.</p>
+</div>
+</div>
+
+<p>Include the <code>-href</code> option to specify a hierarchical reference permission file or a direct permission specification, if necessary.<br /><br />Example:</p>
+<p class="webflare-pre-block webflare-courier-new"><code># Compile source files for the primary partition, </code><br /><code># which includes the testbench and DUT.</code><br /><strong><code>% xmvlog -f dutsrc.f tb_top.v</code></strong><br /><code># Create a primary snapshot, leaving a test module for the incremental, </code><br /><code># and specify an href file.</code><br /><strong><code>% xmelab tb_top -incrbind tester -href href.txt<br /><br /></code></strong></p>
+</li><li>Compile the source files for the incremental partition and elaborate the simulation snapshot.<br />To build the simulation snapshot, use the <code><a href="../IncElab/Appendix.html#Appendix-primbind">-primbind</a></code>&#160;option to include the available primary snapshots using normal binding rules.<br /><br />Example:<p class="webflare-pre-block webflare-courier-new"><code># Compile the source files for the tester module.</code><br /><strong><code>% xmvlog test1.v</code></strong><br /><code># Create the simulation snapshot. The -primbind option binds the</code><br /><code># available primary snapshot to the tb_top module.</code><br /><strong><code>% xmelab tb_top -primbind<br /><br /></code></strong></p>
+</li><li>To simulate the whole design, invoke <code>xmsim</code>.<br /><strong><code>% xmsim tb_top</code></strong></li></ol><h6 id="RunningSimulationinMultiStepMode-RelatedTopic">Related Topic</h6><ul><li><code><a href="../XceliumSC_Ref/-primparamsok.html">-primparamsok</a></code></li></ul>
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Multi-Snapshot_Simulation.html" id="prev" title="Multi-Snapshot_Simulation">Multi-Snapshot_Simulation</a></em></b><b><em><a href="Running_MSIE_with_xrun.html" id="nex" title="Running_MSIE_with_xrun">Running_MSIE_with_xrun</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

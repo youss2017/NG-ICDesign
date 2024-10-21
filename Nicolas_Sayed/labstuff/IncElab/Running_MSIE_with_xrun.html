@@ -1,0 +1,139 @@
+
+<html><head><title>Running MSIE with xrun</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223201" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Running MSIE with xrun" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="task" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="Primary," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223201" />
+<meta name="NextFile" content="Running_xrun_in_Single-Step_Mode.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Running_Simulation_in_Multi-Step_Mode.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Running MSIE with xrun" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Running_Simulation_in_Multi-Step_Mode.html" title="Running_Simulation_in_Multi-Step_Mode">Running_Simulation_in_Multi-St ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Running_xrun_in_Single-Step_Mode.html" title="Running_xrun_in_Single-Step_Mode">Running_xrun_in_Single-Step_Mo ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Running MSIE with xrun</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span id="Running MSIE with xrun-marker_1069591"></span><span class="confluence-anchor-link" id="RunningMSIEwithxrun-79560"></span>Generally<em>, xrun</em> simplifies the invocation process by using one command line for compiling, building, and simulating a design. However, using <em>xrun</em> for MSIE can be more involved.</p>
+
+<p>The following two use models are supported:</p>
+<div class="table-wrap"><table class="wrapped fixed-table confluenceTable"><colgroup><col style="width: 167.0px;" /><col style="width: 1161.0px;" /></colgroup><tbody><tr><th class="confluenceTh">Mode of running</th><th class="confluenceTh">Description</th></tr>
+<tr><td class="confluenceTd">Single-step mode</td>
+<td class="confluenceTd">
+<p>With single-step invocation mode, you use one <em>xrun</em> command to build and simulate a complete MSIE model, and you are no longer required to specify multiple <em>xrun</em> commands when building each partition. See&#160;<a href="Running_xrun_in_Single-Step_Mode.html">Running xrun in Single-Step Mode</a>.</p>
+</td>
+</tr>
+<tr><td class="confluenceTd">Multi-step mode</td>
+<td class="confluenceTd">
+<p>With multi-step invocation mode, you use separate <em>xrun</em> commands to build each partition, and the right set of options must be specified for each build command. The final <em>xrun</em> command simulates the complete MSIE model. See&#160;<a href="Running_xrun_in_Multi-Step_Mode.html">Running xrun in Multi-Step Mode</a>.</p>
+</td>
+</tr>
+</tbody></table></div>
+
+<p>Besides describing these two modes, this topic describes:</p>
+<ul><li><a href="#RunningMSIEwithxrun-94973">&quot;Building Primaries in Different Directories&quot;</a></li><li><a href="#RunningMSIEwithxrun-62509">&quot;Running in Separate Directories&quot;</a></li><li><a href="#RunningMSIEwithxrun-89722">&quot;Source File Inter-dependency&quot;</a></li></ul><h3 id="RunningMSIEwithxrun-94973BuildingPrimariesinDifferentDirectories"><span class="confluence-anchor-link" id="RunningMSIEwithxrun-94973"></span>Building Primaries in Different Directories</h3>
+
+<p>You can use the <code>-<span style="">xmlibdirname</span></code>&#160;option to build a primary snapshot in a different directory than the directory you use to build the final snapshot. When you do so, the <em>xrun</em> command used to elaborate the simulation snapshot must do one of the following:</p>
+<ul><li>Use the same <code>-<span style="">xmlibdirname</span></code>&#160;option</li><li>Specify the same directory using the <code>-primlibdir</code> option</li><li>Specify the same directory using the <code>-primname</code> option</li></ul>
+<p>For example:</p>
+
+<p><code>% xrun tb_top.v -incrbind test -name tb_top -<span style="">xmlibdirname</span> dir1<br />% xrun test.v -primname tb_top -<span style="">xmlibdirname</span> dir1</code></p>
+
+<p>or:</p>
+
+<p><code>% xrun test.v -primname tb_top -primlibdir dir1</code></p>
+
+<p>or:</p>
+
+<p><code>% xrun test.v -primname tb_top@dir1</code></p>
+<h3 id="RunningMSIEwithxrun-62509RunninginSeparateDirectories"><span class="confluence-anchor-link" id="RunningMSIEwithxrun-62509"></span>Running in Separate Directories</h3>
+
+<p>The <em>xrun</em> command can also be run in separate directories. Use either the <code>-primname</code> or <code>-primlibdir </code>option on the command line to specify the location of the primary snapshot.</p>
+
+<p>For example:</p>
+
+<p><code>% cd ./primdir</code><br /><code>% xrun tb_top.v -incrbind test -name tb_top</code><br /><code>% cd ..</code><br /><code>% xrun -primname tb_top -primlibdir ./primdir test.v</code></p>
+
+<p>or:</p>
+
+<p><code>% xrun -primname tb_top@./primdir test.v</code></p>
+<h3 id="RunningMSIEwithxrun-89722SourceFileInter-Dependency"><span class="confluence-anchor-link" id="RunningMSIEwithxrun-89722"></span>Source File Inter-Dependency</h3>
+
+<p>Verilog source files can have an ordering dependency because of macros and directives (such as <code>`timescale</code>) that carry over from one file to the next when all files are parsed with the same command invocation. When using <em>xrun</em> with MSIE, however, source files are compiled in steps: the source files for each primary partition are passed to one <code>xrun</code> command and the source files for the incremental partition are passed to another <code>xrun</code> command. Macro definitions and directives may not carry over from one file to the other as if they were all parsed with the same command.</p>
+
+<p>When converting an existing single <em>xrun</em> invocation build script to use MSIE, take care not to alter the model because of changes to the order in which the Verilog source is parsed. In general, construct the source files so that there are no source file inter-dependencies due to macros or directives between partitions.</p>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Running_Simulation_in_Multi-Step_Mode.html" id="prev" title="Running_Simulation_in_Multi-Step_Mode">Running_Simulation_in_Multi-St ...</a></em></b><b><em><a href="Running_xrun_in_Single-Step_Mode.html" id="nex" title="Running_xrun_in_Single-Step_Mode">Running_xrun_in_Single-Step_Mo ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

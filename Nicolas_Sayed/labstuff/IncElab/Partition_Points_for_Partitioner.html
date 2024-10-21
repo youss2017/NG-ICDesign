@@ -1,0 +1,175 @@
+
+<html><head><title>Partition Points for Partitioner</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="anishap" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223216" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Partition Points for Partitioner" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="reference" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="Design Partitioning," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223216" />
+<meta name="NextFile" content="Ports_at_the_Partition_Boundary.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Building_Snapshots.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Partition Points for Partitioner" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+<script type="text/javascript" src="styles/shCore1.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shCore.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushCpp.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushJava.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushXml.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushPython.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushPowerShell.js">/*<![CDATA[*//*]]>*/</script><link rel="stylesheet" href="styles/shCoreDefault.css" type="text/css" /><link rel="stylesheet" href="styles/shCoreMidnight.css" type="text/css" /><script type="text/javascript">/*<![CDATA[*/
+SyntaxHighlighter.all();
+/*]]>*/</script>
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Building_Snapshots.html" title="Building_Snapshots">Building_Snapshots</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Ports_at_the_Partition_Boundary.html" title="Ports_at_the_Partition_Boundary">Ports_at_the_Partition_Boundar ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Partition Points for Partitioner</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span style="">You can manually specify the partition points (either primtops or incrtops) and get better gains by mixing it with tool-generated partitioning.&#160;</span></p>
+
+<p>The partitioner also ensures that the provided partition points are legal and there are no partition boundary limitations, like ports at the boundary and parameters at the boundary. If there are any partition boundary limitations hit on user-provided partition points, the tool issues an error. For cross-partition OOPR restrictions, the tool tries to create an incrtop (irrespective of the weight of the incrtop). If due to partition boundary restrictions, it is unable to generate an incrtop, it issues an error.&#160;When carving out incrtops from the user-provided addprimtop hierarchy, the tool would not analyse the load balancing aspect; this incrtop may potentially make the incremental heavier.</p>
+
+<p>Two new options, <code>addprimtop</code> and <code>addincrtop,</code> are introduced to support this flow.&#160;</p>
+<h2 id="PartitionPointsforPartitioner-SalientFeatures">Salient Features</h2>
+<ul><li>You can provide options&#160;<code>addprimtop</code>&#160;and/or <code>addincrtop</code>, which takes module name as arguments, and all instances of that module are treated as a primtop or incrtop.</li><li>
+<p>For load balancing, the tool eliminates the hierarchies already identified as <code>addprimtop</code>&#160;or <code>addincrtop</code>&#160;and load balance the rest of the design into N minus [no. of primtops specified by <code>addprimtop</code>], where N is the total number of partitions specified by <code>-XMSIENUMPARTITIONS</code> (or default 12). For example, if you provided three addprimtops, the tool identifies N as three primtops.</p>
+</li><li>
+<p>The primtops you specify may be sandwiched like primary instantiating primary, primary instantiating incremental, or incremental instantiating primary. There is no restriction on sandwiching.</p>
+</li><li>
+<p>If a module is specified as <code>-addprimtop</code>&#160;or <code>-addincrtop</code>, all the hierarchy under that module goes into that primary or incremental unless explicitly excluded by another <code>-addprimtop</code> or <code>-addincrtop</code>. In both cases, the hierarchy under the addprimtops/addincrtops is not playing a role in the partitioning, as it is excluded.</p>
+</li><li>
+<p>The addprimtops provided by you remain at the top of the partitions list in the partition file, followed by a sorted list of tool-generated partition points.</p>
+</li><li>If you provide <code>-addincrtop &lt;top-level-module&gt;</code>,&#160;only the top-level module goes into the incremental. The rest of the hierarchy instantiated under <code>top</code> would be partitioned into primtops&#160;by the partitioner.</li></ul><h2 id="PartitionPointsforPartitioner-Examples">Examples</h2>
+
+<p>Let us use the&#160;following test for the examples 1 and 2 below.</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>test.sv</b></div>
+<div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">class myclass;
+&#160; reg r1;
+endclass
+
+module top;
+&#160; reg r1, r2, r3, r4, r5;
+&#160; foo foo1();
+endmodule
+
+module foo;
+&#160; &#160;myclass c1;
+&#160; reg r1, r2, r3, r4, r5;
+&#160; &#160;bar bar1();
+endmodule
+
+module bar;
+&#160; reg r1, r2, r3, r4, r5;
+&#160; &#160;dut1 dut1();
+endmodule
+
+module dut1;
+&#160; &#160;dut2 dut2 ();
+endmodule
+
+module dut2;
+&#160; initial $display (top.foo1.c1.r1);
+&#160; reg r1, r2, r3, r4, r5;
+&#160; wire w1, w2,w3,w4;
+endmodule</pre>
+</div>
+</div>
+<h3 id="PartitionPointsforPartitioner-Example1:-addprimtopdut1">Example 1: -addprimtop dut1</h3>
+
+<p><strong>xrun command:</strong></p>
+
+<p><code>xrun -clean test.sv -addprimtop dut1 -genpartition part.txt</code></p>
+
+<p><strong>Output part.txt</strong></p>
+
+<p><code>-primtop dut1</code><br /><code>-primtop foo</code><br /><code>-primtop top</code><br /><code>-primtop bar</code><br /><code>-incrtop dut2</code></p>
+
+<p>Since there is an unsupported OOPR reference <code>top.foo1.c1.r1</code>, an <code>incrtop dut2</code> has been identified to work around the same.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>If an invalid module name is given to <code>-addprimtop</code> option in automsie, the tool throws the following error:</p>
+
+<p><code>xmelab:&#160;E,XMILPT: The module *abc&#160;specified as an argument to addprimtop is not part of the design.</code></p>
+</div>
+</div>
+<h3 id="PartitionPointsforPartitioner-Example2:-addincrtoptop">Example 2: -addincrtop top</h3>
+
+<p><strong>xrun command:&#160;</strong></p>
+
+<p><code><span>xrun -clean test.sv -addincrtop top -addprimtop dut1 -genpartition part3.txt</span></code></p>
+
+<p><span>The top-level design unit &#39;<code>top</code>&#39; has been specified as <code>addincrtop</code>. This implies that only the module &#39;<code>top</code>&#39; goes into the incremental, not the hierarchy under it. The hierarchy underneath is partitioned, and due to the unsupported OOPR,&#160;<code>dut2</code> also goes into incremental.</span></p>
+
+<p><code><span>//part3.txt</span></code><br /><code><span>#VERSION : TOOL: xmelab 21.08-a001-20210721</span></code><br /><code><span>#TIME : 2021-7-27 12:56:59</span></code><br /><code><span>-primtop dut1</span></code><br /><code><span>-primtop foo</span></code><br /><code><span>-primtop bar</span></code><br /><code><span>-incrtop top</span></code><br /><code><span>-incrtop dut2</span></code></p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>If an invalid module name is given to <code>-addincrtop</code> option in automsie,&#160;the tool throws the following error:</p>
+
+<p><code>xmelab:&#160;E,XMILIT: The module *xyz&#160;specified as an argument to addincrtop is not part of the design.</code></p>
+</div>
+</div>
+<h6 id="PartitionPointsforPartitioner-RelatedTopic">Related Topic</h6><ul><li><a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1O3w000009F6VIEA0&amp;pageName=ArticleContent" rel="nofollow">How to customize partitions (adding user-provided primary and incremental snapshots) in automsie flow</a></li></ul>
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Building_Snapshots.html" id="prev" title="Building_Snapshots">Building_Snapshots</a></em></b><b><em><a href="Ports_at_the_Partition_Boundary.html" id="nex" title="Ports_at_the_Partition_Boundary">Ports_at_the_Partition_Boundar ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

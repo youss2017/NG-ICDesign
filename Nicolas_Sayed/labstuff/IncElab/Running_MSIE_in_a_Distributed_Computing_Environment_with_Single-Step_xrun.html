@@ -1,0 +1,125 @@
+
+<html><head><title>Running MSIE in a Distributed Computing Environment with Single-Step xrun</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="anishap" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223206" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Running MSIE in a Distributed Computing Environment with Single-Step xrun" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="task" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE,MSIE," />
+<meta name="prod_subfeature" content="DRM,Distributed Resource Management," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223206" />
+<meta name="NextFile" content="Running_xrun_in_Multi-Step_Mode.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Partitioning_Verilog_Configurations.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Running MSIE in a Distributed Computing Environment with Single-Step xrun" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Partitioning_Verilog_Configurations.html" title="Partitioning_Verilog_Configurations">Partitioning_Verilog_Configura ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Running_xrun_in_Multi-Step_Mode.html" title="Running_xrun_in_Multi-Step_Mode">Running_xrun_in_Multi-Step_Mod ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Running MSIE in a Distributed Computing Environment with Single-Step xrun</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span class="confluence-anchor-link" id="RunningMSIEinaDistributedComputingEnvironmentwithSingleStepxrun-21708"></span>When you run <em>xrun</em> in single-step mode, you can run MSIE with any DRM (distributed resource management) system to distribute the primary builds when you have multiple primary partitions.</p>
+
+<p>To do so, you use the <em>xrun</em> option <code>-prefix_primelab</code> to specify a DRM command or script that distributes the builds on the DRM system. You also must run in single-xrun parallel mode (with <code>-primparallelelab</code>).</p>
+
+<p>For example, if you were to specify <code>-PREFIX_PRIMELAB &quot;bsub -K&quot;</code>, <em>xrun</em> spawns an LSF job<em> </em>that submits the necessary <code>xmelab</code> command to the queue before starting elaboration. The <code>-K</code> option ensures that <code>bsub</code> waits until its execution has finished and returned an exit status.</p>
+
+<p>Requirements for using the <code>-prefix_primelab</code> option:</p>
+<ul><li>The first token in the prefix string must be a DRM executable, such as <code>bsub</code>. If the first token is a script name, the script must have executable permissions.</li><li>The executable command or script must wait until the DRM executable and the elaboration have completed before returning an exit status. <br />The return code from the script or DRM command must be 0 to indicate no error occurred.</li><li>If a script is used, all of the command line arguments that <em>xrun</em> passes to the script must be passed on to <code>xmelab</code> such that the elaboration command line remains unchanged.</li><li>You must additionally specify the option <code>-primparallelelab</code> on the <em>xrun</em> command line.</li></ul>
+<p><strong> Example 1</strong></p>
+
+<p>The following <em>xrun</em> command specifies 12 primary partitions for this simulation. They are to be elaborated in parallel in four groups. The <code>-prefix_primelab</code> prefix specifies an LSF <code>bsub</code> command with the platform (<code>eer_0</code>) and the queue (<code>perf48G_2</code>) specified.</p>
+
+<p><code>xrun -clean test.v \</code><br /><code>-primtop soc1 \</code><br /><code>-primtop soc2 \</code><br /><code>-primtop soc3 \</code><br /><code>-primtop soc4 \</code><br /><code>-primtop soc5 \</code><br /><code>-primtop soc6 \</code><br /><code>-primtop soc7 \</code><br /><code>-primtop soc8 \</code><br /><code>-primtop soc9 \</code><br /><code>-primtop soc10 \</code><br /><code>-primtop soc11 \</code><br /><code>-primtop soc12 \</code><br /><code>-prefix_primelab &quot;bsub -K -R ee7_0 -q perf48G_2&quot; -primparallelelab 4</code></p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><ul><li><code>ee7_0</code> denotes RHEL 7 operating system while&#160;<code>perf48G_2</code> is an LSF queue defined in the user environment.&#160;</li><li>The above example is a manual way of running the testcase. You may use <code>-AUTOMSIE</code>&#160;option to create the primaries automatically.</li></ul></div>
+</div>
+
+<p><br /></p>
+
+<p><strong>Example 2</strong></p>
+
+<p>Following are examples of scripts that specify the <code>bsub</code> command used in the previous example.</p>
+
+<p>Shell script:</p>
+<p style="margin-left: 30.0px;"><code>#!/bin/sh</code><br /><code>CMD=&quot;bsub -K -q perf48G_2 &quot;$@</code><br /><code>$CMD</code></p>
+
+<p>Perl script:</p>
+<p style="margin-left: 30.0px;"><code>#!/usr/bin/perl </code><br /><code>system (&quot;bsub&quot;, &quot;-K&quot;, &quot;-q perf48G_2&quot;, @ARGV);</code><br /><code>print $?</code></p>
+
+<p>Python script:</p>
+<p style="margin-left: 30.0px;"><code>#!/usr/bin/python</code><br /><code>import sys</code><br /><code>import subprocess</code><br /><code>CMD1 = &quot;&quot;</code><br /><code>for arg in sys.argv[1:]: </code><br /><code>    CMD1 += &quot; &quot; + arg</code><br /><code>CMD2 = &quot;bsub -K -q perf48G_2&quot; + CMD1 </code><br /><code>p = subprocess.Popen(CMD2, shell=True)</code><br /><code>p.communicate()</code></p>
+
+<p>Assuming that the script name is <code>submitjob</code>, following is the <em>xrun</em> command:</p>
+
+<p><code>xrun -clean test.v \</code><br /><code>-primtop soc1 \</code><br /><code>-primtop soc2 \</code><br /><code>-primtop soc3 \</code><br /><code>-primtop soc4 \</code><br /><code>-primtop soc5 \</code><br /><code>-primtop soc6 \</code><br /><code>-primtop soc7 \</code><br /><code>-primtop soc8 \</code><br /><code>-primtop soc9 \</code><br /><code>-primtop soc10 \</code><br /><code>-primtop soc11 \</code><br /><code>-primtop soc12 \</code><br /><code>-prefix_primelab &quot;submitjob&quot; -primparallelelab 4</code></p>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Partitioning_Verilog_Configurations.html" id="prev" title="Partitioning_Verilog_Configurations">Partitioning_Verilog_Configura ...</a></em></b><b><em><a href="Running_xrun_in_Multi-Step_Mode.html" id="nex" title="Running_xrun_in_Multi-Step_Mode">Running_xrun_in_Multi-Step_Mod ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

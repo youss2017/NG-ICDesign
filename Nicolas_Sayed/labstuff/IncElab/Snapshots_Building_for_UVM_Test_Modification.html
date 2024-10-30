@@ -1,0 +1,488 @@
+
+<html><head><title>Snapshots Building for UVM Test Modification</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223210" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Snapshots Building for UVM Test Modification" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE,MSIE," />
+<meta name="prod_subfeature" content="Snapshot,UVM," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223210" />
+<meta name="NextFile" content="Parallel_Partitioning.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="UVM_Test_Modification_Partitions.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Snapshots Building for UVM Test Modification" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+<script type="text/javascript" src="styles/shCore1.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shCore.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushCpp.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushJava.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushXml.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushPython.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushPowerShell.js">/*<![CDATA[*//*]]>*/</script><link rel="stylesheet" href="styles/shCoreDefault.css" type="text/css" /><link rel="stylesheet" href="styles/shCoreMidnight.css" type="text/css" /><script type="text/javascript">/*<![CDATA[*/
+SyntaxHighlighter.all();
+/*]]>*/</script>
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="UVM_Test_Modification_Partitions.html" title="UVM_Test_Modification_Partitions">UVM_Test_Modification_Partitio ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Parallel_Partitioning.html" title="Parallel_Partitioning">Parallel_Partitioning</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Snapshots Building for UVM Test Modification</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span style="letter-spacing: 0.0px;">When using this partitioning style, a primary snapshot is elaborated with one or more </span><code style="letter-spacing: 0.0px;">-incrbind</code><span style="letter-spacing: 0.0px;"> options. This option identifies the name of a design unit whose instances are left unbound in the elaborated primary, to be bound to another snapshot when building the final model. There can be multiple instances of the specified design unit. If there are multiple instances of the unit specified with the </span><code style="letter-spacing: 0.0px;">-incrbind</code><span style="letter-spacing: 0.0px;"> option, all of the instances are left unbound.</span></p>
+
+<p>For Verilog, the argument to the <code>-incrbind</code> option is the name of the module that appears in the instantiation. For VHDL, the argument is the name of the component in the component instantiation.</p>
+<div class="confluence-information-macro confluence-information-macro-warning"><span class="aui-icon aui-icon-small aui-iconfont-error confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>When building a primary that includes UVM testbench packages, do not compile the primary partition using <code><a href="../XceliumSC_Ref/-bbox_create.html">-bbox_create</a></code>. Compiling a UVM primary with this command-line option can result in simulation errors.</p>
+</div>
+</div>
+
+<p>The simulation snapshot is elaborated by giving the <code>-primbind</code> option or by naming the snapshot explicitly with the <code>-primsnap</code> option. Unbound instances from the primary snapshot are resolved using normal binding rules, and those instances go into the incremental partition.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>By default, the elaborator generates an error if the incremental elaboration attempts to change the value of a parameter or generic in the primary partition. Use the <code>-primparamsok</code> option (<code>xmelab -primparamsok</code> or <code>xrun -primparamsok</code>) when elaborating the simulation snapshot to generate a warning instead of an error. This option allows the primary to be used with the values it was elaborated with, ignoring the values passed in from another partition.</p>
+</div>
+</div>
+<h3 id="SnapshotsBuildingforUVMTestModification-Example1">Example 1</h3>
+
+<p>In this example, the Verilog source files for a DUT are listed in an argument file called <code>dutsrc.f</code>. The testbench has a top-level module called <code>tb_top</code> defined in a source file called <code>tb_top.v</code>. This testbench module instantiates the DUT and a module called <code>tester</code> which is defined in a file called <code>test1.v</code>. There is also a file called <code>test2.v</code> which contains a different definition of the module <code>tester</code>.</p>
+
+<p><strong>Running in Direct Invocation Mode</strong></p>
+
+<p>In direct invocation mode, the two tests could be run without re-elaborating the testbench and DUT as follows:</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Compile the DUT and testbench.
+% xmvlog -f dutsrc.f tb_top.v
+# Create the primary snapshot. The -incrbind option specifies an unbound module
+# or program block in this primary snapshot to be bound to another snapshot.
+# -mkprimsnap causes the elaborator to create the primary snapshot.
+% xmelab tb_top -mkprimsnap -incrbind tester
+
+# Compile the first test.
+% xmvlog test1.v
+# Create the simulation snapshot.
+# The -primbind option binds the available unbound instances.
+% xmelab tb_top -primbind
+# Run the test.
+% xmsim tb_top
+
+# Repeat for each test.
+# Note: xmsim will overwrite this simulation snapshot in this example.
+% xmvlog test2.v
+% xmelab tb_top -primbind
+% xmsim tb_top</pre>
+</div>
+</div>
+
+<p>The <code>-incrbind</code> option takes the name of a module or program block to omit from the primary snapshot and supply later. If there is more than one instance of a module with this name in the design, then all of the instances are omitted.</p>
+
+<p>The second elaboration creates the simulation snapshot. This snapshot is relatively small in size because it consists only of the incremental partition. The primary snapshots are included by reference to the snapshots already on the disk. The <code>-primbind</code> option specifies that primary snapshots should be used. The top-level <code>tb_top</code> is bound to a primary because the work library contains a primary of that name.</p>
+
+<p>To simulate the whole design, the simulation snapshot is specified on the <code>xmsim</code> command line. To run the remaining tests, the process can be repeated without re-elaborating the large primary snapshot.</p>
+
+<p>If simulation snapshots for all the tests are to exist at the same time, each snapshot must be given a unique name. Also, if all versions of the <code>tester</code> module are to be in the same library at the same time, they must be given different view names using the <code>-view</code> option. Then, you can use the <code>-binding</code> option to pick which view to use when building the simulation snapshot. For example:</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Compile the DUT and testbench.
+% xmvlog -f dutsrc.f tb_top.v
+# Create the primary snapshot.
+% xmelab tb_top -mkprimsnap -incrbind tester
+
+# Compile all tests with different view names.
+% xmvlog test1.v -view v1
+% xmvlog test2.v -view v2
+
+# Create simulation snapshots with different names.
+% xmelab tb_top -primbind -binding tester:v1 -snapshot test1
+% xmelab tb_top -primbind -binding tester:v2 -snapshot test2
+
+# Run the tests.
+% xmsim test1
+% xmsim test2</pre>
+</div>
+</div>
+
+<p><strong>Running with xrun</strong></p>
+
+<p>If you are simulating with <em>xrun</em>, the two tests could be run without re-elaborating the testbench and DUT with the following commands:</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Compile the DUT and testbench and create the primary snapshot.
+# The -incrbind option specifies the name of a module
+# or program block that is in another snapshot.
+# -mkprimsnap causes xrun to stop after creating the primary snapshot.
+% xrun -mkprimsnap -incrbind tester -snapshot tb_top \
+-f dutsrc.f tb_top.v
+xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.
+file: dut.v
+    module worklib.dut:v
+...
+file: tb_top.v
+    module worklib.tb_top:v
+...
+    Elaborating the design hierarchy (primary partition):
+        Caching library &#39;worklib&#39; ....... Done
+    [MSIE] Instance tb_top.test will be bound to another snapshot
+    Top level design units:
+        tb_top
+...
+    Writing primary snapshot: worklib.tb_top:v
+
+# Compile the first test, create the simulation snapshot, and run the model.
+# The -primname option specifies the name of the primary xrun command.
+# In this example, this is the same argument used for the -snapshot option
+# when the primary snapshot was created.
+# The following command creates the simulation snapshot worklib.tester:v.
+% xrun -primname tb_top test1.v
+xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.
+file: test1.v
+    module worklib.tester:v
+...
+Loading primary snapshot worklib.tb_top:v .................... Done
+...
+    Elaborating the design hierarchy (incremental partition):
+    [MSIE] Instance tb_top.test in primary snapshot worklib.tb_top:v
+    is bound to module worklib.tester:v in the incremental partition
+    Top level design units (incremental partition):
+        tester
+    [MSIE] Top level design units from primary snapshots:
+        Module tb_top (worklib.tb_top:v)
+...
+    Writing incremental snapshot: worklib.tester:v
+Loading snapshot worklib.tester:v .................... Done
+...
+Running test1
+DUT is primary
+xmsim: *W,RNQUIE: Simulation is complete.
+xmsim&gt; exit
+
+# Compile the second test, create the simulation snapshot, and run the model.
+# The next xrun command also creates the simulation snapshot worklib.tester:v
+# and will overwrite the previous snapshot.
+% xrun -primname tb_top test2.v
+xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.
+file: test2.v
+    module worklib.tester:v
+...
+Loading primary snapshot worklib.tb_top:v .................... Done
+...
+    Elaborating the design hierarchy (incremental partition):
+    [MSIE] Instance tb_top.test in primary snapshot worklib.tb_top:v
+    is bound to module worklib.tester:v in the incremental partition
+    Top level design units (incremental partition):
+        tester
+    [MSIE] Top level design units from primary snapshots:
+        Module tb_top (worklib.tb_top:v)
+...
+    Writing incremental snapshot: worklib.tester:v
+Loading snapshot worklib.tester:v .................... Done
+...
+Running test2
+DUT is primary
+xmsim: *W,RNQUIE: Simulation is complete.
+xmsim&gt; exit</pre>
+</div>
+</div>
+
+<p>To build both simulation snapshots first, use the <code>-elaborate</code> option, and give each snapshot a unique name with the <code>-snapshot</code> option. Use the <code>-view</code> option to compile the different versions of the <code>tester</code> module with unique view names. Then use the <code>-R</code> option to simulate each test.</p>
+
+<p><code>% <strong>xrun -elaborate test1.v -primname tb_top -view v1 -snapshot test1<br /></strong>% <strong>xrun -elaborate test2.v -primname tb_top -view v2 -snapshot test2</strong></code></p>
+
+<p><code>% <strong>xrun -R -snapshot test1<br /></strong>% <strong>xrun -R -snapshot test2</strong></code></p>
+<h3 id="SnapshotsBuildingforUVMTestModification-Example2">Example 2</h3>
+
+<p>In this example, the model has a top-level configuration that defines the bindings for some, or all, instances in the design. When building a snapshot, you use the <code>-libmap</code> option to specify the name of the configuration file, and the top-level unit specified on the command line is the name of the configuration. For example:</p>
+
+<p><code>% <strong>xmelab -libmap top.cfg cfg</strong></code></p>
+
+<p>The primary partition is on top and it instantiates <code>mod1</code> and <code>mod2</code> which are in another partition. When building the primary, the <code>-incrbind</code> options override any binding specifications for <code>mod1</code> and <code>mod2</code> in the configuration file. When building the simulation snapshot, the primary is found as the top-level unit, and the binding specifications for <code>mod1</code> and <code>mod2</code> are used to bind the unbound instances in the primary. The configuration file can be used to bind them to other primaries or to modules in the incremental partition.</p>
+
+<p><strong>Libmap Configuration File</strong></p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">// top.cfg
+config cfg;
+   design tb;
+   instance tb.mod1_inst use worklib.mymod1;
+   instance tb.mod2_inst use worklib.mymod2;
+endconfig</pre>
+</div>
+</div>
+
+<p><strong>Running in Direct Invocation Mode</strong></p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Compile the model
+% xmvlog tb_top.v
+% xmvlog mod1.v
+% xmvlog mod2.v
+% xmvlog mod3.v
+# Create the primary snapshot.
+# Multiple -incrbind options specify the instances to be omitted from the snapshot.
+% xmelab -mkprimsnap -libmap top.cfg cfg \
+-incrbind mod1 -incrbind mod2 -snapshot prim
+
+# Create the simulation snapshot.
+# Specify the same configuration that was used when building the primary snapshot.
+% xmelab -primsnap prim -libmap top.cfg cfg</pre>
+</div>
+</div>
+
+<p><strong>Running with xrun</strong></p>
+<div class="pbi_avoid"><span class="content-title" id="Example-232003193a184bf9a6fbfff944597d01"><strong>Example 6.1:</strong> Single-Step</span><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">% xrun tb_top.v mod1.v mod2.v mod3.v -libmap top.cfg -top cfg -primbind \
+  -makeprim tb -snapshot prim -endprim \
+  -incrtop mod1 \
+  -incrtop mod2
+xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.
+file: tb_top.v
+module worklib.tb:v
+...
+file: mod1.v
+ module worklib.mymod1:v
+...
+file: mod2.v
+ module worklib.mymod2:v
+...
+file: mod3.v
+ module worklib.mymod3:v
+...
+ Elaborating the design hierarchy:
+ Top level design units:
+ tb
+ Wrote HREF file: ./xcelium.d/run.lnx86.14.10.d/href_internal.txt
+ Elaborating the design hierarchy (primary partition):
+ [MSIE] Instance tb.mod1_inst will be bound to another snapshot
+ [MSIE] Instance tb.mod2_inst will be bound to another snapshot
+ Top level design units:
+     tb
+...
+ Writing primary snapshot: worklib.prim:v
+ Elaborating the design hierarchy (incremental partition):
+ Top level design units:
+     tb
+...
+Writing incremental snapshot: worklib.cfg:v
+Loading snapshot worklib.cfg:v .................... Done
+...
+xmsim&gt; run
+xmsim: *W,RNQUIE: Simulation is complete.
+xmsim&gt; exit</pre>
+</div>
+</div>
+</div>
+<div class="pbi_avoid"><span class="content-title" id="Example-05529778791143868d0d898bc068bb36"><strong>Example 6.2:</strong> Multi-step</span><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Create the primary snapshot.
+% xrun -mkprimsnap -libmap top.cfg -top cfg \
+-incrbind mod1 -incrbind mod2 -snapshot prim tb_top.v mod3.v
+xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.
+file: tb_top.v
+    module worklib.tb:v
+...
+file: mod3.v
+ module worklib.mymod3:v
+...
+ Elaborating the design hierarchy (primary partition):
+ [MSIE] Instance tb.mod1_inst will be bound to another snapshot
+ [MSIE] Instance tb.mod2_inst will be bound to another snapshot
+ Top level design units:
+         tb
+...
+ Writing primary snapshot: worklib.prim:v
+# Create the simulation snapshot.
+# Specify the same configuration that was used when building the primary snapshot.
+# Note that for multi-step xrun, the -primname option is required.
+% xrun -primname prim -libmap top.cfg -top cfg mod1.v mod2.v
+xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.
+file: mod1.v
+ module worklib.mymod1:v
+...
+file: mod2.v
+ module worklib.mymod2:v
+...
+Loading primary snapshot worklib.prim:v .................... Done
+ Elaborating the design hierarchy (incremental partition):
+ [MSIE] Instance tb.mod1_inst in primary snapshot worklib.prim:v
+ is bound to module worklib.mymod1:v in the incremental partition
+ [MSIE] Instance tb.mod2_inst in primary snapshot worklib.prim:v
+ is bound to module worklib.mymod2:v in the incremental partition
+ Top level design units (incremental partition):
+         mymod1
+         mymod2
+ [MSIE] Top level design units from primary snapshots:
+         Module tb (worklib.prim:v)
+...
+ Writing incremental snapshot: worklib.cfg:v
+...
+xmsim&gt; run
+xmsim: *W,RNQUIE: Simulation is complete.
+xmsim&gt; exit</pre>
+</div>
+</div>
+</div>
+<h3 id="SnapshotsBuildingforUVMTestModification-69077Example3"><span class="confluence-anchor-link" id="SnapshotsBuildingforUVMTestModification-69077"></span>Example 3</h3>
+
+<p>The following example, which uses <em>xrun</em>, is at the following location in the installation hierarchy:</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">install_dir/tools/examples/msie/optimal/SV_xrun/example0
+
+The same example using direct invocation mode is at:
+
+install_dir/tools/examples/msie/optimal/SV_3Step/example0
+
+// File: dut.sv
+module dut(input clk, intf pif, output bit [31:0] outData);
+initial $display(&quot;In Primary (DUT)&quot;);
+endmodule
+
+// File: tb_top.sv
+// This file defines package my_pkg. User classes derived from UVM are defined
+// in the package.
+// Module tb_top instantiates the DUT and the test module test_top.
+// Module test_top will be elaborated into the incremental snapshot.
+package my_pkg;
+  import uvm_pkg::*;
+  `include &quot;uvm_macros.svh&quot;
+
+  class my_env extends uvm_component;
+    `uvm_component_utils(my_env)
+    function new(string name=&quot;test&quot;, uvm_component parent);
+      super.new(name, parent);
+      $display(&quot;Inside primary env&quot;);
+    endfunction
+  endclass
+endpackage
+
+// Module tb_top is the top module in the primary partition.
+module tb_top;
+  bit clk;
+  wire [31:0]outData;
+
+  always #50 clk = ~clk;
+
+  intf pif(.*);
+  dut dut(clk, pif, outData);
+  virtual intf vif=pif;
+
+  initial $display(&quot;In Primary (Top)&quot;);
+
+test_top test();
+endmodule
+
+interface intf(input clk);
+  logic[31:0] data;
+endinterface
+
+// File: test_top.sv
+// Module test_top is the top module in the incremental partition.
+// Portion of the code in the incremental is defined in a separate module.
+// The module imports UVM and other user packages required to extend classes
+// defined in packages in the primary.
+module test_top;
+  import uvm_pkg::*;
+  `include &quot;uvm_macros.svh&quot;
+class my_test extends uvm_test;
+    my_pkg::my_env env;
+    function void build();
+      super.build();
+      env = my_pkg::my_env::type_id::create(&quot;env&quot;, this);
+    endfunction
+
+    task run();
+      `uvm_info(&quot;MYTEST&quot;, &quot;In Incremental&quot;, UVM_LOW);
+      #10000 $finish;
+    endtask
+
+    `uvm_component_utils(my_test)
+    function new(string name=&quot;my_test&quot;, uvm_component parent);
+      super.new(name, parent);
+    endfunction
+  endclass
+
+  initial run_test();
+endmodule</pre>
+</div>
+</div>
+
+<p>The following two <code>xrun</code> commands are used to create the primary snapshot, the simulation snapshot, and run the test:</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Compile the DUT, package my_pkg, and the top testbench module (tb_top) and
+# create the primary snapshot.
+# -mkprimsnap causes the elaborator to stop after creating the primary snapshot.
+# -incrtop specifies the top module of the incremental partition.
+% xrun -mkprimsnap -uvm -top tb_top -top my_pkg -incrbind test_top \
+-snapshot top dut.sv tb_top.sv
+# Compile the test module (test_top), create the simulation snapshot, run the test.
+# The -primname option specifies the name of the primary snapshot. In this
+# example, this is the argument to the -snapshot option used when the primary
+# snapshot was created.
+% xrun test_top.sv -primname top +UVM_TESTNAME=my_test</pre>
+</div>
+</div>
+
+<p>There are several other examples of this partitioning style in the installation hierarchy.</p>
+
+<p>For examples of a testbench using parameterized classes, see the examples in:</p>
+
+<p><code>install_dir/tools/examples/msie/optimal/SV_xrun/example1</code><br /><code>install_dir/tools/examples/msie/optimal/SV_xrun/example2</code></p>
+
+<p>To look at examples of VIP (OVC) integration, see:</p>
+
+<p><code>install_dir/tools/examples/msie/optimal/VIP</code></p>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="UVM_Test_Modification_Partitions.html" id="prev" title="UVM_Test_Modification_Partitions">UVM_Test_Modification_Partitio ...</a></em></b><b><em><a href="Parallel_Partitioning.html" id="nex" title="Parallel_Partitioning">Parallel_Partitioning</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

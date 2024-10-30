@@ -1,0 +1,191 @@
+
+<html><head><title>Permission Types for Objects in an href file</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223228" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Permission Types for Objects in an href file" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="reference" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="href," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223228" />
+<meta name="NextFile" content="Specifying_External_Access_Permissions.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="The_Hierarchical_Reference_Permission__href__File.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Permission Types for Objects in an href file" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+<script type="text/javascript" src="styles/shCore1.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shCore.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushCpp.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushJava.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushXml.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushPython.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushPowerShell.js">/*<![CDATA[*//*]]>*/</script><link rel="stylesheet" href="styles/shCoreDefault.css" type="text/css" /><link rel="stylesheet" href="styles/shCoreMidnight.css" type="text/css" /><script type="text/javascript">/*<![CDATA[*/
+SyntaxHighlighter.all();
+/*]]>*/</script>
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="The_Hierarchical_Reference_Permission__href__File.html" title="The_Hierarchical_Reference_Permission__href__File">The_Hierarchical_Reference_Per ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Specifying_External_Access_Permissions.html" title="Specifying_External_Access_Permissions">Specifying_External_Access_Per ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Permission Types for Objects in an href file</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p>In an href file, each kind of reference permission to objects in the primary snapshot is represented by a single character. The permission types are as follows:</p>
+<ul><li>R&#8211;Allows the value of a net or variable, or VHDL signal or port, to be used.</li><li>W&#8211;Allows a Verilog variable to be written by a blocking or non-blocking procedural assignment, and allows an event to be triggered.</li><li>F&#8211;Allows a Verilog net or variable to be forced. Force permission implies write permission.</li><li>D&#8211;Allows a net to be driven by any means such as a continuous assign or connection to the output port of a primitive. Allows a variable to be driven by a continuous assignment. Drive permission implies force permission.</li><li>E&#8211;Allows a net, variable, or event to be used where a value change causes a process to activate. This could be an explicit event control using @ or an implicit one such as when it appears on the right-hand side of a continuous assignment. Event permission implies read permission.</li><li>B&#8211;Allows a disable statement to work.</li><li>I&#8211;Allows a task or function to be called.</li><li><span style="">L&#8211;Disables variable to wire&#160;optimization.</span></li></ul>
+<p>The following table shows each kind of permission, the character used to represent it in an href file, the classes of declarations for which it is relevant, and some examples of hierarchical references that would require it. The code examples refer to objects in a hypothetical scope called <code>top.a.b</code>. The object names (N, V, E, T, F) reflect the object kind (Net, Variable, Event, Task, Function).</p>
+<div class="table-wrap"><table class="webflareTable wrapped confluenceTable"><colgroup> <col /> <col /> <col /> <col /> </colgroup><tbody><tr><th class="webflareTh confluenceTh" colspan="4" rowspan="1">Verilog</th></tr>
+<tr><th class="webflareTh confluenceTh" colspan="1" rowspan="1">Permission</th><th class="webflareTh confluenceTh" colspan="1" rowspan="1">Character</th><th class="webflareTh confluenceTh" colspan="1" rowspan="1">Applicable Declarations</th><th class="webflareTh confluenceTh" colspan="1" rowspan="1">Example Verilog Code</th></tr>
+<tr><td class="webflareTd confluenceTd" colspan="1" rowspan="1">Read</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">R</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">Nets, Variables</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1"><pre><code>x = top.a.b.N;</code></pre></td>
+</tr>
+<tr><td class="webflareTd confluenceTd" colspan="1" rowspan="1">Write</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">W</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">Variables, Events</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1"><pre><code>top.a.b.V = 1;</code></pre><pre><code>-&gt; top.a.b.E;</code></pre></td>
+</tr>
+<tr><td class="webflareTd confluenceTd" colspan="1" rowspan="1">Force</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">F</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">Nets, Variables</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1"><pre><code>force top.a.b.N = 1;</code></pre></td>
+</tr>
+<tr><td class="webflareTd confluenceTd" colspan="1" rowspan="1">Drive</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">D</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">Nets, Variables</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1"><pre><code>assign top.a.b.V = x;</code></pre><pre><code>xor(top.a.b.N, x, y);</code></pre></td>
+</tr>
+<tr><td class="webflareTd confluenceTd" colspan="1" rowspan="1">Event Control</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">E</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">Nets, Variables, Events</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1"><pre><code>always @(top.a.b.N) ...</code></pre><pre><code>@(top.a.b.E) ... </code></pre><pre><code>assign x = top.a.b.V;</code></pre></td>
+</tr>
+<tr><td class="webflareTd confluenceTd" colspan="1" rowspan="1">Disable</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">B</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">Tasks, Functions, Statement Labels</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1"><pre><code>disable top.a.b.T;</code></pre></td>
+</tr>
+<tr><td class="webflareTd confluenceTd" colspan="1" rowspan="1">Invoke</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">I</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">Tasks, Functions</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1"><pre><code>top.a.b.T();</code></pre><pre><code>x = top.a.b.F(1);</code></pre></td>
+</tr>
+<tr><td class="webflareTd confluenceTd" colspan="1"><span style="">Disabled variable to wire optimizaton</span></td>
+<td class="webflareTd confluenceTd" colspan="1"><span style="">L</span></td>
+<td class="webflareTd confluenceTd" colspan="1"><span style="">Variables</span></td>
+<td class="webflareTd confluenceTd" colspan="1"><pre><span style="">
+            <code>logic vw;</code> </span></pre><span style=""> <code>top.a1.a2.vw=1&#8217;b0;</code> </span></td>
+</tr>
+<tr><th class="webflareTd confluenceTh" colspan="4" rowspan="1"><strong>VHDL</strong></th></tr>
+<tr><th class="webflareTd confluenceTh" colspan="1" rowspan="1"><strong>Permission</strong></th><th class="webflareTd confluenceTh" colspan="1" rowspan="1"><strong>Character</strong></th><th class="webflareTd confluenceTh" colspan="1" rowspan="1"><strong>Applicable Declarations</strong></th><th class="webflareTd confluenceTh" colspan="1" rowspan="1"><strong>Example Verilog Code</strong></th></tr>
+<tr><td class="webflareTd confluenceTd" colspan="1" rowspan="1">Read Drive</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">R D</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">Signals, Ports</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1"><pre><code>mod mod_inst(top.dut.X);</code></pre>Where <code>X</code> is a VHDL object that connects to Verilog module <code>mod</code>. In a mixed-language hierarchical reference, Read/Drive permission must be given to the target VHDL objects in the primary partition to set input or output mode of the Verilog module port connection.</td>
+</tr>
+</tbody></table></div>
+
+<p>You can use an asterisk ( <code>*</code> ) character to specify all relevant permissions. If no character is given, that implies an asterisk. For example:</p>
+<pre><code>
+top *&#160;&#160;       # Full permission to all objects in top (Verilog)</code></pre><pre><code>top ...&#160;&#160;     # Full permission to all objects in top and below</code></pre><pre><code>:&#160;&#160;           # Full permission to all signals and ports in VHDL top scope</code></pre><pre><code>: ... *&#160;&#160;     # Full permission to all signals and ports in VHDL top and below</code></pre><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>Full permissions are automatically given to all objects in the SystemVerilog interfaces and to all objects in packages. In addition, for some cases, the tool may enable permissions and access levels that have not been explicitly requested.</p>
+</div>
+</div>
+<h2 id="PermissionTypesforObjectsinanhreffile-Type-basedhrefType-basedhref:"><span class="confluence-anchor-link" id="PermissionTypesforObjectsinanhreffile-Type-basedhref"></span>Type-based href:</h2>
+
+<p><span style="">The syntax for type-based href is:</span></p>
+
+<p><span style=""> <code>&lt;target&gt; &lt;Object Name&gt; &lt;Permissions&gt;</code>&#160;</span></p>
+<ul><li><span style="">The target can be a module name with no hierarchy delimiter &#39;<code>.</code>&#39;</span></li><li><span style="">The object can be a wire, register,&#160;function or task names or a wild character &#39;<code>*</code>&#39;.</span></li><li><span style="">The permissions here can be the current supported mnemonics like &#39;<code>E</code>&#39;, &#39;<code>F</code>&#39;, &#39;<code>R</code>&#39;, &#39;<code>D</code>&#39;, &#39;<code>C</code>&#39; or the wild character &#39;<code>*</code>&#39;</span></li></ul>
+<p><br /><span style="">The type-based permissions are applied to the following:</span></p>
+<ul><li><span style=""> <code>&lt;module name&gt; * &lt;href&gt;</code> </span> <br /><span style="">To all the objects inside all the instances of the specified module. For example:&#160;</span> <br /><span style=""> <code>module1 * RD</code> </span></li><li><span style=""> <code>&lt;module name&gt; &lt;object name&gt; &lt;href permission&gt;<br />
+      </code>To the particular object in all the instances of the specified module.&#160;For example:</span> <br /><span style=""> <code>module1 reg1 EC</code> </span></li><li><span style=""> <code>&lt;module name&gt; &lt;object name&gt; *<br />
+      </code>To the particular object in all the instances of the specified module.&#160;For example:</span> <br /><span style=""> <code>module1 reg1 *</code> </span></li><li><span style=""> <code>&lt;module name&gt; * *<br />
+      </code>To all the objects in all the instances of the specified module.&#160;For example:&#160;</span> <br /><span style=""> <code>module1 * *</code> </span></li></ul><p style="margin-left: 30.0px;"><br /><span style=""> <strong>Example:&#160;</strong> </span></p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>msie.sv</b></div>
+<div class="codeContent panelContent pdl">
+<pre class="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">//msie.sv
+module incr();
+prim prim();
+initial force incr.prim.frc_mod1.a =1&#39;b0;
+endmodule
+
+module prim();
+frc_mod frc_mod1();
+
+frc_mod frc_mod2();
+endmodule
+
+module frc_mod();
+reg a;
+endmodule
+//===TESTCASE ENDS ===</pre>
+</div>
+</div>
+<p style="margin-left: 30.0px;"><code>//href_manual.txt</code> <br /><code>frc_mod a F</code></p>
+<p style="margin-left: 30.0px;"><code>xrun msie.sv&#160;-compile -clean</code> <br /><code>xrun -mkprimsnap -name prim -top prim&#160;-href href_manual.txt</code> <br /><code>xrun -top incr -primname prim</code></p>
+
+<p>In this case the permission &#39;F&#39; is applied to the register &#39;a&#39; in the instances <code>frc_mod1</code> and <code>frc_mod2</code> of the module &#39;<code>frc_mod</code>&#39;. No&#160;<em>autohref</em>&#160;file is created, as complete href permissions are provided during primary snapshot elaboration.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><ul><li><span>Type-based href </span>is supported only for Verilog modules.</li><li>The depth feature (specified with <code>&#8230;</code> ) is not supported with type-based href support.</li></ul></div>
+</div>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="The_Hierarchical_Reference_Permission__href__File.html" id="prev" title="The_Hierarchical_Reference_Permission__href__File">The_Hierarchical_Reference_Per ...</a></em></b><b><em><a href="Specifying_External_Access_Permissions.html" id="nex" title="Specifying_External_Access_Permissions">Specifying_External_Access_Per ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

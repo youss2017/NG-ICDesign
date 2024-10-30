@@ -1,0 +1,403 @@
+
+<html><head><title>Command-line Options Supported in Multi-Step MSIE Flow</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="anishap" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223197" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Command-line Options Supported in Multi-Step MSIE Flow" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="" />
+<meta name="prod_subfeature" content="" />
+<meta name="new_topic" content="" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223197" />
+<meta name="NextFile" content="Command-line_Options_Supported_in_Single-Run_and_Multi-Run_MSIE_Flows.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Command-line_Options_Supported_with_Single-Run_MSIE_Flow.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Command-line Options Supported in Multi-Step MSIE Flow" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Command-line_Options_Supported_with_Single-Run_MSIE_Flow.html" title="Command-line_Options_Supported_with_Single-Run_MSIE_Flow">Command-line_Options_Supported ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Command-line_Options_Supported_in_Single-Run_and_Multi-Run_MSIE_Flows.html" title="Command-line_Options_Supported_in_Single-Run_and_Multi-Run_MSIE_Flows">Command-line_Options_Supported ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Command-line Options Supported in Multi-Step MSIE Flow</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p>The following options are supported in the Muli-step MSIE flow.</p>
+<div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col style="width: 437.0px;" /><col style="width: 1377.0px;" /></colgroup><tbody><tr><th class="confluenceTh">Option</th><th class="confluenceTh">Description</th></tr>
+<tr><td class="confluenceTd">
+<p><code><span style="">-bbox_create</span></code></p>
+</td>
+<td class="confluenceTd"><div class="content-wrapper">
+<p><span style="">When elaborating a primary snapshot, use <code>xrun&#160;-bbox_create</code> option to create a self-sufficient IP model that acts as a black box. This black box primarily contains the snapshot, and includes all dependent files and work libraries in the designated directory. If the directory does not already exist, then the elaborator creates it automatically.</span></p>
+
+<p><span style=""><code>% xrun -mkprimsnap -incrbind top -bbox_create ./tmp/box1 ip1.v<strong><br /></strong>% xrun -mkprimsnap -incrbind top2 -bbox_create ./tmp/box2 ip2.v</code></span></p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p><span style="">A package that is elaborated in a black box primary is not shared with the same package in the incremental. Normally, the incremental re-uses package instances that it finds in primary snapshots and shares any global objects found in that package. However, when elaborating a primary with&#160;<code>-bbox_create</code>, the software elaborates another instance of the package and this can lead to unexpected simulation results.</span></p>
+</div>
+</div>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p><span>The&#160;</span><code>-cds_implicit_tmpdir</code><span>&#160;and&#160;</span><code>-bbox_create</code><span>&#160;options are not compatible. Do not use both options together on the command line.</span></p>
+</div>
+</div>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>The specified directory is automatically created during primary elaboration if it does not already exist.</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd">
+<p><code><span style="">-bbox_link</span></code></p>
+</td>
+<td class="confluenceTd">
+<p><span style="">When elaborating the final/incremental snapshot, use this option to attach a self-sufficient IP model from a particular directory without having to re-elaborate the design. If there are multiple IP models (or black boxes), then you must specify multiple <code><a href="../XceliumSC_Ref/-bbox_link.html">-bbox_link</a> </code>options corresponding to each IP model. This option specifies the bbox directory where the primary snapshot is created.</span></p>
+
+<p><span style="">For example, the&#160;<code><a href="../XceliumSC_Ref/-bbox_create.html">-bbox_create</a></code>&#160;option is used to elaborate two self-sufficient IP models. The blackboxed IP models IP1 and IP2 are available to the SOC integrator in the&#160;<code>./tmp/box1</code>&#160;and&#160;<code>./tmp/box2</code>&#160;directories. The SOC design is in the incremental partition. Using the&#160;<code>-bbox_link</code>&#160;option, the SOC integrator can attach IP1 and IP2 to the design,&#160;<code>soc.v</code>.</span></p>
+
+<p><span style="">The following shows how to integrate the black-boxed IP models into the SOC design,&#160;<code>soc.v</code>:</span></p>
+
+<p><span style=""><code>% xmvlog soc.v</code></span><br /><span style=""><code>% xmelab -primbind -bbox_link ./tmp/box1 \</code></span><br /><span style=""><code>&#160;-bbox_link ./tmp/box2 soc</code></span></p>
+
+<p><span style="">Or use&#160;<em>xrun</em>, as shown:</span></p>
+
+<p><span style=""><code>% xrun -primname ip1 -bbox_link ./tmp/box1 -primname ip2 \</code></span><br /><span style=""><code>&#160; -bbox_link ./tmp/box2 soc.v</code></span></p>
+</td>
+</tr>
+<tr><td class="confluenceTd">
+<p><code>cds_implicit_tmpdir</code> (Directory for Holding Temporary Libraries)</p>
+</td>
+<td class="confluenceTd"><div class="content-wrapper">
+<p>When using the <code>-cds_implicit_tmpdir</code> option to build a primary snapshot, you must elaborate the simulation snapshot with a corresponding <code>-cds_alternate_tmpdir</code> option on the command line when creating the final model. Regardless of whether <code>-primsnap</code>, <code>-primname</code>, or <code>-primbind</code> is used to include a primary in the final model, the primary is not visible without it. For example:</p>
+<ul><li>Direct invocation mode<br /><p class="webflare-pre-block webflare-courier-new"><code># Create a primary snapshot</code><br /><code>% xmelab -mkprimsnap tb_top -cds_implicit_tmpdir dir1</code></p>
+<p class="webflare-pre-block webflare-courier-new"><code># Create the simulation snapshot</code><br /><code>% xmelab tb_top -primbind -cds_alternate_tmpdir dir1</code></p>
+</li><li>Multi-step <em>xrun</em> invocation mode<br /><p class="webflare-pre-block webflare-courier-new"><code># Create a primary snapshot using xrun</code><br /><code>% xrun -mkprimsnap -incrbind test tb_top.v -snapshot tb_top \</code><br /><code>-cds_implicit_tmpdir dir1</code></p>
+<p class="webflare-pre-block webflare-courier-new"><code># Create the simulation snapshot</code><br /><code>% xrun -primname tb_top test.v -cds_alternate_tmpdir dir1</code></p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>For single-step <em>xrun</em> invocation mode, the software takes care of managing the snapshots during primary and incremental elaboration. Ensure not to mix single-step <em>xrun</em> with either multi-step <em>xrun</em> or direct invocation mode when using MSIE.</p>
+</div>
+</div>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p><span style="">The&#160;<code>cds_implicit_tmpdir </code>is not a recommended option.&#160;Use of <code>bbox_create</code> option is recommended. While using <code>-mkprimsnap option</code>, we use <code>-name</code> in place of <code>-snapshot option</code>.</span></p>
+</div>
+</div>
+</li></ul></div>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-forceprimupdate<span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1089040"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1089041"></span></code></p>
+</div>
+</td>
+<td class="confluenceTd" colspan="1">
+<p>If a primary snapshot has changed, it is not updated if the incremental snapshot is being built for the first time. The current flow assumes that the primary snapshot is up-to-date. However, this assumption might not be true.</p>
+
+<p>The <code>-forceprimupdate</code> option allows the primary snapshot to be checked (and updated if needed) even when the incremental snapshot is being built for the first time.</p>
+</td>
+</tr>
+<tr><td class="confluenceTd"><div class="content-wrapper">
+<p><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088142"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088143"></span><code>-genhref&#160;</code><code><em>filename</em></code></p>
+</div>
+</td>
+<td class="confluenceTd">
+<p>Generates a hierarchical permission file (href file).</p>
+
+<p>When specifying a <code>filename</code>, you can use a simple name to generate the href file in the current working directory or a direct path to generate the href file in some other location.</p>
+
+<p>For example:</p>
+
+<p><code>-genhref href.txt</code></p>
+
+<p>or:</p>
+
+<p><code>-genhref test/href.txt</code></p>
+
+<p>See <a href="Hierarchical_References.html#HierarchicalReferences-43277">Hierarchical References</a>.</p>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code><span style="">-gentypehref</span></code></td>
+<td class="confluenceTd" colspan="1">Generates type based href file.</td>
+</tr>
+<tr><td class="confluenceTd"><div class="content-wrapper">
+<p><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088155"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088156"></span> <code>-href&#160;</code><code><em>filename<br /></em>-href &quot;@<em>href_permission_specification</em>&quot;</code></p>
+</div>
+</td>
+<td class="confluenceTd">
+<p>Specifies hierarchical reference permissions, which give the incremental partition the ability to refer to certain declarations in the primary with a hierarchical reference.</p>
+
+<p>The argument to the <code>-href</code> option can be:</p>
+<ul><li>A hierarchical reference permission file. This is a text file that specifies reference permissions to objects in the primary snapshot.</li><li>A permission specification of the form:<br /><p class="webflare-pre-block webflare-courier-new"><code>&quot;@absolute_path permission&quot;</code></p>
+For example:<code>-href &quot;@dut.r1 *&quot;</code></li></ul>
+<p>See <a href="Hierarchical_References.html#HierarchicalReferences-43277">Hierarchical References</a>.</p>
+</td>
+</tr>
+<tr><td class="confluenceTd"><div class="content-wrapper">
+<p><code>-incrbind<span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088169"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088170"></span> <em>module_name</em></code></p>
+</div>
+</td>
+<td class="confluenceTd"><div class="content-wrapper">
+<p>Identifies a module whose instances shall be left unbound in the primary partition so that they can be bound to other partitions in the final model.</p>
+
+<p>There may be times when one or more module instances within a primary snapshot are left unelaborated. Another partition, either primary or incremental, contains these instances. When elaborating the primary snapshot, use the <code>-incrbind</code> command-line option to identify a module or program block to bind to another partition. This pertains to all instances of the specified module or program block.</p>
+<div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>The specified module cannot be a SystemVerilog interface.</p>
+</div>
+</div>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>When using the <code><a href="../XceliumSC_Ref/-genhref.html">-genhref</a></code>&#160;flow, use the <code>-incrtop</code> option in place of <code>-incrbind</code>. For backward compatibility, use the <code>-top</code> option in place of <code>-incrbind</code>.</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code>-incrhasvhdl</code></td>
+<td class="confluenceTd" colspan="1">
+<p>VHDL is 9 valued logic language while Verilog is 4 valued logic.</p>
+
+<p>For correct simulation results in mixed-language testcases there must be a proper mapping between VHDL and Verilog design across MSIE boundaries. To achieve this the primary (with Verilog/SystemVerilog content) must be updated with&#160;<code>-INCRHASVHDL</code>&#160;option so that the incremental or other primaries can have VHDL.</p>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-incrpath</code> <span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088177"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088178"></span><code><em>path<br /></em>-incrpath <em>top_level_unit</em>@<em>path</em></code></p>
+</div>
+</td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>When building a primary partition, specifies the path(s) to this partition&#39;s top-level unit(s) within the overall design hierarchy. This option is used to inform the elaborator when it needs to resolve hierarchical names that start from the top of the overall design hierarchy.&#160;&#160;Examples of such names are:</p>
+<ul><li>Hierarchical references in the HDL that originate from and terminate in the primary partition</li><li>Hierarchical access files, timing files, X-propagation files and SDF files that apply to the overall design</li><li>Path names of parameters in <code>-defparam</code> options</li></ul>
+<p>The argument to the <code>-incrpath</code> option can be any full path, for example:</p>
+<ul><li>A hierarchical path name</li><li>
+<p>A hierarchical path name given to the <code>-defparam</code> option or <code>defparam</code> statement</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>If the primary partition being built with this option has multiple top-level units, this second form of the argument must be used.</p>
+</div>
+</div>
+</li><li>
+<p>A name of a top-level unit followed by a hierarchical path name for that top-level unit</p>
+</li></ul></div>
+</td>
+</tr>
+<tr><td class="confluenceTd">
+<p><code>-lwbbox</code></p>
+</td>
+<td class="confluenceTd">
+<p><span style="">The light weight bbox solution is provided under the <code>-lwbbox</code> option. This option needs to be provided on top of <code>-bbox_create</code> and <code>-bbox_link</code> at primary and incremental build.</span></p>
+
+<p><span style="">The light weight bbox solution&#160;prevents copying the compilation design units (VSTs) into each primary&#39;s black-boxed space. This ensures a lower disk space and therefore, lower&#160;incremental peak memory and better CPU utilization (less I/O). The <code>-lwbbox</code> option also enables reusing the packages (already elaborated as part of the primary snapshot) in the incremental.</span></p>
+
+<p><span style=""><strong>Example &#8211; Reuse package from primary</strong></span></p>
+<pre><code>//pkg.sv</code><br /><code>package p;</code><br /><code>&#160;reg r;</code><br /><code>endpackage&#160;</code></pre><pre><code>//prim1.sv</code><br /><code>module prim1;</code><br /><code>import p::*;</code><br /><code>endmodule&#160;</code></pre><pre><code>//prim2.sv</code><br /><code>module prim2;</code><br /><code>import p::*;</code><br /><code>endmodule&#160;</code></pre><pre><code>//incr.sv</code><br /><code>module top;</code><br /><code>import p::*;</code><br /><code>&#160; prim1 prim1();</code><br /><code>&#160; prim2 prim2();</code><br /><code>endmodule&#160;</code></pre><pre><code>// runme_bbox</code><br /><code>xrun -mess -mkprimsnap -name prim1 pkg.sv prim1.sv -top prim1 -bbox_create bbox1 -xmlibdirname ./primlib1</code><br /><code>xrun -mess -mkprimsnap -name prim2 pkg.sv prim2.sv -top prim2 -bbox_create bbox2 -xmlibdirname ./primlib2</code><br /><code>xrun -mess pkg.sv incr.sv -primname prim1@./primlib1 -primname prim2@./primlib2 -bbox_link bbox1 -bbox_link bbox2&#160;</code></pre><pre><code>//runme_lwbbox</code><br /><code>xrun -mess -mkprimsnap -name prim1 pkg.sv prim1.sv -top prim1 -bbox_create bbox1 -xmlibdirname ./primlib1 -lwbbox</code><br /><code>xrun -mess -mkprimsnap -name prim2 pkg.sv prim2.sv -top prim2 -bbox_create bbox2 -xmlibdirname ./primlib2 -lwbbox</code><br /><code>xrun -mess incr.sv -primname prim1@./primlib1 -primname prim2@./primlib2 -bbox_link bbox1 -bbox_link bbox2 log -lwbbox</code></pre>
+<p><strong>With bbox &#8211; package gets re-elaborated in the incremental:</strong>&#160;</p>
+
+<p><code>Loading primary snapshot worklib.prim1:sv .................... Done</code><br /><code>Loading primary snapshot worklib.prim2:sv .................... Done</code><br /><code>&#160; &#160; &#160; &#160; &#160; &#160; Top level design units (incremental partition):</code><br /><code>&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; p</code><br /><code>&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; top</code></p>
+
+<p><strong>With lwbbox &#8211; package gets re-used in the incremental</strong>&#160;</p>
+
+<p><code>Loading primary snapshot worklib.prim1:sv .................... Done</code><br /><code>Loading primary snapshot worklib.prim2:sv .................... Done</code><br /><code>&#160; &#160; &#160; &#160; &#160; &#160; Top level design units (incremental partition):</code><br /><code>&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; top</code></p>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-mkprimsnap</code><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088197"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088198"></span></p>
+</div>
+</td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>Creates a primary snapshot design unit.</p>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code><span style="">-msieunlock cw_intf_optm</span></code></td>
+<td class="confluenceTd" colspan="1">Aims at optimizing interfaces in multi-step MSIE flow to gain simulation performance.</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><code><span style="">-noprimupdate</span></code></td>
+<td class="confluenceTd" colspan="1"><span style="">In Multi-step MSIE flow, you can use the<span>&#160;</span></span><code>-noprimupdate</code><span style="">&#160;option to disable automatic updates to the primary snapshot(s).</span></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-primincrpathok</code><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088215"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088216"></span></p>
+</div>
+</td>
+<td class="confluenceTd" colspan="1">
+<p>Suppresses the error message that is generated when an out-of-module reference is resolved using the path information provided to the <code>-incrpath</code> option, and that information does not match the actual path in the incremental partition. This option provides flexibility in constructing custom models.</p>
+
+<p>Without this option, the elaborator generates an <code>INCMSM</code> error.</p>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-primbind<span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088260"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088261"></span></code></p>
+</div>
+</td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>Includes primary snapshots when searching design libraries for units to bind to instances when elaborating the simulation snapshot. Primary snapshots are chosen over modules with the same name.</p>
+
+<p>This option is required on the command line in order to include primary snapshots in a given MSIE model during final elaboration if they are not named explicitly with the <code>-primsnap</code> option, or the <code>-primname</code> option when using <em>xrun</em>.</p>
+For <em>xrun</em>, this option works only when specifying the name of the primary top module. If a primary snapshot is configured such that a top module is specified in the primary snapshot but is not the primary top, then the incremental snapshot is unable to find the primary snapshot and the software issues an error.<span><br />This option works only if the name of the primary snapshot is the same as the name used in the instantiation or Verilog configuration (or the name of the module if it is instantiated at the top of the hierarchy). Otherwise, the elaborator is unable to find the primary snapshot and the software does one of the following:</span><ul><li>Re-elaborate the contents of the primary inside the incremental, if the primary&#39;s compiled design units are accessible.</li><li>Generate a binding error, if the primary&#39;s compiled design units are not available.</li></ul>
+<p>Typically, a primary snapshot needs to have the same name as its top-level module, since that is the name used in instantiations and configurations to refer to the module that is meant to be bound to that instantiation.</p>
+<div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p></p>
+
+<p>To use a primary snapshot built with <code><a href="../XceliumSC_Ref/-bbox_create.html">-bbox_create</a></code>, the MSIE model must be elaborated with a corresponding <code><a href="../XceliumSC_Ref/-bbox_link.html">-bbox_link</a></code> option on the command line.</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-primhrefupdate<span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088278"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088279"></span></code></p>
+</div>
+</td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><span>When running either multi-step </span><em>xrun</em><span> or direct invocation mode, this option enables automatic re-elaboration of the primary snapshot when objects need additional hierarchical reference permissions during incremental elaboration. The </span><code>-primhrefupdate</code><span> option uses the </span><code>autohref.txt</code><span> file to update permissions in the primary snapshot and then continues elaborating the incremental snapshot.</span></p>
+</div>
+
+<p>See <a href="Hierarchical_References.html#HierarchicalReferences-90907">Generating an href File When Elaborating the Simulation Snapshot</a>.</p>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-primlibdir<span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088302"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088303"></span> <em>directory</em></code></p>
+</div>
+</td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>When using separate <code>xrun</code> commands to build the primary and simulation snapshots, this option can specify either:</p>
+<ul><li>The directory where the first <code>xrun</code> command was run, if the invocation directories are different.</li><li>The directory specified with the <code>-xmlibdirname</code> option to the first <code>xrun</code> command.</li></ul><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>Using the <code>name@directory</code> form of the <code>-primname</code> option is preferred.</p>
+</div>
+</div>
+
+<p>See <a href="../xceliumSCUG/XRUN_Invocation.html">XRUN Invocation</a>.</p>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-primparamsok<span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088313"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088314"></span></code></p>
+</div>
+</td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>Suppresses error messages that are generated when a <code>defparam</code> statement or parameter override in one partition tries to change the value of a parameter or generic in another primary partition.</p>
+
+<p>Once a primary snapshot is elaborated, the value of each parameter and generic in that primary partition is fixed. Overwriting a parameter or generic value during final elaboration is not allowed. By default, the elaborator generates an error if something in the final elaboration attempts to change the value of a parameter or generic in a primary partition. Use the <code>-primparamsok</code> option to suppress these error messages.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>This option is not recommended unless you have verified that the parameter value is not play a role in primary snapshot.&#160;</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-primsnap<span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088271"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088272"></span> <em>snapshot_name</em></code></p>
+</div>
+</td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>When running in multi-step invocation mode, this option specifies a primary snapshot to use with the simulation snapshot. When binding instances to design units, the top-level units of primaries named with the <code>-primsnap</code> option are&#160;considered first, ahead of any other binding rule.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>This option is now deprecated in favor of the <code>-primbind</code> option.</p>
+</div>
+</div>
+
+<p>The specified snapshot must have been elaborated previously with the <code>-mkprimsnap</code> or <code>-incrbind</code> options. Use the <code>-primsnap</code> option with the <code>-primbind</code> option to override the binding decisions made by the normal binding rules.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p><span style=""><code>-primsnap </code>is not a recommended option. It is recommended to use <code>-primname</code> option.</span></p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-primname<span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088287"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088288"></span> <em>name</em>[@<em>directory</em>]</code></p>
+</div>
+</td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>Indicates the primary snapshot when using the <em>xrun</em> flow.</p>
+
+<p>When using MSIE, separate <em>xrun</em> commands are required to build one or more primary snapshots and the final simulation snapshot. This option indicates which <em>xrun</em> commands created the primary snapshots.</p>
+
+<p>The <code>name</code> argument can be:</p>
+<ul><li>The argument to the <code>-snapshot</code> option specified on the <code>xrun</code> command line used to create the primary snapshot</li><li>The argument to the <code>-name</code> option specified on the <code>xrun</code> command line used to specify the top-level design unit when creating the primary snapshot</li><li>The argument to the <code>-xmuid</code> option given to the first <code>xrun</code> command<br />If <code>-xmuid</code> is used in addition to the <code>-snapshot</code> option, specify the argument used for <code>-xmuid</code></li><li>
+<p><code>xrun</code><br />If the <code>-snapshot</code>, <code>-name</code>, or <code>-xmuid</code> options are not used, specify <code>xrun</code> as the argument to the <code>-primname</code> option.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p><code>-snapshot</code> and <code>-name</code> are synonyms for the same option.</p>
+</div>
+</div>
+
+<p><span>If the primary snapshot was built in another directory or with the </span><code>-xmlibdirname</code><span> option, the directory must also be specified. This directory can also be specified with the </span><code>-primlibdir</code><span> option if only one </span><code>-primname</code><span> option is used.</span></p>
+</li></ul></div>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p><code>-primvhdlcompat</code><span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088235"></span><span id="Command-line Options Supported in Multi-Step MSIE Flow-marker_1088236"></span></span></p>
+</div>
+</td>
+<td class="confluenceTd" colspan="1"><div class="content-wrapper">
+<p>Generates a primary snapshot that is compatible with VHDL.</p>
+
+<p>When building a primary snapshot that does not contain any VHDL, the <code>-primvhdlcompat</code> option is required if the intent is to use that primary snapshot in a model that does contain some VHDL.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>If this option is missing, and you attempt to generate an incremental snapshot for a model that contains primary snapshot with some VHDL, the elaborator halts after generating a DYNVPH error. To resolve the error, you need to rebuild the primary snapshot by adding the missing <code>-primvhdlcompat</code> option to the command line.</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody></table></div>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Command-line_Options_Supported_with_Single-Run_MSIE_Flow.html" id="prev" title="Command-line_Options_Supported_with_Single-Run_MSIE_Flow">Command-line_Options_Supported ...</a></em></b><b><em><a href="Command-line_Options_Supported_in_Single-Run_and_Multi-Run_MSIE_Flows.html" id="nex" title="Command-line_Options_Supported_in_Single-Run_and_Multi-Run_MSIE_Flows">Command-line_Options_Supported ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

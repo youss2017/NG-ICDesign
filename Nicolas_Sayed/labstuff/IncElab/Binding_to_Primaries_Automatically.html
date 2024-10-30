@@ -1,0 +1,148 @@
+
+<html><head><title>Binding to Primaries Automatically</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223191" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Binding to Primaries Automatically" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE,MSIE," />
+<meta name="prod_subfeature" content="binding,stiching," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223191" />
+<meta name="NextFile" content="Passing_Full-Design_Access.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Binding to Primaries Automatically" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html" title="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build">Auto-MSIE___Single-Step_Invoca ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Passing_Full-Design_Access.html" title="Passing_Full-Design_Access">Passing_Full-Design_Access</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Binding to Primaries Automatically</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p>Single-step invocation MSIE flow has binding similar to the Monolithic flow and so no extra option is required. The tool does the binding under the hood.<span style=""><code><span style=""><span class="confluence-anchor-link" id="BindingtoPrimariesAutomatically-primbind"></span></span></code></span><span class="confluence-anchor-link" id="BindingtoPrimariesAutomatically-57490"></span></p>
+
+<p>Specifying the <a href="../XceliumSC_Ref/-primbind.html"><code>-primbind</code></a>&#160; option on the command line includes primary snapshots in the final elaboration automatically in multi-step and direct invocation MSIE flows. This option removes the requirement of having to specify all primary snapshots at elaboration time and allows for instance-specific partition boundaries. It also adds greater partitioning flexibility by using standard binding rules to decide which instances bind to which primaries.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>The <em>xrun</em> and <em>xmelab</em> flows both support the <code>-primbind</code> opti<span style="">on in multi-step and direct invocation MSIE flows.</span></p>
+</div>
+</div>
+
+<p><span style="">For example:</span></p>
+
+<p><span style=""><code>xmelab tb primbind</code></span></p>
+
+<p><span style="">During final elaboration, this option (<code>xmelab -primbind</code>&#160;or&#160;<code>xrun -primbind</code>) includes primary snapshots when building the simulation snapshot.</span></p>
+<h2 id="BindingtoPrimariesAutomatically-BindingPrimariestoInstances">Binding Primaries to Instances</h2>
+
+<p>When using the <code>-primbind</code> option, the cell name of the primary snapshot is significant. If the elaborator is searching for a match to a particular cell name, whether it comes from a configuration specification or from the name used in a module or component instance, it finds only those primary snapshots with a matching cell name. The same holds true in cases where a library name or view name is also specified. This is similar to how VST and AST design units are found.</p>
+
+<p>When a primary snapshot has been found as the design unit that should be bound to an instance, there is still the matter of determining which top-level module or entity in that primary&#8217;s hierarchy should be bound to the given instance. Primary snapshots may be built with multiple top-levels; however, when using the <code>-primbind</code> option, only one top-level unit can be bound to the specified instance during final elaboration. The elaborator attempts to determine which top-level to bind according to the following rules:</p>
+<ul><li>If there is only one top-level module or entity, then that unit is bound to the instance.</li><li>If there are multiple top-level modules or entities available, then the one that matches the cell name of the primary snapshot is bound to the instance.</li><li>If there are multiple top-level modules or entities and none of them match the cell name of the primary snapshot, or there are no top-level modules or entities, then the elaborator generates an error.</li></ul><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>In those cases where there are remaining top-level units in a primary partition, these become top-level design units of the incremental partition during the final elaboration and cannot be used for binding to other instances.</p>
+</div>
+</div>
+
+<p>When using the <code>-primsnap</code> option, the elaborator follows these binding rules:</p>
+
+<p>For <strong>Verilog</strong>, name mapping is used to bind primaries to instances. The name of the module in the instantiation statement is compared with the name of each top-level module in the primary. The first one whose name matches is bound.</p>
+
+<p>For <strong>VHDL</strong>, there are two ways of binding an instance to a primary snapshot:</p>
+<ul><li>By name mapping. The name of the component must match the name of a top-level entity in the primary.</li><li>By using a binding indication that specifies the binding of this particular component instantiation to the top-level design unit of the primary.</li></ul>
+<p>When <code>-primbind</code> and <code>-primsnap</code> are used together, the primaries given with <code>-primsnap</code> are searched first using the <code>-primsnap</code> rules above. If that does not result in a match, then the <code>-primbind</code> rules is used.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p><span style="">It is recommended to use <code>-name/-snapshot</code> option along with <code>-mkprimsnap</code> option on primary snapshot creation with <code>xrun</code>. </span></p>
+
+<p><span style=""><span style="">At the time of incremental elaboration, use <code>-primname &lt;PRM_NAME&gt;@.&lt;PRIM_LIB_DIR_PATH&gt;</code></span><span style="">.</span> </span></p>
+</div>
+</div>
+
+<p><span style=""><code><span class="confluence-anchor-link" id="BindingtoPrimariesAutomatically-primname"></span></code></span>The <code>-primname</code> option&#160;<span style="">specifies which previous&#160;<code>xrun</code>&#160;command created the primary snapshot.</span></p>
+
+<p><span style="">For example:</span></p>
+
+<p><code><span style="">xrun<span>&#160;</span></span><strong>-primn</strong>ame<span style="">&#160;<span style="">&lt;<em>name</em>&gt;@&lt;<em>directory</em>&gt;</span><span style="">&#160;</span></span><span style="">[</span><em>other_options</em><span style="">] &lt;</span><em>source_files</em><span style="">&gt;</span></code></p>
+
+<p><code><span style="">xmelab<span>&#160;</span><strong>-primn</strong>ame&#160;<span style="">&lt;<em>name</em>&gt;@&lt;<em>directory</em>&gt;</span>&#160;[<em>other_options</em>] [<em>lib</em>.]<em>cell</em>[:<em>view</em>]</span></code></p>
+
+<p><span style="">The&#160;<em><code>name</code></em>&#160;argument can be:</span></p>
+<ul><li><span style="">The argument to the&#160;<code>-snapshot</code>&#160;option specified on the&#160;<code>xrun</code>&#160;command line used to create the primary snapshot.</span></li><li><span style="">The argument to the&#160;<code>-name</code>&#160;option specified on the&#160;<code>xrun</code>&#160;command line used to specify the top-level design unit when creating the primary snapshot.</span></li><li><span style="">The argument to the&#160;<code>-xmuid</code>&#160;option given to the first&#160;<code>xrun</code>&#160;command.&#160;</span></li></ul>
+<p><span style="">If&#160;<code>-xmuid</code>&#160;is used in addition to the&#160;<code>-snapshot</code>&#160;option, specify the argument used for&#160;<code>-xmuid</code>.</span></p>
+<ul><li><span style=""><code>xrun</code></span></li></ul>
+<p><span style="">If the&#160;<code>-snapshot</code>,&#160;<code>-name</code>, or&#160;<code>-xmuid</code>&#160;options are not used, specify&#160;<code>xrun</code>&#160;as the argument to the&#160;<code>-primname</code>&#160;option.</span></p>
+
+<p><span style="">If the primary snapshot was built in another directory or with the&#160;<code>-<span style="">xmlibdirname</span></code><span>&#160;</span>option, the directory must also be specified. This directory can also be specified with the&#160;<code>-primlibdir</code>&#160;option if only one&#160;<code>-primname</code>&#160;option is used.</span></p>
+<h3 id="BindingtoPrimariesAutomatically-MergingMultipleTopModulesAutomatically"><span>Merging Multiple Top Modules Automatically</span></h3>
+
+<p>During incremental elaboration, if the model ends up with multiple top-level modules that all have the same name, but comes from different partitions, the simulator attempts to merge the duplicate top modules together automatically. If the simulator cannot merge these duplicate tops, then an error is genrerated. In order to suppress this error, use the <code>-msietopsok</code> option on the command line.</p>
+<h6 id="BindingtoPrimariesAutomatically-RelatedTopic">Related Topic</h6><ul><li><a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1O3w000009FIsoEAG&amp;pageName=ArticleContent" rel="nofollow">What are the different ways of binding the primary snapshot on the incremental snapshot in multi-xrun MSIE flow?</a></li></ul>
+<p><br /></p>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html" id="prev" title="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build">Auto-MSIE___Single-Step_Invoca ...</a></em></b><b><em><a href="Passing_Full-Design_Access.html" id="nex" title="Passing_Full-Design_Access">Passing_Full-Design_Access</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

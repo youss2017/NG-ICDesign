@@ -1,0 +1,105 @@
+
+<html><head><title>MSIE Features</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223188" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="MSIE Features" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE,MSIE,MSIE," />
+<meta name="prod_subfeature" content="Auto Partitioner,Hierarchical References,X-Propagation," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223188" />
+<meta name="NextFile" content="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Identification_of_the_Right_MSIE_Flow.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- MSIE Features" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Identification_of_the_Right_MSIE_Flow.html" title="Identification_of_the_Right_MSIE_Flow">Identification_of_the_Right_MS ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html" title="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build">Auto-MSIE___Single-Step_Invoca ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <div style="width: 100%; font-size: 32px; text-align: left;               font-weight: bold;">3</div>
+<h1 style="margin: 4px 0 4px;"><span>MSIE Features</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span class="confluence-anchor-link" id="MSIEFeatures-msie_features"></span>MSIE flow provides many features. It helps you build the complete MSIE model using a&#160;single <em>xrun</em> command, provides the auto partitioning feature that automatically creates optimum partitions in the design, and so on. This topic lists details of the features available with the MSIE flow:</p>
+<ul><li><strong>Auto-MSIE Partitioner in Single-Step Invocation MSIE Flow</strong>: Auto partitioning solution in MSIE (also commonly referred to as Auto-MSIE) is provided for automatically creating optimum partitions in the design. It divides the entire test case into multiple primary partitions. To set the name of the partition file, use the <code>-genpartition &lt;partition-file&gt;</code> option, where partition-file is an absolute/relative path. To force the number of partitions, use the <code>-xmsienumpartition &lt;num&gt;</code> option. By default, the design is divided into 12 primaries.</li><li><strong>Binding to Primaries Automatically</strong>: Single-step invocation MSIE flow has binding similar to the monolithic flow and so no extra option is required. The tool does the binding under the hood. Specifying the<span style="letter-spacing: 0.0px;">&#160;</span><code>-primbind</code><span style="letter-spacing: 0.0px;">&#160; option on the command line includes primary snapshots in the final elaboration automatically in multi-step and direct invocation MSIE flows. This option removes the requirement of having to specify all primary snapshots at elaboration time and allows for instance-specific partition boundaries. It also adds greater partitioning flexibility by using standard binding rules to decide which instances bind to which primaries.</span></li><li><strong>Merging Multiple Package with same name</strong>:&#160;<span style="">At the time of incremental elaboration, if the model ends up with multiple top-level packages that all have the same name but come from different file paths/partitions, the simulator throws an error <code>IEPKGF</code>.&#160; To pass this error, use the&#160;<code>-msiepkgsok</code>&#160;option on the command line.</span></li><li><strong>Passing Full-Design Access, Timing, or X-Propagation Files</strong>:&#160;MSIE can process access, timing, and X-propagation files that have hierarchical paths relative to the full design. Simply include the <code>-afile</code>, <code>-tfile,</code> or <code>-xfile</code> options on each of the <code>xmelab</code> or <code>xrun</code> command lines that build the partitions affected by these files. When using direct invocation or multi-step <em>xrun</em> to elaborate a primary partition that is not instantiated at the top of the full model, the <code>-incrpath</code>&#160;option is required. This option defines the hierarchical path from the top of the overall model to the top(s) of the partition(s) being elaborated, which is needed to tell the elaborator how to extract the relevant data.</li><li><strong>Resolving Hierarchical References that Originate from a Primary</strong>:&#160;MSIE supports hierarchical references to some kinds of objects that originate in a primary partition with the <code>-genhref</code> option. In addition to generating an href file, this option produces a <code>primary</code><code>_externs.v</code> file for a primary if a design unit in that primary needs access to some other part of the design or if it needs access to some shared object that is in another partition.</li><li><strong>Single-Step Invocation</strong>: A single <em>xrun</em><span> command can build the complete MSIE model. This avoids the need for multiple </span><em>xrun</em><span> or </span><em>xmelab</em><span> commands when building each partition, improving usability. With single-step </span><em>xrun</em><span> invocation mode, the software automatically:</span><ul><li>Updates primary and incremental partitions</li><li>Partitions Verilog configurations</li><li>Resolves hierarchical references</li><li>Elaborates all primaries with the proper parameter values</li><li>Elaborates primaries in parallel</li><li>Takes care of Access file, Xprop file, Timing file, Coverage configuration file and SDF file</li></ul></li><li><strong>Updating Out-of-Date Primary Snapshots Automatically</strong>: MSIE supports updating primary snapshots automatically for both <em style="letter-spacing: 0.0px;">xmelab</em><span style="letter-spacing: 0.0px;"> and </span><em style="letter-spacing: 0.0px;">xrun</em><span style="letter-spacing: 0.0px;">:</span><ul><li>Use <code>xmelab -update</code> when building the simulation snapshot to rebuild any out-of-date primary snapshots.</li><li>
+<p>Use <code>xrun</code> to rebuild any out-of-date primary snapshots by default during incremental elaboration.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p><span style="">In Multi-step MSIE flow, you can use the <a href="../XceliumSC_Ref/-noprimupdate.html"><code>-noprimupdate</code></a>&#160;option to disable automatic updates.</span></p>
+
+<p><span style="">When building an incremental snapshot for the first time, the primary is not updated if some files have changed. </span></p>
+
+<p><span style="">With the <code>-forceprimupdate </code>option, the first-time incremental checks to ensure the primary is up-to-date. Any changes in a file used during the build of the primary are detected on the build of the second (onwards) incremental and it automatically rebuilds the primary to get updated. </span></p>
+
+<p><span style="">Single-step MSIE flow works like monolithic flow in which automatic updates to elaboration are enabled by default and there is no way to stop disabling automatic updates to primary.</span></p>
+</div>
+</div>
+</li></ul></li></ul><h6 id="MSIEFeatures-RelatedTopics">Related Topics</h6><ul><li><a href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html">Auto-MSIE : Single-Step Invocation Parallel and Incremental Build</a></li><li><a href="Binding_to_Primaries_Automatically.html">Binding to Primaries Automatically</a></li><li><a href="Passing_Full-Design_Access.html">Passing Full-Design Access</a></li><li><a href="Resolve_Hierarchical_References_that_Originate_from_a_Primary.html">Resolve Hierarchical References that Originate from a Primary</a></li><li><a href="Running_MSIE_with_xrun.html">Running MSIE with xrun</a></li><li><a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od0000007MSWFEA4&amp;pageName=ArticleContent&amp;oMenu=People%20who%20viewed%20this%20also%20viewed" rel="nofollow">Multi-Snapshot Incremental Elaboration (MSIE) Video 2 : Partitioning Your Design in the Single-Run Flow</a>&#160;(Video)</li><li><a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od000000050PMEAY&amp;pageName=ArticleContent&amp;sq=005d00000043eocAAA_20175110523820" rel="nofollow">Maximizing Productivity with Incremental Elaboration</a></li><li><a href="../XceliumSC_Ref/-primbind.html" rel="nofollow" style="text-decoration: none;"><code>-primbind</code></a></li><li><code><a href="../XceliumSC_Ref/-incrpath.html">-incrpath</a></code></li></ul>
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Identification_of_the_Right_MSIE_Flow.html" id="prev" title="Identification_of_the_Right_MSIE_Flow">Identification_of_the_Right_MS ...</a></em></b><b><em><a href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html" id="nex" title="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build">Auto-MSIE___Single-Step_Invoca ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

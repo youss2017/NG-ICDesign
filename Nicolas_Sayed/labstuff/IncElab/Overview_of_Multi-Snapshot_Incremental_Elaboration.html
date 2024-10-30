@@ -1,0 +1,118 @@
+
+<html><head><title>Overview of Multi-Snapshot Incremental Elaboration</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223184" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Overview of Multi-Snapshot Incremental Elaboration" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="overview of msie," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223184" />
+<meta name="NextFile" content="Types_of_MSIE_Flows.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="IncElabTOC.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Overview of Multi-Snapshot Incremental Elaboration" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="IncElabTOC.html" title="TOC">TOC</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Types_of_MSIE_Flows.html" title="Types_of_MSIE_Flows">Types_of_MSIE_Flows</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <div style="width: 100%; font-size: 32px; text-align: left;               font-weight: bold;">1</div>
+<h1 style="margin: 4px 0 4px;"><span>Overview of Multi-Snapshot Incremental Elaboration</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span id="Overview of Multi-Snapshot Incremental Elaboration-marker_1073135"></span><span id="Overview of Multi-Snapshot Incremental Elaboration-marker_1073121"></span><span style="">Elaboration time can be a major issue in verifying a large system-level design. With the widespread adoption of SystemVerilog and the proliferation of the Universal Verification Methodology (UVM), verification environments are being written in HDL, and the test environment is now becoming part of the model. Every time a verification engineer modifies a testbench, the entire model must be re-elaborated, which can take several hours.</span></p>
+
+<p><span style="">In another common scenario, a regression suite may have many tests for one design. These tests are written in Verilog, VHDL, or SystemVerilog as variations of a test program or module. Running each test requires full elaboration. With moderate to large-sized designs, the time it takes to elaborate a new snapshot for each test can dominate the time needed for a complete regression run</span></p>
+
+<p><span style="">A third scenario involves generating multiple primary snapshots and is especially useful when assembling and/or testing a variety of IPs coming from different vendors and at different points in time. These IP blocks are typically built with different languages and standards and are at different stages of maturity. When a new IP block or a new revision of an existing IP block arrives, the integrator needs a fast and easy way to combine the design sub-blocks to build a new executable model of a System on Chip (SOC).</span></p>
+<h2 id="OverviewofMultiSnapshotIncrementalElaboration-Intro_msieIntroductiontoMSIE"><span style=""><span class="confluence-anchor-link" id="OverviewofMultiSnapshotIncrementalElaboration-Intro_msie"></span>Introduction to MSIE</span></h2>
+
+<p>Multi-Snapshot Incremental Elaboration (MSIE) provides a form of parallel and incremental elaboration that can greatly decrease the time, elaboration memory footprint, and storage space required to elaborate the design. Depending upon the user environment, there can be various types of requirements to reduce the elaboration time.&#160;For example, the first simplest form of requirement can be cutting down the monolithic elaboration time for each scratch build and/or reducing the next run of incremental build time. Other requirements can be elaborating the different stable/unchanging and changing parts of the design separately and reusing them in the next runs. All this calls for choosing the right MSIE flow.</p>
+
+<p>The MSIE flows has been implemented mainly with the two kinds of source code area in the entire design:&#160;</p>
+<ul><li>Parts of the design that are stable, requiring only occasional changes, are placed in one or more sections called <em><strong>primary partitions</strong>/<strong>snapshots</strong></em>. The primary partitions contain portions of the design that can be used repeatedly without being re-elaborated when other portions of the design change.<br />A primary partition is elaborated into a primary snapshot. The elaborator recognizes each primary snapshot as a new type of design unit. The Primary Snapshot (PRM) design unit is used along with the Verilog Syntax Tree (VST) and Abstract Syntax Tree (AST) design units to create a simulation model.</li><li>If there are any parts of the design that are not elaborated into a primary partition, they become part of the <strong><em>incremental partition</em></strong><em>/</em><strong><em>snapshot</em></strong>. These are usually parts of the design that are small or that may change frequently.<br />The incremental partition is elaborated into the simulation snapshot. A simulation snapshot that instantiates at least one primary snapshot is considered a multi-snapshot model and uses MSIE technology. Otherwise, it is just a normal snapshot.</li></ul>
+<p>In one typical example of MSIE, which uses two partitions, the primary partition contains a Design Under Test (DUT) which is stable and unchanging, while the incremental partition contains a testbench which is under development. Changes to the testbench do not require re-elaboration of the DUT.</p>
+<div class="pbi_avoid"><span class="content-title" id="Figure-8f715c7c07a447529ae8ee84f25f3008"><strong>Figure 1.1:</strong> MSIE Flow Using a Single Primary Snapshot</span>
+<p><br /></p>
+
+<p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" data-base-url="https://rdwiki.cadence.com" data-image-src="attachments/502972458/502972469.gif" data-linked-resource-container-id="502972458" data-linked-resource-container-version="1" data-linked-resource-content-type="image/gif" data-linked-resource-default-alias="overview-2.gif" data-linked-resource-id="502972469" data-linked-resource-type="attachment" data-linked-resource-version="1" data-unresolved-comment-count="0" src="attachments/502972458/502972469.gif" width="500" /></span></p>
+
+<p><br /></p>
+</div>
+
+<p><span style="">SOC integrators and testers assembling and/or testing IP in the SOC context might want to partition their design into multiple primaries. In this scenario, the large and unchanging IPs are elaborated into separate primary partitions, and the SOC that instantiates each IP is in its own primary partition. The testbench that instantiates the SOC is elaborated in the incremental partition. Changes to the SOC and the testbench do not require re-elaboration of the IPs. Similarly, when a new revision of IP is received, the other, previously-elaborated IPs do not need to be re-elaborated.</span></p>
+<div class="pbi_avoid"><span class="content-title" id="Figure-5b7910a2f036498f8c0e04ff39af7abd"><strong>Figure 1.2:</strong> <span style="">MSIE Flow Using Multiple Primary Snapshots</span></span>
+<p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" data-base-url="https://rdwiki.cadence.com" data-image-src="attachments/502972458/502972466.gif" data-linked-resource-container-id="502972458" data-linked-resource-container-version="1" data-linked-resource-content-type="image/gif" data-linked-resource-default-alias="overview-3.gif" data-linked-resource-id="502972466" data-linked-resource-type="attachment" data-linked-resource-version="1" data-unresolved-comment-count="0" height="554" src="attachments/502972458/502972466.gif" width="575" /></span></p>
+</div>
+
+<p><br /></p>
+<h6 id="OverviewofMultiSnapshotIncrementalElaboration-RelatedTopics">Related Topics</h6><ul><li><span style=""><a href="Types_of_MSIE_Flows.html">Types of MSIE Flows</a></span></li><li><span style=""><a href="MSIE_Features.html">MSIE Features</a></span></li><li><span style=""><a href="Partitioning.html">Partitioning the Design</a><br /></span></li><li><span style=""><a href="MSIE_Interaction_with_other_Features_Technologies.html">MSIE Interaction with other Features/Technologies</a></span></li><li><a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1O0V000007MkHQUA0&amp;pageName=ArticleContent" rel="nofollow">One-Stop Knowledge Resource for MSIE</a></li><li><a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1O0V00000911sjUAA&amp;pageName=ArticleContent&amp;oMenu=People%20who%20viewed%20this%20also%20viewed" rel="nofollow">Xcelium UVM Multi-Snapshot Incremental Elaboration (MSIE) (RAK)</a></li><li><a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od0000002JdrKEAS&amp;pageName=ArticleContent&amp;oMenu=People%20who%20viewed%20this%20also%20viewed" rel="nofollow"><span class="inline-comment-marker" data-ref="e4677a31-4047-4c2c-916d-ccc658595c9e">Getting Started with MSIE (Video)</span></a></li></ul>
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="IncElabTOC.html" id="prev" title="TOC">TOC</a></em></b><b><em><a href="Types_of_MSIE_Flows.html" id="nex" title="Types_of_MSIE_Flows">Types_of_MSIE_Flows</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

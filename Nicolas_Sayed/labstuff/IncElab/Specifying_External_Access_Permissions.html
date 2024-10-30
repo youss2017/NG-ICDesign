@@ -1,0 +1,127 @@
+
+<html><head><title>Specifying External Access Permissions</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223229" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Specifying External Access Permissions" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE,MSIE," />
+<meta name="prod_subfeature" content="href,Hierarchical References," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223229" />
+<meta name="NextFile" content="Specifying_Hierarchical_Reference_Permissions_with_the_-href_Option.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Permission_Types_for_Objects_in_an_href_file.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Specifying External Access Permissions" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Permission_Types_for_Objects_in_an_href_file.html" title="Permission_Types_for_Objects_in_an_href_file">Permission_Types_for_Objects_i ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Specifying_Hierarchical_Reference_Permissions_with_the_-href_Option.html" title="Specifying_Hierarchical_Reference_Permissions_with_the_-href_Option">Specifying_Hierarchical_Refere ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Specifying External Access Permissions</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span class="confluence-anchor-link" id="SpecifyingExternalAccessPermissions-85017"></span>In addition to the hierarchical reference permissions, a hierarchical reference from the incremental partition to an object in a primary partition may also require setting external access permissions (read, write, or connectivity access) on its target object. These external access permissions are the same as the permissions granted with the elaborator <code>-access</code> option. For example, the <code>xm_mirror</code> function requires write access on its target.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>Because the characters <code>R</code>, <code>E</code>, <code>W</code>, and <code>I</code> are used for specifying hierarchical reference permissions, the first available letter from the words <code>read</code>, <code>write</code>, and <code>connectivity</code> are used as the character for specifying external access permissions (re<strong>A</strong>d, wri<strong>T</strong>e, <strong>C</strong>onnectivity).</p>
+</div>
+</div>
+
+<p>A hierarchical reference may also require a vector net to be expanded (to be represented as individual bit nets rather than as a single vector net).</p>
+
+<p>To specify external access permissions in an href file use the characters shown in the following table.</p>
+<div class="table-wrap"><table class="webflareTable wrapped confluenceTable"><colgroup><col /><col /></colgroup><tbody><tr><th class="webflareTh confluenceTh" colspan="1" rowspan="1">Permission</th><th class="webflareTh confluenceTh" colspan="1" rowspan="1">Character</th></tr>
+<tr><td class="webflareTd confluenceTd" colspan="1" rowspan="1">Read</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">A</td>
+</tr>
+<tr><td class="webflareTd confluenceTd" colspan="1" rowspan="1">Write</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">T</td>
+</tr>
+<tr><td class="webflareTd confluenceTd" colspan="1" rowspan="1">Connectivity</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">C</td>
+</tr>
+<tr><td class="webflareTd confluenceTd" colspan="1" rowspan="1">Expand a vector</td>
+<td class="webflareTd confluenceTd" colspan="1" rowspan="1">X</td>
+</tr>
+</tbody></table></div>
+<h4 id="SpecifyingExternalAccessPermissions-Example(hrefFile):">Example (href File):</h4>
+<pre><code>top.a.b.my_net RDX      # Read and Drive permission to top.a.b.my_net.<br />                        # Expand this vector net.</code></pre><pre><code>top.a.b.my_var DFE      # Drive, Force, and Event Control permission to<br />                        # top.a.b.my_var</code></pre><pre><code>top.a.b.my_task IB&#160;&#160;    # Invoke and Disable permission to top.a.b.my_task</code></pre><pre><code>top.a.d ... X&#160;&#160;         # Expand all vector nets in and below top.a.d</code></pre><pre><code>top.a.c *               # Full permission to all objects in scope top.a.c.<br />                        # Expand all vector nets in this scope.</code></pre><pre><code>top.a.d&lt;WIRE&gt; R&#160;&#160;       # Read permission to all wire objects in scope top.a.d</code></pre><pre><code>top.a.d ...&lt;REG&gt; RW     # Read and Write permission to all reg objects in<br />                        # scope top.a.d and below</code></pre><pre><code>top.a ...2 *&#160;&#160;          # Full permission to top.a till depth 2</code></pre><h4 id="SpecifyingExternalAccessPermissions-Usingmsie_href_verbose"><span style="">Using msie_href_verbose</span></h4>
+
+<p><span style="">The <code>msie_href_verbose</code> option provides all hierarchical references present in <code>href_internal.txt</code>&#160;file and OOPRs in extern modules with additional information like file name and line number for debugging.&#160;</span></p>
+
+<p><span style=""> <strong>Example (<em>href_internal.txt</em> file):</strong> </span></p>
+
+<p><span style=""> <code>#VERSION : TOOL:&#160;&#160;&#160;&#160;&#160;&#160;&#160; xmelab&#160; 20.05-a001-20200513</code> </span> <br /><span style=""> <code>#TIME : 2020-5-14 0:40:11</code> </span> <br /><span style=""> <code># /extern_dump/<span style="">test2_port.sv</span>
+      : 12</code> </span> <br /><span style=""> <code># /extern_dump/<span style="">test2_port.sv</span>
+       : 13</code> </span> <br /><span style=""> <code>top.a EDC</code> </span> <br /><span style=""> <code># /extern_dump/<span style="">test2_port.sv</span>
+      : 14</code> </span> <br /><span style=""> <code>dut.b_dut EDC</code> </span></p>
+
+<p><span style="">Here &#8220;<code>top.a</code>&#8221; contains debug information of all of its occurrences in design.&#160;This debug information is printed under the <code>msie_href_verbose</code> option.</span></p>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Permission_Types_for_Objects_in_an_href_file.html" id="prev" title="Permission_Types_for_Objects_in_an_href_file">Permission_Types_for_Objects_i ...</a></em></b><b><em><a href="Specifying_Hierarchical_Reference_Permissions_with_the_-href_Option.html" id="nex" title="Specifying_Hierarchical_Reference_Permissions_with_the_-href_Option">Specifying_Hierarchical_Refere ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

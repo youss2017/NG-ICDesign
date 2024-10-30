@@ -1,0 +1,131 @@
+
+<html><head><title>Types of MSIE Flows</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="anishap" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223185" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Types of MSIE Flows" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE,MSIE," />
+<meta name="prod_subfeature" content="Single-Step Invocation,Multi-Step Invocation," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223185" />
+<meta name="NextFile" content="Identification_of_the_Right_MSIE_Flow.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Overview_of_Multi-Snapshot_Incremental_Elaboration.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Types of MSIE Flows" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Overview_of_Multi-Snapshot_Incremental_Elaboration.html" title="Overview_of_Multi-Snapshot_Incremental_Elaboration">Overview_of_Multi-Snapshot_Inc ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Identification_of_the_Right_MSIE_Flow.html" title="Identification_of_the_Right_MSIE_Flow">Identification_of_the_Right_MS ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <div style="width: 100%; font-size: 32px; text-align: left;               font-weight: bold;">2</div>
+<h1 style="margin: 4px 0 4px;"><span>Types of MSIE Flows</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span style=""><span class="confluence-anchor-link" id="TypesofMSIEFlows-msie_flows"></span>Monolithic elaboration (and also re-elaboration time) can be reduced with the implementation of the MSIE flow.&#160;From the perspective of implementation, there are mainly two MSIE flows:</span></p>
+<div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col /><col /></colgroup><tbody><tr><th class="confluenceTh">Type of flow</th><th class="confluenceTh">Description</th></tr>
+<tr><td class="confluenceTd"><div class="content-wrapper">
+<p><span style=""><span class="confluence-anchor-link" id="TypesofMSIEFlows-1-xrunMSIE"></span></span></p>
+
+<p><span class="inline-comment-marker" data-ref="c138d273-a7f9-4321-8752-674b46205bcf">Singl</span>e-Step Invocation (with single <em>xrun</em>)</p>
+</div>
+</td>
+<td class="confluenceTd"><div class="content-wrapper">
+<p><span style="">A single&#160;</span><em>xrun</em><span style="">&#160;command can build the complete MSIE model. This is the simplest form of MSIE implementation, and only requires identifying the non-changing and changing part of the design code. The non-changing block names (module or entity) need to be added with <code>&#8211;primtop</code> on the monolithic xrun elaboration script. Modules outside the primtop module hierarchy are considered as the changing part of the design. Names of the changing blocks can also be provided with <code>-incrtop</code>. There may be more than one primtop and those can be sandwiched as well. Similarly, there can be more than one incrtop as well.</span></p>
+
+<p><span style="">Primtops are created as unique primary snapshots. The incrtop modules and the modules outside the primtop module hierarchy are placed in one incremental snapshot. After identifying the primtops (non-changing modules/entity), you can leverage the parallel elaboration of those non-changing primary snapshots with the <code>-primparallelelab&lt;N&gt;</code> option, where <code>N</code> is number of parallel primary. Thus, the sequential monolithic elaboration time can be cut down by parallelizing the big non-changing parts (primary snapshots) with the single-xrun MSIE flow. Hence, the total elaboration time in single-xrun MSIE comes as the&#160;longest of all parallel primary snapshots + the time taken in building the final/incremental snapshot.</span></p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p><span style="">The more evenly the size of non-changing parts (primary snapshots) is distributed, the better the total turnaround time is.</span></p>
+</div>
+</div>
+
+<p><span style="">Thus, by just adding the <code>-primtop</code> and <code>-incrtop</code> options on the monolithic xrun elaboration script, you can have the single-xrun MSIE flow and quickly leverage the MSIE gain.</span></p>
+
+<p><span style="">With the use of Auto-MSIE partitioner, it has become further easier to generate the partitions and use in parallel and incremental MSIE build&#160;flow.</span></p>
+</div>
+</td>
+</tr>
+<tr><td class="confluenceTd"><div class="content-wrapper">
+<p><span style=""><span class="confluence-anchor-link" id="TypesofMSIEFlows-Multi-xrunMSIE"></span></span></p>
+
+<p><span class="inline-comment-marker" data-ref="d0b826a7-6fd4-4cda-80e5-6a2b0c248cd8">Multi</span>-Step Invocation (with multiple <em>xrun</em> or <em>xmelab</em>)</p>
+</div>
+</td>
+<td class="confluenceTd"><div class="content-wrapper">
+<p><span style="">This flow provides granular control to the user to separate the non-changing and changing part of elaboration with multiple xrun or xmelab scripts. The user can have separate physical directory paths of the elaborated primary snapshots. They can also have different flavors of the primary snapshots (different versions of the source code, different HDL/HVL language based source code). This flow requires the <code>-mkprimsnap</code> option to create a separate primary snapshot. Because this flow has been made to provide more granular level control, the user may have to take some initial setup actions, such as getting the href file, extern module, <code>-incrpath</code> information, and parameterization information. Some of these information sets are dumped from the additional <code>-genhref</code> step.</span></p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p><span style=""><span style="">The <code>-incrbind</code> option is used at the time of building the primary snapshot. The option identifies the name of a design unit whose instances are left unbound in the elaborated primary, to be bound to another snapshot when building the final model.</span></span>With <code>-incrbind</code>, the <code>-mkprimsnap</code> option is implied and does not have to be given explicitly.</p>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody></table></div>
+<h6 id="TypesofMSIEFlows-RelatedTopic">Related Topic</h6><ul><li><span style=""><a class="external-link" href="https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od000000056GNEAY&amp;pageName=ArticleContent&amp;sq=005d0000001T3qIAAS_201745144658924" rel="nofollow">Choosing the Right MSIE Flow: 1-xrun or Multi-xrun/xmelab</a></span></li></ul>
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Overview_of_Multi-Snapshot_Incremental_Elaboration.html" id="prev" title="Overview_of_Multi-Snapshot_Incremental_Elaboration">Overview_of_Multi-Snapshot_Inc ...</a></em></b><b><em><a href="Identification_of_the_Right_MSIE_Flow.html" id="nex" title="Identification_of_the_Right_MSIE_Flow">Identification_of_the_Right_MS ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

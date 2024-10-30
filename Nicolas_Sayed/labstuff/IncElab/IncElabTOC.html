@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN" "http://www.w3.org/MarkUp/Wilbur/HTML32.dtd">
+<html xmlns="http://www.w3.org/MarkUp/Wilbur/HTML32.dtd">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Table of Contents</title><META NAME="Approver" CONTENT="Technical Publications">
+<META NAME="Approver" CONTENT="Technical Publications">
+<META NAME="Author" CONTENT="Technical Publications">
+<META NAME="CreateDate" CONTENT="2023-10-01">
+<META NAME="CreateTime" CONTENT="1696223241">
+<META NAME="DataType" CONTENT="Manuals">
+<META NAME="Description" CONTENT="Describes multi-snapshot incremental elaboration.">
+<META NAME="DocTitle" CONTENT="Multi-Snapshot Incremental Elaboration">
+<META NAME="DocType" CONTENT="User Guide">
+<META NAME="FileTitle" CONTENT="Table of Contents">
+<META NAME="FileType" CONTENT="TOC">
+<META NAME="Keyword" CONTENT="IncElab">
+<META NAME="Language" CONTENT="English">
+<META NAME="ModifiedDate" CONTENT="2023-10-01">
+<META NAME="ModifiedTime" CONTENT="1696223241">
+<META NAME="NextFile" CONTENT="Overview_of_Multi-Snapshot_Incremental_Elaboration.html">
+<META NAME="Group" CONTENT="Verilog Simulation, VHDL Simulation">
+<META NAME="Platform" CONTENT="Functional Verification,">
+<META NAME="PrevFile" CONTENT="titlecopy.html">
+<META NAME="c_product" CONTENT="Xcelium,">
+<META NAME="Product" CONTENT="Xcelium,">
+<META NAME="ProductFamily" CONTENT="Xcelium,">
+<META NAME="ProductVersion" CONTENT="23.09">
+<META NAME="RightsManagement" CONTENT="Copyright 2023 Cadence Design Systems Inc.">
+<META NAME="Title" CONTENT="Multi-Snapshot Incremental Elaboration -- Table of Contents">
+<META NAME="Version" CONTENT="23.09">
+<META NAME="Renderer" CONTENT="WIKI">
+<META NAME="SpaceKey" CONTENT="IncElab2309">
+<META NAME="confluence-version" CONTENT="7.4.1">
+<META NAME="ecms-plugin-version" CONTENT="04.20.007">
+
+ <style>
+  p, dl, dd {
+  line-height: 1.25;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  }
+   dd {
+   display: block;
+    }</style>
+
+    <script type="text/javascript" src="styles/jquery.js"></script>
+    <script type="text/javascript">
+      $.noConflict();
+      jQuery( document ).ready(function ( $ ) {
+
+          $("div").find("h2>a:nth-child(2)").parent().addClass("demo expand");
+          $("h2.demo").parent().before("<div class='showTree expand'></div>");
+
+          $("h2.demo").nextUntil("h2.demo").toggleClass("expand");  
+          $(".showTree").attr('title','Collapse All');
+
+          $(".demo").click(function(){
+            var h2 = this;
+            $(h2).toggleClass("expand");
+            $(h2).nextUntil("h2").toggleClass("hidden");        
+            })  
+
+          $(".showTree").click(function(){
+            $(".showTree").toggleClass("expand");
+            if($(".showTree").hasClass("expand")){
+            $(this).attr('title','Collapse All');
+            $("h2.demo").addClass("expand");
+            $("h2.demo").nextUntil("h2.demo").removeClass("hidden");  
+            }
+            else{
+            $(this).attr('title','Expand All');
+            $("h2.demo").removeClass("expand");
+            $("h2.demo").nextUntil("h2.demo").addClass("hidden");  
+
+            }    
+            });
+      });
+
+    </script>
+<style>
+  .showTree:before{content:'+';display: inline-block;margin:-5px -20px -15px 0px;font-size:16pt;font-weight:bold;color:green;background: #e8e8e8;
+  width: 23px;
+  height: 23px;
+  text-align: center;
+  border: 1px solid green;}
+  .showTree.expand:before{content:'-';}
+
+  .demo:before{background:#5896ff;margin-right: 10px;border-radius:50%;color:#fff;content:'\276f';font-size:8pt;display: inline-block;padding: 1px 0;
+    text-align: center;
+    height: 15px;
+    width: 16px;}
+
+  .demo ~ p {
+    margin-left: 32px;
+  }
+
+  .showTree+div>h2:first-child {
+     display: none;
+   }
+   .showTree.expand+div>h2:first-child { 
+     display:block;
+   }
+
+  dd {
+    margin-left: 60px;
+  }
+
+  @-moz-document url-prefix() {
+    dd {
+      /*margin-inline-start: 20px;*/
+      text-indent: 45px;
+      margin-left: 15;
+    }
+    dl > dd {
+      text-indent: 0;
+      margin-left: 60px;
+    }
+    /*dl {
+      margin-inline-start: 40px;
+    }*/
+  }
+
+  h2.demo.expand:before{
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    padding: 1px 1px;
+    width: 15px;
+  }
+  h2.demo:before{
+  }
+  .hidden{
+    display:none;
+  }
+  p, dl, dd {
+    line-height: 1.25;
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+
+  .docHeadr {  
+    color: #666; 
+    padding: 7px 0 10px 42px;
+    background: url(./images/file2.png) no-repeat 10px 6px; 
+    background-size: 25px 25px; 
+  } 
+
+
+  nav.blueHead ul { 
+    padding: 0;
+    margin: 0; 
+  }   
+  .docHeadr>img { 
+    width: 90px; 
+    float: right; 
+    margin: 4px 15px; 
+  }  
+  nav.blueHead {background: #26abe4;} 
+  nav.blueHead a{ color: #fff;text-decoration: none;padding: 5px 24px;}    
+  nav.blueHead ul{ 
+    padding: 0; 
+    margin: 0; 
+  }     
+  nav.blueHead li{ 
+    display: inline-block; 
+    padding: 12px 5px;
+    margin: 0 15px;  
+  }  
+  footer nav.blueHead li { 
+    padding: 8px 5px; 
+  } 
+  .blueHead a.prev { 
+    background: url(./images/arrows2.png) no-repeat 0px center;background-size: 24px 24px; 
+  }
+  .blueHead a.content{
+    background: url(./images/document-content.png) no-repeat 0px center;background-size: 20px 20px; 
+  }  
+
+  .blueHead a.viewPrint{ 
+    background: url(./images/printerV.png) no-repeat 0px center;background-size: 20px 20px; 
+  } 
+
+  .blueHead a.nextd{
+  background: url(./images/arrows.png) no-repeat right center;background-size: 24px 24px; 
+  } 
+
+  footer a { 
+  text-decoration: none;   
+  color: #336699;    
+  font-size: 10.5pt;
+  }  
+  footer>div {  
+  font-size: 80%; 
+  color: #666;  
+  margin: 5px; 
+  text-align: center; 
+  border-top: 1px solid #eee;    
+  } 
+  footer nav {  
+  margin: 20px;
+}
+footer a#prev, footer a#nex {                                                                                                
+  color: #000;                                                                                                               
+  background: url(./images/left-arrowB.png) no-repeat left center;                                                          
+  background-size: 20px 20px;                                                                                                
+  padding: 1px 25px;                                                                                                         
+  opacity: 0.7;                                                                                                              
+  font-size: 10.5pt;                                                                                                         
+}                                                                                                                            
+
+footer a#nex {                                                                                                               
+  background: url(./images/right-arrowB.png) no-repeat right center;                                                        
+  background-size: 20px 20px;                                                                                                
+  float: right;                                                                                                              
+  margin: 0;                                                                                                                 
+}   
+/*CSS to control display of header on smaller screen size*/
+@media only screen and (max-width:780px) {
+  .docHeadr {
+    display: none;
+  }
+  img {
+    max-width: 100%;
+  }
+  nav.blueHead li:first-child, nav.bluehead li:nth-child(3),ul a.content, ul a.viewPrint {
+    position:absolute;
+    top: 0px;
+    right: 20px;
+    width: 0;
+    background-color: #26abe4 !important;
+    width:20px;
+    height:20px;
+    padding: 3px;
+    background-position: center center !important;
+  }
+  .blueHead a {
+    font-size: 10.5pt;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+  }
+  ul a.content, ul a.viewPrint { opacity: 0; }
+  nav.blueHead li:first-child {
+    background: url(./images/document-content.png) no-repeat 0px center;
+    background-size: 20px 20px;
+    right: 50px;
+  }
+  nav.bluehead li:nth-child(3) {
+    background: url(./images/printerV.png) no-repeat 0px center;
+    background-size: 20px 20px;
+  }
+  nav.blueHead { margin-top: 20px; }
+  nav.blueHead li { margin: 0 !important; }
+  nav.blueHead li:nth-child(2),nav.blueHead li:nth-child(4) { width: calc(50% - 10px); }
+  nav.blueHead a.nextd {
+    padding-left: 5px;
+    box-sizing: border-box;
+  }
+  nav.blueHead li:nth-child(4) {
+    text-align:right;
+  }
+}
+/*CSS End*/
+</style>
+
+  </head>
+  <body style="background-color: #FFFFFF;">
+    <a name="pagetop"></a>
+    <a name="firstpage"></a>
+    <!-- Begin Buttons -->
+    <header>                                                                                                                 
+    <div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>                                 
+    <nav class="blueHead">                                                                                                 
+    <ul>                                                                                                                 
+      <li><a class="content">Contents</a></li>                                                        
+      <li><a href="titlecopy.html" class="prev" title="Titlecopy">titlecopy</a></li>                                                                                                       
+      <li style="float: right;"><a href="IncElab.pdf" class="viewPrint">View/Print PDF</a></li>                               
+      <li style="float: right;margin-right: 25px;"><a href="Overview_of_Multi-Snapshot_Incremental_Elaboration.html" class="nextd" title="Next">Next</a></li>                                                                         
+
+    </ul>                                                                                                                
+    </nav>                                                                                                                 
+    </header> 
+    <!-- End Buttons -->
+    <div style="margin-left:5%;">
+    <p>
+    <p>
+      <h4>
+        <center>
+          <font >
+            <div>Multi-Snapshot Incremental Elaboration</div>
+            <font >
+              <div>Product Version 23.09  September 2023</div>
+            </font>
+          </font>
+        </center>
+      </h4>
+      <br>
+    </p><h1>Contents</h1>
+    <div>
+      <h2><a href="Overview_of_Multi-Snapshot_Incremental_Elaboration.html" title="Overview of Multi-Snapshot Incremental Elaboration" name="99512">1
+</a></h2>
+      <h2> <a name=""></a><a href="Overview_of_Multi-Snapshot_Incremental_Elaboration.html" title="Overview of Multi-Snapshot Incremental Elaboration" name="853051">Overview of Multi-Snapshot Incremental Elaboration</a></h2>
+      <p> <a name=""></a><a href="Overview_of_Multi-Snapshot_Incremental_Elaboration.html#OverviewofMultiSnapshotIncrementalElaboration-Intro_msieIntroductiontoMSIE" title="Introduction to MSIE" name="46284">Introduction to MSIE</a></p>
+      <h2><a href="Types_of_MSIE_Flows.html" title="Types of MSIE Flows" name="99512">2
+</a></h2>
+      <h2> <a name=""></a><a href="Types_of_MSIE_Flows.html" title="Types of MSIE Flows" name="853051">Types of MSIE Flows</a></h2>
+      <p> <a name=""></a><a href="Identification_of_the_Right_MSIE_Flow.html" title="Identification of the Right MSIE Flow" name="46284">Identification of the Right MSIE Flow</a></p>
+      <dl><dd><dl><dd> <a name=""></a><a href="Identification_of_the_Right_MSIE_Flow.html#IdentificationoftheRightMSIEFlow-Single-StepInvocationFlow" title="Single-Step Invocation Flow" name="46288">Single-Step Invocation Flow</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Identification_of_the_Right_MSIE_Flow.html#IdentificationoftheRightMSIEFlow-Multi-StepInvocationMSIEFlow" title="Multi-Step Invocation&#160;MSIE Flow" name="46288">Multi-Step Invocation&#160;MSIE Flow</a></dd></dl></dd></dl>
+      <h2><a href="MSIE_Features.html" title="MSIE Features" name="99512">3
+</a></h2>
+      <h2> <a name=""></a><a href="MSIE_Features.html" title="MSIE Features" name="853051">MSIE Features</a></h2>
+      <p> <a name=""></a><a href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html" title="Auto-MSIE : Single-Step Invocation Parallel and Incremental Build" name="46284">Auto-MSIE : Single-Step Invocation Parallel and Incremental Build</a></p>
+      <dd> <a name=""></a><a href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html#AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-Auto-MSIEFlow" title="Auto-MSIE Flow" name="46288">Auto-MSIE Flow</a></dd>
+      <dd> <a name=""></a><a href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html#AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-NoPartitionFileExists/ElaboratingtheDesignfortheFirstTime" title="No Partition File Exists/Elaborating the Design for the First Time" name="46288">No Partition File Exists/Elaborating the Design for the First Time</a></dd>
+      <dd> <a name=""></a><a href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html#AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-using_part_filePartitionFileExists/MinimalChangeintheDesign" title="Partition File Exists/Minimal Change in the Design" name="46288">Partition File Exists/Minimal Change in the Design</a></dd>
+      <dd> <a name=""></a><a href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html#AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-" title="" name="46288"></a></dd>
+      <dd> <a name=""></a><a href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html#AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-OverridingtheAuto-MSIEDefaultBehavior" title="Overriding the Auto-MSIE Default Behavior" name="46288">Overriding the Auto-MSIE Default Behavior</a></dd>
+      <dd> <a name=""></a><a href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html#AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-Auto-MSIEExample" title="Auto-MSIE Example" name="46288">Auto-MSIE Example</a></dd>
+      <dd> <a name=""></a><a href="Auto-MSIE___Single-Step_Invocation_Parallel_and_Incremental_Build.html#AutoMSIE:SingleStepInvocationParallelandIncrementalBuild-Limitations" title="Limitations" name="46288">Limitations</a></dd>
+      <p> <a name=""></a><a href="Binding_to_Primaries_Automatically.html" title="Binding to Primaries Automatically" name="46284">Binding to Primaries Automatically</a></p>
+      <dd> <a name=""></a><a href="Binding_to_Primaries_Automatically.html#BindingtoPrimariesAutomatically-BindingPrimariestoInstances" title="Binding Primaries to Instances" name="46288">Binding Primaries to Instances</a></dd>
+      <dl><dd><dl><dd> <a name=""></a><a href="Binding_to_Primaries_Automatically.html#BindingtoPrimariesAutomatically-MergingMultipleTopModulesAutomatically" title="Merging Multiple Top Modules Automatically" name="46288">Merging Multiple Top Modules Automatically</a></dd></dl></dd></dl>
+      <p> <a name=""></a><a href="Passing_Full-Design_Access.html" title="Passing Full-Design Access" name="46284">Passing Full-Design Access</a></p>
+      <p> <a name=""></a><a href="Resolve_Hierarchical_References_that_Originate_from_a_Primary.html" title="Resolve Hierarchical References that Originate from a Primary" name="46284">Resolve Hierarchical References that Originate from a Primary</a></p>
+      <h2><a href="Command-Line_Options_for_MSIE.html" title="Command-Line Options for MSIE" name="99512">4
+</a></h2>
+      <h2> <a name=""></a><a href="Command-Line_Options_for_MSIE.html" title="Command-Line Options for MSIE" name="853051">Command-Line Options for MSIE</a></h2>
+      <p> <a name=""></a><a href="Command-line_Options_Supported_with_Single-Run_MSIE_Flow.html" title="Command-line Options Supported with Single-Run MSIE Flow" name="46284">Command-line Options Supported with Single-Run MSIE Flow</a></p>
+      <p> <a name=""></a><a href="Command-line_Options_Supported_in_Multi-Step_MSIE_Flow.html" title="Command-line Options Supported in Multi-Step MSIE Flow" name="46284">Command-line Options Supported in Multi-Step MSIE Flow</a></p>
+      <p> <a name=""></a><a href="Command-line_Options_Supported_in_Single-Run_and_Multi-Run_MSIE_Flows.html" title="Command-line Options Supported in Single-Run and Multi-Run MSIE Flows" name="46284">Command-line Options Supported in Single-Run and Multi-Run MSIE Flows</a></p>
+      <h2><a href="Multi-Snapshot_Simulation.html" title="Multi-Snapshot Simulation" name="99512">5
+</a></h2>
+      <h2> <a name=""></a><a href="Multi-Snapshot_Simulation.html" title="Multi-Snapshot Simulation" name="853051">Multi-Snapshot Simulation</a></h2>
+      <p> <a name=""></a><a href="Running_Simulation_in_Multi-Step_Mode.html" title="Running Simulation in Multi-Step Mode" name="46284">Running Simulation in Multi-Step Mode</a></p>
+      <p> <a name=""></a><a href="Running_MSIE_with_xrun.html" title="Running MSIE with xrun" name="46284">Running MSIE with xrun</a></p>
+      <dl><dd><dl><dd> <a name=""></a><a href="Running_MSIE_with_xrun.html#RunningMSIEwithxrun-94973BuildingPrimariesinDifferentDirectories" title="Building Primaries in Different Directories" name="46288">Building Primaries in Different Directories</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Running_MSIE_with_xrun.html#RunningMSIEwithxrun-62509RunninginSeparateDirectories" title="Running in Separate Directories" name="46288">Running in Separate Directories</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Running_MSIE_with_xrun.html#RunningMSIEwithxrun-89722SourceFileInter-Dependency" title="Source File Inter-Dependency" name="46288">Source File Inter-Dependency</a></dd></dl></dd></dl>
+      <dd> <a name=""></a><a href="Running_xrun_in_Single-Step_Mode.html" title="Running xrun in Single-Step Mode" name="46288">Running xrun in Single-Step Mode</a></dd>
+      <dl><dd><dl><dd> <a name=""></a><a href="Customizing_Primary_Snapshots.html" title="Customizing Primary Snapshots" name="46288">Customizing Primary Snapshots</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Specifying_Paths_to_Hierarchical_Instances.html" title="Specifying Paths to Hierarchical Instances" name="46288">Specifying Paths to Hierarchical Instances</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Partitioning_Verilog_Configurations.html" title="Partitioning Verilog Configurations" name="46288">Partitioning Verilog Configurations</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Running_MSIE_in_a_Distributed_Computing_Environment_with_Single-Step_xrun.html" title="Running MSIE in a Distributed Computing Environment with Single-Step xrun" name="46288">Running MSIE in a Distributed Computing Environment with Single-Step xrun</a></dd></dl></dd></dl>
+      <dd> <a name=""></a><a href="Running_xrun_in_Multi-Step_Mode.html" title="Running xrun in Multi-Step Mode" name="46288">Running xrun in Multi-Step Mode</a></dd>
+      <h2><a href="Partitioning.html" title="Partitioning" name="99512">6
+</a></h2>
+      <h2> <a name=""></a><a href="Partitioning.html" title="Partitioning" name="853051">Partitioning</a></h2>
+      <p> <a name=""></a><a href="Partitioning.html#Partitioning-SpecifyingTop-LevelDesignUnitsforanMSIEModel" title="Specifying Top-Level Design Units for an MSIE Model" name="46284">Specifying Top-Level Design Units for an MSIE Model</a></p>
+      <p> <a name=""></a><a href="UVM_Test_Modification_Partitions.html" title="UVM Test Modification Partitions" name="46284">UVM Test Modification Partitions</a></p>
+      <dd> <a name=""></a><a href="UVM_Test_Modification_Partitions.html#UVMTestModificationPartitions-GeneralUVMGuidelines" title="General UVM Guidelines" name="46288">General UVM Guidelines</a></dd>
+      <dd> <a name=""></a><a href="Snapshots_Building_for_UVM_Test_Modification.html" title="Snapshots Building for UVM Test Modification" name="46288">Snapshots Building for UVM Test Modification</a></dd>
+      <dd> <a name=""></a><a href="Parallel_Partitioning.html" title="Parallel Partitioning" name="46288">Parallel Partitioning</a></dd>
+      <p> <a name=""></a><a href="Partitioning_for_a_Stable_DUT.html" title="Partitioning for a Stable DUT" name="46284">Partitioning for a Stable DUT</a></p>
+      <dd> <a name=""></a><a href="Partitioning_for_a_Stable_DUT.html#PartitioningforaStableDUT-AdvantagesofPartitioningaStableDUT" title="Advantages of Partitioning a Stable DUT" name="46288">Advantages of Partitioning a Stable DUT</a></dd>
+      <dd> <a name=""></a><a href="Advantages_of_Partitioning_a_Stable_DUT.html" title="Advantages of Partitioning a Stable DUT" name="46288">Advantages of Partitioning a Stable DUT</a></dd>
+      <dd> <a name=""></a><a href="Snapshots_for_a_Stable_DUT.html" title="Snapshots for a Stable DUT" name="46288">Snapshots for a Stable DUT</a></dd>
+      <p> <a name=""></a><a href="Flexible_Partitioning_for_Complex_SOCs.html" title="Flexible Partitioning for Complex SOCs" name="46284">Flexible Partitioning for Complex SOCs</a></p>
+      <dd> <a name=""></a><a href="Building_Snapshots.html" title="Building Snapshots" name="46288">Building Snapshots</a></dd>
+      <p> <a name=""></a><a href="Partition_Points_for_Partitioner.html" title="Partition Points for Partitioner" name="46284">Partition Points for Partitioner</a></p>
+      <dd> <a name=""></a><a href="Partition_Points_for_Partitioner.html#PartitionPointsforPartitioner-SalientFeatures" title="Salient Features" name="46288">Salient Features</a></dd>
+      <dd> <a name=""></a><a href="Partition_Points_for_Partitioner.html#PartitionPointsforPartitioner-Examples" title="Examples" name="46288">Examples</a></dd>
+      <dl><dd><dl><dd> <a name=""></a><a href="Partition_Points_for_Partitioner.html#PartitionPointsforPartitioner-Example1:-addprimtopdut1" title="Example 1: -addprimtop dut1" name="46288">Example 1: -addprimtop dut1</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Partition_Points_for_Partitioner.html#PartitionPointsforPartitioner-Example2:-addincrtoptop" title="Example 2: -addincrtop top" name="46288">Example 2: -addincrtop top</a></dd></dl></dd></dl>
+      <p> <a name=""></a><a href="Ports_at_the_Partition_Boundary.html" title="Ports at the Partition Boundary" name="46284">Ports at the Partition Boundary</a></p>
+      <dd> <a name=""></a><a href="Ports_Supported_at_Verilog-Verilog_Partition_Boundary.html" title="Ports Supported at Verilog-Verilog Partition Boundary" name="46288">Ports Supported at Verilog-Verilog Partition Boundary</a></dd>
+      <dd> <a name=""></a><a href="Ports_Supported_for_VHDL-VHDL_Partition.html" title="Ports Supported for VHDL-VHDL Partition" name="46288">Ports Supported for VHDL-VHDL Partition</a></dd>
+      <dd> <a name=""></a><a href="Ports_Supported_in_Mixed-Language_Design__Verilog_and_VHDL_.html" title="Ports Supported in Mixed-Language Design (Verilog and VHDL)" name="46288">Ports Supported in Mixed-Language Design (Verilog and VHDL)</a></dd>
+      <dd> <a name=""></a><a href="Supported_SystemVerilog_UVM-SystemVerilog_Ports.html" title="Supported SystemVerilog/UVM-SystemVerilog Ports" name="46288">Supported SystemVerilog/UVM-SystemVerilog Ports</a></dd>
+      <dl><dd><dl><dd> <a name=""></a><a href="Supported_SystemVerilog_UVM-SystemVerilog_Ports.html#SupportedSystemVerilog/UVMSystemVerilogPorts-SystemVerilogInterfacePorts" title="SystemVerilog Interface Ports" name="46288">SystemVerilog Interface Ports</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Supported_SystemVerilog_UVM-SystemVerilog_Ports.html#SupportedSystemVerilog/UVMSystemVerilogPorts-SystemVerilogVariablePorts" title="SystemVerilog Variable Ports" name="46288">SystemVerilog Variable Ports</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Supported_SystemVerilog_UVM-SystemVerilog_Ports.html#SupportedSystemVerilog/UVMSystemVerilogPorts-UnsupportedSystemVerilogPortTypes" title="Unsupported SystemVerilog Port Types" name="46288">Unsupported SystemVerilog Port Types</a></dd></dl></dd></dl>
+      <h2><a href="Hierarchical_References.html" title="Hierarchical References" name="99512">7
+</a></h2>
+      <h2> <a name=""></a><a href="Hierarchical_References.html" title="Hierarchical References" name="853051">Hierarchical References</a></h2>
+      <p> <a name=""></a><a href="Verilog_and_SystemVerilog_Datatypes_Supported_for_Hierarchical_References.html" title="Verilog and SystemVerilog Datatypes Supported for Hierarchical References" name="46284">Verilog and SystemVerilog Datatypes Supported for Hierarchical References</a></p>
+      <p> <a name=""></a><a href="Mixed-Language_Hierarchical_References.html" title="Mixed-Language Hierarchical References" name="46284">Mixed-Language Hierarchical References</a></p>
+      <p> <a name=""></a><a href="Wildcard_Support_in_Module_Name.html" title="Wildcard Support in Module Name" name="46284">Wildcard Support in Module Name</a></p>
+      <dd> <a name=""></a><a href="Wildcard_Support_in_Module_Name.html#WildcardSupportinModuleName-SupportedFormats" title="Supported Formats" name="46288">Supported Formats</a></dd>
+      <dd> <a name=""></a><a href="Wildcard_Support_in_Module_Name.html#WildcardSupportinModuleName-UnsupportedFormats" title="Unsupported Formats" name="46288">Unsupported Formats</a></dd>
+      <p> <a name=""></a><a href="Specifying_Hierarchical_Reference_Permissions.html" title="Specifying Hierarchical Reference Permissions" name="46284">Specifying Hierarchical Reference Permissions</a></p>
+      <dd> <a name=""></a><a href="The_Hierarchical_Reference_Permission__href__File.html" title="The Hierarchical Reference Permission (href) File" name="46288">The Hierarchical Reference Permission (href) File</a></dd>
+      <dl><dd><dl><dd> <a name=""></a><a href="The_Hierarchical_Reference_Permission__href__File.html#TheHierarchicalReferencePermission(href)File-HierarchicalNames" title="Hierarchical Names" name="46288">Hierarchical Names</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Permission_Types_for_Objects_in_an_href_file.html" title="Permission Types for Objects in an href file" name="46288">Permission Types for Objects in an href file</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Specifying_External_Access_Permissions.html" title="Specifying External Access Permissions" name="46288">Specifying External Access Permissions</a></dd></dl></dd></dl>
+      <dd> <a name=""></a><a href="Specifying_Hierarchical_Reference_Permissions_with_the_-href_Option.html" title="Specifying Hierarchical Reference Permissions with the -href Option" name="46288">Specifying Hierarchical Reference Permissions with the -href Option</a></dd>
+      <p> <a name=""></a><a href="Generating_an_href_File.html" title="Generating an href File" name="46284">Generating an href File</a></p>
+      <dd> <a name=""></a><a href="Generating_an_href_File_When_Elaborating_the_Simulation_Snapshot.html" title="Generating an href File When Elaborating the Simulation Snapshot" name="46288">Generating an href File When Elaborating the Simulation Snapshot</a></dd>
+      <dd> <a name=""></a><a href="Using_the_-genhref_Option.html" title="Using the -genhref Option" name="46288">Using the -genhref Option</a></dd>
+      <dl><dd><dl><dd> <a name=""></a><a href="Using_the_-genhref_Option.html#UsingthegenhrefOption-28293WhenaPrimarySnapshotDoesNotExist" title="When a Primary Snapshot Does Not Exist" name="46288">When a Primary Snapshot Does Not Exist</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Using_the_-genhref_Option.html#UsingthegenhrefOption-46828WhenaPrimarySnapshotAlreadyExists" title="When a Primary Snapshot Already Exists" name="46288">When a Primary Snapshot Already Exists</a></dd></dl></dd></dl>
+      <dd> <a name=""></a><a href="Generating_a_Type-based_href_File.html" title="Generating a Type-based href File" name="46288">Generating a Type-based href File</a></dd>
+      <dl><dd><dl><dd> <a name=""></a><a href="Generating_a_Type-based_href_File.html#GeneratingaTypebasedhrefFile-Example1:" title="Example 1:" name="46288">Example 1:</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Generating_a_Type-based_href_File.html#GeneratingaTypebasedhrefFile-Example2:" title="Example 2:" name="46288">Example 2:</a></dd></dl></dd></dl>
+      <dl><dd><dl><dd> <a name=""></a><a href="Generating_a_Type-based_href_File.html#GeneratingaTypebasedhrefFile-Limitations" title="Limitations" name="46288">Limitations</a></dd></dl></dd></dl>
+      <h2><a href="Interface_Optimizations.html" title="Interface Optimizations" name="99512">8
+</a></h2>
+      <h2> <a name=""></a><a href="Interface_Optimizations.html" title="Interface Optimizations" name="853051">Interface Optimizations</a></h2>
+      <p> <a name=""></a><a href="Interface_Optimizations.html#InterfaceOptimizations-Syntax" title="Syntax" name="46284">Syntax</a></p>
+      <p> <a name=""></a><a href="Interface_Optimizations.html#InterfaceOptimizations-Limitations" title="Limitations" name="46284">Limitations</a></p>
+      <p> <a name=""></a><a href="Using_Cold_Run_Flow.html" title="Using Cold Run Flow" name="46284">Using Cold Run Flow</a></p>
+      <p> <a name=""></a><a href="Using_Warm_Run_Flow.html" title="Using Warm Run Flow" name="46284">Using Warm Run Flow</a></p>
+      <p> <a name=""></a><a href="Examples_for_Cold_Warm_Run.html" title="Examples for Cold/Warm Run" name="46284">Examples for Cold/Warm Run</a></p>
+      <h2><a href="Disk_Cloning_Option_for_Replicated_Hierarchies.html" title="Disk Cloning Option for Replicated Hierarchies" name="99512">9
+</a></h2>
+      <h2> <a name=""></a><a href="Disk_Cloning_Option_for_Replicated_Hierarchies.html" title="Disk Cloning Option for Replicated Hierarchies" name="853051">Disk Cloning Option for Replicated Hierarchies</a></h2>
+      <p> <a name=""></a><a href="Disk_Cloning_Option_for_Replicated_Hierarchies.html#DiskCloningOptionforReplicatedHierarchies-Usage" title="Usage" name="46284">Usage</a></p>
+      <p> <a name=""></a><a href="Auto_Disk_Cloning__autoreplicated_top__Flow.html" title="Auto Disk Cloning (autoreplicated_top) Flow" name="46284">Auto Disk Cloning (autoreplicated_top) Flow</a></p>
+      <dd> <a name=""></a><a href="Auto_Disk_Cloning__autoreplicated_top__Flow.html#AutoDiskCloning(autoreplicated_top)Flow-XMSIE_MULTIPLE_REPLICATED_TOPS" title="XMSIE_MULTIPLE_REPLICATED_TOPS" name="46288">XMSIE_MULTIPLE_REPLICATED_TOPS</a></dd>
+      <h2><a href="MSIE_Interaction_with_other_Features_Technologies.html" title="MSIE Interaction with other Features/Technologies" name="99512">10
+</a></h2>
+      <h2> <a name=""></a><a href="MSIE_Interaction_with_other_Features_Technologies.html" title="MSIE Interaction with other Features/Technologies" name="853051">MSIE Interaction with other Features/Technologies</a></h2>
+      <h2><a href="Appendix__MSIE_References.html" title="Appendix: MSIE References" name="99512">
+</a></h2>
+      <h2> <a name=""></a><a href="Appendix__MSIE_References.html" title="Appendix: MSIE References" name="853051">Appendix: MSIE References</a></h2>
+
+
+    </div>
+    <br>
+    <br>
+    <a href="#pagetop">Return to top of page</a>
+    <br>
+  </div>
+   
+    <footer>                                                                                                               
+    <nav class="navigation">                                                                                             
+    <b><em><a href="#pagetop" id="prev" title="TOC">^ </a></em></b>  
+    <b><em><a href="Overview_of_Multi-Snapshot_Incremental_Elaboration.html" id="nex" title="Next">Next</a></em></b>  
+    </nav>  
+    <div>  
+      For further assistance, contact <a href="https://support.cadence.com" >Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.                               
+    </div>  
+    </footer>
+     
+    <br>
+  </body>
+</html>

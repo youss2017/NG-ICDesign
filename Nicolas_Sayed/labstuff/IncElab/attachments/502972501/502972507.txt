@@ -1,0 +1,28 @@
+
+//prim.v
+  module dut;
+  parameter control = 0;
+  generate
+    if (control)
+    begin
+      bot bot_inst();
+    end
+  endgenerate
+  initial $display(control);
+endmodule
+module bot;
+  initial $display("REAL IP");
+endmodule
+
+//top.v
+module top;
+  dut dut_inst1();
+  dut dut_inst2();
+endmodule
+
+//lib.map
+config cfg;
+  design top;
+  instance top.dut_inst1 use worklib.real;
+  instance top.dut_inst2 use worklib.bbox;
+endconfig

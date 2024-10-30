@@ -1,0 +1,152 @@
+
+<html><head><title>Resolve Hierarchical References that Originate from a Primary</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223194" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Resolve Hierarchical References that Originate from a Primary" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="Hierarchical References," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223194" />
+<meta name="NextFile" content="Command-Line_Options_for_MSIE.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Passing_Full-Design_Access.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Resolve Hierarchical References that Originate from a Primary" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Passing_Full-Design_Access.html" title="Passing_Full-Design_Access">Passing_Full-Design_Access</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Command-Line_Options_for_MSIE.html" title="Command-Line_Options_for_MSIE">Command-Line_Options_for_MSIE</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Resolve Hierarchical References that Originate from a Primary</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p><span class="confluence-anchor-link" id="ResolveHierarchicalReferencesthatOriginatefromaPrimary-34318"></span>MSIE supports hierarchical references to some kinds of objects that originate in a primary partition with the <code>-genhref</code> option. In addition to generating an href file, this option produces a <code>primary</code><code>_externs.v</code> file for a primary if a design unit in that primary needs access to some other part of the design or if it needs access to some shared object that is in another partition.</p>
+
+<p>The following table shows constructs that are supported and not supported for Out-of-Primary References.</p>
+<div class="table-wrap"><table class="relative-table wrapped confluenceTable" style="width: 27.6006%;"><colgroup><col style="width: 44.3325%;" /><col style="width: 55.4156%;" /></colgroup><tbody><tr><th class="confluenceTh" colspan="1" rowspan="1"><strong>Supported Constructs</strong></th><th class="confluenceTh" colspan="1" rowspan="1"><strong>Unsupported Constructs</strong></th></tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Event</td>
+<td class="confluenceTd" colspan="1" rowspan="1">
+<p>Interface instance</p>
+</td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Wire</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><span>Mailbox</span></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Logic</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><span>Associative arrays</span></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Real</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><span>Class objects</span></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Reg</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Bit</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Int</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Parameter</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Enum</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Tasks and Functions</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">String</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Packed/Unpacked arrays</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Dynamic arrays</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Structs</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Class handles</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1" rowspan="1">Unions</td>
+<td class="confluenceTd" colspan="1" rowspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1">Interface</td>
+<td class="confluenceTd" colspan="1"><br /></td>
+</tr>
+<tr><td class="confluenceTd" colspan="1"><span>Queues</span></td>
+<td class="confluenceTd" colspan="1"><br /></td>
+</tr>
+</tbody></table></div>
+<h6 id="ResolveHierarchicalReferencesthatOriginatefromaPrimary-RelatedTopic">Related Topic</h6><ul><li><a href="Using_the_-genhref_Option.html">Using the -genhref Option</a></li></ul>
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Passing_Full-Design_Access.html" id="prev" title="Passing_Full-Design_Access">Passing_Full-Design_Access</a></em></b><b><em><a href="Command-Line_Options_for_MSIE.html" id="nex" title="Command-Line_Options_for_MSIE">Command-Line_Options_for_MSIE</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

@@ -1,0 +1,482 @@
+
+<html><head><title>Snapshots for a Stable DUT</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223213" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Snapshots for a Stable DUT" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE,MSIE," />
+<meta name="prod_subfeature" content="Snapshot,Stable DUT," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223213" />
+<meta name="NextFile" content="Flexible_Partitioning_for_Complex_SOCs.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Advantages_of_Partitioning_a_Stable_DUT.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Snapshots for a Stable DUT" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+<script type="text/javascript" src="styles/shCore1.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shCore.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushCpp.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushJava.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushXml.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushPython.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushPowerShell.js">/*<![CDATA[*//*]]>*/</script><link rel="stylesheet" href="styles/shCoreDefault.css" type="text/css" /><link rel="stylesheet" href="styles/shCoreMidnight.css" type="text/css" /><script type="text/javascript">/*<![CDATA[*/
+SyntaxHighlighter.all();
+/*]]>*/</script>
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Advantages_of_Partitioning_a_Stable_DUT.html" title="Advantages_of_Partitioning_a_Stable_DUT">Advantages_of_Partitioning_a_S ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Flexible_Partitioning_for_Complex_SOCs.html" title="Flexible_Partitioning_for_Complex_SOCs">Flexible_Partitioning_for_Comp ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Snapshots for a Stable DUT</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p>For this style of partitioning, the top level of the design is in the incremental partition, and a primary partition is instantiated within that top-level incremental partition. There can be more than one primary instantiated by the incremental, and there can also be more than one instance of a particular primary.</p>
+<ul><li>You elaborate the primary snapshots with the <code>-mkprimsnap</code> option. In this partitioning style, they are complete design hierarchies. No instances within them are left unbound.</li><li>You build the simulation snapshot with either the <code>-primbind</code> or the <code>-primsnap</code> option. The top-level unit given on the command line does not bind to a primary, since there is no matching primary for it. However, the instances within it that do have matching primaries binds to top-level units in those primaries.</li><li>
+<p>Any top-level modules in the primaries that are not bound to instances in the incremental partition become top-level modules in the overall design, along with those of the simulation snapshot.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>Top-level interfaces in the primary do not bind to instances of that interface in the incremental, because interfaces are not allowed at the partition boundary.</p>
+</div>
+</div>
+</li></ul><h3 id="SnapshotsforaStableDUT-Example1">Example 1</h3>
+
+<p>In this example, the Verilog source files for a DUT are listed in an argument file called <code>dutsrc.f</code>. The testbench has a top-level module called <code>tb_top</code> defined in a source file called <code>tb_top.v</code>. This testbench module instantiates the DUT and a module called <code>tester</code> which is defined in a file called <code>test1.v</code>. There is also a file called <code>test2.v</code> that contains a different definition of the module tester.</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">// File tb_top.v
+module tb_top();
+  ...
+  ...
+  dut dut(clk, outData);
+  tester test();
+endmodule</pre>
+</div>
+</div>
+
+<p>The design is partitioned so that the whole testbench is in the incremental partition. Only the DUT is in the primary snapshot. The top of the DUT is a module called <code>dut</code>. If using the <code>-primbind</code> option, the name of the module must match the name of the module used in the instantiation statement. If using the <code>-primsnap</code> option, the snapshot name must be named appropriately so that the binding rules choose to bind it. In this case, default binding rules are used, and the default name of the snapshot is valid.</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">// File: dut.v
+module dut(...);
+  ...
+  ...
+endmodule</pre>
+</div>
+</div>
+
+<p><strong>Running in Direct Invocation Mode</strong></p>
+
+<p>In direct invocation mode, the two tests could be run without re-elaborating the DUT as follows:</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Compile the source files for the DUT.
+% xmvlog -f dutsrc.f
+# Create a primary snapshot.
+# -mkprimsnap causes the elaborator to create the DUT as a primary snapshot.
+% xmelab -mkprimsnap dut
+# Compile the testbench and the first test.
+% xmvlog tb_top.v test1.v
+# Create the simulation snapshot. The -primbind option
+# binds the DUT to the incremental partition.
+% xmelab tb_top -primbind
+# Run the test
+% xmsim tb_top
+# Repeat for each test.
+% xmvlog test2.v
+% xmelab tb_top -primbind
+% xmsim tb_top</pre>
+</div>
+</div>
+
+<p>In this example, the primary snapshot contains a complete version of DUT, with no missing instances, but it does still not simulate because it was built with the <code>-mkprimsnap</code> option.</p>
+
+<p>When the simulation snapshot is elaborated, the instance of the DUT in the testbench automatically binds to the corresponding top-level module of the primary snapshot.</p>
+
+<p><strong>Running with xrun</strong></p>
+
+<p>If you are simulating with single-step <em>xrun</em>, the two commands below could run both tests:</p>
+
+<p><code># Elaborate the DUT, create the primary snapshot, and run the first test.</code><br /><code><strong>% xrun -f dutsrc.f tb_top.v test1.v -primtop dut</strong><br /># Run the second test.</code><br /><strong><code>% xrun -f dutsrc.f tb_top.v test2.v -primtop dut</code></strong></p>
+
+<p>If you are simulating with multi-step <em>xrun</em>, you can also use one command to elaborate the DUT and create the primary snapshot:</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Compile the source files for the DUT and create the primary snapshot.
+# -mkprimsnap causes the elaborator to stop after creating the primary snapshot.
+% xrun -mkprimsnap -f dutsrc.f -snapshot dut_top
+xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.
+file: dut.v
+    module worklib.dut:v
+...
+   Elaborating the design hierarchy (primary partition):
+  Top level design units:
+       dut
+...
+  Writing primary snapshot: worklib.dut_top:v
+The two tests can then be run without re-elaborating the DUT:
+# Compile the testbench and first test,
+# create the simulation snapshot, and then run the test.
+# The -primname option specifies the name of the primary snapshot.
+# In this example, this is the argument given to the -snapshot option when
+# creating the primary snapshot.
+% xrun tb_top.v test1.v -primname dut_top
+xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.
+file: tb_top.v
+  module worklib.tb_top:v
+...
+file: test1.v
+  module worklib.tester:v
+...
+Loading primary snapshot worklib.dut_top:v .................... Done
+...
+  Elaborating the design hierarchy (incremental partition):
+  [MSIE] Instance tb_top.dut is bound to module worklib.dut:v
+  in primary snapshot worklib.dut_top:v
+  Top level design units (incremental partition):
+       tb_top
+...
+  Writing incremental snapshot: worklib.tb_top:v
+Loading snapshot worklib.tb_top:v .................... Done
+...
+Running test1
+DUT is primary
+xmsim: *W,RNQUIE: Simulation is complete.
+xmsim&gt; exit
+
+# Repeat for each test.
+% xrun tb_top.v test2.v -primname dut_top
+xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.
+file: test2.v
+  module worklib.tester:v
+...
+Loading primary snapshot worklib.dut_top:v .................... Done
+...
+  Elaborating the design hierarchy (incremental partition):
+  [MSIE] Instance tb_top.dut is bound to module worklib.dut:v
+  in primary snapshot worklib.dut_top:v
+  Top level design units (incremental partition):
+       tb_top
+...
+  Writing incremental snapshot: worklib.tb_top:v
+Loading snapshot worklib.tb_top:v .................... Done
+...
+Running test2
+DUT is primary
+xmsim: *W,RNQUIE: Simulation is complete.
+xmsim&gt; exit</pre>
+</div>
+</div>
+<h3 id="SnapshotsforaStableDUT-Example2">Example 2</h3>
+
+<p>If the design is VHDL, the incremental partition must have a component instantiation of the primary. There are two ways to bind instances to a primary snapshot: by name mapping, or with a binding indication.</p>
+
+<p><strong>Name Mapping</strong></p>
+
+<p>The name of the component must be identical to the name of the top-level entity in the primary. The incremental then automatically binds this instance to the primary&#39;s top.</p>
+
+<p>In the following example, the top-level of the incremental partition is <code>top</code>, which has an instantiation of the component <code>dut</code>. The name of the component is identical to the name of the top-level entity in the primary partition.</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">-- PRIMARY
+-- File: dut.vhd
+library IEEE;
+use ieee.std_logic_1164.all;
+entity dut is
+  port(p1 : inout std_logic;
+    p2 : inout std_logic);
+end dut;
+architecture a_dut of dut is
+begin
+  p1 &lt;= &#39;1&#39;;
+  p2 &lt;= &#39;0&#39;;
+end a_dut;
+-- INCREMENTAL
+-- File top.vhd
+library IEEE;
+use ieee.std_logic_1164.all;
+
+entity top is
+end top;
+
+architecture a_top of top is
+  signal top_s1 : std_logic;
+  signal top_s2 : std_logic;
+-- The name of the component (dut) is identical to the name of the top-level
+-- design unit in the primary
+  component dut is
+    port(p1: inout std_logic;
+    p2: inout std_logic);
+  end component;
+  begin
+    -- This is the component instantiation of the primary
+    I1 : dut port map(top_s1, top_s2);
+    top_s1 &lt;= &#39;Z&#39;;
+    top_s2 &lt;= &#39;1&#39;;
+end a_top;</pre>
+</div>
+</div>
+
+<p><strong>Binding Indication</strong></p>
+
+<p>In the following example, the top-level of the incremental partition is <code>top</code>, which has an instantiation of the component <code>prim</code>. A binding indication binds the component instantiation of <code>prim</code> to the top-level entity <code>dut</code> of the primary.</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">-- PRIMARY
+-- File: dut.vhd
+library IEEE;
+use ieee.std_logic_1164.all;
+
+entity dut is
+end dut;
+
+architecture a_dut of dut is
+begin
+end a_dut;
+
+-- INCREMENTAL
+-- File: top.vhd
+library IEEE;
+use ieee.std_logic_1164.all;
+
+entity top is
+end top;
+
+architecture a_top of top is
+component prim is
+end component;
+
+-- Bind instance of component prim to primary top-level entity dut.
+for I1: prim use entity work.dut;
+
+begin
+I1: prim;
+end a_top;</pre>
+</div>
+</div>
+
+<p><strong>Running in Direct Invocation Mode</strong></p>
+
+<p><code># Compile the files for the primary partition.</code><br /><strong><code>% xmvhdl -v93 dut.vhd</code></strong><br /><code># Create the primary snapshot</code><br /><strong><code>% xmelab -mkprimsnap dut</code></strong></p>
+
+<p><code>
+# Compile the files for the incremental partition.</code><br /><strong><code>% xmvhdl -v93 top.vhd</code></strong><br /><code># Create the simulation snapshot</code><br /><strong><code>% xmelab top -primbind</code></strong></p>
+
+<p><code>
+# Run the test.</code><br /><strong><code>% xmsim top</code></strong></p>
+
+<p><strong>Running with xrun</strong></p>
+
+<p>If you are using the single-step xrun flow, use the command below:</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Compile, elaborate, and simulate the complete MSIE model and run the test.
+% xrun -v93 dut.vhd top.vhd -top top -primbind \
+-primtop dut
+xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.
+dut.vhd:
+...
+top.vhd:
+...
+WORKLIB.DUT (entity):
+...
+WORKLIB.DUT:A_DUT (architecture):
+...
+WORKLIB.TOP (entity):
+...
+WORKLIB.TOP:A_TOP (architecture):
+...
+    Elaborating the design hierarchy:
+ Top level design units:
+         :top(a_top)
+ Wrote HREF file: ./xcelium.d/run.lnx86.14.10.d/href_internal.txt
+...
+ Elaborating the design hierarchy (primary partition):
+ Top level design units:
+         :dut(a_dut):
+...
+ Writing primary snapshot: WORKLIB.DUT:A_DUT
+Loading primary snapshot worklib.dut:a_dut .................... Done
+...
+ Elaborating the design hierarchy (incremental partition):
+ [MSIE] Instance :@top(a_top):I1 is bound to entity
+ WORKLIB.DUT:A_DUT in primary snapshot worklib.dut:a_dut
+ Top level design units (incremental partition):
+         :top(a_top):
+...
+ Writing incremental snapshot: WORKLIB.TOP:A_TOP
+Loading snapshot worklib.top:a_top .................... Done
+xmsim&gt; run
+xmsim: *W,RNQUIE: Simulation is complete.
+xmsim&gt; exit</pre>
+</div>
+</div>
+<p style="margin-top: 0.0px;white-space: pre-wrap;">If you are using the multi-step xrun flow, two <code>xrun</code> commands are required:</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Compile the files for the primary partition and create the primary snapshot.
+
+% xrun -mkprimsnap -v93 dut.vhd -top dut -snapshot dut
+xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.
+dut.vhd:
+...
+WORKLIB.DUT (entity):
+...
+WORKLIB.DUT:A_DUT (architecture):
+...
+ Elaborating the design hierarchy (primary partition):
+ Top level design units:
+         :dut(a_dut):
+...
+ Writing primary snapshot: WORKLIB.dut:A_DUT
+# Compile the files for the incremental partition, create the simulation snapshot,
+# and run the test. The -primname option specifies the name of the primary.
+# In this example, this is the argument given to the -snapshot option when
+# creating the primary snapshot.
+% xrun -v93 -top top top.vhd -primname dut
+xrun: 14.10-p001: (c) Copyright 1995-2014 Cadence Design Systems, Inc.
+top.vhd:
+...
+WORKLIB.TOP (entity):
+...
+WORKLIB.TOP:A_TOP (architecture):
+...
+Loading primary snapshot worklib.dut:a_dut .................... Done
+...
+ Elaborating the design hierarchy (incremental partition):
+ [MSIE] Instance :@top(a_top):I1 is bound to entity WORKLIB.DUT:A_DUT
+ in primary snapshot worklib.dut:a_dut
+ Top level design units (incremental partition):
+         :top(a_top):
+...
+ Writing incremental snapshot: WORKLIB.TOP:A_TOP
+Loading snapshot worklib.top:a_top .................... Done
+xmsim&gt; run
+xmsim: *W,RNQUIE: Simulation is complete.
+xmsim&gt; exit</pre>
+</div>
+</div>
+<h3 id="SnapshotsforaStableDUT-16469Example3"><span class="confluence-anchor-link" id="SnapshotsforaStableDUT-16469"></span>Example 3</h3>
+
+<p>The following example, which uses <em>xrun</em>, is at the following location in the installation hierarchy:</p>
+
+<p><code><code>install_dir</code>/tools/examples/msie/basic/SV_xrun</code></p>
+
+<p>The same example using multi-step invocation mode is at:</p>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">install_dir/tools/examples/msie/basic/SV_3steps
+
+// File: dut.v
+// This is the DUT that will be elaborated into the primary snapshot.
+// Module dut is the top module in the primary partition.
+module dut(input clk, output reg[31:0] outData);
+initial #0 $display(&quot;In Primary (DUT)&quot;);
+endmodule
+
+// File: tb_top.sv
+// This file instantiates the DUT and the test module test_top.
+// Module tb_top is the top module in the incremental partition.
+module tb_top;
+  bit clk;
+  wire [31:0] outData;
+
+  always #50 clk = ~clk;
+
+  intf pif(.*);
+  // Primary instantiation
+  dut dut(clk, outData);
+  test_top test();
+endmodule
+
+interface intf(input clk);
+  logic[31:0] data;
+endinterface
+
+// File test_top.sv
+// This file is the test module test_top.
+module test_top;
+  import uvm_pkg::*;
+  `include &quot;uvm_macros.svh&quot;
+  class my_test extends uvm_test;
+    task run();
+      `uvm_info(&quot;MYTEST&quot;, &quot;Inside incremental&quot;, UVM_LOW)
+      #1000 $finish;
+    endtask
+    `uvm_component_utils(my_test)
+    function new(string name=&quot;my_test&quot;, uvm_component parent);
+      super.new(name, parent);
+    endfunction
+  endclass
+
+  initial run_test(&quot;my_test&quot;);
+endmodule</pre>
+</div>
+</div>
+
+<p><br /></p>
+
+<p>In this use model, the primary elaboration of DUT has no missing components and is complete from the specified top of the elaboration. The incremental elaboration has an instance of this elaborated hierarchy (instance <code>dut</code>). In the current release, only one such instance is allowed.</p>
+
+<p>The following two <code>xrun</code> commands are used to create a primary partition, the incremental partition, and then simulate:</p>
+
+<p><code># Compile the DUT and create the primary partition.</code><br /><code># -mkprimsnap causes the elaborator to stop after creating the primary snapshot.</code><br /><strong><code>% xrun -mkprimsnap dut.v -snapshot top</code></strong></p>
+
+<p><code>
+# Compile the testbench, create the simulation snapshot, and simulate the test.</code><br /><code># The -primname option specifies the name of the primary snapshot. In this</code><br /><code># example, this is the argument to the -snapshot option used when the primary</code><br /><code># snapshot was created.</code><br /><strong><code>% xrun -primname top -uvm tb_top.sv test_top.sv</code></strong></p>
+
+<p>There are several other examples of this partitioning style in the installation hierarchy. For examples of VIP (OVC) integration using this style of partitioning, see the examples in:</p>
+
+<p><code><code>install_dir</code>/tools/examples/msie/basic/VIP</code></p>
+
+<p>For example, using the <code>-cds_implicit_tmpdir</code> option, see the examples in:</p>
+<ul><li><code><code>install_dir</code>/tools/examples/msie/basic/using_implicit_tmpdir_xrun</code></li><li><code><code>install_dir</code>/tools/examples/msie/basic/using_implicit_tmpdir_3Steps</code></li></ul>
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Advantages_of_Partitioning_a_Stable_DUT.html" id="prev" title="Advantages_of_Partitioning_a_Stable_DUT">Advantages_of_Partitioning_a_S ...</a></em></b><b><em><a href="Flexible_Partitioning_for_Complex_SOCs.html" id="nex" title="Flexible_Partitioning_for_Complex_SOCs">Flexible_Partitioning_for_Comp ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

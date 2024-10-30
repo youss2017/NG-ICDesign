@@ -1,0 +1,150 @@
+
+<html><head><title>Wildcard Support in Module Name</title>
+<meta name="Approver" content="Technical Publications" />
+<meta name="Author" content="pverma" />
+<meta name="CreateDate" content="2023-10-01" />
+<meta name="CreateTime" content="1696223226" />
+<meta name="DataType" content="Manuals" />
+<meta name="Description" content="Describes multi-snapshot incremental elaboration." />
+<meta name="DocTitle" content="Multi-Snapshot Incremental Elaboration" />
+<meta name="DocType" content="User Guide" />
+<meta name="FileTitle" content="Wildcard Support in Module Name" />
+<meta name="Keywords" content="" />
+<meta name="topic_type" content="concept" />
+<meta name="reference_type" content="" />
+<meta name="prod_feature" content="MSIE," />
+<meta name="prod_subfeature" content="Support," />
+<meta name="new_topic" content="No" />
+<meta name="spotlight_topic" content="" />
+<meta name="FileType" content="Chapter" />
+<meta name="Keyword" content="IncElab" />
+<meta name="Language" content="English" />
+<meta name="ModifiedDate" content="2023-10-01" />
+<meta name="ModifiedTime" content="1696223226" />
+<meta name="NextFile" content="Specifying_Hierarchical_Reference_Permissions.html" />
+<meta name="Group" content="Verilog Simulation, VHDL Simulation" />
+<meta name="Platform" content="Functional Verification," />
+<meta name="PrevFile" content="Mixed-Language_Hierarchical_References.html" />
+<meta name="c_product" content="Xcelium," />
+<meta name="Product" content="Xcelium," />
+<meta name="ProductFamily" content="Xcelium," />
+<meta name="ProductVersion" content="23.09" />
+<meta name="RightsManagement" content="Copyright 2023 Cadence Design Systems Inc." />
+<meta name="Title" content="Multi-Snapshot Incremental Elaboration -- Wildcard Support in Module Name" />
+<meta name="Version" content="23.09" />
+<meta name="Renderer" content="WIKI" />
+<meta name="SpaceKey" content="IncElab2309" />
+<meta name="confluence-version" content="7.4.1" />
+<meta name="ecms-plugin-version" content="04.20.007" />
+<script type="text/javascript" src="styles/shCore1.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shCore.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushCpp.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushJava.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushXml.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushPython.js">/*<![CDATA[*//*]]>*/</script><script type="text/javascript" src="styles/shBrushPowerShell.js">/*<![CDATA[*//*]]>*/</script><link rel="stylesheet" href="styles/shCoreDefault.css" type="text/css" /><link rel="stylesheet" href="styles/shCoreMidnight.css" type="text/css" /><script type="text/javascript">/*<![CDATA[*/
+SyntaxHighlighter.all();
+/*]]>*/</script>
+        
+        <link href="styles/site.css" rel="stylesheet" type="text/css" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    
+
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.querySelectorAll("img").forEach((img, index) => {
+   img.addEventListener("click", (e) => { 
+    document.querySelector("#cad_image_modal").classList.add("opac");
+      document.querySelector("#cad_image_modal_center").innerHTML = `<img style="position:absolute;top:0;bottom:0;left:0;right:0; margin: auto;max-height: 96%;max-width: 96%;" src="${e.target.src}">`;});});});
+</script>
+
+<style>
+ img{cursor:pointer;
+ }
+ #cad_image_modal{
+ position:fixed;left:0;top:0;width:100%;background:#00000099;overflow:hidden;height:0;opacity:0;transition: height 0ms 1s, opacity 1s 0ms;
+ }
+ #cad_image_modal.opac{height: 100%;opacity: 1;transition: height 0ms 0ms, opacity 1s 0ms;
+ }
+ #cad_image_modal span{
+  position:fixed;right:10px;top:10px;cursor:pointer;color:#fff;
+ }
+ </style>
+
+</head><body style="background-color: #FFFFFF;"><!-- Begin Buttons --><header xmlns:html="http://www.w3.org/1999/xhtml"><div class="docHeadr">Product Documentation<img src="images/Cadence-Logo.jpg" /></div>
+<nav class="blueHead"><ul><li><a class="content" href="IncElabTOC.html">Contents</a></li><li><a class="prev" href="Mixed-Language_Hierarchical_References.html" title="Mixed-Language_Hierarchical_References">Mixed-Language_Hierarchical_Re ...</a></li><li style="float: right;"><a class="viewPrint" href="IncElab.pdf">View/Print PDF</a></li><li style="float: right;margin-right: 25px;"><a class="nextd" href="Specifying_Hierarchical_Reference_Permissions.html" title="Specifying_Hierarchical_Reference_Permissions">Specifying_Hierarchical_Refere ...</a></li></ul></nav></header><!-- End Buttons --><div xmlns:html="http://www.w3.org/1999/xhtml" style="font-size:14px;line-height:1.42857142857;margin:20px 0 0 0;font-weight:bold;"><center>Multi-Snapshot Incremental Elaboration<br />Product Version 23.09, September 2023</center></div>
+<div xmlns:html="http://www.w3.org/1999/xhtml" style="margin-left:5%;">
+<p></p>
+
+<p></p>
+<div id="main-header">
+                    
+                    
+                                                <h1 style="margin: 4px 0 4px;"><span>Wildcard Support in Module Name</span></h1>
+
+                    
+                </div>
+<div class="wiki-content group" id="main-content">
+                    
+<p>Starting Xcelium 22.01-a release, you can provide wildcards instead of <code>module_name</code> in manually provided href files which are provided with primary elaboration.</p>
+
+<p>You can give only wildcard (*)&#160;in place of the hierarchical/module name.&#160;Once the wildcard is given, the given object is looked into all the modules/interfaces/programs&#160;of the design, and permissions are applied to the given objects.&#160;This is explained in the example below:</p>
+
+<p><code>* &lt;object name&gt; &lt;href permission&gt;</code></p>
+
+<p>where the href syntax to support this feature is:</p>
+
+<p><code><span>&lt;target&gt; &lt;Object Name&gt; &lt;Permissions&gt;</span></code></p>
+
+<p><span>In the above example, </span></p>
+<ul><li><span>The <code>target</code>&#160;is always a wildcard</span></li><li><span>The object can be a wire, register,&#160;function, or task names</span></li><li><span>The object name cannot be a wildcard or cannot have a wildcard in it</span></li><li><span>The permissions here could be the currently supported mnemonics like &#39;E&#39;, &#39;F&#39;, &#39;R&#39;, &#39;D&#39;, &#39;C&#39; or the wild character &#39;<code>*</code>&#39;</span></li><li><span>All the current limitations in the href support mechanism are applicable here as well.</span></li></ul><h2 id="WildcardSupportinModuleName-SupportedFormats"><span>Supported Formats</span></h2>
+
+<p><span>The list of supported formats is given below:</span></p>
+<ul><li><code><span>* &lt;object name&gt; &lt;href permission&gt;</span></code><br />The specified href permissions are applied to all the objects of a given name anywhere in the design (in all the instances of the module having that object name).&#160;<br />The following is an example of the href entry in this case:<br /><code>* reset RD</code></li><li><span>&#160;<code>* &lt;object name&gt; *<br /></code></span>All applicable href permissions are applied to the object of a given name in all the instances of the modules having this object. The f<span style="letter-spacing: 0.0px;">ollowing is an example of the href entry in this case:<br /></span><code style="letter-spacing: 0.0px;">* reg *</code></li></ul><h2 id="WildcardSupportinModuleName-UnsupportedFormats"><span>Unsupported Formats</span></h2>
+
+<p><span>The following formats are unsupported:</span></p>
+<ul><li><code>*&#160; &#160; &#160;*&#160; &#160; &lt;href_permissions&gt;<br /></code>&#160; &#160; Using a wildcard in place of module name and object name. For example,&#160;<br />&#160; &#160; <code>*&#160; &#160; *&#160; &#160;RD</code></li><li><code>*&#160; &#160; *&#160; &#160; *<br /></code>&#160; &#160;Using a wildcard in place of module name, object name, and in place of permissions.</li></ul><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>For these two scenarios, an error would be thrown if <code>&lt;module_name&gt;</code> and&#160;<code>&lt;object_name&gt;</code> both have a wildcard&#160; &#8220;<code>*</code>&#8221;.</p>
+
+<p>There are previous flows of user provided hrefs where such permissions can be given:</p>
+
+<p><code># Full permission to objects in dut<br /></code><code>-href &#8220;@dut *&#8221;<br /></code><code>Named_blocks</code> are not supported in href.</p>
+</div>
+</div>
+<h4 id="WildcardSupportinModuleName-Example">Example</h4>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>msie.sv</b></div>
+<div class="codeContent panelContent pdl">
+<pre class="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">module incr();
+prim prim();
+initial force incr.prim.frc_mod1.a =1&#39;b0;
+endmodule
+
+module prim();
+frc_mod frc_mod1();
+
+frc_mod frc_mod2();
+endmodule
+
+module frc_mod();
+reg a;
+endmodule
+//===TESTCASE ENDS ===
+
+//href_manual.txt</pre>
+</div>
+</div>
+
+<p><span style="letter-spacing: 0.0px;">* a F</span></p>
+
+<p><code>xrun<span>&#160;</span>msie.sv<span>&#160;</span>-compile -clean</code><br /><code>xrun -mkprimsnap -name prim -top prim&#160;<strong>-href href_manual.txt</strong></code><br /><code>xrun -top incr -primname prim</code></p>
+
+<p>In this case, the permission &#39;F&#39; is applied to the register &#39;a&#39; in both the instances <code>frc_mod1</code> and <code>frc_mod2</code> of the module &#39;<code>frc_mod</code>&#39;.</p>
+<div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body">
+<p>The autohref file is be created as&#160;complete href permissions are provided during primary snapshot elaboration.</p>
+</div>
+</div>
+
+                    </div>
+<br /><br /></div>
+<footer xmlns:html="http://www.w3.org/1999/xhtml"><nav class="navigation"><b><em><a href="Mixed-Language_Hierarchical_References.html" id="prev" title="Mixed-Language_Hierarchical_References">Mixed-Language_Hierarchical_Re ...</a></em></b><b><em><a href="Specifying_Hierarchical_Reference_Permissions.html" id="nex" title="Specifying_Hierarchical_Reference_Permissions">Specifying_Hierarchical_Refere ...</a></em></b></nav><div>
+          For further assistance, contact <a href="https://support.cadence.com">Cadence Online Support</a>. Copyright &#169; 2023, <a href="https://www.cadence.com">Cadence Design Systems, Inc.</a> All rights reserved.
+        </div>
+</footer><br xmlns:html="http://www.w3.org/1999/xhtml" />
+<div id="cad_image_modal" style="background-color: rgba(0, 0, 0, 0.6);"><center id="cad_image_modal_center">&#160;&#10240;</center><span style="margin-right:50px;margin-top:100px;font-weight:bold;font-size:20px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:25px;height:30px;width:20px;padding-left:6px;padding-top:2px;color: black;" onclick="document.querySelector('#cad_image_modal').classList.remove('opac');">X</span></div>
+
+</body></html>

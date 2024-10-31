@@ -20,29 +20,33 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 // Block Signals	
-// LUP	 LOAD.UPP.IMM
-// LUPC	 LOAD.UPP.IMM.PC
-// UB	 UNCOND.BRANCH
-// UBL	 UNCOND.BRANCH.LINK
-// CB	 COND.BRANCH
-// MEM	 MEM.LOAD.STORE
-// ALU_IMM	 ALU.IMM
-// ALU_REG	 ALU.REG
+// LUP	        LOAD.UPP.IMM: LUI & AUIPC
+
+// UB	        UNCOND.BRANCH: JAL & JALR
+
+// CB	        COND.BRANCH: BEQ, BNE, BLT, BGE, BLTU, BGEU
+
+// MEM	        MEM.LOAD.STORE: TBD 
+
+// ALU_IMM	    ALU.IMM
+// ALU_REG	    ALU.REG
 // 	 
 // Flags 	
-// IOP	 InvertOp
-// FC	 FiniteControl
+// IOP	        InvertOp ? SRAI : SRLI, SUB : ADD, SRA : SRL, LUI : AUIPC
+// FC	        FiniteControl 
 
 // these ^^^^ control signals
 // determine which block to execute
 
 // finite_control_sig determines which operation
-// to do inside the block
+// to do inside the block, [2:0] field
 
 // Should we move this into smaller blocks?
+//      I don't think so - N
 
-// FIXME/TODO: The ALU does not set the overflow bit in status register
-//             if an overflow happens. fix this bro
+// TODO:
+// Check IMM v REG logic, bit selection does ! make sense for REG values
+// That's about it, maybe make excel easier to read control combinations if asked for?
 
 module ALU(
     input wire clk,
@@ -173,7 +177,7 @@ module ALU(
             port3_output[31:12] <= port2_imm;
             port3_output[11:0] <= 0;
         end else 
-            // AUPIC
+            // AUIPC
             port3_output = program_counter + port2_imm;
         end
     end

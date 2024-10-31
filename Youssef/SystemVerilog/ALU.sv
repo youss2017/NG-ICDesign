@@ -47,6 +47,7 @@
 // TODO:
 // Check IMM v REG logic, bit selection does ! make sense for REG values
 // That's about it, maybe make excel easier to read control combinations if asked for?
+// Determine what can be nonblocking without timing issues
 
 module ALU(
     input wire clk,
@@ -102,6 +103,8 @@ module ALU(
             // OR	         01100	 111 (ALU REG)	            101	                0	     111-110-0
             // AND	         01100	 111 (ALU REG)	            101	                0	     111-111-0
 
+            // TODO: I think that only SLL and SRL/SRA need to have bit selections, everything else can prob be port2
+            //       This is mainly because its signed already anyways.
             case(finite_control_sig)
                 3'b000: port3_output = IOP ? $signed(port1_reg) - $signed(port2) : $signed(port1_reg) + $signed(port2); // ADDI
                 3'b010: port3_output = $signed(port1_reg) < $signed(port2) ? 1 : 0;// SLTI
@@ -154,7 +157,7 @@ module ALU(
     
         case (finite_control_sig)
             /* JAL */ 3'b010: begin 
-                port3_output = program_counter;
+                port3_output = program_counter + 4;
                 pc_out = $signed(program_counter) + $signed(port2_imm); 
                 pc_load = 1;
             end
@@ -174,6 +177,7 @@ module ALU(
         // AUIPC	     00101	 000 (LOAD UPP IMM)	         000	            0	      000-000-1
         if (IOP) begin
             // LUI
+            // TODO: Should we just do port3_output <= {port2_imm[31:12], 12'b0}; ?
             port3_output[31:12] <= port2_imm;
             port3_output[11:0] <= 0;
         end else 

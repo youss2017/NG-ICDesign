@@ -1,12 +1,10 @@
-
-
 package rapid_pkg;
     
     localparam RESET_VECTOR = 0;
     localparam WORD_WIDTH = 4;
 
     // A struct which contains controls signals
-    struct {
+    typedef struct {
         logic load_upper_imm;
         logic uncond_branch;
         logic cond_branch;
@@ -14,7 +12,7 @@ package rapid_pkg;
         logic alu_imm;
         logic alu_reg;
         logic iop;
-        logic [2:0] funct3;
+        logic [2:0] fcs_opcode;
         logic [4:0] rs1;
         logic [4:0] rs2;
         logic [4:0] rd;
@@ -29,10 +27,7 @@ package rapid_pkg;
         ctrl.alu_imm <= 0;
         ctrl.alu_reg <= 0;
         ctrl.iop <= 0;
-        ctrl.funct3 <= 0;
-        ctrl.imm_o <= 0;
-        ctrl.program_counter_o <= 0;
-        ctrl.pc_load <= 0;
+        ctrl.fcs_opcode <= 0;
         ctrl.rs1 <= 0;
         ctrl.rs2 <= 0;
         ctrl.rd <= 0;

@@ -44,23 +44,20 @@ module instruction_fetch
     logic [XLEN-1:0] pc;
     logic [XLEN-1:0] instruction;
     IF_state_t state;
-    cache_operation mem_op;
     logic cache_done;
 
     i_cache cache(.i_clk(i_clk),
                   .i_address(pc),
-                  .i_read_or_write(mem_op),
                   .o_data(instruction),
                   .o_done(cache_done));
 
-    always_ff @(posedge clk) begin
+    always_ff @(posedge i_clk) begin
         if(i_reset) begin
             // Configure the pc start address and jummp to FETCH_INSTRUCTION
             // mem_op will always be CACHE_READ since IF stage never writes to
             // memory. Also, initialize o_done to 0
             pc <= RESET_VECTOR;
             state <= FETCH_INSTRUCTION;
-            mem_op <= CACHE_READ;
             o_done <= 0;
         end else begin
             case(state)

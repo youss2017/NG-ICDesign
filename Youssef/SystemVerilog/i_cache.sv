@@ -27,7 +27,6 @@ module i_cache
 (
     input logic                     i_clk,
     input logic [XLEN-1:0]          i_address,
-    input cache_operation           i_operation,
     output logic signed [XLEN-1:0]  o_data,
     output logic                    o_done
 );
@@ -38,7 +37,6 @@ module i_cache
         o_done <= 0;
         o_data <= 0;
     end
-
 
 
 endmodule

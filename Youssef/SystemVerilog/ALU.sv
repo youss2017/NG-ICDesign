@@ -38,7 +38,7 @@
 // these ^^^^ control signals
 // determine which block to execute
 
-// funct3 determines which operation
+// fcs_opcode determines which operation
 // to do inside the block, [2:0] field
 
 // Should we move this into smaller blocks?
@@ -69,24 +69,24 @@ localparam
 module ALU
 #(parameter XLEN = 32)
 (
-    input logic clk,
-    input logic load_upper_imm,
-    input logic uncond_branch,
-    input logic cond_branch,
-    input logic mem,
-    input logic alu_imm,
-    input logic alu_reg,
-    input logic iop,
-    input logic [2:0] funct3,
-    input logic signed [XLEN-1:0] port1_reg,
-    input logic signed [XLEN-1:0] port2_reg,
-    input logic signed [XLEN-1:0] port2_imm,
-    input logic [XLEN-1:0] program_counter,
-    output logic [XLEN-1:0] port3_output,
-    output logic [XLEN-1:0] pc_out,
-    output logic pc_load,
-    output logic [XLEN-1:0] mem_addrs,
-    output logic done
+    input logic                         clk,
+    input logic                         load_upper_imm,
+    input logic                         uncond_branch,
+    input logic                         cond_branch,
+    input logic                         mem,
+    input logic                         alu_imm,
+    input logic                         alu_reg,
+    input logic                         iop,
+    input logic         [2:0]           fcs_opcode,
+    input logic signed  [XLEN-1:0]      port1_reg,
+    input logic signed  [XLEN-1:0]      port2_reg,
+    input logic signed  [XLEN-1:0]      port2_imm,
+    input logic         [XLEN-1:0]      program_counter,
+    output logic        [XLEN-1:0]      port3_output,
+    output logic        [XLEN-1:0]      pc_out,
+    output logic                        pc_load,
+    output logic        [XLEN-1:0]      mem_addrs,
+    output logic                        done
 );
 
     always_ff @(posedge clk) begin
@@ -125,7 +125,7 @@ module ALU
             // OR	         01100	 111 (ALU REG)	            110	                0	     111-110-0
             // AND	         01100	 111 (ALU REG)	            111	                0	     111-111-0
 
-            case (funct3)
+            case (fcs_opcode)
                 ADD_or_SUB: port3_output = iop ? $signed(port1_reg) - $signed(port2) : $signed(port1_reg) + $signed(port2); // ADDI
                 SLT: port3_output = $signed(port1_reg) < $signed(port2) ? 1 : 0;// SLTI
                 // For SLTIU we have to do unsigned comparison,
@@ -158,7 +158,7 @@ module ALU
             // BLTU	         11000	 010 (COND.BRANCH)	         110	            0	      100-110-0
             // BGEU	         11000	 010 (COND.BRANCH)	         111	            0	      100-111-0
 
-            case (funct3)
+            case (fcs_opcode)
                 /* BEQ */  3'b000: pc_load = port1_reg == port2_reg;
                 /* BNE */  3'b001: pc_load = port1_reg != port2_reg;
                 /* BLT */  3'b100: pc_load = $signed(port1_reg) < $signed(port2_reg);
@@ -180,7 +180,7 @@ module ALU
         // JAL	         11011	 001 (UNCOND.BRANCH)	     000	            0	      010-000-0
         // JALR	         11001	 001 (UNCOND.BRANCH)	     000	            0	      011-000-0
     
-        case (funct3)
+        case (fcs_opcode)
             /* JAL */ 3'b010: begin 
                 port3_output = program_counter;
                 pc_out = $signed(program_counter) + $signed(port2_imm); 

@@ -20,19 +20,21 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module top_module(
+module rapid_cpu(
     input wire clk
 );
 
     wire rs1_out, rs2_out, rs3_out, rs4_out;
     wire rd_in;
-    wire [4:0] rs1, rs2, rs3, rs4;
-    wire [31:0] rd_data, rs1_data, rs2_data, rs3_data, rs4_data, imm_data;
+    wire [4:0] rs1, rs2;
+    wire [31:0] rd_data, rs1_data, rs2_data, imm_data;
     reg [31:0] program_counter;
     wire [31:0] pc_out;
     wire pc_load;
 
-    RegisterFile reg_file(.clk(clk),
+    // control signals from decoder
+
+    register_file reg_file(.clk(clk),
                           .rs1_out(rs1_out),
                           .rs2_out(rs2_out),
                           .rs3_out(rs3_out),
@@ -46,6 +48,12 @@ module top_module(
                           .rs2_data(rs2_data),
                           .rs3_data(rs3_data),
                           .rs4_data(rs4_data));
+
+    decoder decode0(.clk(clk),
+                    .reset(0),
+                    .instruction(0),
+                    .program_counter_i(0),
+                    .load_upper_imm())
     
     ALU alu(.clk(clk),
             .LUP(0),

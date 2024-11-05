@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Youssef
 // 
 // Create Date: 10/29/2024 05:32:50 PM
 // Design Name: 
-// Module Name: RegisterFile
+// Module Name: register_file
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 

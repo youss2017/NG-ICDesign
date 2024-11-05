@@ -54,104 +54,98 @@ localparam reg_family = 0110011; // ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR,
 
 `include "rapid_pkg.sv"
 
+
+
 module decoder
 #(
     parameter XLEN = 32
 )
 (
-    input  logic                         clk,
-    input  logic                         reset,
-    input  logic         [XLEN - 1 : 0]  instruction;
-    input  logic         [XLEN - 1 : 0]  program_counter_i;
-    output control_s                     control_signal,
-    output logic signed  [XLEN-1:0]      imm_o,
-    output logic signed  [4:0]           r1_o,
-    output logic signed  [4:0]           r2_o,
-    output logic signed  [4:0]           rd_o,
-    output wire          [XLEN-1:0]      program_counter_o,
-    output logic                         pc_load
+    input  logic                         i_clk,
+    input  logic                         i_reset,
+    input  logic         [XLEN - 1 : 0]  i_instruction;
+    input  logic         [XLEN - 1 : 0]  i_pc;
+    input  logic                         i_pipeline_ready,
+    output control_s                     o_control_signal,
+    output logic signed  [XLEN-1:0]      o_imm,
+    output logic         [XLEN-1:0]      o_pc,
+    output logic                         o_done
 );
 
     import rapid_pkg::*;
 
     control_s control_signal;
-
-    task clear_register_address();
-        r1_o <= 'bz;
-        r2_o <= 'bz;
-        rd_o <= 'bz;
-    endtask
+    logic [XLEN-1:0] pc;
+    logic [XLEN-1:0] pc;
 
     always_ff @(posedge clk) begin : decoder_section
 
         if(reset) begin
-            clear_control_signals(control);
+            clear_control_signals(control_signal);
         end else begin
             logic opcode_family = instruction[6:0];
-            clear_control_signals(control); 
-            clear_register_address();
+            clear_control_signals(control_signal); 
             
             case(opcode_family)
     
             upper_family:               begin 
                                                 control_signal.load_upper_imm <= 1;
-                                                control_signal.iop = instruction[5:5];
+                                                control_signal.iop <= instruction[5:5];
                                                 imm_o <= $signed({instruction[31:12], 12'b0}); 
-                                                rd_o = instruction[11:7];
+                                                control_signal.rd <= instruction[11:7];
                                         end
     
             uncond_branch_family:       begin 
                                                 control_signal.uncond_branch <= 1;
-                                                control_signal.iop = instruction[3:3];
+                                                control_signal.iop <= instruction[3:3];
                                                 imm_o <= $signed({instruction[31:31], instruction[19:12], instruction[30:20], 1'b0}); 
-                                                rd_o <= instruction[11:7];
+                                                control_signal.rd <= instruction[11:7];
                                         end
     
             cond_branch_family:         begin 
                                                 control_signal.cond_branch <= 1;
                                                 // No IOP
                                                 $signed({instruction[31:31], instruction[7:7], instruction[30:25], instruction[11:8], 1'b0}); 
-                                                rs1_out <= instruction[19:15];
-                                                rs2_out <= instruction[24:20];
+                                                control_signal.rs1 <= instruction[19:15];
+                                                control_signal.rs2 <= instruction[24:20];
                                         end
     
             mem_load_family:            begin 
                                                 control_signal.mem <= 1;
                                                 // IOP is 0 relative to Store instructions
                                                 imm_o <= $signed({instruction[31:20]}); 
-                                                rd_1 <= instruction[19:15];
-                                                rd_o <= instruction[11:7];
+                                                control_signal.rs1 <= instruction[19:15]; // FIXME/TODO: confirm this is rs1
+                                                control_signal.rd <= instruction[11:7];
                                         end
     
             mem_store_family:           begin 
                                                 control_signal.mem <= 1;
-                                                control_signal.iop = instruction[5:5];
+                                                control_signal.iop <= instruction[5:5];
                                                 imm_o <= $signed({instruction[31:25], instruction[11:7]}); 
-                                                rs1_out = instruction[19:15];
-                                                rs2_out = instruction[24:20];
+                                                control_signal.rs1 <= instruction[19:15];
+                                                control_signal.rs2 <= instruction[24:20];
                                         end
     
             imm_family:                 begin 
                                                 control_signal.alu_imm <= 1;
-                                                control_signal.iop = instruction[30:30];
+                                                control_signal.iop <= instruction[30:30];
                                                 imm_o <= $signed({instruction[31:20]}); 
-                                                rd_1 <= instruction[19:15];
-                                                rd_2 <= 'bz;
-                                                rd_o <= instruction[11:7];
+                                                control_signal.rs1 <= instruction[19:15];
+                                                control_signal.rd <= instruction[11:7];
                                         end
     
             reg_family:                 begin 
                                                 control_signal.alu_reg <= 1;
-                                                control_signal.iop = instruction[30:30];
-                                                rd_1 <= instruction[19:15]; 
-                                                rd_2 = instruction[24:20]; 
-                                                rd_o <= instruction[11:7];
+                                                control_signal.iop <= instruction[30:30];
+                                                control_signal.rs1 <= instruction[19:15]; 
+                                                control_signal.rs2 <= instruction[24:20]; 
+                                                control_signal.rd <= instruction[11:7];
                                         end
                                         
                 default: imm_o <= $signed(0); r1_o <= $signed(0); r2_o <= $signed(0); rd_o <= $signed(0);
             endcase
-            // YEAH I MADE IT UNDER DIFFERENT ASSUMPTIONS, should we change it??????
-            control_signal.funct3 = instruction[14:12]; // PROBABLY BUT FOR RIGHT NOW LETS GO FUNCT3 --> FCS
+
+            control_signal.funct3 = instruction[14:12]; 
 
         end
     

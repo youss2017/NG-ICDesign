@@ -2,6 +2,9 @@
 
 package rapid_pkg;
     
+    localparam RESET_VECTOR = 0;
+    localparam WORD_WIDTH = 4;
+
     // A struct which contains controls signals
     struct {
         logic load_upper_imm;
@@ -12,6 +15,9 @@ package rapid_pkg;
         logic alu_reg;
         logic iop;
         logic [2:0] funct3;
+        logic [4:0] rs1;
+        logic [4:0] rs2;
+        logic [4:0] rd;
     } control_s;
 
     // A task to clear control signals
@@ -27,6 +33,12 @@ package rapid_pkg;
         ctrl.imm_o <= 0;
         ctrl.program_counter_o <= 0;
         ctrl.pc_load <= 0;
+        ctrl.rs1 <= 0;
+        ctrl.rs2 <= 0;
+        ctrl.rd <= 0;
     endtask
+
+    typedef enum { CACHE_READ, CACHE_WRITE } cache_rw;
+    typedef enum { CACHE_NOP, BYTE, HALF_WORD, WORD } cache_operation;
     
 endpackage

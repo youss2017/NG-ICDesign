@@ -130,6 +130,7 @@ module decoder
                                 control_signal.iop <= instruction[5:5];
                                 o_imm <= $signed({instruction[31:12], 12'b0}); 
                                 control_signal.rd <= instruction[11:7];
+                                control_signal.rs1_out <= 1;
                         end
     
             uncond_branch_family:       
@@ -146,7 +147,9 @@ module decoder
                                 // No IOP
                                 $signed({instruction[31:31], instruction[7:7], instruction[30:25], instruction[11:8], 1'b0}); 
                                 control_signal.rs1 <= instruction[19:15];
+                                control_signal.rs1_out <= 1;
                                 control_signal.rs2 <= instruction[24:20];
+                                control_signal.rs2_out <= 1;
                         end
     
             mem_load_family:            
@@ -155,6 +158,7 @@ module decoder
                                 // IOP is 0 relative to Store instructions
                                 o_imm <= $signed({instruction[31:20]}); 
                                 control_signal.rs1 <= instruction[19:15]; // ALU uses *rd = (imm + *rs1) as store location
+                                control_signal.rs1_out <= 1;
                                 control_signal.rd <= instruction[11:7];
                         end
     
@@ -164,7 +168,9 @@ module decoder
                                 control_signal.iop <= instruction[5:5];
                                 o_imm <= $signed({instruction[31:25], instruction[11:7]}); 
                                 control_signal.rs1 <= instruction[19:15];
+                                control_signal.rs1_out <= 1;
                                 control_signal.rs2 <= instruction[24:20];
+                                control_signal.rs2_out <= 1;
                         end
     
             imm_family:                 
@@ -173,6 +179,7 @@ module decoder
                                 control_signal.iop <= instruction[30:30];
                                 o_imm <= $signed({instruction[31:20]}); 
                                 control_signal.rs1 <= instruction[19:15];
+                                control_signal.rs1_out <= 1;
                                 control_signal.rd <= instruction[11:7];
                         end
     
@@ -181,7 +188,9 @@ module decoder
                             control_signal.alu_reg <= 1;
                             control_signal.iop <= instruction[30:30];
                             control_signal.rs1 <= instruction[19:15]; 
+                            control_signal.rs1_out <= 1;
                             control_signal.rs2 <= instruction[24:20]; 
+                            control_signal.rs2_out <= 1;
                             control_signal.rd <= instruction[11:7];
                         end
                                         
@@ -189,7 +198,9 @@ module decoder
                     begin 
                         o_imm <= 0; 
                         control_signal.rs1 <= 0; 
+                        control_signal.rs1_out <= 0;
                         control_signal.rs2 <= 0; 
+                        control_signal.rs2_out <= 0;
                         control_signal.rd <= 0;
                     end
             endcase

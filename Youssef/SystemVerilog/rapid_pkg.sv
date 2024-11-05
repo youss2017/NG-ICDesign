@@ -12,6 +12,8 @@ package rapid_pkg;
         logic alu_imm;
         logic alu_reg;
         logic iop;
+        logic rs1_out;
+        logic rs2_out;
         logic [2:0] fcs_opcode;
         logic [4:0] rs1;
         logic [4:0] rs2;
@@ -31,6 +33,8 @@ package rapid_pkg;
         ctrl.rs1 <= 0;
         ctrl.rs2 <= 0;
         ctrl.rd <= 0;
+        ctrl.rs1_out <= 0;
+        ctrl.rs2_out <= 0;
     endtask
 
     typedef enum { CACHE_READ, CACHE_WRITE } cache_rw;

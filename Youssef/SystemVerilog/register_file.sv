@@ -21,30 +21,42 @@
 
 
 module register_file(
-    input wire clk,
-    input wire rs1_out,
-    input wire rs2_out,
-    input wire rd_in,
-    input wire [4:0] rs1,
-    input wire [4:0] rs2, 
-    input wire [4:0] rd,
-    input wire [31:0] rd_input,
-    output logic [31:0] rs1_data,
-    output logic [31:0] rs2_data
+    input wire i_clk,
+    input wire i_reset,
+    input wire i_rs1_out,
+    input wire i_rs2_out,
+    input wire i_rd_in,
+    input wire [4:0] i_rs1,
+    input wire [4:0] i_rs2, 
+    input wire [4:0] i_rd,
+    input wire [31:0] i_rd_data,
+    output logic [31:0] o_rs1_data,
+    output logic [31:0] o_rs2_data
 );
 
     reg [31:0] register_file [0:31];
 
-    always_ff @(posedge clk) begin
+    always_ff @(posedge i_clk) begin
         
-        if (rs1_out) rs1_data = (rs1 == 0) ? 0 : register_file[rs1];
-        else rs1_data = 'bz;
-        
-        if (rs2_out) rs2_data = (rs2 == 0) ? 0 : register_file[rs2];
-        else rs2_data = 'bz;
-        
-        if (rd_in && rd > 0) register_file[rd] = rd_input;
-        
+        if(i_reset) begin
+            for(int i = 0; i < 32; i++) begin
+                register_file[i] <= 0;
+            end
+        end else begin
+            if (i_rs1_out) 
+                o_rs1_data = (i_rs1 == 0) ? 0 : register_file[i_rs1];
+            else 
+                o_rs1_data = 'bz;
+            
+            if (i_rs2_out) 
+                o_rs2_data = (i_rs2 == 0) ? 0 : register_file[i_rs2];
+            else 
+                o_rs2_data = 'bz;
+            
+            if (i_rd_in && i_rd > 0) 
+                register_file[i_rd] = i_rd_data;
+                
+        end        
     end
 
 endmodule

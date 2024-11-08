@@ -2,6 +2,18 @@
 <hr/>
 
 <ol>
+	<h1>
+		Navigation
+	</h1>
+ <p>
+	Ongoing Core Design can be found in <a href="https://github.com/youss2017/NG-ICDesign/tree/master/RAPID-Core%20RTL/SystemVerilog">RAPID-Core RTL/SystemVerilog</a>
+ </p>
+	Ongoing Cache Subsystem (pending)
+
+ </p>
+	<h1>
+		Project Overview
+	</h1>
     <li>
         Background of Company/Organization:  Provide a brief overview of the company and/or organization and the specific project location here. Northrop Grumman solves the toughest problems in space, aeronautics, defense, and cyberspace to meet the ever-evolving needs of our customers worldwide. Our 95,000 employees are Defining Possible every day using science, technology and engineering to create and deliver advanced systems, products and services.
     </li>

@@ -1,3 +1,6 @@
+<h1>Project Organization</h1>
+<hr/>
+
 <h1>Northrop Grumman ASIC Design Project</h1>
 <hr/>
 

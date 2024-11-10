@@ -253,8 +253,8 @@ module ALU
         // AUIPC	     00101	 000 (LOAD UPP IMM)	         000	            0	      000-000-1
         if (control_signal.iop) begin
             // LUI
-            port3_output[31:12] = port2_imm;
-            port3_output[11:0] = 0;
+            port3_output[31:12] <= port2_imm;
+            port3_output[11:0] <= 0;
         end else 
             // AUPIC
             port3_output = i_pc + port2_imm;

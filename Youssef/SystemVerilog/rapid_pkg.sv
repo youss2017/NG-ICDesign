@@ -21,7 +21,7 @@ package rapid_pkg;
     } control_s;
 
     // A task to clear control signals
-    function clear_control_signals(control_s ctrl);
+    function clear_control_signals(ref control_s ctrl);
         ctrl.load_upper_imm <= 0;
         ctrl.uncond_branch <= 0;
         ctrl.cond_branch <= 0;
@@ -35,6 +35,7 @@ package rapid_pkg;
         ctrl.rd <= 0;
         ctrl.rs1_out <= 0;
         ctrl.rs2_out <= 0;
+        return ctrl;
     endfunction
 
     typedef enum { CACHE_READ, CACHE_WRITE } cache_rw;
@@ -47,5 +48,10 @@ package rapid_pkg;
         NEXT,
         HALT
     } IF_state_t;
+
+    typedef enum logic [0:0] { 
+        WAIT, 
+        DECODE
+    } DE_state_t;
     
 endpackage

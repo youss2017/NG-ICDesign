@@ -53,7 +53,7 @@ module instruction_fetch
     always_ff @(posedge i_clk, posedge i_reset) begin
         if (i_reset) begin
             current_state <= FETCH;
-            pc = RESET_VECTOR;
+            pc <= RESET_VECTOR;
         end else begin
             current_state <= next_state;
         end
@@ -62,41 +62,44 @@ module instruction_fetch
     always_comb begin
 
         case (current_state)
-        FETCH: begin
-            if (cache_done) begin
-                // Cache finished loading data from memory
-                // Is pipeline ready, then we go to NEXT stage
-                // to compute next PC address,
-                // otherwise we go to wait for pipeline
-                // first signal we are done
-                o_done = 1;
+            FETCH: begin
+                if (cache_done) begin
+                    // Cache finished loading data from memory
+                    // Is pipeline ready, then we go to NEXT stage
+                    // to compute next PC address,
+                    // otherwise we go to wait for pipeline
+                    // first signal we are done
+                    o_done = 1;
+                    if (i_pipeline_ready) begin
+                        next_state = NEXT;
+                        // once i_pipeline_ready is high
+                        // o_done must be low the next clock cycle
+                        // Setting o_done to 0, will cause o_done register
+                        // to become 0 in next clock cycle.
+                        o_done = 0;
+                    end
+                    else next_state = WAIT;
+                end
+            end
+            WAIT: begin
                 if (i_pipeline_ready) begin
                     next_state = NEXT;
-                    // once i_pipeline_ready is high
-                    // o_done must be low the next clock cycle
-                    // Setting o_done to 0, will cause o_done register
-                    // to become 0 in next clock cycle.
                     o_done = 0;
                 end
-                else next_state = WAIT;
             end
-        end
-        WAIT: begin
-            if (i_pipeline_ready) next_state = NEXT;
-        end
-        NEXT: begin
-            // Are we branching
-            if (i_pc_load) begin
-                // we are branching
-                pc = i_ext_pc & ~1; // make sure its always an even address
-            end else begin
-                // WORD_WIDTH is defined rapid_pkg, its constant to 4 bytes
-                pc = pc + WORD_WIDTH;
+            NEXT: begin
+                // Are we branching
+                if (i_pc_load) begin
+                    // we are branching
+                    pc = i_ext_pc & ~1; // make sure its always an even address
+                end else begin
+                    // WORD_WIDTH is defined rapid_pkg, its constant to 4 bytes
+                    pc = pc + WORD_WIDTH;
+                end
+                next_state = FETCH;
             end
-            next_state = FETCH;
-        end
-        // This also handles the HALT state
-        default: next_state = HALT;
+            // This also handles the HALT state
+            default: next_state = HALT;
         endcase
 
     end

@@ -54,12 +54,7 @@ localparam reg_family = 0110011; // ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR,
 
 import rapid_pkg::*;
 
-typedef enum { 
-    LOAD_INSTRUCTION, 
-    DECODE
-} DE_state_t;
-
-module decoder
+module instruction_decoder
 #(
     parameter XLEN = 32
 )
@@ -67,146 +62,154 @@ module decoder
     input  logic                        i_clk,
     input  logic                        i_reset,
     input  logic         [XLEN-1:0]     i_instruction,
-    input  logic         [XLEN-1:0]     i_pc,
     input  logic                        i_pipeline_ready,
-    output control_s                    o_control_signal,
-    output logic signed  [XLEN-1:0]     o_imm,
+    input  logic         [XLEN-1:0]     i_pc,
     output logic         [XLEN-1:0]     o_pc,
+    output control_s                    o_control_signal,
+    output logic [4:0]                  o_rs1,
+    output logic [4:0]                  o_rs2,
+    output logic [4:0]                  o_rd,
+    output logic signed  [XLEN-1:0]     o_imm,
     output logic                        o_done
 );
 
-    DE_state_t state;
+    DE_state_t current_state, next_state;
     control_s control_signal;
     logic [XLEN-1:0] pc, instruction;
 
-    always_ff @(posedge i_clk) begin : decoder_section
+    always_ff @(posedge i_clk, i_reset) begin
 
-        if(i_reset) begin
-            state <= LOAD_INSTRUCTION;
-            clear_control_signals(control_signal);
+        if (i_reset) begin
+            // TODO/FIXME: Make this output a nop instruction
+            current_state <= DECODE; // TODO/FIXME: need to check the logic of reset later
         end else begin
-            
-            case(state)
-                LOAD_INSTRUCTION: begin
-                    // Is pipeline ready for us to move on.
-                    // Note: we will only get here if o_done is 1 or from RESET.
-                    if(i_pipeline_ready) begin
-                        // Update output pc from last input pc
-                        o_pc <= pc;
-                        // Update current pc from input
-                        pc <= i_pc;
-                        // Update current instruction frm input
-                        instruction <= i_instruction;
-                        // Change to DECODE state
-                        state <= DECODE;
-                        // Signal that we are not done yet with instruction.
-                        o_done <= 0;
-                    end else begin
-                        o_done <= 1;
-                    end
-                end
-                DECODE: begin
-                    // Task wraps all decoding logic
-                    decode_instruction();
-                    state <= LOAD_INSTRUCTION;
-                    o_done <= 1;
-                end
-
-            endcase
-
+            current_state <= next_state;
         end
-    
+
     end
 
-    task decode_instruction();
+    always_comb begin
+        case(state) 
+            WAIT: begin 
+                if(i_pipeline_ready) begin
+                    next_state = DECODE;
+                    o_done = 0;
+                end
+            end
+            DECODE: begin 
+                // Receive instruction
+                pc = i_pc;
+                instruction = i_instruction;               
+
+                // Parse instruction
+                control_signal = decode_instruction(instruction); // Nicolas (11/10/2024): Need to be in FF block?
+                // Youssef (11/10/2024): no cause, this will be a continous assignment but the values will not be updated
+                // in the registers until the next clock cycles so synchronization is good.
+                // Nicolas: do we not not want parallel decoding ? 
+                // Youssef (11/20/2024): Wdym parallel decoding? We are decoding the instruction using combinational logic
+                // Nicolas: This loads upper, then iop, then imm, then rd, then signal
+                // Youssef (11/20/2024): This is not true, all are loaded at once, this combinational logic.
+                // Nicolas: Hmm I think ur right then, thought it was always sequential
+                // Youssef (11/20/2024): Should we keep this here? Nicolas: yeah its kinda funny =)
+                next_state = WAIT;
+                o_done = 1;
+            end
+        endcase
+    end
+
+
+
+
+    function decode_instruction(logic [XLEN-1:0] instruction);
+            control_s control_signal = clear_control_signals(control_signal); 
             logic opcode_family = instruction[6:0];
-            clear_control_signals(control_signal); 
             
             case(opcode_family)
     
             upper_family:               
                         begin 
-                                control_signal.load_upper_imm <= 1;
-                                control_signal.iop <= instruction[5:5];
-                                o_imm <= $signed({instruction[31:12], 12'b0}); 
-                                control_signal.rd <= instruction[11:7];
-                                control_signal.rs1_out <= 1;
+                                control_signal.load_upper_imm = 1;
+                                control_signal.iop = instruction[5:5];
+                                o_imm = $signed({instruction[31:12], 12'b0}); 
+                                control_signal.rd = instruction[11:7];
+                                control_signal.rs1_out = 1;
                         end
     
             uncond_branch_family:       
                         begin 
-                                control_signal.uncond_branch <= 1;
-                                control_signal.iop <= instruction[3:3];
-                                o_imm <= $signed({instruction[31:31], instruction[19:12], instruction[30:20], 1'b0}); 
-                                control_signal.rd <= instruction[11:7];
+                                control_signal.uncond_branch = 1;
+                                control_signal.iop = instruction[3:3];
+                                o_imm = $signed({instruction[31:31], instruction[19:12], instruction[30:20], 1'b0}); 
+                                control_signal.rd = instruction[11:7];
                         end
     
             cond_branch_family:         
                         begin 
-                                control_signal.cond_branch <= 1;
+                                control_signal.cond_branch = 1;
                                 // No IOP
                                 $signed({instruction[31:31], instruction[7:7], instruction[30:25], instruction[11:8], 1'b0}); 
-                                control_signal.rs1 <= instruction[19:15];
-                                control_signal.rs1_out <= 1;
-                                control_signal.rs2 <= instruction[24:20];
-                                control_signal.rs2_out <= 1;
+                                control_signal.rs1 = instruction[19:15];
+                                control_signal.rs1_out = 1;
+                                control_signal.rs2 = instruction[24:20];
+                                control_signal.rs2_out = 1;
                         end
     
             mem_load_family:            
                         begin 
-                                control_signal.mem <= 1;
+                                control_signal.mem = 1;
                                 // IOP is 0 relative to Store instructions
-                                o_imm <= $signed({instruction[31:20]}); 
-                                control_signal.rs1 <= instruction[19:15]; // ALU uses *rd = (imm + *rs1) as store location
-                                control_signal.rs1_out <= 1;
-                                control_signal.rd <= instruction[11:7];
+                                o_imm = $signed({instruction[31:20]}); 
+                                control_signal.rs1 = instruction[19:15]; // ALU uses *rd = (imm + *rs1) as store location
+                                control_signal.rs1_out = 1;
+                                control_signal.rd = instruction[11:7];
                         end
     
             mem_store_family:           
                         begin 
-                                control_signal.mem <= 1;
-                                control_signal.iop <= instruction[5:5];
-                                o_imm <= $signed({instruction[31:25], instruction[11:7]}); 
-                                control_signal.rs1 <= instruction[19:15];
-                                control_signal.rs1_out <= 1;
-                                control_signal.rs2 <= instruction[24:20];
-                                control_signal.rs2_out <= 1;
+                                control_signal.mem = 1;
+                                control_signal.iop = instruction[5:5];
+                                o_imm = $signed({instruction[31:25], instruction[11:7]}); 
+                                control_signal.rs1 = instruction[19:15];
+                                control_signal.rs1_out = 1;
+                                control_signal.rs2 = instruction[24:20];
+                                control_signal.rs2_out = 1;
                         end
     
             imm_family:                 
                         begin 
-                                control_signal.alu_imm <= 1;
-                                control_signal.iop <= instruction[30:30];
-                                o_imm <= $signed({instruction[31:20]}); 
-                                control_signal.rs1 <= instruction[19:15];
-                                control_signal.rs1_out <= 1;
-                                control_signal.rd <= instruction[11:7];
+                                control_signal.alu_imm = 1;
+                                control_signal.iop = instruction[30:30];
+                                o_imm = $signed({instruction[31:20]}); 
+                                control_signal.rs1 = instruction[19:15];
+                                control_signal.rs1_out = 1;
+                                control_signal.rd = instruction[11:7];
                         end
     
             reg_family:                 
                         begin 
-                            control_signal.alu_reg <= 1;
-                            control_signal.iop <= instruction[30:30];
-                            control_signal.rs1 <= instruction[19:15]; 
-                            control_signal.rs1_out <= 1;
-                            control_signal.rs2 <= instruction[24:20]; 
-                            control_signal.rs2_out <= 1;
-                            control_signal.rd <= instruction[11:7];
+                            control_signal.alu_reg = 1;
+                            control_signal.iop = instruction[30:30];
+                            control_signal.rs1 = instruction[19:15]; 
+                            control_signal.rs1_out = 1;
+                            control_signal.rs2 = instruction[24:20]; 
+                            control_signal.rs2_out = 1;
+                            control_signal.rd = instruction[11:7];
                         end
                                         
                 default:   
                     begin 
-                        o_imm <= 0; 
-                        control_signal.rs1 <= 0; 
-                        control_signal.rs1_out <= 0;
-                        control_signal.rs2 <= 0; 
-                        control_signal.rs2_out <= 0;
-                        control_signal.rd <= 0;
+                        o_imm = 0; 
+                        control_signal.rs1 = 0; 
+                        control_signal.rs1_out = 0;
+                        control_signal.rs2 = 0; 
+                        control_signal.rs2_out = 0;
+                        control_signal.rd = 0;
                     end
             endcase
 
             control_signal.fcs_opcode = instruction[14:12]; 
-    endtask
+            return control_signal;
+    endfunction
 
 endmodule
 

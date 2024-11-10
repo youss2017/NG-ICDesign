@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 100ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: RAPID Team
 // Engineer: Youssef Samwel, Nicolas Sayed
@@ -19,79 +19,85 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-`include "rapid_pkg.sv"
 import rapid_pkg::*;
-
-typedef enum {
-    HALT,
-    FETCH_INSTRUCTION,
-    NEXT_ADDRESS
-} IF_state_t;
 
 module instruction_fetch
 #(parameter XLEN = 32)
 (
     input  logic                 i_clk,
     input  logic                 i_reset,
-    input  logic                 i_pc_load,
-    input  logic  [XLEN-1:0]     i_pc,
     input  logic                 i_pipeline_ready,
+    input  logic  [XLEN-1:0]     i_ext_pc,
+    input  logic                 i_pc_load,
     output logic  [XLEN-1:0]     o_pc,
     output logic  [XLEN-1:0]     o_instruction,
-    output logic                 o_done
+    output logic                 o_done,
+    output IF_state_t            o_current_state,
+    output IF_state_t            o_next_state
 );
 
-    logic [XLEN-1:0] pc;
-    logic [XLEN-1:0] instruction;
-    IF_state_t state;
     logic cache_done;
+    logic [XLEN-1:0] pc;
+
+    IF_state_t current_state, next_state;
+
+    // This is only used to track
+    assign o_current_state = current_state;
+    assign o_next_state = next_state;
 
     i_cache cache(.i_clk(i_clk),
                   .i_address(pc),
-                  .o_data(instruction),
+                  .o_data(o_instruction),
                   .o_done(cache_done));
 
-    always_ff @(posedge i_clk) begin
-        if(i_reset) begin
-            // Configure the pc start address and jummp to FETCH_INSTRUCTION
-            // mem_op will always be CACHE_READ since IF stage never writes to
-            // memory. Also, initialize o_done to 0
-            pc <= RESET_VECTOR;
-            state <= FETCH_INSTRUCTION;
-            o_done <= 0;
+    always_ff @(posedge i_clk, posedge i_reset) begin
+        if (i_reset) begin
+            current_state <= FETCH;
+            pc = RESET_VECTOR;
         end else begin
-            case(state)
-                // do nothing peacefully
-                HALT: begin
-                    state <= HALT;
-                end
-                // Here we wait until the cache is done reading the current
-                // pc address.
-                FETCH_INSTRUCTION: begin
-                    // we only move on to the next instruction
-                    // (and also latch the next instruction)
-                    // IF the cache has finished reading memory
-                    // AND the next pipeline stage is ready to accept data.
-                    if (cache_done && i_pipeline_ready) begin
-                        state <= NEXT_ADDRESS;
-                        o_done <= 1;
-                        o_pc <= pc;
-                        o_instruction <= instruction;
-                    end
-                    else state <= FETCH_INSTRUCTION;
-                end
-                // Here we either increment to the next address OR
-                // load a branch address from the ALU
-                NEXT_ADDRESS: begin
-                    o_done <= 0;
-                    if (i_pc_load) begin
-                        pc <= i_pc;
-                    end else begin
-                        pc <= pc + WORD_WIDTH;
-                    end
-                end
-            endcase
+            current_state <= next_state;
         end
+    end
+
+    always_comb begin
+
+        case (current_state)
+        FETCH: begin
+            if (cache_done) begin
+                // Cache finished loading data from memory
+                // Is pipeline ready, then we go to NEXT stage
+                // to compute next PC address,
+                // otherwise we go to wait for pipeline
+                // first signal we are done
+                o_done = 1;
+                if (i_pipeline_ready) begin
+                    next_state = NEXT;
+                    // once i_pipeline_ready is high
+                    // o_done must be low the next clock cycle
+                    // Setting o_done to 0, will cause o_done register
+                    // to become 0 in next clock cycle.
+                    o_done = 0;
+                end
+                else next_state = WAIT;
+            end
+        end
+        WAIT: begin
+            if (i_pipeline_ready) next_state = NEXT;
+        end
+        NEXT: begin
+            // Are we branching
+            if (i_pc_load) begin
+                // we are branching
+                pc = i_ext_pc & ~1; // make sure its always an even address
+            end else begin
+                // WORD_WIDTH is defined rapid_pkg, its constant to 4 bytes
+                pc = pc + WORD_WIDTH;
+            end
+            next_state = FETCH;
+        end
+        // This also handles the HALT state
+        default: next_state = HALT;
+        endcase
 
     end
 

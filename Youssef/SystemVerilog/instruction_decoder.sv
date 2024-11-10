@@ -94,13 +94,16 @@ module instruction_decoder
                 if(i_pipeline_ready) begin
                     next_state = DECODE;
                     o_done = 0;
+                    // Receive instruction
+                    pc = i_pc;
+                    instruction = i_instruction;
+                    // Youssef (11/20/2024): We're supposed to update the local state once i_pipeline_ready is high
+                    //                       this is mentioned in the RTL design specification. This is because
+                    //                       we can only be sure the previous stage output is valid (aka has not 
+                    //                       moved to next instruction) for only 1 clock cycle after "i_pipeline_ready" goes high.
                 end
             end
             DECODE: begin 
-                // Receive instruction
-                pc = i_pc;
-                instruction = i_instruction;               
-
                 // Parse instruction
                 control_signal = decode_instruction(instruction); // Nicolas (11/10/2024): Need to be in FF block?
                 // Youssef (11/10/2024): no cause, this will be a continous assignment but the values will not be updated

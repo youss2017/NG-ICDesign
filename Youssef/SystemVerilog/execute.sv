@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 100ps
 
 //////////////////////////////////////////////////////////////////////////////////
 // Company: RAPID Team
@@ -65,100 +65,101 @@ localparam
     LBU = 100,
     LHU = 101;
 
-typedef enum {
-    LOAD_INSTRUCTION,
-    EXECUTE
-} EX_stage_t;
 
 
-module ALU
+module execute
 #(parameter XLEN = 32)
 (
     input logic                         i_clk,
     input logic                         i_reset,
     input logic                         i_pipeline_ready,
-    input control_s                     i_control_signal,
-    input logic signed  [XLEN-1:0]      i_port1_reg,
-    input logic signed  [XLEN-1:0]      i_port2_reg,
-    input logic signed  [XLEN-1:0]      i_port2_imm,
     input logic         [XLEN-1:0]      i_pc,
-    // Port 3 is used for passing the memory address stage to MEM stage
-    // OR it is used the rd data for writing to register
-    output logic        [XLEN-1:0]      o_port3_output,
-    output logic        [XLEN-1:0]      o_pc,
-    output logic                        o_branch,
+    input control_s                     i_control_signal,
+    input logic signed  [XLEN-1:0]      i_rs1,
+    input logic signed  [XLEN-1:0]      i_rs2,
+    input logic signed  [XLEN-1:0]      i_imm,
     output control_s                    o_control_signal,
-    output logic                        o_done
+    output logic                        o_pc_ext,
+    // o_rd_output is used for passing the memory address stage to MEM stage
+    // OR it is used the rd data for writing to register
+    output logic        [XLEN-1:0]      o_rd_output,
+    output logic                        o_done,
+    output EX_stage_t                   o_current_state,
+    output EX_stage_t                   o_next_state
 );
 
-    EX_stage_t state;
+    EX_stage_t current_state, next_state;
+
+    // This is only used to track state for verification
+    assign o_current_state = current_state;
+    assign o_next_state = next_state;
 
     // inputs
-    logic [XLEN-1:0] port1_reg, port2_reg, port2_imm;
+    logic [XLEN-1:0] rs1, rs2, imm, pc;
     control_s control_signal;
     // outputs
-    logic [XLEN-1:0] port3_output, pc;
-    logic branch;
+    logic [XLEN-1:0] rd_output, pc_load;
+    logic pc_load;
 
-    always_ff @(posedge i_clk) begin
+    always_ff @(posedge i_clk, posedge i_reset) begin
 
         if (i_reset) begin
-            o_done = 1;
-            state = LOAD_INSTRUCTION;
-            pc = RESET_VECTOR;
-            port1_reg = 0;
-            port2_reg = 0;
-            port2_imm = 0;
-            port3_output = 0;
-            branch = 0;
-            o_branch = 0;
-            o_port3_output = 0;
-            o_pc = 0;
+            o_done <= 1;
+            rs1 <= 0;
+            rs2 <= 0;
+            imm <= 0;
+            pc <= 0;
+            // TODO/FIXME: Configure the control_signal to do a "nop"
+            current_state <= EXECUTE;
+            // TODO/FIXME: Check RESET logic :/
         end else begin
-            case(state)
-                LOAD_INSTRUCTION: begin
-                    if (i_pipeline_ready) begin
-                        // ASK about this? is this safe?
-                        port1_reg = i_port1_reg;
-                        port2_reg = i_port2_reg;
-                        port2_imm = i_port2_imm;
-                        
-                        o_port3_output = port3_output;
-                        port3_output = 0;
-                        
-                        o_pc = pc;
-                        
-                        o_branch = branch;
-                        branch = 0;
-
-                        control_signal = i_control_signal;
-                        o_control_signal = control_signal;
-
-                        o_done = 0;
-                    end else begin
-                        o_done = 1;
-                    end
-                end
-                EXECUTE: begin
-                    // ASK about this? does alu_execute first and then the assignemnts?
-                    alu_execute();
-                    state = LOAD_INSTRUCTION;
-                    o_done = 1;
-                end
-            endcase
+            current_state <= next_state;
         end        
 
     end
 
-    task alu_execute();
+    always_comb begin
+
+        case(state)
+            WAIT: begin
+                if (i_pipeline_ready) begin
+                    o_done = 0;
+                    next_state = EXECUTE;
+                    // recv next instruction
+                end
+            end
+            EXECUTE: begin
+                alu_execute(
+                    control_signal,
+                    rs1,
+                    control_signal.alu_imm ? imm : rs2,
+                    pc,
+                    ref o_rd_output,
+                    ref o_pc_ext,
+                    ref o_pc_load
+                );
+                next_state = WAIT;
+                o_done = 1;
+                o_control_signal = control_signal;
+            end
+        endcase
+
+    end
+
+    function alu_execute(
+        /* inputs */
+            control_s control_signal,
+            logic [XLEN-1:0] port1,
+            logic [XLEN-1:0] port2,
+            logic [XLEN-1:0] pc,
+        /* outputs */
+            ref logic [XLEN-1:0] rd_output,
+            ref logic [XLEN-1:0] pc_ext,
+            ref logic pc_load
+    );
 
         // ADD/SUB/SLL/SLT/SLTU/XOR/SRL/SRA/OR/AND and Immediate version
         if (control_signal.alu_imm || control_signal.alu_reg) begin
-
-            logic signed [31:0] port2;
-            if (control_signal.alu_imm) port2 = port2_imm;
-            else if(control_signal.alu_reg) port2 = port2_reg;
-            else port2 = 'bz;
             // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
             //  ============================ IMMEDIATE LEVEL INSTRUCTIONS ============================
             // ADDI	         00100	 110 (ALU IMM)	            000	                0	     110-000-0
@@ -183,19 +184,19 @@ module ALU
             // AND	         01100	 111 (ALU REG)	            111	                0	     111-111-0
 
             case (control_signal.fcs_opcode)
-                ADD_or_SUB: port3_output = control_signal.iop ? $signed(port1_reg) - $signed(port2) : $signed(port1_reg) + $signed(port2); // ADDI
-                SLT: port3_output = $signed(port1_reg) < $signed(port2) ? 1 : 0;// SLTI
+                ADD_or_SUB: rd_output = control_signal.iop ? $signed(port1) - $signed(port2) : $signed(port1) + $signed(port2); // ADDI
+                SLT: rd_output = $signed(port1) < $signed(port2) ? 1 : 0;// SLTI
                 // For SLTIU we have to do unsigned comparison,
                 // To do this we can convert the upper bits to 0
                 // this way it will look like its unsigned
-                SLTU: port3_output = $unsigned(port1_reg) < $unsigned(port2[11:0]) ? 1 : 0 ; // SLTIU
-                XOR_: port3_output = $signed(port1_reg) ^ $signed(port2[11:0]);              // XORI
-                OR_: port3_output = $signed(port1_reg) | $signed(port2[11:0]);               // ORI
-                AND_: port3_output = $signed(port1_reg) & $signed(port2[11:0]);              // ANDI
-                SLL: port3_output = $unsigned(port1_reg) << $unsigned(port2[4:0]);           // SLLI
+                SLTU: rd_output = $unsigned(port1) < $unsigned(port2[11:0]) ? 1 : 0 ; // SLTIU
+                XOR_: rd_output = $signed(port1) ^ $signed(port2[11:0]);              // XORI
+                OR_: rd_output = $signed(port1) | $signed(port2[11:0]);               // ORI
+                AND_: rd_output = $signed(port1) & $signed(port2[11:0]);              // ANDI
+                SLL: rd_output = $unsigned(port1) << $unsigned(port2[4:0]);           // SLLI
                 SRL_or_SRA: begin 
-                    if (control_signal.iop) port3_output = $unsigned(port1_reg) >> $unsigned(port2[4:0]); // SRLI
-                    else port3_output = $unsigned(port1_reg) >>> $unsigned(port2[4:0]);                   // SRAI
+                    if (control_signal.iop) rd_output = $unsigned(port1) >> $unsigned(port2[4:0]); // SRLI
+                    else rd_output = $unsigned(port1) >>> $unsigned(port2[4:0]);                   // SRAI
                 end
             endcase
 
@@ -213,15 +214,15 @@ module ALU
             // BGEU	         11000	 010 (COND.BRANCH)	         111	            0	      100-111-0
 
             case (control_signal.fcs_opcode)
-                /* BEQ */  3'b000: branch = port1_reg == port2_reg;
-                /* BNE */  3'b001: branch = port1_reg != port2_reg;
-                /* BLT */  3'b100: branch = $signed(port1_reg) < $signed(port2_reg);
-                /* BGE */  3'b101: branch = $signed(port1_reg) >= $signed(port2_reg);
-                /* BLTU */ 3'b110: branch = $unsigned(port1_reg) < $unsigned(port2_reg);
-                /* BGEU */ 3'b111: branch = $unsigned(port1_reg) >= $unsigned(port2_reg);
+                /* BEQ */  3'b000: pc_load = port1_reg == port2_reg;
+                /* BNE */  3'b001: pc_load = port1_reg != port2_reg;
+                /* BLT */  3'b100: pc_load = $signed(port1_reg) < $signed(port2_reg);
+                /* BGE */  3'b101: pc_load = $signed(port1_reg) >= $signed(port2_reg);
+                /* BLTU */ 3'b110: pc_load = $unsigned(port1_reg) < $unsigned(port2_reg);
+                /* BGEU */ 3'b111: pc_load = $unsigned(port1_reg) >= $unsigned(port2_reg);
             endcase
             
-            pc = $signed(i_pc) + (branch ? $signed(port2_imm) : 4);
+            pc_ext = $signed(pc) + (pc_load ? $signed(port2) : 4);
             
         end
 
@@ -233,14 +234,14 @@ module ALU
     
         case (control_signal.fcs_opcode)
             /* JAL */ 3'b010: begin 
-                port3_output = i_pc + 4; // This is rd
-                pc = $signed(i_pc) + $signed(port2_imm); // This is pc
-                branch = 1;
+                rd_output = pc + 4; // This is rd
+                pc_ext = $signed(pc) + $signed(port2); // This is pc
+                pc_load = 1;
             end
             /* JALR */ 3'b011: begin 
-                port3_output = i_pc + 4; // This is rd
-                pc = ( $signed(port2_reg) + $signed(port2_imm) ) & ~32'b1 ;  // This is pc
-                branch = 1;
+                rd_output = pc + 4; // This is rd
+                pc_ext = ( $signed(port2_reg) + $signed(port2) ) & ~32'b1 ;  // This is pc
+                pc_load = 1;
             end
         endcase
 
@@ -253,11 +254,11 @@ module ALU
         // AUIPC	     00101	 000 (LOAD UPP IMM)	         000	            0	      000-000-1
         if (control_signal.iop) begin
             // LUI
-            port3_output[31:12] <= port2_imm;
-            port3_output[11:0] <= 0;
+            rd_output[31:12] = port2;
+            rd_output[11:0] = 0;
         end else 
             // AUPIC
-            port3_output = i_pc + port2_imm;
+            rd_output = i_pc + port2;
 
     end
 
@@ -272,10 +273,10 @@ module ALU
             // SB	         01000	 011 (MEM LOAD/STORE)	     000	            1	      011-000-1
             // SH	         01000	 011 (MEM LOAD/STORE)	     001	            1	      011-001-1
             // SW	         01000	 011 (MEM LOAD/STORE)	     010	            1	      011-010-1
-            port3_output = port1_reg + port2_imm;
+            rd_output = port1 + port2;
         end
 
-    endtask
+    endfunction
     
 
 endmodule

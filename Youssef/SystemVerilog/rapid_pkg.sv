@@ -53,5 +53,10 @@ package rapid_pkg;
         WAIT, 
         DECODE
     } DE_state_t;
+
+    typedef enum logic [0:0] {
+        WAIT,
+        EXECUTE
+    } EX_stage_t;
     
 endpackage

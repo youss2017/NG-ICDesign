@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 100ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: RAPID Team
 // Engineer: Youssef Samwel, Nicolas Sayed
@@ -21,8 +21,6 @@
 
 `include "rapid_pkg.sv"
 import rapid_pkg::*;
-
-
 
 module writeback_stage
 #(parameter XLEN = 32)

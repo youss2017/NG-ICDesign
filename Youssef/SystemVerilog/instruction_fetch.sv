@@ -41,7 +41,7 @@ module instruction_fetch
 
     IF_state_t current_state, next_state;
 
-    // This is only used to track
+    // This is only used to track state for verification
     assign o_current_state = current_state;
     assign o_next_state = next_state;
 

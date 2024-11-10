@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 100ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: RAPID Team
 // Engineer: Youssef Samwel, Nicolas Sayed
@@ -70,14 +70,20 @@ module instruction_decoder
     output logic [4:0]                  o_rs2,
     output logic [4:0]                  o_rd,
     output logic signed  [XLEN-1:0]     o_imm,
-    output logic                        o_done
+    output logic                        o_done,
+    output DE_state_t                   o_current_state,
+    output DE_state_t                   o_next_state
 );
 
     DE_state_t current_state, next_state;
     control_s control_signal;
     logic [XLEN-1:0] pc, instruction;
 
-    always_ff @(posedge i_clk, i_reset) begin
+    // This is only used to track state for verification
+    assign o_current_state = current_state;
+    assign o_next_state = next_state;
+
+    always_ff @(posedge i_clk, posedge i_reset) begin
 
         if (i_reset) begin
             // TODO/FIXME: Make this output a nop instruction

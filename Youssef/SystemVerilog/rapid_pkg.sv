@@ -57,6 +57,12 @@ package rapid_pkg;
     typedef enum logic [0:0] {
         WAIT,
         EXECUTE
-    } EX_stage_t;
+    } EX_state_t;
+
+    typedef enum logic [1:0] {
+        WAIT,
+        READ,
+        WRITE
+    } MEM_state_t;
     
 endpackage

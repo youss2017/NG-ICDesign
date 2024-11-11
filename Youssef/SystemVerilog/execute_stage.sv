@@ -67,7 +67,7 @@ localparam
 
 
 
-module execute
+module execute_stage
 #(parameter XLEN = 32)
 (
     input logic                         i_clk,
@@ -84,11 +84,11 @@ module execute
     // OR it is used the rd data for writing to register
     output logic        [XLEN-1:0]      o_rd_output,
     output logic                        o_done,
-    output EX_stage_t                   o_current_state,
-    output EX_stage_t                   o_next_state
+    output EX_state_t                   o_current_state,
+    output EX_state_t                   o_next_state
 );
 
-    EX_stage_t current_state, next_state;
+    EX_state_t current_state, next_state;
 
     // This is only used to track state for verification
     assign o_current_state = current_state;

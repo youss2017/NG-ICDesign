@@ -56,7 +56,7 @@ module memory_stage
 
         end else begin
             if(i_control_signal.rw ) begin
-            rw = cache_rw::CACHE_READ;
+                rw = cache_rw::CACHE_READ;
             end
 
         end

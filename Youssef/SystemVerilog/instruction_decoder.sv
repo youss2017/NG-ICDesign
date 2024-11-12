@@ -44,13 +44,13 @@
 // FIXME/TODO: The ALU does not set the overflow bit in status register
 //             if an overflow happens. fix this bro
 
-localparam upper_family = 0110111; // LUI and AUPIC
-localparam uncond_branch_family = 1101111; // JAL and JALR
-localparam cond_branch_family = 1100011; // BEQ, BNE, BLT, BGE, BLTU, BGEU
-localparam mem_load_family = 0000011; // LB, LH, LW, LBU, LHU
-localparam mem_store_family = 0100011; // SB ,SH ,SW
-localparam imm_family = 0010011; // ADDI, SLTI, SLTIU, XORI, ORI, ANDI, SLLI, SRLI, SRAI
-localparam reg_family = 0110011; // ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND
+localparam upper_family = 'b0110111; // LUI and AUPIC
+localparam uncond_branch_family = 'b1101111; // JAL and JALR
+localparam cond_branch_family = 'b1100011; // BEQ, BNE, BLT, BGE, BLTU, BGEU
+localparam mem_load_family = 'b0000011; // LB, LH, LW, LBU, LHU
+localparam mem_store_family = 'b0100011; // SB ,SH ,SW
+localparam imm_family = 'b0010011; // ADDI, SLTI, SLTIU, XORI, ORI, ANDI, SLLI, SRLI, SRAI
+localparam reg_family = 'b0110011; // ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND
 
 import rapid_pkg::*;
 
@@ -66,9 +66,6 @@ module instruction_decoder
     input  logic         [XLEN-1:0]     i_pc,
     output logic         [XLEN-1:0]     o_pc,
     output control_s                    o_control_signal,
-    output logic [4:0]                  o_rs1,
-    output logic [4:0]                  o_rs2,
-    output logic [4:0]                  o_rd,
     output logic signed  [XLEN-1:0]     o_imm,
     output logic                        o_done,
     output DE_state_t                   o_current_state,
@@ -86,8 +83,8 @@ module instruction_decoder
     always_ff @(posedge i_clk, posedge i_reset) begin
 
         if (i_reset) begin
-            // TODO/FIXME: Make this output a nop instruction
-            current_state <= DECODE; // TODO/FIXME: need to check the logic of reset later
+            control_signal <= control_s_default();
+            current_state <= DE_DECODE; // TODO/FIXME: need to check the logic of reset later
         end else begin
             current_state <= next_state;
         end
@@ -95,10 +92,10 @@ module instruction_decoder
     end
 
     always_comb begin
-        case(state) 
-            WAIT: begin 
+        case(current_state) 
+            DE_WAIT: begin 
                 if(i_pipeline_ready) begin
-                    next_state = DECODE;
+                    next_state = DE_DECODE;
                     o_done = 0;
                     // Receive instruction
                     pc = i_pc;
@@ -109,9 +106,10 @@ module instruction_decoder
                     //                       moved to next instruction) for only 1 clock cycle after "i_pipeline_ready" goes high.
                 end
             end
-            DECODE: begin 
+            DE_DECODE: begin 
+                o_done = 0;
                 // Parse instruction
-                control_signal = decode_instruction(instruction); // Nicolas (11/10/2024): Need to be in FF block?
+                decode_instruction(instruction, o_imm, o_control_signal); // Nicolas (11/10/2024): Need to be in FF block?
                 // Youssef (11/10/2024): no cause, this will be a continous assignment but the values will not be updated
                 // in the registers until the next clock cycles so synchronization is good.
                 // Nicolas: do we not not want parallel decoding ? 
@@ -120,20 +118,21 @@ module instruction_decoder
                 // Youssef (11/20/2024): This is not true, all are loaded at once, this combinational logic.
                 // Nicolas: Hmm I think ur right then, thought it was always sequential
                 // Youssef (11/20/2024): Should we keep this here? Nicolas: yeah its kinda funny =)
-                next_state = WAIT;
+                next_state = DE_WAIT;
+                o_pc = pc;
                 o_done = 1;
             end
         endcase
     end
 
-
-
-
-    function decode_instruction(logic [XLEN-1:0] instruction);
-            control_s control_signal = clear_control_signals(control_signal); 
-            logic opcode_family = instruction[6:0];
+    task decode_instruction;
+             input logic [XLEN-1:0] instruction;
+             output logic [XLEN-1:0] o_imm;
+             output control_s control_signal;
+             
+            control_signal = control_s_default();
             
-            case(opcode_family)
+            case(instruction[6:0])
     
             upper_family:               
                         begin 
@@ -156,7 +155,7 @@ module instruction_decoder
                         begin 
                                 control_signal.cond_branch = 1;
                                 // No IOP
-                                $signed({instruction[31:31], instruction[7:7], instruction[30:25], instruction[11:8], 1'b0}); 
+                                o_imm = $signed({instruction[31:31], instruction[7:7], instruction[30:25], instruction[11:8], 1'b0}); 
                                 control_signal.rs1 = instruction[19:15];
                                 control_signal.rs1_out = 1;
                                 control_signal.rs2 = instruction[24:20];
@@ -217,8 +216,7 @@ module instruction_decoder
             endcase
 
             control_signal.fcs_opcode = instruction[14:12]; 
-            return control_signal;
-    endfunction
+    endtask
 
 endmodule
 

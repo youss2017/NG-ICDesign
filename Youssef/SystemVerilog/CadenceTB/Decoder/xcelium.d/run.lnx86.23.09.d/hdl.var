@@ -1,0 +1,10 @@
+define XMSIMRC	( /home/net/cadence/installs/XCELIUM2309/tools/xcelium/files/xmsimrc, ~/.xmsimrc )
+define AMSRC	( /home/net/cadence/installs/XCELIUM2309/tools/xcelium/files/amsrc, ~/.amsrc )
+include ./hdlrun.var
+define SNAPSHOT worklib.decode_testbench:sv
+DEFINE RUNMODEDEFAULT 1
+DEFINE LIB_MAP ( + => worklib )
+define ELAB_SNAPSHOT
+define SNAPSHOT worklib.decode_testbench:sv
+define ELAB_SNAPSHOT
+define SNAPSHOT worklib.decode_testbench:sv

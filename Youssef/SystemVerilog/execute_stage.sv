@@ -79,7 +79,8 @@ module execute_stage
     input logic signed  [XLEN-1:0]      i_rs2,
     input logic signed  [XLEN-1:0]      i_imm,
     output control_s                    o_control_signal,
-    output logic                        o_pc_ext,
+    output logic        [XLEN-1:0]      o_pc_ext,
+    output logic                        o_pc_load,
     // o_rd_output is used for passing the memory address stage to MEM stage
     // OR it is used the rd data for writing to register
     output logic        [XLEN-1:0]      o_rd_output,
@@ -98,8 +99,7 @@ module execute_stage
     logic [XLEN-1:0] rs1, rs2, imm, pc;
     control_s control_signal;
     // outputs
-    logic [XLEN-1:0] rd_output, pc_load;
-    logic pc_load;
+    logic [XLEN-1:0] rd_output;
 
     always_ff @(posedge i_clk, posedge i_reset) begin
 
@@ -110,7 +110,7 @@ module execute_stage
             imm <= 0;
             pc <= 0;
             // TODO/FIXME: Configure the control_signal to do a "nop"
-            current_state <= EXECUTE;
+            current_state <= EX_EXECUTE;
             // TODO/FIXME: Check RESET logic :/
         end else begin
             current_state <= next_state;
@@ -120,25 +120,25 @@ module execute_stage
 
     always_comb begin
 
-        case(state)
-            WAIT: begin
+        case(current_state)
+            EX_WAIT: begin
                 if (i_pipeline_ready) begin
                     o_done = 0;
-                    next_state = EXECUTE;
+                    next_state = EX_EXECUTE;
                     // recv next instruction
                 end
             end
-            EXECUTE: begin
+            EX_EXECUTE: begin
                 alu_execute(
                     control_signal,
                     rs1,
                     control_signal.alu_imm ? imm : rs2,
                     pc,
-                    ref o_rd_output,
-                    ref o_pc_ext,
-                    ref o_pc_load
+                    o_rd_output,
+                    o_pc_ext,
+                    o_pc_load
                 );
-                next_state = WAIT;
+                next_state = EX_WAIT;
                 o_done = 1;
                 o_control_signal = control_signal;
             end
@@ -148,14 +148,14 @@ module execute_stage
 
     function alu_execute(
         /* inputs */
-            control_s control_signal,
-            logic [XLEN-1:0] port1,
-            logic [XLEN-1:0] port2,
-            logic [XLEN-1:0] pc,
+            input control_s control_signal,
+            input logic [XLEN-1:0] port1,
+            input logic [XLEN-1:0] port2,
+            input logic [XLEN-1:0] pc,
         /* outputs */
-            ref logic [XLEN-1:0] rd_output,
-            ref logic [XLEN-1:0] pc_ext,
-            ref logic pc_load
+            output logic [XLEN-1:0] rd_output,
+            output logic [XLEN-1:0] pc_ext,
+            output logic pc_load
     );
 
         // ADD/SUB/SLL/SLT/SLTU/XOR/SRL/SRA/OR/AND and Immediate version
@@ -214,12 +214,12 @@ module execute_stage
             // BGEU	         11000	 010 (COND.BRANCH)	         111	            0	      100-111-0
 
             case (control_signal.fcs_opcode)
-                /* BEQ */  3'b000: pc_load = port1_reg == port2_reg;
-                /* BNE */  3'b001: pc_load = port1_reg != port2_reg;
-                /* BLT */  3'b100: pc_load = $signed(port1_reg) < $signed(port2_reg);
-                /* BGE */  3'b101: pc_load = $signed(port1_reg) >= $signed(port2_reg);
-                /* BLTU */ 3'b110: pc_load = $unsigned(port1_reg) < $unsigned(port2_reg);
-                /* BGEU */ 3'b111: pc_load = $unsigned(port1_reg) >= $unsigned(port2_reg);
+                /* BEQ */  3'b000: pc_load = port1 == port2;
+                /* BNE */  3'b001: pc_load = port1 != port2;
+                /* BLT */  3'b100: pc_load = $signed(port1) < $signed(port2);
+                /* BGE */  3'b101: pc_load = $signed(port1) >= $signed(port2);
+                /* BLTU */ 3'b110: pc_load = $unsigned(port1) < $unsigned(port2);
+                /* BGEU */ 3'b111: pc_load = $unsigned(port1) >= $unsigned(port2);
             endcase
             
             pc_ext = $signed(pc) + (pc_load ? $signed(port2) : 4);
@@ -240,7 +240,7 @@ module execute_stage
             end
             /* JALR */ 3'b011: begin 
                 rd_output = pc + 4; // This is rd
-                pc_ext = ( $signed(port2_reg) + $signed(port2) ) & ~32'b1 ;  // This is pc
+                pc_ext = ( $signed(pc) + $signed(port2) ) & ~32'b1 ;  // This is pc
                 pc_load = 1;
             end
         endcase

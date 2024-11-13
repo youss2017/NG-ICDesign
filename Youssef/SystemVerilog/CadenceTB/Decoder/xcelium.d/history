@@ -1,0 +1,7 @@
+//
+// File created by:  xrun
+// Do not modify this file
+
+s1::(12Nov2024:16:13:10):( xrun -f decode.f )
+s2::(12Nov2024:16:14:52):( /home/net/cadence/installs/XCELIUM2309/tools.lnx86/bin/xrun -access -f decode.f )
+s3::(12Nov2024:16:17:39):( xrun -f decode.f -access +r -gui )

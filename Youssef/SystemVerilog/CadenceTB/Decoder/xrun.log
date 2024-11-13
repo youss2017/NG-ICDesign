@@ -1,0 +1,43 @@
+xrun: 23.09-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun	23.09-s006: Started on Nov 12, 2024 at 16:17:38 EST
+xrun
+	-f decode.f
+		rapid_pkg.sv
+		decode_testbench.sv
+		instruction_decoder.sv
+	-access +r
+	-gui
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		rapid_pkg
+		$unit_0x3032c4fe
+		decode_testbench
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.instruction_decoder:sv <0x500a7eb6>
+			streams:   7, words: 14148
+		worklib.decode_testbench:sv <0x363f9389>
+			streams:  15, words: 14323
+		worklib.rapid_pkg:sv <0x071e76e5>
+			streams:   1, words:   187
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                   Instances  Unique
+		Modules:                   2       2
+		Verilog packages:          1       1
+		Registers:                30      30
+		Scalar wires:             12       -
+		Vectored wires:            6       -
+		Always blocks:             2       2
+		Initial blocks:            1       1
+		Cont. assignments:         2       2
+		Pseudo assignments:        6       -
+		Compilation units:         1       1
+		Process Clocks:            1       1
+		Simulation timescale:  100ps
+	Writing initial simulation snapshot: worklib.decode_testbench:sv
+xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
+xmsim: *E,STRPIN: Could not initialize SimVision connection: SimVision/Verisium Debug process terminated before a connection was established.
+TOOL:	xrun	23.09-s006: Exiting on Nov 12, 2024 at 16:17:40 EST  (total: 00:00:02)

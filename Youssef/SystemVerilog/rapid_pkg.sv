@@ -1,6 +1,21 @@
 `timescale 1ns / 100ps
 
 package rapid_pkg;
+
+    localparam ADD_or_SUB = 000;
+    localparam SLT = 010;
+    localparam SLTU = 011;
+    localparam XOR_ = 100;
+    localparam OR_ = 110;
+    localparam AND_ = 111;
+    localparam SLL = 001;
+    localparam SRL_or_SRA = 101;
+    localparam LB_or_SB = 000;
+    localparam LH_or_SH = 001;
+    localparam LW_or_SW = 010;
+    localparam LBU = 100;
+    localparam LHU = 101;
+
     
     localparam RESET_VECTOR = 0;
     localparam WORD_WIDTH = 4;

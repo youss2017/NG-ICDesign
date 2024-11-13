@@ -1,4 +1,4 @@
-`timescale 1ns / 100ps
+`timescale 1ns / 1ps
 
 //////////////////////////////////////////////////////////////////////////////////
 // Company: RAPID Team
@@ -51,20 +51,19 @@
 import rapid_pkg::*;
 
 localparam 
-    ADD_or_SUB = 000,
-    SLT = 010,
-    SLTU = 011,
-    XOR_ = 100,
-    OR_ = 110,
-    AND_ = 111,
-    SLL = 001,
-    SRL_or_SRA = 101,
-    LB_or_SB = 000,
-    LH_or_SH = 001,
-    LW_or_SW = 010,
-    LBU = 100,
-    LHU = 101;
-
+    ADD_or_SUB = 3'b000,
+    SLT = 3'b010,
+    SLTU = 3'b011,
+    XOR_ = 3'b100,
+    OR_ = 3'b110,
+    AND_ = 3'b111,
+    SLL = 3'b001,
+    SRL_or_SRA = 3'b101,
+    LB_or_SB = 3'b000,
+    LH_or_SH = 3'b001,
+    LW_or_SW = 3'b010,
+    LBU = 3'b100,
+    LHU = 3'b101;
 
 
 module execute_stage
@@ -126,6 +125,11 @@ module execute_stage
                     o_done = 0;
                     next_state = EX_EXECUTE;
                     // recv next instruction
+                    control_signal = i_control_signal;
+                    pc = i_pc;
+                    rs1 = i_rs1;
+                    rs2 = i_rs2;
+                    imm = i_imm;
                 end
             end
             EX_EXECUTE: begin
@@ -146,7 +150,7 @@ module execute_stage
 
     end
 
-    function alu_execute(
+    task alu_execute(
         /* inputs */
             input control_s control_signal,
             input logic [XLEN-1:0] port1,
@@ -189,11 +193,11 @@ module execute_stage
                 // For SLTIU we have to do unsigned comparison,
                 // To do this we can convert the upper bits to 0
                 // this way it will look like its unsigned
-                SLTU: rd_output = $unsigned(port1) < $unsigned(port2[11:0]) ? 1 : 0 ; // SLTIU
-                XOR_: rd_output = $signed(port1) ^ $signed(port2[11:0]);              // XORI
-                OR_: rd_output = $signed(port1) | $signed(port2[11:0]);               // ORI
-                AND_: rd_output = $signed(port1) & $signed(port2[11:0]);              // ANDI
-                SLL: rd_output = $unsigned(port1) << $unsigned(port2[4:0]);           // SLLI
+                SLTU: rd_output = $unsigned(port1) < $unsigned(port2) ? 1 : 0 ; // SLTIU
+                XOR_: rd_output = $signed(port1) ^ $signed(port2);              // XORI
+                OR_: rd_output = $signed(port1) | $signed(port2);               // ORI
+                AND_: rd_output = $signed(port1) & $signed(port2);              // ANDI
+                SLL: rd_output = $unsigned(port1) << $unsigned(port2);           // SLLI
                 SRL_or_SRA: begin 
                     if (control_signal.iop) rd_output = $unsigned(port1) >> $unsigned(port2[4:0]); // SRLI
                     else rd_output = $unsigned(port1) >>> $unsigned(port2[4:0]);                   // SRAI
@@ -276,7 +280,7 @@ module execute_stage
             rd_output = port1 + port2;
         end
 
-    endfunction
+    endtask
     
 
 endmodule

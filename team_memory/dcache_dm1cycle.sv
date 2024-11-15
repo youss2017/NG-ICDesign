@@ -1,5 +1,5 @@
-`ifndef DCACHE_SV
-`define DCACHE_SV
+`ifndef DCACHE_DM1CYCLE_SV
+`define DCACHE_DM1CYCLE_SV
 
 
 /***********************************************************
@@ -18,7 +18,6 @@
  * This cache transfer one block/line at a time to the
  * memory controller, consequently the cache block size is
  * the same as the data bus width of the memory controller.
- * (See comment on BLOCK_SIZE below).
  *
  * CPU <==> Cache communication signals are defined in
  *   dcache_interface.sv
@@ -36,41 +35,46 @@
 `include "dcache_interface.sv"
 `include "memory_controller_interface.sv"
 
-module dcache 
-import dcache_interface::*;
+module dcache_dm1cycle
 import memory_controller_interface::*; #(
-	/*
-	* Cache parameters - change to test different profiles.
-	* BLOCK_{SIZE,COUNT} must be power of two.
-	*
-	* Defaults to 64 KiB cache, 128-logic wide memory data bus.
-	*/
-	parameter BLOCK_COUNT = 4096,  // Cache capacity in blocks
-
-	// Be advised that this implementation expects the memory controller data
-	// bus to be (DATA_LENGTH * BLOCK_SIZE == MCI_DATA_LENGTH) bits wide.
-	// If you change this, you must update the memory_controller_interface too.
-	localparam BLOCK_SIZE = 4,  // Cache block (a.k.a line) size in words
-
-	// Derive field lengths
-	localparam OFFSET_BITS = $clog2(DATA_LENGTH / 8 * BLOCK_SIZE),
-	localparam INDEX_BITS = $clog2(BLOCK_COUNT),
-	localparam TAG_BITS = ADDR_LENGTH - INDEX_BITS - OFFSET_BITS,
-	// Derive field bounds
-	localparam OFFSET_LSB = 0,
-	localparam OFFSET_MSB = OFFSET_LSB + OFFSET_BITS - 1,
-	localparam INDEX_LSB = OFFSET_MSB + 1,
-	localparam INDEX_MSB = INDEX_LSB + INDEX_BITS - 1,
-	localparam TAG_LSB = INDEX_MSB + 1,
-	localparam TAG_MSB = TAG_LSB + TAG_BITS - 1
+	// Cache capacity in blocks (must be power of two; default 64 KiB)
+	parameter BLOCK_COUNT = 4096
 ) (
 	input logic clk, input logic rst,
-	input cpu_req_t cpu_req,   // cpu -> cache
-	input mci_response_t mem_res,   // mem -> cache
-	output cpu_res_t cpu_res,  // cache -> cpu
-	output mci_request_t mem_req   // cache -> mem
+	dcache_interface.secondary iface, // cpu <-> cache
+	input mci_response_t mem_res,    // mem -> cache
+	output mci_request_t mem_req     // cache -> mem
 );
-	
+
+	// SystemVerilog forbids hierarchical names (names with ".") in
+	// type references - so we must typedef them first if we can to
+	// initialize parameters of these types later.
+	typedef iface.word_t word_t;
+	typedef iface.addr_t addr_t;
+
+/***********************************************************
+ * Local parameters
+ **********************************************************/
+
+
+	localparam DATA_LENGTH = iface.DATA_LENGTH;
+	localparam ADDR_LENGTH = iface.ADDR_LENGTH;
+
+  	// Cache block size (aka line size) in words
+	localparam BLOCK_SIZE = MCI_DATA_LENGTH / DATA_LENGTH;
+
+	// Derive field lengths
+	localparam OFFSET_BITS = $clog2(DATA_LENGTH / 8 * BLOCK_SIZE);
+	localparam INDEX_BITS = $clog2(BLOCK_COUNT);
+	localparam TAG_BITS = ADDR_LENGTH - INDEX_BITS - OFFSET_BITS;
+	// Derive field bounds
+	localparam OFFSET_LSB = 0;
+	localparam OFFSET_MSB = OFFSET_LSB + OFFSET_BITS - 1;
+	localparam INDEX_LSB = OFFSET_MSB + 1;
+	localparam INDEX_MSB = INDEX_LSB + INDEX_BITS - 1;
+	localparam TAG_LSB = INDEX_MSB + 1;
+	localparam TAG_MSB = TAG_LSB + TAG_BITS - 1;
+
 
 /***********************************************************
  * Data structures for data and tag cache memories
@@ -120,7 +124,7 @@ import memory_controller_interface::*; #(
 	);
 		cache_tag_t mem[BLOCK_COUNT];
 		assign tag_read = mem[tag_req.index];
-		always_ff @(posedge clk or posedge rst) begin
+		always_ff @(posedge clk) begin
 			if(rst) begin
 				for(int i = 0; i < BLOCK_COUNT; i++)
 					mem[i] <= '0;
@@ -141,7 +145,7 @@ import memory_controller_interface::*; #(
 	typedef enum logic [1:0] {
 		IDLE, COMPARE, ALLOCATE, WRITE_BACK
 	} state_t;
-	state_t state, nstate;
+	state_t state, state_nxt;
 
 	// interface to tag memory
 	cache_tag_t tag_read;
@@ -153,13 +157,11 @@ import memory_controller_interface::*; #(
 	cache_data_t data_write;
 	cache_req_t data_req;
 
-	// intermediate variables
-	cpu_res_t n_cpu_res;
-	mci_request_t n_mem_req;
-
-	// connect output ports
-	assign cpu_res = n_cpu_res;
-	assign mem_req = n_mem_req;
+	// input signals latched at the time valid was asserted
+	addr_t addr;
+	addr_t wmask;
+	addr_t wdata;
+	addr_t wr;
 
 	// connect data/tag cache memories
 	cache_data cdata (
@@ -186,33 +188,36 @@ import memory_controller_interface::*; #(
 		localparam XMSB = $clog2(BLOCK_SIZE) - 1 + XLSB;
 		cache_data_t masked; // intermediate variable
 
-		// default signal values
-		nstate = state;
+		// no state change by default
+		state_nxt = state;
 
 		tag_write = {'0, '0, '0};
 
 		tag_req.we = '0;
-		tag_req.index = cpu_req.addr[INDEX_MSB:INDEX_LSB];
+		tag_req.index = iface.addr[INDEX_MSB:INDEX_LSB];
 
 		data_req.we = '0;
-		data_req.index = cpu_req.addr[INDEX_MSB:INDEX_LSB];
+		data_req.index = iface.addr[INDEX_MSB:INDEX_LSB];
 
-		n_cpu_res = {'0, '0};
-		n_mem_req.addr = cpu_req.addr;
-		n_mem_req.data = data_read;
-		n_mem_req.rw = '0;
-		n_mem_req.valid = '0;
+		iface.rdata = '0;
+		iface.ready = '0;
+		iface.rvalid = '0;
+
+		mem_req.addr = iface.addr;
+		mem_req.data = data_read;
+		mem_req.rw = '0;
+		mem_req.valid = '0;
 
 		// modify correct word within block based on address, masks out the
 		// bits that must be kept intact in case of byte or half-word access
-		masked = (cpu_req.data & cpu_req.wmask);
+		masked = (wdata & wmask);
 		data_write = data_read;
 		for(int i = 0; i < BLOCK_SIZE; i++) begin
-			if(i == cpu_req.addr[XMSB:XLSB]) begin
+			if(i == addr) begin
 				data_write[DATA_LENGTH*i +: DATA_LENGTH] =
-					(data_read[DATA_LENGTH*i +: DATA_LENGTH] & ~cpu_req.wmask) | masked;
+					(data_read[DATA_LENGTH*i +: DATA_LENGTH] & ~wmask) | masked;
 				// read out correct word from cache to cpu
-				n_cpu_res.data = data_read[DATA_LENGTH*i +: DATA_LENGTH];
+				iface.rdata = data_read[DATA_LENGTH*i +: DATA_LENGTH];
 			end
 		end
 
@@ -222,20 +227,20 @@ import memory_controller_interface::*; #(
 		 *
 		 *  // (warning: the following assumes block size is 128-bits)
 		 *  // modify correct word (32-bit) based on address
-		 *  masked = (cpu_req.data & cpu_req.wmask);
+		 *  masked = (data & wmask);
 		 *  data_write = data_read;
-		 *  unique case(cpu_req.addr[3:2])
-		 *  2'b00: data_write[31:0]   = (data_read[31:0]   & ~cpu_req.wmask) | masked;
-		 *  2'b01: data_write[63:32]  = (data_read[63:32]  & ~cpu_req.wmask) | masked;
-		 *  2'b10: data_write[95:64]  = (data_read[95:64]  & ~cpu_req.wmask) | masked;
-		 *  2'b11: data_write[127:96] = (data_read[127:96] & ~cpu_req.wmask) | masked;
+		 *  unique case(addr[3:2])
+		 *  2'b00: data_write[31:0]   = (data_read[31:0]   & ~wmask) | masked;
+		 *  2'b01: data_write[63:32]  = (data_read[63:32]  & ~wmask) | masked;
+		 *  2'b10: data_write[95:64]  = (data_read[95:64]  & ~wmask) | masked;
+		 *  2'b11: data_write[127:96] = (data_read[127:96] & ~wmask) | masked;
 		 *  endcase
 		 *  // read out correct word(32-bit) from cache (to CPU)
-		 *  unique case(cpu_req.addr[3:2])
-		 *  2'b00: n_cpu_res.data = data_read[31:0];
-		 *  2'b01: n_cpu_res.data = data_read[63:32];
-		 *  2'b10: n_cpu_res.data = data_read[95:64];
-		 *  2'b11: n_cpu_res.data = data_read[127:96];
+		 *  unique case(addr[3:2])
+		 *  2'b00: iface.rdata = data_read[31:0];
+		 *  2'b01: iface.rdata = data_read[63:32];
+		 *  2'b10: iface.rdata = data_read[95:64];
+		 *  2'b11: iface.rdata = data_read[127:96];
 		 *  endcase
 		 */
 
@@ -247,16 +252,21 @@ import memory_controller_interface::*; #(
 
 		case(state)
 		IDLE: begin
-			if(cpu_req.valid) begin
-				nstate = COMPARE;
+			// TODO: maybe we could ommit the IDLE stage, making COMPARE the default state,
+			//       which would allow for back-to-back cache accesses??
+			// signal that we're really to accept a request
+			iface.ready = '1;
+			iface.rvalid = '1;
+			if(iface.valid) begin
+				state_nxt = COMPARE;
 			end
 		end
 
 		COMPARE: begin
 			// cache hit
-			if(cpu_req.addr[TAG_MSB:TAG_LSB] == tag_read.tag && tag_read.valid) begin
+			if(addr[TAG_MSB:TAG_LSB] == tag_read.tag && tag_read.valid) begin
 				// hit on write
-				if(cpu_req.rw) begin
+				if(rw) begin
 					// write to caches on next clock edge
 					tag_req.we = '1;
 					data_req.we = '1;
@@ -266,28 +276,29 @@ import memory_controller_interface::*; #(
 					tag_write.valid = '1;
 					tag_write.dirty = '1;
 				end
-				n_cpu_res.ready = '1;
-				nstate = IDLE;
+				// signal that the outgoing data is good
+				iface.rvalid = '1;
+				state_nxt = IDLE;
 			end
 			// cache miss
 			else begin
 				// write new tags on next clock edge
 				tag_req.we = '1;
 				tag_write.valid = '1;
-				tag_write.tag = cpu_req.addr[TAG_MSB:TAG_LSB];
-				tag_write.dirty = cpu_req.rw;
+				tag_write.tag = addr[TAG_MSB:TAG_LSB];
+				tag_write.dirty = rw;
 
 				// issue memory read command
-				n_mem_req.valid = '1;
+				mem_req.valid = '1;
 				// compulsory or capacity miss on clean block
 				if(tag_read.valid == '0 || tag_read.dirty == '0)
-					nstate = ALLOCATE;
+					state_nxt = ALLOCATE;
 				// miss on dirty block
 				else begin
 					// issue memory write command (instead of read)
-					n_mem_req.addr = {tag_read.tag, cpu_req.addr[TAG_LSB-1:0]};
-					n_mem_req.rw = '1;
-					nstate = WRITE_BACK;
+					mem_req.addr = {tag_read.tag, addr[TAG_LSB-1:0]};
+					mem_req.rw = '1;
+					state_nxt = WRITE_BACK;
 				end
 			end
 		end
@@ -299,25 +310,39 @@ import memory_controller_interface::*; #(
 				data_req.we = '1;
 				data_write = mem_res.data;
 				// return to COMPARE as it has to common read/write logic
-				nstate = COMPARE;
+				state_nxt = COMPARE;
 			end
 		
 		WRITE_BACK: begin
 			// wait for memory controller to finish writing dirty block
 			if(mem_res.ready) begin
 				// issue memory read command
-				n_mem_req.valid = '1;
-				nstate = ALLOCATE;
+				mem_req.valid = '1;
+				state_nxt = ALLOCATE;
 			end
 		end
 		endcase
 	end
 
-	always_ff @(posedge clk or posedge rst) begin
-		if(rst)	state <= IDLE;
-		else state <= nstate;
+	always_ff @(posedge clk) begin
+		if(rst)	begin
+			state <= IDLE;
+			addr <= 'bx;
+			wdata <= 'bx;
+			wmask <= 'bx;
+			wr <= '0;
+		end else begin
+			state <= state_nxt;
+			if(iface.valid && iface.ready) begin
+				// latch values from the incoming request
+				addr <= iface.addr;
+				wdata <= iface.wdata;
+				wmask <= iface.wmask;
+				wr <= iface.wr;
+			end
+		end
 	end
 
 endmodule
 
-`endif // DCACHE_SV
+`endif // DCACHE_DM1CYCLE_SV

@@ -141,7 +141,6 @@ module execute_stage
                 o_control_signal = control_signal;
             end
             
-            EX_RESET:
             default: begin
                 control_signal = control_s_default();
                 next_state = EX_EXECUTE;

@@ -23,7 +23,6 @@
 import rapid_pkg::*;
 
 module memory_stage
-#(parameter XLEN = 32)
 (
     input  logic                i_clk,
     input  logic                i_reset,

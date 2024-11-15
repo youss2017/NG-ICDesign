@@ -2,23 +2,11 @@
 
 package rapid_pkg;
 
-    localparam ADD_or_SUB = 000;
-    localparam SLT = 010;
-    localparam SLTU = 011;
-    localparam XOR_ = 100;
-    localparam OR_ = 110;
-    localparam AND_ = 111;
-    localparam SLL = 001;
-    localparam SRL_or_SRA = 101;
-    localparam LB_or_SB = 000;
-    localparam LH_or_SH = 001;
-    localparam LW_or_SW = 010;
-    localparam LBU = 100;
-    localparam LHU = 101;
+    parameter int XLEN = 32;
 
-    
-    localparam RESET_VECTOR = 0;
-    localparam WORD_WIDTH = 4;
+    parameter bit [XLEN-1:0] RESET_VECTOR = 0;
+    parameter bit [XLEN-1:0] WORD_WIDTH = 4;
+    parameter bit [XLEN-1:0] NOP_INSTRUCTION = 32'h00000033; // add x0, x0, x0
 
     // A struct which contains controls signals
     typedef struct {
@@ -69,12 +57,14 @@ package rapid_pkg;
         IF_HALT
     } IF_state_t;
 
-    typedef enum logic [0:0] { 
+    typedef enum logic [1:0] {
+        DE_RESET,
         DE_WAIT, 
         DE_DECODE
     } DE_state_t;
 
-    typedef enum logic [0:0] {
+    typedef enum logic [1:0] {
+        EX_RESET,
         EX_WAIT,
         EX_EXECUTE
     } EX_state_t;

@@ -22,7 +22,6 @@
 import rapid_pkg::*;
 
 module instruction_fetch
-#(parameter XLEN = 32)
 (
     input  logic                 i_clk,
     input  logic                 i_reset,

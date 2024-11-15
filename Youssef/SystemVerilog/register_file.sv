@@ -21,20 +21,20 @@
 
 
 module register_file(
-    input wire i_clk,
-    input wire i_reset,
-    input wire i_rs1_out,
-    input wire i_rs2_out,
-    input wire i_rd_in,
-    input wire [4:0] i_rs1,
-    input wire [4:0] i_rs2, 
-    input wire [4:0] i_rd,
-    input wire [31:0] i_rd_data,
-    output logic [31:0] o_rs1_data,
-    output logic [31:0] o_rs2_data
+    input logic i_clk,
+    input logic i_reset,
+    input logic i_rs1_out,
+    input logic i_rs2_out,
+    input logic i_rd_in,
+    input logic [4:0] i_rs1,
+    input logic [4:0] i_rs2, 
+    input logic [4:0] i_rd,
+    input logic [31:0] i_rd_data,
+    output logic [XLEN-1:0] o_rs1_data,
+    output logic [XLEN-1:0] o_rs2_data
 );
 
-    reg [31:0] register_file [0:31];
+    reg [XLEN-1:0] register_file [0:31];
 
     always_ff @(posedge i_clk) begin
         

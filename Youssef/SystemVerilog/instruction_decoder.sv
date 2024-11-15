@@ -55,9 +55,6 @@ localparam reg_family = 'b0110011; // ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, O
 import rapid_pkg::*;
 
 module instruction_decoder
-#(
-    parameter XLEN = 32
-)
 (
     input  logic                        i_clk,
     input  logic                        i_reset,
@@ -82,12 +79,10 @@ module instruction_decoder
 
     always_ff @(posedge i_clk, posedge i_reset) begin
 
-        if (i_reset) begin
-            control_signal <= control_s_default();
-            current_state <= DE_DECODE; // TODO/FIXME: need to check the logic of reset later
-        end else begin
+        if (i_reset)
+            current_state <= DE_RESET;
+        else 
             current_state <= next_state;
-        end
 
     end
 
@@ -121,6 +116,12 @@ module instruction_decoder
                 next_state = DE_WAIT;
                 o_pc = pc;
                 o_done = 1;
+            end
+            // This handles the RESET signal or any unknown state
+            default: begin
+                instruction = NOP_INSTRUCTION;
+                pc = RESET_VECTOR; // This does not matter because the nop insturction does not depend on pc value
+                next_state = DE_DECODE;
             end
         endcase
     end

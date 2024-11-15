@@ -51,8 +51,7 @@ module instruction_fetch
 
     always_ff @(posedge i_clk, posedge i_reset) begin
         if (i_reset) begin
-            current_state <= FETCH;
-            pc <= RESET_VECTOR;
+            current_state <= IF_RESET;
         end else begin
             current_state <= next_state;
         end
@@ -61,7 +60,12 @@ module instruction_fetch
     always_comb begin
 
         case (current_state)
-            FETCH: begin
+            IF_RESET: begin
+                pc = RESET_VECTOR;
+                next_state = IF_FETCH;
+            end
+
+            IF_FETCH: begin
                 if (cache_done) begin
                     // Cache finished loading data from memory
                     // Is pipeline ready, then we go to NEXT stage
@@ -80,13 +84,13 @@ module instruction_fetch
                     else next_state = WAIT;
                 end
             end
-            WAIT: begin
+            IF_WAIT: begin
                 if (i_pipeline_ready) begin
                     next_state = NEXT;
                     o_done = 0;
                 end
             end
-            NEXT: begin
+            IF_NEXT: begin
                 // Are we branching
                 if (i_pc_load) begin
                     // we are branching
@@ -97,6 +101,7 @@ module instruction_fetch
                 end
                 next_state = FETCH;
             end
+
             // This also handles the HALT state
             default: next_state = HALT;
         endcase

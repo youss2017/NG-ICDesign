@@ -102,14 +102,7 @@ module execute_stage
     always_ff @(posedge i_clk, posedge i_reset) begin
 
         if (i_reset) begin
-            o_done <= 1;
-            rs1 <= 0;
-            rs2 <= 0;
-            imm <= 0;
-            pc <= 0;
-            // TODO/FIXME: Configure the control_signal to do a "nop"
-            current_state <= EX_EXECUTE;
-            // TODO/FIXME: Check RESET logic :/
+            current_state <= EX_RESET;
         end else begin
             current_state <= next_state;
         end        
@@ -144,6 +137,12 @@ module execute_stage
                 next_state = EX_WAIT;
                 o_done = 1;
                 o_control_signal = control_signal;
+            end
+            
+            EX_RESET:
+            default: begin
+                control_signal = control_s_default();
+                next_state = EX_EXECUTE;
             end
         endcase
 
@@ -203,6 +202,8 @@ module execute_stage
                 end
             endcase
 
+            pc_ext = 0;
+            pc_load = 0;
         end
         
         // BEQ/BNE/BLT/BGE/BLTU/BEGU
@@ -262,7 +263,8 @@ module execute_stage
         end else 
             // AUPIC
             rd_output = i_pc + port2;
-
+        pc_ext = 0;
+        pc_load = 0;
     end
 
     // Memory Operations
@@ -278,7 +280,8 @@ module execute_stage
             // SW	         01000	 011 (MEM LOAD/STORE)	     010	            1	      011-010-1
             rd_output = port1 + port2;
         end
-
+        pc_ext = 0;
+        pc_load = 0;
     endtask
     
 

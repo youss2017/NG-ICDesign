@@ -70,7 +70,7 @@ module instruction_decoder
 );
 
     DE_state_t current_state, next_state;
-    control_s control_signal;
+   
     logic [XLEN-1:0] pc, instruction;
 
     // This is only used to track state for verification

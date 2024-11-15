@@ -21,15 +21,14 @@
 
 
 module register_file(
-    input logic i_clk,
-    input logic i_reset,
-    input logic i_rs1_out,
-    input logic i_rs2_out,
-    input logic i_rd_in,
-    input logic [4:0] i_rs1,
-    input logic [4:0] i_rs2, 
-    input logic [4:0] i_rd,
-    input logic [31:0] i_rd_data,
+    input  logic            i_clk,
+    input  logic            i_reset,
+    input  logic            i_rs1_out,
+    input  logic            i_rs2_out,
+    input  logic [4:0]      i_rs1,
+    input  logic [4:0]      i_rs2, 
+    input  logic [4:0]      i_rd,
+    input  logic [31:0]     i_rd_data,
     output logic [XLEN-1:0] o_rs1_data,
     output logic [XLEN-1:0] o_rs2_data
 );
@@ -53,7 +52,7 @@ module register_file(
             else 
                 o_rs2_data = 'bz;
             
-            if (i_rd_in && i_rd > 0) 
+            if (i_rd > 0) 
                 register_file[i_rd] = i_rd_data;
                 
         end        

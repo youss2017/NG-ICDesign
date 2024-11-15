@@ -26,9 +26,12 @@ module memory_stage
 (
     input  logic                i_clk,
     input  logic                i_reset,
+    input  logic                i_pipeline_ready,
     input  control_s            i_control_signal,
     input  logic [XLEN-1:0]     i_address_or_data,
+    input  logic [XLEN-1:0]     i_rs2,
     output control_s            o_control_signal,
+    output logic [XLEN-1:0]     o_wb_data,
     output logic                o_done
 );
     cache_rw rw;
@@ -37,7 +40,6 @@ module memory_stage
     logic cache_done;
 
     // Need to determine RW 
-
     d_cache cache(
         .i_clk(i_clk),
         .i_address(i_address_or_data),
@@ -52,9 +54,8 @@ module memory_stage
         
         if (i_reset) begin
 
-
         end else begin
-            if(i_control_signal.rw ) begin
+            if(i_control_signal.rw) begin
                 rw = cache_rw::CACHE_READ;
             end
 

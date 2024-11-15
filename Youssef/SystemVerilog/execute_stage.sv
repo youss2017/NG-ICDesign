@@ -79,6 +79,7 @@ module execute_stage
     output control_s                    o_control_signal,
     output logic        [XLEN-1:0]      o_pc_ext,
     output logic                        o_pc_load,
+    output logic        [XLEN-1:0]      o_rs2,
     // o_rd_output is used for passing the memory address stage to MEM stage
     // OR it is used the rd data for writing to register
     output logic        [XLEN-1:0]      o_rd_output,
@@ -135,6 +136,7 @@ module execute_stage
                     o_pc_load
                 );
                 next_state = EX_WAIT;
+                o_rs2 = rs2;
                 o_done = 1;
                 o_control_signal = control_signal;
             end

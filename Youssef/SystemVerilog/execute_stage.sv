@@ -50,22 +50,6 @@
 // Determine what can be nonblocking without timing issues
 import rapid_pkg::*;
 
-localparam 
-    ADD_or_SUB = 3'b000,
-    SLT = 3'b010,
-    SLTU = 3'b011,
-    XOR_ = 3'b100,
-    OR_ = 3'b110,
-    AND_ = 3'b111,
-    SLL = 3'b001,
-    SRL_or_SRA = 3'b101,
-    LB_or_SB = 3'b000,
-    LH_or_SH = 3'b001,
-    LW_or_SW = 3'b010,
-    LBU = 3'b100,
-    LHU = 3'b101;
-
-
 module execute_stage
 (
     input logic                         i_clk,
@@ -130,6 +114,7 @@ module execute_stage
                     control_signal,
                     rs1,
                     control_signal.alu_imm ? imm : rs2,
+                    imm,
                     pc,
                     o_rd_output,
                     o_pc_ext,
@@ -154,6 +139,7 @@ module execute_stage
             input control_s control_signal,
             input logic [XLEN-1:0] port1,
             input logic [XLEN-1:0] port2,
+            input logic [XLEN-1:0] imm,
             input logic [XLEN-1:0] pc,
         /* outputs */
             output logic [XLEN-1:0] rd_output,
@@ -227,28 +213,19 @@ module execute_stage
                 /* BGEU */ 3'b111: pc_load = $unsigned(port1) >= $unsigned(port2);
             endcase
             
-            pc_ext = $signed(pc) + (pc_load ? $signed(port2) : 4);
-            
+            pc_ext = pc_load ? ($signed(pc) + $signed(imm)) : RESET_VECTOR;
         end
 
     // JAL/JALR
     else if (control_signal.uncond_branch) begin
         // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
-        // JAL	         11011	 001 (UNCOND.BRANCH)	     000	            0	      010-000-0
-        // JALR	         11001	 001 (UNCOND.BRANCH)	     000	            0	      011-000-0
-    
-        case (control_signal.fcs_opcode)
-            /* JAL */ 3'b010: begin 
-                rd_output = pc + 4; // This is rd
-                pc_ext = $signed(pc) + $signed(port2); // This is pc
-                pc_load = 1;
-            end
-            /* JALR */ 3'b011: begin 
-                rd_output = pc + 4; // This is rd
-                pc_ext = ( $signed(pc) + $signed(port2) ) & ~32'b1 ;  // This is pc
-                pc_load = 1;
-            end
-        endcase
+        // JAL	         11011	 001 (UNCOND.BRANCH)	     000	            0	      000-000-0
+        // JALR	         11001	 001 (UNCOND.BRANCH)	     000	            1	      000-000-1
+   
+        /* JAL */ 
+       rd_output = pc + 4; // This is rd
+       pc_ext = $signed(control_signal.iop ? port1 /* JALR */ : pc /* JAL */) + $signed(imm); // This is pc
+       pc_load = 1;
 
     end
 
@@ -259,11 +236,11 @@ module execute_stage
         // AUIPC	     00101	 000 (LOAD UPP IMM)	         000	            0	      000-000-1
         if (control_signal.iop) begin
             // LUI
-            rd_output[31:12] = port2;
+            rd_output[31:12] = imm;
             rd_output[11:0] = 0;
         end else 
             // AUPIC
-            rd_output = i_pc + port2;
+            rd_output = $signed(pc) + $signed(imm);
         pc_ext = 0;
         pc_load = 0;
     end
@@ -280,9 +257,10 @@ module execute_stage
             // SH	         01000	 011 (MEM LOAD/STORE)	     001	            1	      011-001-1
             // SW	         01000	 011 (MEM LOAD/STORE)	     010	            1	      011-010-1
             rd_output = port1 + port2;
-        end
-        pc_ext = 0;
-        pc_load = 0;
+            pc_ext = 0;
+            pc_load = 0;
+    end
+
     endtask
     
 

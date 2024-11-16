@@ -25,18 +25,17 @@ import rapid_pkg::*;
 module i_cache
 #(parameter XLEN = 32)
 (
-    input logic                     i_clk,
-    input logic [XLEN-1:0]          i_address,
-    output logic signed [XLEN-1:0]  o_data,
-    output logic                    o_done
+    input  logic                     i_clk,
+    input  logic                     i_reset,
+    input  logic        [XLEN-1:0]   i_address,
+    output logic signed [XLEN-1:0]   o_data,
+    output logic                     o_done
 );
-
 
     // stub for actual logic
     always @(posedge i_clk) begin : cache_interface
         o_done <= 0;
         o_data <= 0;
     end
-
 
 endmodule

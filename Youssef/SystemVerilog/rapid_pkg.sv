@@ -1,9 +1,12 @@
 `timescale 1ns / 100ps
 
 package rapid_pkg;
-    
-    localparam RESET_VECTOR = 0;
-    localparam WORD_WIDTH = 4;
+
+    parameter int XLEN = 32;
+
+    parameter bit [XLEN-1:0] RESET_VECTOR = 0;
+    parameter bit [XLEN-1:0] WORD_WIDTH = 4;
+    parameter bit [XLEN-1:0] NOP_INSTRUCTION = 32'h00000033; // add x0, x0, x0
 
     // A struct which contains controls signals
     typedef struct {
@@ -47,19 +50,22 @@ package rapid_pkg;
     typedef enum { CACHE_NOP, QUARTER_WORD, HALF_WORD, WORD } cache_operation;
 
     // Internal Stage states
-    typedef enum logic [1:0] {
+    typedef enum logic [2:0] {
+        IF_RESET,
         IF_FETCH,
         IF_WAIT,
         IF_NEXT,
         IF_HALT
     } IF_state_t;
 
-    typedef enum logic [0:0] { 
+    typedef enum logic [1:0] {
+        DE_RESET,
         DE_WAIT, 
         DE_DECODE
     } DE_state_t;
 
-    typedef enum logic [0:0] {
+    typedef enum logic [1:0] {
+        EX_RESET,
         EX_WAIT,
         EX_EXECUTE
     } EX_state_t;
@@ -69,5 +75,10 @@ package rapid_pkg;
         MEM_READ,
         MEM_WRITE
     } MEM_state_t;
+
+    typedef enum logic [0:0] {
+        WB_WAIT,
+        WB_WRITE
+    } WB_state_t;
     
 endpackage

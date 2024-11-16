@@ -1,4 +1,4 @@
-`timescale 1ns / 100ps
+`timescale 1ns / 1ps
 
 //////////////////////////////////////////////////////////////////////////////////
 // Company: RAPID Team
@@ -51,24 +51,22 @@
 import rapid_pkg::*;
 
 localparam 
-    ADD_or_SUB = 000,
-    SLT = 010,
-    SLTU = 011,
-    XOR_ = 100,
-    OR_ = 110,
-    AND_ = 111,
-    SLL = 001,
-    SRL_or_SRA = 101,
-    LB_or_SB = 000,
-    LH_or_SH = 001,
-    LW_or_SW = 010,
-    LBU = 100,
-    LHU = 101;
-
+    ADD_or_SUB = 3'b000,
+    SLT = 3'b010,
+    SLTU = 3'b011,
+    XOR_ = 3'b100,
+    OR_ = 3'b110,
+    AND_ = 3'b111,
+    SLL = 3'b001,
+    SRL_or_SRA = 3'b101,
+    LB_or_SB = 3'b000,
+    LH_or_SH = 3'b001,
+    LW_or_SW = 3'b010,
+    LBU = 3'b100,
+    LHU = 3'b101;
 
 
 module execute_stage
-#(parameter XLEN = 32)
 (
     input logic                         i_clk,
     input logic                         i_reset,
@@ -81,6 +79,7 @@ module execute_stage
     output control_s                    o_control_signal,
     output logic        [XLEN-1:0]      o_pc_ext,
     output logic                        o_pc_load,
+    output logic        [XLEN-1:0]      o_rs2,
     // o_rd_output is used for passing the memory address stage to MEM stage
     // OR it is used the rd data for writing to register
     output logic        [XLEN-1:0]      o_rd_output,
@@ -104,14 +103,7 @@ module execute_stage
     always_ff @(posedge i_clk, posedge i_reset) begin
 
         if (i_reset) begin
-            o_done <= 1;
-            rs1 <= 0;
-            rs2 <= 0;
-            imm <= 0;
-            pc <= 0;
-            // TODO/FIXME: Configure the control_signal to do a "nop"
-            current_state <= EX_EXECUTE;
-            // TODO/FIXME: Check RESET logic :/
+            current_state <= EX_RESET;
         end else begin
             current_state <= next_state;
         end        
@@ -126,6 +118,11 @@ module execute_stage
                     o_done = 0;
                     next_state = EX_EXECUTE;
                     // recv next instruction
+                    control_signal = i_control_signal;
+                    pc = i_pc;
+                    rs1 = i_rs1;
+                    rs2 = i_rs2;
+                    imm = i_imm;
                 end
             end
             EX_EXECUTE: begin
@@ -139,14 +136,20 @@ module execute_stage
                     o_pc_load
                 );
                 next_state = EX_WAIT;
+                o_rs2 = rs2;
                 o_done = 1;
                 o_control_signal = control_signal;
+            end
+            
+            default: begin
+                control_signal = control_s_default();
+                next_state = EX_EXECUTE;
             end
         endcase
 
     end
 
-    function alu_execute(
+    task alu_execute(
         /* inputs */
             input control_s control_signal,
             input logic [XLEN-1:0] port1,
@@ -189,17 +192,19 @@ module execute_stage
                 // For SLTIU we have to do unsigned comparison,
                 // To do this we can convert the upper bits to 0
                 // this way it will look like its unsigned
-                SLTU: rd_output = $unsigned(port1) < $unsigned(port2[11:0]) ? 1 : 0 ; // SLTIU
-                XOR_: rd_output = $signed(port1) ^ $signed(port2[11:0]);              // XORI
-                OR_: rd_output = $signed(port1) | $signed(port2[11:0]);               // ORI
-                AND_: rd_output = $signed(port1) & $signed(port2[11:0]);              // ANDI
-                SLL: rd_output = $unsigned(port1) << $unsigned(port2[4:0]);           // SLLI
+                SLTU: rd_output = $unsigned(port1) < $unsigned(port2) ? 1 : 0 ; // SLTIU
+                XOR_: rd_output = $signed(port1) ^ $signed(port2);              // XORI
+                OR_: rd_output = $signed(port1) | $signed(port2);               // ORI
+                AND_: rd_output = $signed(port1) & $signed(port2);              // ANDI
+                SLL: rd_output = $unsigned(port1) << $unsigned(port2);           // SLLI
                 SRL_or_SRA: begin 
                     if (control_signal.iop) rd_output = $unsigned(port1) >> $unsigned(port2[4:0]); // SRLI
                     else rd_output = $unsigned(port1) >>> $unsigned(port2[4:0]);                   // SRAI
                 end
             endcase
 
+            pc_ext = 0;
+            pc_load = 0;
         end
         
         // BEQ/BNE/BLT/BGE/BLTU/BEGU
@@ -259,7 +264,8 @@ module execute_stage
         end else 
             // AUPIC
             rd_output = i_pc + port2;
-
+        pc_ext = 0;
+        pc_load = 0;
     end
 
     // Memory Operations
@@ -275,8 +281,9 @@ module execute_stage
             // SW	         01000	 011 (MEM LOAD/STORE)	     010	            1	      011-010-1
             rd_output = port1 + port2;
         end
-
-    endfunction
+        pc_ext = 0;
+        pc_load = 0;
+    endtask
     
 
 endmodule

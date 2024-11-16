@@ -132,7 +132,7 @@ module execute_bench();
             $display("[%s] %s, Time: %0t | RD: %0d | PC_ext = %0d, PC_load: %0d",
                     (passed_pc && passed_rd) ? "PASS" : "FAIL", 
                     name,
-                    $time, $signed(i_rd), o_pc_ext, o_pc_load);
+                    $time, $signed(o_rd_output), o_pc_ext, o_pc_load);
         end else begin
             bit passed_pc, passed_rd;
             passed_pc = ( ((i_rs1 + i_imm)&~1) == o_pc_ext) && o_pc_load;
@@ -141,9 +141,10 @@ module execute_bench();
             $display("[%s] %s, Time: %0t | RS1: %0d | RD: %0d | PC_ext = %0d, PC_load: %0d",
                     (passed_pc && passed_rd) ? "PASS" : "FAIL", 
                     name,
-                    $time, $signed(i_rs1), $signed(i_rd), o_pc_ext, o_pc_load);
+                    $time, $signed(i_rs1), $signed(o_rd_output), o_pc_ext, o_pc_load);
         end
     endtask
+
     
    
     initial begin
@@ -294,6 +295,98 @@ module execute_bench();
         i_rs1 = 800;
         push_instruction();
         print_jump_results("JALR", 0);       
+
+        /**************** SIGNED LOAD INSTRUCTIONS ****************/
+        // LB
+        i_pc = 200;
+        i_control_signal = control_s_default();
+        i_control_signal.mem = 1;
+        i_control_signal.fcs_opcode = LB_or_SB;
+        i_rs1 = 2500;
+        i_imm = 500;
+
+        push_instruction();
+        print_results("LB", $signed(i_rs1 + i_imm) );
+
+        // LH
+        i_pc = 200;
+        i_control_signal = control_s_default();
+        i_control_signal.mem = 1;
+        i_control_signal.fcs_opcode = LH_or_SH;
+        i_rs1 = 2500;
+        i_imm = 500;
+
+        push_instruction();
+        print_results("LH", $signed( i_rs1 + i_imm));
+
+        // LW
+        i_pc = 200;
+        i_control_signal = control_s_default();
+        i_control_signal.mem = 1;
+        i_control_signal.fcs_opcode = LW_or_SW;
+        i_rs1 = 2500;
+        i_imm = 500;
+
+                /**************** UNSIGNED LOAD INSTRUCTIONS ****************/
+        // LBU
+        i_pc = 200;
+        i_control_signal = control_s_default();
+        i_control_signal.mem = 1;
+        i_control_signal.fcs_opcode = LBU;
+        i_rs1 = 2500;
+        i_imm = 500;
+
+        push_instruction();
+        print_results("LBU", $signed( i_rs1 + i_imm));
+
+        // LHU
+        i_pc = 200;
+        i_control_signal = control_s_default();
+        i_control_signal.mem = 1;
+        i_control_signal.fcs_opcode = LHU;
+        i_rs1 = 2500;
+        i_imm = 500;
+
+        push_instruction();
+        print_results("LHU", $signed( i_rs1 + i_imm));
+
+
+                        /**************** STORE INSTRUCTIONS ****************/
+        // SB
+        i_pc = 200;
+        i_control_signal = control_s_default();
+        i_control_signal.fcs_opcode = LB_or_SB;
+        i_control_signal.mem = 1;
+        i_control_signal.iop = 1;
+        i_rs1 = 2500;
+        i_imm = 500;
+
+        push_instruction();
+        print_results("SB", $signed( i_rs1 + i_imm));
+
+        // SH
+        i_pc = 200;
+        i_control_signal = control_s_default();
+        i_control_signal.mem = 1;
+        i_control_signal.iop = 1;
+        i_control_signal.fcs_opcode = LH_or_SH;
+        i_rs1 = 2500;
+        i_imm = 500;
+
+        push_instruction();
+        print_results("SH", $signed( i_rs1 + i_imm));
+
+        // SW
+        i_pc = 200;
+        i_control_signal = control_s_default();
+        i_control_signal.mem = 1;
+        i_control_signal.iop = 1;
+        i_control_signal.fcs_opcode = LW_or_SW;
+        i_rs1 = 2500;
+        i_imm = 500;
+
+        push_instruction();
+        print_results("SW", $signed( i_rs1 + i_imm));
 
 
         $display("Time: %0t | Testbench completed.", $time);

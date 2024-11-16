@@ -256,7 +256,7 @@ module execute_stage
             // SB	         01000	 011 (MEM LOAD/STORE)	     000	            1	      011-000-1
             // SH	         01000	 011 (MEM LOAD/STORE)	     001	            1	      011-001-1
             // SW	         01000	 011 (MEM LOAD/STORE)	     010	            1	      011-010-1
-            rd_output = port1 + port2;
+            rd_output = port1 + imm;
             pc_ext = 0;
             pc_load = 0;
     end

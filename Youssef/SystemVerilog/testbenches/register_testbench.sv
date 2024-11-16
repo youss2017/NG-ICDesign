@@ -61,18 +61,38 @@ module register_testbench();
         // test rs1 writes
         i_rs1_out = 0;
         i_rs2_out = 0;
-        ird_ = 0;
+        i_rd = 0;
         for(int i = 0; i < 31; i++) begin
             // write
+            i_rs1_out = 0;
             i_rd = i;
-            i_rd_data = i;
+            i_rd_data = $random();
             do_clock(1);
             $display("Writing to register %d with value %d.", i_rd, i_rd_data);
             // read the next clock cycle
             i_rd = 0;
             i_rs1_out = 1;
+            i_rs1 = i;
             do_clock(1);
             $display("[%s] Reading value: %d", (o_rs1_data == i_rd_data) ? "PASS" : "FAIL", o_rs1_data);
+        end
+        
+        i_rs1_out = 0;
+        i_rs2_out = 0;
+        i_rd = 0;
+        for(int i = 0; i < 31; i++) begin
+            // write
+            i_rs2_out = 0;
+            i_rd = i;
+            i_rd_data = $random();
+            do_clock(1);
+            $display("Writing to register %d with value %d.", i_rd, i_rd_data);
+            // read the next clock cycle
+            i_rd = 0;
+            i_rs2_out = 1;
+            i_rs2 = i;
+            do_clock(1);
+            $display("[%s] Reading value: %d", (o_rs2_data == i_rd_data) ? "PASS" : "FAIL", o_rs1_data);
         end
 
         $display("Time: %0t | Testbench completed.", $time);

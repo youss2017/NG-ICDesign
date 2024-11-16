@@ -112,7 +112,6 @@ def parse_verilog(file_path, parsed_files=None, used_definitions=None):
                         used_definitions['typedefs'].add(data_type_name)
                         signals.append({
                             'Name': signal_name,
-                            'Category': 'Port',
                             'Type': data_type,
                             'Direction': direction,
                             'Bit Width': bit_width,

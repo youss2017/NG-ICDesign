@@ -19,7 +19,7 @@
 // -- change to choose dcache implementation --
 `include "dcache_dm1cycle.sv"
 
-module cpu_memory_unit
+module cpu_ifetch_unit
 import memory_controller_interface::*;
 import rapid_pkg::RESET_VECTOR; (
 	// Globals

@@ -36,11 +36,11 @@ module register_file(
 
     reg [XLEN-1:0] register_file [0:31];
 
-    always_ff @(posedge i_clk) begin
+    always_comb begin
         
         if(i_reset) begin
             for(int i = 0; i < 32; i++) begin
-                register_file[i] <= 0;
+                register_file[i] = 0;
             end
         end else begin
             if (i_rs1_out) 

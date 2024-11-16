@@ -45,6 +45,7 @@ module instruction_fetch
     assign o_next_state = next_state;
 
     i_cache cache(.i_clk(i_clk),
+                  .i_valid_address(valid_address),
                   .i_address(pc),
                   .o_data(o_instruction),
                   .o_done(cache_done));
@@ -74,14 +75,15 @@ module instruction_fetch
                     // first signal we are done
                     o_done = 1;
                     if (i_pipeline_ready) begin
-                        next_state = NEXT;
+                        next_state = IF_NEXT;
                         // once i_pipeline_ready is high
                         // o_done must be low the next clock cycle
                         // Setting o_done to 0, will cause o_done register
                         // to become 0 in next clock cycle.
+                        // Hello pablo - Nic
                         o_done = 0;
                     end
-                    else next_state = WAIT;
+                    else next_state = IF_WAIT;
                 end
             end
             IF_WAIT: begin
@@ -99,7 +101,7 @@ module instruction_fetch
                     // WORD_WIDTH is defined rapid_pkg, its constant to 4 bytes
                     pc = pc + WORD_WIDTH;
                 end
-                next_state = FETCH;
+                next_state = IF_FETCH;
             end
 
             // This also handles the HALT state

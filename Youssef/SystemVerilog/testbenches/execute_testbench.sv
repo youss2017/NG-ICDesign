@@ -117,10 +117,18 @@ module execute_bench();
             passed = ((i_pc + i_imm) == o_pc_ext) && o_pc_load;
         else
             passed = !o_pc_load;
-        $display("[%s] %s, Time: %0t | RS1: %0d | RS2: %0d, PC_ext = %0d, PC_load: %0d",
-                passed ? "PASS" : "FAIL", 
-                name,
-                $time, $signed(i_rs1), $signed(i_rs2),   o_pc_ext, o_pc_load);
+        if( ~( (i_control_signal.fcs_opcode == BLTU) | (i_control_signal.fcs_opcode == BGEU) ) ) 
+        begin
+            $display("[%s] %s, Time: %0t | RS1: %0d | RS2: %0d, PC_ext = %0d, PC_load: %0d",
+                    passed ? "PASS" : "FAIL", 
+                    name,
+                    $time, $signed(i_rs1), $signed(i_rs2), o_pc_ext, o_pc_load);
+        end else begin
+                    $display("[%s] %s, Time: %0t | RS1: %0d | RS2: %0d, PC_ext = %0d, PC_load: %0d",
+                    passed ? "PASS" : "FAIL", 
+                    name,
+                    $time, i_rs1, i_rs2, o_pc_ext, o_pc_load);
+        end
     endtask
 
     task print_jump_results(input string name, input bit pc_load);
@@ -194,6 +202,11 @@ module execute_bench();
             push_instruction();
             print_results($sformatf("AND[%s]", suffix), i_rs1 & port2);
 
+            // configure OR instruction
+            set_alu_fcs(OR_, 0);
+            push_instruction();
+            print_results($sformatf("OR[%s]", suffix), i_rs1 | port2);
+
             // configure SLL instruction
             set_alu_fcs(SLL, 0);
             push_instruction();
@@ -203,7 +216,19 @@ module execute_bench();
             set_alu_fcs(SLT, 0);
             push_instruction();
             print_results($sformatf("SLT[%s]", suffix), i_rs1 < port2);
+
+            // configure SRL
+            set_alu_fcs(SRL_or_SRA, 0);
+            push_instruction();
+            print_results($sformatf("SRL[%s]", suffix), i_rs1 >> port2);
+
+            // configure SRA
+            set_alu_fcs(SRL_or_SRA, 1);
+            push_instruction();
+            print_results($sformatf("SRA[%s]", suffix), i_rs1 >>> port2);
+
         end
+
         /**************** ALU REG/IMM ****************/
 
         /**************** CONDITIONAL BRANCHING ****************/
@@ -216,11 +241,11 @@ module execute_bench();
         i_rs2 = 11;
         i_imm = 800;
         push_instruction();
-        print_branch_results("BEQ", 0);
+        print_branch_results("BEQ: False", 0);
         i_rs1 = 10;
         i_rs2 = 10;
         push_instruction();
-        print_branch_results("BEQ", 1);
+        print_branch_results("BEQ: True", 1);
         
         // BNE
         i_pc = 200;
@@ -233,11 +258,11 @@ module execute_bench();
         i_rs2 = 11;
         i_imm = 800;
         push_instruction();
-        print_branch_results("BNE", 1);
+        print_branch_results("BNE: True", 1);
         i_rs1 = 10;
         i_rs2 = 10;
         push_instruction();
-        print_branch_results("BNE", 0);
+        print_branch_results("BNE: False", 0);
         
         // BLT
         i_pc = 200;
@@ -250,11 +275,11 @@ module execute_bench();
         i_rs2 = 11;
         i_imm = 800;
         push_instruction();
-        print_branch_results("BLT", 1);
+        print_branch_results("BLT: True", 1);
         i_rs1 = 11;
         i_rs2 = 10;
         push_instruction();
-        print_branch_results("BLT", 0);
+        print_branch_results("BLT: False", 0);
         
         // BGE
         i_pc = 200;
@@ -267,14 +292,47 @@ module execute_bench();
         i_rs2 = 11;
         i_imm = 800;
         push_instruction();
-        print_branch_results("BGE", 0);
+        print_branch_results("BGE: False", 0);
         i_rs1 = 11;
         i_rs2 = 10;
         push_instruction();
-        print_branch_results("BGE", 1);
+        print_branch_results("BGE: True", 1);
         
         // BLTU
-        // BEGU
+        i_pc = 200;
+        i_control_signal = control_s_default();
+        i_control_signal.fcs_opcode = BLTU;
+        i_control_signal.cond_branch = 1;
+        // BLTU
+        i_control_signal.fcs_opcode = BLTU;
+        i_control_signal.cond_branch = 1;
+        i_rs1 = 10;
+        i_rs2 = 11;
+        i_imm = 800;
+        push_instruction();
+        print_branch_results("BLTU: True", 1);
+        i_rs1 = 11;
+        i_rs2 = 10;
+        push_instruction();
+        print_branch_results("BLTU: False", 0);
+
+        // BGEU
+        i_pc = 200;
+        i_control_signal = control_s_default();
+        i_control_signal.fcs_opcode = BGEU;
+        i_control_signal.cond_branch = 1;
+        // BGEU
+        i_control_signal.fcs_opcode = BGEU;
+        i_control_signal.cond_branch = 1;
+        i_rs1 = 10;
+        i_rs2 = 11;
+        i_imm = 800;
+        push_instruction();
+        print_branch_results("BLTU: False", 0);
+        i_rs1 = 11;
+        i_rs2 = 10;
+        push_instruction();
+        print_branch_results("BLTU: True", 1);
 
         /**************** UNCONDITIONAL BRANCHING ****************/
         // JAL
@@ -327,7 +385,10 @@ module execute_bench();
         i_rs1 = 2500;
         i_imm = 500;
 
-                /**************** UNSIGNED LOAD INSTRUCTIONS ****************/
+        push_instruction();
+        print_results("LW", $signed( i_rs1 + i_imm));
+
+        /**************** UNSIGNED LOAD INSTRUCTIONS ****************/
         // LBU
         i_pc = 200;
         i_control_signal = control_s_default();
@@ -351,7 +412,7 @@ module execute_bench();
         print_results("LHU", $signed( i_rs1 + i_imm));
 
 
-                        /**************** STORE INSTRUCTIONS ****************/
+        /**************** STORE INSTRUCTIONS ****************/
         // SB
         i_pc = 200;
         i_control_signal = control_s_default();
@@ -384,9 +445,28 @@ module execute_bench();
         i_control_signal.fcs_opcode = LW_or_SW;
         i_rs1 = 2500;
         i_imm = 500;
+        print_results("SW", $signed( i_rs1 + i_imm));
+
+        /**************** U-Type INSTRUCTIONS ****************/
+        // LUI
+        i_pc = 200;
+        i_control_signal = control_s_default();
+        i_control_signal.load_upper_imm = 1;
+        i_control_signal.iop = 1;
+        i_imm = 500;
 
         push_instruction();
-        print_results("SW", $signed( i_rs1 + i_imm));
+        print_results("LUI", i_imm << 12);
+
+        // AUIPC
+        i_pc = 200;
+        i_control_signal = control_s_default();
+        i_control_signal.load_upper_imm = 1;
+        i_control_signal.iop = 0;
+        i_imm = 500;
+
+        push_instruction();
+        print_results("AUIPC",  $signed(i_pc) + $signed(i_imm << 12));
 
 
         $display("Time: %0t | Testbench completed.", $time);

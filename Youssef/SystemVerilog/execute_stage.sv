@@ -83,6 +83,7 @@ module execute_stage
     control_s control_signal;
     // outputs
     logic [XLEN-1:0] rd_output;
+    logic done;
 
     always_ff @(posedge i_clk, posedge i_reset) begin
 
@@ -90,6 +91,7 @@ module execute_stage
             current_state <= EX_RESET;
         end else begin
             current_state <= next_state;
+            o_done <= done;
         end        
 
     end
@@ -99,7 +101,7 @@ module execute_stage
         case(current_state)
             EX_WAIT: begin
                 if (i_pipeline_ready) begin
-                    o_done = 0;
+                    done = 0;
                     next_state = EX_EXECUTE;
                     // recv next instruction
                     control_signal = i_control_signal;
@@ -108,6 +110,7 @@ module execute_stage
                     rs2 = i_rs2;
                     imm = i_imm;
                 end
+                else done = 1;
             end
             EX_EXECUTE: begin
                 alu_execute(
@@ -122,7 +125,6 @@ module execute_stage
                 );
                 next_state = EX_WAIT;
                 o_rs2 = rs2;
-                o_done = 1;
                 o_control_signal = control_signal;
             end
             
@@ -184,8 +186,8 @@ module execute_stage
                 AND_: rd_output = $signed(port1) & $signed(port2);              // ANDI
                 SLL: rd_output = $unsigned(port1) << $unsigned(port2);           // SLLI
                 SRL_or_SRA: begin 
-                    if (control_signal.iop) rd_output = $unsigned(port1) >> $unsigned(port2[4:0]); // SRLI
-                    else rd_output = $unsigned(port1) >>> $unsigned(port2[4:0]);                   // SRAI
+                    if (!control_signal.iop) rd_output = $unsigned(port1) >> $unsigned(port2); // SRLI
+                    else rd_output = $unsigned(port1) >>> $unsigned(port2);                   // SRAI
                 end
             endcase
 
@@ -240,7 +242,7 @@ module execute_stage
             rd_output[11:0] = 0;
         end else 
             // AUPIC
-            rd_output = $signed(pc) + $signed(imm);
+            rd_output = $signed(pc) + ($signed(imm) << 12);
         pc_ext = 0;
         pc_load = 0;
     end

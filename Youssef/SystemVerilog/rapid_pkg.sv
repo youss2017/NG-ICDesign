@@ -21,6 +21,8 @@ package rapid_pkg;
     parameter bit [2:0] LW_or_SW = 3'b010;
     parameter bit [2:0] LBU = 3'b100;
     parameter bit [2:0] LHU = 3'b101;
+    parameter bit [2:0] BLTU = 3'b110;
+    parameter bit [2:0] BGEU = 3'b111;
 
     // A struct which contains controls signals
     typedef struct {

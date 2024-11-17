@@ -1,0 +1,266 @@
+
+*** Running vivado
+    with args -log instruction_decoder.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source instruction_decoder.tcl
+
+
+
+****** Vivado v2024.1 (64-bit)
+  **** SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+  **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+  **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+  **** Start of session at: Fri Nov 15 19:32:18 2024
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source instruction_decoder.tcl -notrace
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 507.051 ; gain = 199.512
+Command: synth_design -top instruction_decoder -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 33472
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 965.969 ; gain = 454.980
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-11067] parameter 'XLEN' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:5]
+WARNING: [Synth 8-11067] parameter 'RESET_VECTOR' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:7]
+WARNING: [Synth 8-11067] parameter 'WORD_WIDTH' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:8]
+WARNING: [Synth 8-11067] parameter 'NOP_INSTRUCTION' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:9]
+WARNING: [Synth 8-11067] parameter 'ADD_or_SUB' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:11]
+WARNING: [Synth 8-11067] parameter 'SLT' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:12]
+WARNING: [Synth 8-11067] parameter 'SLTU' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:13]
+WARNING: [Synth 8-11067] parameter 'XOR_' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:14]
+WARNING: [Synth 8-11067] parameter 'OR_' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:15]
+WARNING: [Synth 8-11067] parameter 'AND_' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:16]
+WARNING: [Synth 8-11067] parameter 'SLL' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:17]
+WARNING: [Synth 8-11067] parameter 'SRL_or_SRA' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:18]
+WARNING: [Synth 8-11067] parameter 'LB_or_SB' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:19]
+WARNING: [Synth 8-11067] parameter 'LH_or_SH' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:20]
+WARNING: [Synth 8-11067] parameter 'LW_or_SW' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:21]
+WARNING: [Synth 8-11067] parameter 'LBU' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:22]
+WARNING: [Synth 8-11067] parameter 'LHU' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'instruction_decoder' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:57]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:95]
+INFO: [Synth 8-6155] done synthesizing module 'instruction_decoder' (0#1) [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:57]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[load_upper_imm] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[uncond_branch] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[cond_branch] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[mem] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[alu_imm] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[alu_reg] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[iop] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[rs1_out] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[rs2_out] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[fcs_opcode] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[rs1] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[rs2] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element control_signal_reg[rd] was removed.  [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:86]
+WARNING: [Synth 8-87] always_comb on 'next_state_reg' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:98]
+WARNING: [Synth 8-87] always_comb on 'o_done_reg' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:99]
+WARNING: [Synth 8-87] always_comb on 'pc_reg' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:101]
+WARNING: [Synth 8-87] always_comb on 'instruction_reg' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:102]
+WARNING: [Synth 8-87] always_comb on 'o_imm_reg' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[load_upper_imm]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[uncond_branch]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[cond_branch]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[mem]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[alu_imm]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[alu_reg]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[iop]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[rs1_out]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[rs2_out]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[fcs_opcode]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[rs1]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[rs2]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_control_signal_reg[rd]' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-87] always_comb on 'o_pc_reg' did not result in combinational logic [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:122]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1075.398 ; gain = 564.410
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1075.398 ; gain = 564.410
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1075.398 ; gain = 564.410
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+WARNING: [Synth 8-327] inferring latch for variable 'o_pc_reg' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:122]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[load_upper_imm]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[uncond_branch]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[cond_branch]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[mem]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[alu_imm]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[alu_reg]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[iop]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[rs1_out]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[rs2_out]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[fcs_opcode]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[rs1]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[rs2]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_control_signal_reg[rd]' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_imm_reg' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:112]
+WARNING: [Synth 8-327] inferring latch for variable 'o_done_reg' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:99]
+WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:98]
+WARNING: [Synth 8-327] inferring latch for variable 'pc_reg' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:101]
+WARNING: [Synth 8-327] inferring latch for variable 'instruction_reg' [C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv:102]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1075.398 ; gain = 564.410
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
++---Muxes : 
+	   3 Input    2 Bit        Muxes := 1     
+	   3 Input    1 Bit        Muxes := 5     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+INFO: [Device 21-9227] Part: xc7a35tcpg236-1 does not have CEAM library.
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1267.074 ; gain = 756.086
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1267.074 ; gain = 756.086
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1267.074 ; gain = 756.086
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1267.074 ; gain = 756.086
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1267.074 ; gain = 756.086
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1267.074 ; gain = 756.086
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1267.074 ; gain = 756.086
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1267.074 ; gain = 756.086
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1267.074 ; gain = 756.086
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |BUFG |     4|
+|2     |LUT1 |     1|
+|3     |LUT2 |     3|
+|4     |LUT3 |     5|
+|5     |LUT4 |    18|
+|6     |LUT5 |    21|
+|7     |LUT6 |    23|
+|8     |FDCE |     1|
+|9     |FDPE |     1|
+|10    |LD   |   157|
+|11    |IBUF |    67|
+|12    |OBUF |    96|
++------+-----+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |   397|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1267.074 ; gain = 756.086
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 69 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1267.074 ; gain = 756.086
+Synthesis Optimization Complete : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1267.074 ; gain = 756.086
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1271.945 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 157 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1369.207 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 157 instances were transformed.
+  LD => LDCE: 157 instances
+
+Synth Design complete | Checksum: cfcd4c2d
+INFO: [Common 17-83] Releasing license: Synthesis
+16 Infos, 69 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1369.207 ; gain = 862.156
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1369.207 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/youssef/Desktop/DigitalSystems/RV32I_CPU/RV32I_CPU.runs/synth_1/instruction_decoder.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file instruction_decoder_utilization_synth.rpt -pb instruction_decoder_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Nov 15 19:32:47 2024...

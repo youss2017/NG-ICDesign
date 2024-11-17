@@ -68,7 +68,7 @@ module rapid_cpu_testbench();
         .i_reset(i_reset),
         .mem_req(mem_req),
         .mem_res(mem_res),
-        .i_pipeline_ready(pipeline_ready),
+        .i_pipeline_ready(pipeline_ready | i_reset),
         .o_done(if_done_o),
         .i_ext_pc_load(ex_pc_load_o),
         .i_ext_pc(ex_pc_ext_o),
@@ -76,6 +76,7 @@ module rapid_cpu_testbench();
         .o_instruction(if_instruction_o)
 	);
     /***** IF Stage *****/
+
 
     /***** DE Stage *****/
     logic [XLEN-1:0] de_pc_o, de_imm_o;
@@ -146,8 +147,9 @@ module rapid_cpu_testbench();
     initial begin
         i_clk = 0;
         reset_cpu();
+        push_instruction(); // clear NOP instruction
+
         
-        push_instruction(); // clear NOP instruction        
         
         $stop; 
 

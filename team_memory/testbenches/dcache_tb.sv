@@ -2,25 +2,30 @@
 
 
 /*
- * Non-comprenhensive testbench. For internal testing only.
+ * Non-comprenhensive testbench for the different cache
+ * implementations, rather than the CPU units. For internal testing only.
  */
 
 
 // -- change me to change data cache implementation --
 // i hate vivado - i hate vivado - i hate vivado - i hate vivado
-`include "D:/Dev/projects/xilinx/dcache_prototype/dcache_prototype.srcs/sources_1/imports/dcacheprototypev4/dcache_dm1cycle.sv"
+`include "D:/Dev/projects/systemverilog/senior_design_current/dcache_dm1cycle.sv"
 
 
-import dcache_interface::*;
 import memory_controller_interface::*;
 
+/*
+ * Fake Upstream Main Memory
+ * Cache transfers whole blocks (128 bits = 16 bytes) at a
+ * time to/from the main memory.
+ */
 module fake_memory (
     input bit clk,
-    mci_request_t mem_req,
-    mci_response_t mem_res
+    input mci_request_t mem_req,
+    output mci_response_t mem_res
 );
-    parameter int MEM_DELAY = 3;
-    parameter MEM_SIZE = 65536; // in words, 1MiB
+    parameter int MEM_DELAY = 5; // simulated mem delay
+    parameter MEM_SIZE = 65536; // in blocks, 1MiB
 
     bit [127:0] M[MEM_SIZE];
     initial for(int i = 0; i < MEM_SIZE; i++)
@@ -30,6 +35,7 @@ module fake_memory (
 
     always @(posedge clk) begin
         mem_res.ready <= '0;
+
         if(mem_req.valid) begin
             if(mem_req.rw) begin
                 $display("[FAKEMEM] WriteReq block [%x] <= [%x]", mem_req.addr, mem_req.data);
@@ -46,56 +52,65 @@ endmodule
 module dcache_tb();
 
     logic clk; logic rst;
-	cpu_req_t cpu_req;       // cpu -> cache
-	mci_response_t mem_res;  // mem -> cache
-	cpu_res_t cpu_res;       // cache -> cpu
-	mci_request_t mem_req;   // cache -> mem
 
-    task sim_read(addr_t addr);
-        @(posedge clk) begin
-            $display("%t: sim sends cache read req. [%x]", $time, addr);
-            cpu_req <= {'0, '0, '0, '0, '0};
-            cpu_req.rw <= '0;
-            cpu_req.addr <= addr;
-            cpu_req.valid <= '1;
+	mci_response_t mem_res;  // mem -> cache
+	mci_request_t mem_req;   // cache -> mem
+    dcache_interface #(.DATA_LENGTH(32), .ADDR_LENGTH(32)) iface();  // cache <=> cpu
+    
+    typedef iface.addr_t addr_t;
+    typedef iface.word_t word_t;
+
+    dcache_dm1cycle uut(.*);
+    fake_memory fmem(.*);
+
+    task sim_read(addr_t addr, output word_t result);
+        forever @(posedge clk) begin
+            iface.rw <= '0;
+            iface.wdata <= 'bx;
+            iface.wmask <= 'bx;
+            iface.addr <= addr;
+            iface.valid <= '1;
+
+            // in the ready-valid protocol, we know the cache has received
+            // our request when we see that both (ready asserted by the cache,
+            // and valid asserted by us) are high on a clock edge
+            if(iface.valid && iface.ready) begin
+                $display("%t: Simulator sent cache read request [%x]", $time, addr);
+                iface.valid <= '0;
+                break;
+            end
         end
 
-        forever begin
-            @(posedge clk) begin
-                cpu_req.valid <= 'b0;
-                if(cpu_res.ready) begin
-                    $display("%t: sim gets data [%x]", $time, cpu_res.data);
-                    break;
-                end
+        forever @(posedge clk) begin
+            if(iface.rvalid) begin
+                $display("%t: Simulator gets data [%x]", $time, iface.rdata);
+                result <= iface.rdata;
+                break;
             end
         end
     endtask
 
     task sim_write(addr_t addr, word_t data, word_t wmask);
-        @(posedge clk) begin
-            $display("%t: sim sends cache write req. [%x] <= [%x/%x]", $time, addr, data, wmask);
-            cpu_req <= {'0, '0, '0, '0, '0};
-            cpu_req.rw <= '1;
-            cpu_req.addr <= addr;
-            cpu_req.valid <= '1;
-            cpu_req.data <= data;
-            cpu_req.wmask <= wmask;
-        end
+        forever @(posedge clk) begin
+            iface.rw <= '1;
+            iface.wdata <= data;
+            iface.wmask <= wmask;
+            iface.addr <= addr;
+            iface.valid <= '1;
 
-        forever begin
-            @(posedge clk) begin
-                cpu_req.valid <= '0;
-                if(cpu_res.ready) break;
+            if(iface.valid && iface.ready) begin
+                $display("%t: Simulator sent cache write request [%x] <= [%x/%x]", $time, addr, data, wmask);
+                iface.valid <= '0;
+                break;
             end
-        end 
+        end
     endtask
-
-    dcache uut(.*);
-    fake_memory fmem(.*);
     
     always #1 clk =~ clk;
 
     initial begin
+        word_t discard;
+    
         $display(" -- Simulation Started -- ");
         clk = '0;
         @(posedge clk) rst <= '1;
@@ -109,20 +124,21 @@ module dcache_tb();
         sim_read('h0010);
         */
 
-        sim_read('h08000);
+        sim_read('h08000, discard);
         sim_write('h08000, 'hdeadbeef, 'hffffffff);
-        sim_read('h08000);
-        sim_read('h18000);
-        sim_read('h08000);
+        sim_read('h08000, discard);
+        sim_read('h18000, discard);
+        sim_read('h08000, discard);
         
         sim_write('h1230,'hba5eba11, 'hffffffff);
-        sim_read('h1230);
+        sim_read('h1230, discard);
         sim_write('h1230, 'h5e5e5e5e,'hffff0000);
-        sim_read('hf1230);
-        sim_read('h1230);
+        sim_read('hf1230, discard);
+        sim_read('h1230, discard);
 
         $display("%t: -- End of work -- ", $time);
         $display(" -- Simulation Ended -- ");
+        $finish();
     end
 
 endmodule

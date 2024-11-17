@@ -261,6 +261,10 @@ module execute_stage
             rd_output = port1 + imm;
             pc_ext = 0;
             pc_load = 0;
+    end else begin
+        pc_ext = 0;
+        pc_load = 0;
+        rd_output = 0;
     end
 
     endtask

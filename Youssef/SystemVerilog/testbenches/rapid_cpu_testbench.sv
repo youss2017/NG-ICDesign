@@ -32,11 +32,14 @@ module rapid_cpu_testbench();
     logic [XLEN-1:0] if_instruction_o, if_pc_o;
 
     task reset_cpu();
-        #5 i_clk <= ~i_clk; i_reset <= 1;
-        #5 i_clk <= ~i_clk; i_reset <= 0;
+        //#5 i_clk <= ~i_clk; i_reset <= 1;
+        //#5 i_clk <= ~i_clk; i_reset <= 0;
         $display("Time: %0t | Reset signal applied, i_reset = %0b", $time, i_reset);
+        @(posedge i_clk) i_reset <= 1;
+        @(posedge i_clk) i_reset <= 0;
     endtask
     
+    /*
     task do_clock(input int cycles);
         for(int i = 0; i < cycles; i++) begin
             #5 i_clk = ~i_clk;
@@ -45,10 +48,11 @@ module rapid_cpu_testbench();
             //          $time, i, o_current_state.name(), o_next_state.name(), o_done, i_pc, i_rs1, i_rs2, o_rd_output, o_control_signal);
         end
     endtask
-
+    */
+   always #1 i_clk = ~i_clk;
     task push_instruction();
         do 
-            do_clock(1);
+            ; //do_clock(1);
         while(!pipeline_ready);
         // i_pipeline_ready = 1;
         // //$display("Time: %0t | Pushing instruction, i_pipeline_ready = %0b", $time, i_pipeline_ready);
@@ -68,7 +72,7 @@ module rapid_cpu_testbench();
         .i_reset(i_reset),
         .mem_req(mem_req),
         .mem_res(mem_res),
-        .i_pipeline_ready(pipeline_ready),
+        .i_pipeline_ready(pipeline_ready | i_reset),
         .o_done(if_done_o),
         .i_ext_pc_load(ex_pc_load_o),
         .i_ext_pc(ex_pc_ext_o),
@@ -76,6 +80,7 @@ module rapid_cpu_testbench();
         .o_instruction(if_instruction_o)
 	);
     /***** IF Stage *****/
+
 
     /***** DE Stage *****/
     logic [XLEN-1:0] de_pc_o, de_imm_o;
@@ -122,7 +127,7 @@ module rapid_cpu_testbench();
     logic ex_pc_load_o, ex_rs2_o;
     control_s ex_control_o;
     EX_state_t o_ex_current_state, o_ex_next_state;
-
+    
     execute_stage ex_stage(
         .i_clk(i_clk),
         .i_reset(i_reset),
@@ -146,10 +151,11 @@ module rapid_cpu_testbench();
     initial begin
         i_clk = 0;
         reset_cpu();
+        // push_instruction(); // clear NOP instruction
+
         
-        push_instruction(); // clear NOP instruction        
         
-        $stop; 
+        // $stop; 
 
     end
 

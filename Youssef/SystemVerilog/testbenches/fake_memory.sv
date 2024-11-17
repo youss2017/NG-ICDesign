@@ -14,9 +14,9 @@ module fake_memory (
     initial for(int i = 0; i < MEM_SIZE; i++) begin
 		// initialize mem to somewhat recognizable values (data = addr)
 		M[i][31:0]   = 32'h03200093;
-        M[i][63:32]  = 32'h000000b7;
-        M[i][95:64]  = 32'h06200113;
-        M[i][127:96] = 32'h4020d1b3;
+        M[i][63:32]  = 32'h03c00113;
+        M[i][95:64]  = 32'h04600193;
+        M[i][127:96] = 32'h05000213;
 /*        M[i][31:0]   = (i << 2) + 0;
 		M[i][63:32]  = (i << 2) + 1;
 		M[i][95:64]  = (i << 2) + 2;

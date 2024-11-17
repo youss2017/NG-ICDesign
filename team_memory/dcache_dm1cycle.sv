@@ -57,8 +57,8 @@ import memory_controller_interface::*; #(
  **********************************************************/
 
 
-	localparam DATA_LENGTH = iface.DATA_LENGTH;
-	localparam ADDR_LENGTH = iface.ADDR_LENGTH;
+	localparam DATA_LENGTH = iface.DATA_LENGTH; // word size in bits (must be multiple of 8)
+	localparam ADDR_LENGTH = iface.ADDR_LENGTH; // address bus width
 
   	// Cache block size (aka line size) in words
 	localparam BLOCK_SIZE = MCI_DATA_LENGTH / DATA_LENGTH;
@@ -161,7 +161,7 @@ import memory_controller_interface::*; #(
 	addr_t addr;
 	addr_t wmask;
 	addr_t wdata;
-	addr_t wr;
+	addr_t rw;
 
 	// connect data/tag cache memories
 	cache_data cdata (
@@ -185,7 +185,7 @@ import memory_controller_interface::*; #(
 
 	always_comb begin
 		localparam XLSB = 2;
-		localparam XMSB = $clog2(BLOCK_SIZE) - 1 + XLSB;
+		localparam XMSB = (BLOCK_SIZE == 1 ? XLSB /* special case */ : $clog2(BLOCK_SIZE) - 1 + XLSB);
 		cache_data_t masked; // intermediate variable
 
 		// no state change by default
@@ -213,7 +213,7 @@ import memory_controller_interface::*; #(
 		masked = (wdata & wmask);
 		data_write = data_read;
 		for(int i = 0; i < BLOCK_SIZE; i++) begin
-			if(i == addr) begin
+			if(i == addr[XMSB:XLSB] || BLOCK_SIZE == 1 /* special case */) begin
 				data_write[DATA_LENGTH*i +: DATA_LENGTH] =
 					(data_read[DATA_LENGTH*i +: DATA_LENGTH] & ~wmask) | masked;
 				// read out correct word from cache to cpu
@@ -330,7 +330,7 @@ import memory_controller_interface::*; #(
 			addr <= 'bx;
 			wdata <= 'bx;
 			wmask <= 'bx;
-			wr <= '0;
+			rw <= '0;
 		end else begin
 			state <= state_nxt;
 			if(iface.valid && iface.ready) begin
@@ -338,7 +338,7 @@ import memory_controller_interface::*; #(
 				addr <= iface.addr;
 				wdata <= iface.wdata;
 				wmask <= iface.wmask;
-				wr <= iface.wr;
+				rw <= iface.rw;
 			end
 		end
 	end

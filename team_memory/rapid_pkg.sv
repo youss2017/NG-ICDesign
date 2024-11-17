@@ -2,8 +2,8 @@
  * Note: remember to keep updated with Ysf's main copy
  */
 
-#ifndef RAPID_PKG_SV
-#define RAPID_PKG_SV
+`ifndef RAPID_PKG_SV
+`define RAPID_PKG_SV
 
 package rapid_pkg;
 
@@ -92,4 +92,4 @@ package rapid_pkg;
     
 endpackage
 
-#endif // RAPID_PKG_SV
+`endif // RAPID_PKG_SV

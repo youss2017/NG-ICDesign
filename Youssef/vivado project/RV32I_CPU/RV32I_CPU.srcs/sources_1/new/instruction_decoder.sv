@@ -86,7 +86,7 @@ module instruction_decoder
             current_state <= next_state;
             o_done <= done;
         end
-        
+
     end
 
     always_comb begin
@@ -102,11 +102,11 @@ module instruction_decoder
                     //                       this is mentioned in the RTL design specification. This is because
                     //                       we can only be sure the previous stage output is valid (aka has not 
                     //                       moved to next instruction) for only 1 clock cycle after "i_pipeline_ready" goes high.
-                end else
+                end
+                else
                     done = 1;
             end
             DE_DECODE: begin 
-                done = 0;
                 // Parse instruction
                 decode_instruction(instruction, o_imm, o_control_signal); // Nicolas (11/10/2024): Need to be in FF block?
                 // Youssef (11/10/2024): no cause, this will be a continous assignment but the values will not be updated
@@ -117,9 +117,10 @@ module instruction_decoder
                 // Youssef (11/20/2024): This is not true, all are loaded at once, this combinational logic.
                 // Nicolas: Hmm I think ur right then, thought it was always sequential
                 // Youssef (11/20/2024): Should we keep this here? Nicolas: yeah its kinda funny =)
-                next_state = DE_WAIT;
+                next_state = DE_LOAD_REGISTERS;
                 o_pc = pc;
             end
+            DE_LOAD_REGISTERS: next_state = DE_WAIT;
             // This handles the RESET signal or any unknown state
             default: begin
                 instruction = NOP_INSTRUCTION;

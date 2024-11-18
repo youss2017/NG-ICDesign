@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="rapid_cpu_testbench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="\$unit_rapid_pkg_sv_457943007 " />
+            <top_module name="glbl" />
+            <top_module name="memory_controller_interface" />
+            <top_module name="rapid_cpu_testbench" />
+            <top_module name="rapid_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="452.500 ns"></ZoomStartTime>
+      <ZoomEndTime time="707.501 ns"></ZoomEndTime>
+      <Cursor1Time time="665.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="276"></NameColumnWidth>
+      <ValueColumnWidth column_width="120"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="49" />
+   <wvobject fp_name="/rapid_cpu_testbench/i_clk" type="logic">
+      <obj_property name="ElementShortName">i_clk</obj_property>
+      <obj_property name="ObjectShortName">i_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/pipeline_ready" type="logic">
+      <obj_property name="ElementShortName">pipeline_ready</obj_property>
+      <obj_property name="ObjectShortName">pipeline_ready</obj_property>
+      <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/if_done_o" type="logic">
+      <obj_property name="ElementShortName">if_done_o</obj_property>
+      <obj_property name="ObjectShortName">if_done_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/de_done_o" type="logic">
+      <obj_property name="ElementShortName">de_done_o</obj_property>
+      <obj_property name="ObjectShortName">de_done_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/ex_done_o" type="logic">
+      <obj_property name="ElementShortName">ex_done_o</obj_property>
+      <obj_property name="ObjectShortName">ex_done_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_done_o" type="logic">
+      <obj_property name="ElementShortName">mem_done_o</obj_property>
+      <obj_property name="ObjectShortName">mem_done_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/wb_done_o" type="logic">
+      <obj_property name="ElementShortName">wb_done_o</obj_property>
+      <obj_property name="ObjectShortName">wb_done_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/if_instruction_o" type="array">
+      <obj_property name="ElementShortName">if_instruction_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">if_instruction_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/reg_rs1_o" type="array">
+      <obj_property name="ElementShortName">reg_rs1_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_rs1_o[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#A52A2A</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/reg_rs2_o" type="array">
+      <obj_property name="ElementShortName">reg_rs2_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_rs2_o[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#A52A2A</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/o_ex_current_state" type="array">
+      <obj_property name="ElementShortName">o_ex_current_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">o_ex_current_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/ex_control_o" type="array">
+      <obj_property name="ElementShortName">ex_control_o</obj_property>
+      <obj_property name="ObjectShortName">ex_control_o</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/o_de_current_state" type="array">
+      <obj_property name="ElementShortName">o_de_current_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">o_de_current_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/de_control_o" type="array">
+      <obj_property name="ElementShortName">de_control_o</obj_property>
+      <obj_property name="ObjectShortName">de_control_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/de_imm_o" type="array">
+      <obj_property name="ElementShortName">de_imm_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">de_imm_o[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/if_pc_o" type="array">
+      <obj_property name="ElementShortName">if_pc_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">if_pc_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/de_pc_o" type="array">
+      <obj_property name="ElementShortName">de_pc_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">de_pc_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/ex_pc_ext_o" type="array">
+      <obj_property name="ElementShortName">ex_pc_ext_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ex_pc_ext_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/ex_rd_output_o" type="array">
+      <obj_property name="ElementShortName">ex_rd_output_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ex_rd_output_o[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FFD700</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/ex_pc_load_o" type="logic">
+      <obj_property name="ElementShortName">ex_pc_load_o</obj_property>
+      <obj_property name="ObjectShortName">ex_pc_load_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/ex_rs2_o" type="logic">
+      <obj_property name="ElementShortName">ex_rs2_o</obj_property>
+      <obj_property name="ObjectShortName">ex_rs2_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_control_o" type="array">
+      <obj_property name="ElementShortName">mem_control_o</obj_property>
+      <obj_property name="ObjectShortName">mem_control_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_rd_output_o" type="array">
+      <obj_property name="ElementShortName">mem_rd_output_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_rd_output_o[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider757">
+      <obj_property name="label">WB Stage</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/pipeline_ready" type="logic">
+      <obj_property name="ElementShortName">pipeline_ready</obj_property>
+      <obj_property name="ObjectShortName">pipeline_ready</obj_property>
+      <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/wb_rd_o" type="array">
+      <obj_property name="ElementShortName">wb_rd_o[4:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_rd_o[4:0]</obj_property>
+      <obj_property name="CustomSignalColor">#D2691E</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/wb_rd_output_o" type="array">
+      <obj_property name="ElementShortName">wb_rd_output_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_rd_output_o[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/wb_stage/i_data_in" type="array">
+      <obj_property name="ElementShortName">i_data_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i_data_in[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/wb_stage/i_control_signal" type="array">
+      <obj_property name="ElementShortName">i_control_signal</obj_property>
+      <obj_property name="ObjectShortName">i_control_signal</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/wb_stage/control_signal" type="array">
+      <obj_property name="ElementShortName">control_signal</obj_property>
+      <obj_property name="ObjectShortName">control_signal</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/wb_stage/o_rd_output" type="array">
+      <obj_property name="ElementShortName">o_rd_output[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_rd_output[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/wb_stage/current_state" type="array">
+      <obj_property name="ElementShortName">current_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">current_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file" type="array">
+      <obj_property name="ElementShortName">register_file[0:31][31:0]</obj_property>
+      <obj_property name="ObjectShortName">register_file[0:31][31:0]</obj_property>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[0]" type="array">
+         <obj_property name="ElementShortName">[0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[1]" type="array">
+         <obj_property name="ElementShortName">[1][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[2]" type="array">
+         <obj_property name="ElementShortName">[2][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[3]" type="array">
+         <obj_property name="ElementShortName">[3][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[4]" type="array">
+         <obj_property name="ElementShortName">[4][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[5]" type="array">
+         <obj_property name="ElementShortName">[5][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[6]" type="array">
+         <obj_property name="ElementShortName">[6][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[7]" type="array">
+         <obj_property name="ElementShortName">[7][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[8]" type="array">
+         <obj_property name="ElementShortName">[8][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[8][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[9]" type="array">
+         <obj_property name="ElementShortName">[9][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[9][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[10]" type="array">
+         <obj_property name="ElementShortName">[10][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[10][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[11]" type="array">
+         <obj_property name="ElementShortName">[11][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[11][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[12]" type="array">
+         <obj_property name="ElementShortName">[12][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[12][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[13]" type="array">
+         <obj_property name="ElementShortName">[13][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[13][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[14]" type="array">
+         <obj_property name="ElementShortName">[14][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[14][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[15]" type="array">
+         <obj_property name="ElementShortName">[15][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[15][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[16]" type="array">
+         <obj_property name="ElementShortName">[16][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[16][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[17]" type="array">
+         <obj_property name="ElementShortName">[17][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[17][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[18]" type="array">
+         <obj_property name="ElementShortName">[18][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[18][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[19]" type="array">
+         <obj_property name="ElementShortName">[19][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[19][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[20]" type="array">
+         <obj_property name="ElementShortName">[20][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[20][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[21]" type="array">
+         <obj_property name="ElementShortName">[21][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[21][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[22]" type="array">
+         <obj_property name="ElementShortName">[22][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[22][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[23]" type="array">
+         <obj_property name="ElementShortName">[23][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[23][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[24]" type="array">
+         <obj_property name="ElementShortName">[24][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[24][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[25]" type="array">
+         <obj_property name="ElementShortName">[25][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[25][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[26]" type="array">
+         <obj_property name="ElementShortName">[26][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[26][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[27]" type="array">
+         <obj_property name="ElementShortName">[27][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[27][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[28]" type="array">
+         <obj_property name="ElementShortName">[28][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[28][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[29]" type="array">
+         <obj_property name="ElementShortName">[29][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[29][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[30]" type="array">
+         <obj_property name="ElementShortName">[30][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[30][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/rapid_cpu_testbench/reg_file/register_file[31]" type="array">
+         <obj_property name="ElementShortName">[31][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[31][31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider822">
+      <obj_property name="label">MEM Stage</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/i_control_sig" type="array">
+      <obj_property name="ElementShortName">i_control_sig</obj_property>
+      <obj_property name="ObjectShortName">i_control_sig</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/i_data_in" type="array">
+      <obj_property name="ElementShortName">i_data_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i_data_in[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/rs2" type="array">
+      <obj_property name="ElementShortName">rs2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rs2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/o_rd_output" type="array">
+      <obj_property name="ElementShortName">o_rd_output[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_rd_output[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/mem_req" type="array">
+      <obj_property name="ElementShortName">mem_req</obj_property>
+      <obj_property name="ObjectShortName">mem_req</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/mem_res" type="array">
+      <obj_property name="ElementShortName">mem_res</obj_property>
+      <obj_property name="ObjectShortName">mem_res</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/state" type="other">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/state_nxt" type="other">
+      <obj_property name="ElementShortName">state_nxt</obj_property>
+      <obj_property name="ObjectShortName">state_nxt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/is_word" type="logic">
+      <obj_property name="ElementShortName">is_word</obj_property>
+      <obj_property name="ObjectShortName">is_word</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/is_byte" type="logic">
+      <obj_property name="ElementShortName">is_byte</obj_property>
+      <obj_property name="ObjectShortName">is_byte</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/do_sx" type="logic">
+      <obj_property name="ElementShortName">do_sx</obj_property>
+      <obj_property name="ObjectShortName">do_sx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/addr" type="array">
+      <obj_property name="ElementShortName">addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/o_rd_output_nxt" type="array">
+      <obj_property name="ElementShortName">o_rd_output_nxt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_rd_output_nxt[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/o_control_sig_nxt" type="array">
+      <obj_property name="ElementShortName">o_control_sig_nxt</obj_property>
+      <obj_property name="ObjectShortName">o_control_sig_nxt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rapid_cpu_testbench/mem_stage/iface_valid" type="logic">
+      <obj_property name="ElementShortName">iface_valid</obj_property>
+      <obj_property name="ObjectShortName">iface_valid</obj_property>
+   </wvobject>
+</wave_config>

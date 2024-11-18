@@ -102,13 +102,14 @@ module execute_stage
             EX_WAIT: begin
                 if (i_pipeline_ready) begin
                     done = 0;
-                    next_state = EX_EXECUTE;
-                    // recv next instruction
-                    control_signal = i_control_signal;
                     pc = i_pc;
                     rs1 = i_rs1;
                     rs2 = i_rs2;
                     imm = i_imm;
+                    next_state = EX_EXECUTE;
+                    // recv next instruction
+                    control_signal = i_control_signal;
+
                 end
                 else done = 1;
             end
@@ -261,6 +262,9 @@ module execute_stage
             rd_output = port1 + imm;
             pc_ext = 0;
             pc_load = 0;
+    end else begin
+        pc_ext = 0;
+        pc_load = 0;
     end
 
     endtask

@@ -44,12 +44,12 @@ module register_file(
             end
         end else begin
             if (i_rs1_out) 
-                o_rs1_data = (i_rs1 == 0) ? 0 : register_file[i_rs1];
+                o_rs1_data = register_file[i_rs1];
             else 
                 o_rs1_data = 'bz;
             
             if (i_rs2_out) 
-                o_rs2_data = (i_rs2 == 0) ? 0 : register_file[i_rs2];
+                o_rs2_data = register_file[i_rs2];
             else 
                 o_rs2_data = 'bz;
             

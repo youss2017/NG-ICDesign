@@ -24,17 +24,25 @@ import memory_controller_interface::*;
 
 module rapid_cpu_testbench();
 
-    bit i_clk, i_reset;
-    logic if_done_o, de_done_o, ex_done_o;
+    bit i_clk, i_reset, pready2;
+    logic if_done_o, de_done_o, ex_done_o, mem_done_o, wb_done_o;
     
-    wire pipeline_ready = if_done_o & de_done_o & ex_done_o;
+    // WB stage connections with register file
+    logic [4:0] wb_rd_o;
+    logic [XLEN-1:0] wb_rd_output_o;
+
+    wire pipeline_ready = if_done_o & de_done_o & ex_done_o & mem_done_o & wb_done_o;
 
     logic [XLEN-1:0] if_instruction_o, if_pc_o;
 
+    always #5 i_clk = ~i_clk;
+
     task reset_cpu();
-        #5 i_clk <= ~i_clk; i_reset <= 1;
-        #5 i_clk <= ~i_clk; i_reset <= 0;
+        // #5 i_clk <= ~i_clk; i_reset <= 1;
+        // #5 i_clk <= ~i_clk; i_reset <= 0;
         $display("Time: %0t | Reset signal applied, i_reset = %0b", $time, i_reset);
+        @(posedge i_clk) i_reset <= 1;
+        @(posedge i_clk) i_reset <= 0;
     endtask
     
     task do_clock(input int cycles);
@@ -45,10 +53,10 @@ module rapid_cpu_testbench();
             //          $time, i, o_current_state.name(), o_next_state.name(), o_done, i_pc, i_rs1, i_rs2, o_rd_output, o_control_signal);
         end
     endtask
-
+    
     task push_instruction();
         do 
-            do_clock(1);
+            ; //do_clock(1);
         while(!pipeline_ready);
         // i_pipeline_ready = 1;
         // //$display("Time: %0t | Pushing instruction, i_pipeline_ready = %0b", $time, i_pipeline_ready);
@@ -63,7 +71,11 @@ module rapid_cpu_testbench();
 	mci_request_t mem_req;   // cache -> mem
     fake_memory fmem(.i_clk(i_clk), .mem_req(mem_req), .mem_res(mem_res));
 
-   	cpu_ifetch_unit uut(
+	mci_response_t d_mem_res;  // mem -> cache
+	mci_request_t d_mem_req;   // cache -> mem
+    fake_memory dmem(.i_clk(i_clk), .mem_req(d_mem_req), .mem_res(d_mem_res));
+
+   	cpu_ifetch_unit if_stage(
 		.i_clk(i_clk), 
         .i_reset(i_reset),
         .mem_req(mem_req),
@@ -77,11 +89,10 @@ module rapid_cpu_testbench();
 	);
     /***** IF Stage *****/
 
-
     /***** DE Stage *****/
     logic [XLEN-1:0] de_pc_o, de_imm_o;
     control_s de_control_o;
-    DE_state_t o_de_current_state, o_de_next_state;
+    DE_state_t o_de_current_state;
 
     instruction_decoder de_stage(
         .i_clk(i_clk),
@@ -93,26 +104,22 @@ module rapid_cpu_testbench();
         .o_control_signal(de_control_o),
         .o_imm(de_imm_o),
         .o_done(de_done_o),
-        .o_current_state(o_de_current_state),
-        .o_next_state(o_de_next_state)
+        .o_current_state(o_de_current_state)
     );
     /***** DE Stage *****/
 
     /***** Register File *****/
     logic [XLEN-1:0] reg_rs1_o, reg_rs2_o;
-    wire i_rs1_out, i_rs2_out;
-    assign i_rs1_out = !de_control_o.uncond_branch;
-    assign i_rs2_out = de_control_o.alu_imm | (de_control_o.mem & de_control_o.iop);
 
     register_file reg_file(
         .i_clk(i_clk),
         .i_reset(i_reset),
-        .i_rs1_out(i_rs1_out),
-        .i_rs2_out(i_rs2_out),
+        .i_rs1_out(de_control_o.rs1_out),
+        .i_rs2_out(de_control_o.rs2_out),
         .i_rs1(de_control_o.rs1),
         .i_rs2(de_control_o.rs2),
-        //.i_rd(wb_rd_o),
-        //.i_rd_data(wb_rd_output_o),
+        .i_rd(wb_rd_o),
+        .i_rd_data(wb_rd_output_o),
         .o_rs1_data(reg_rs1_o),
         .o_rs2_data(reg_rs2_o)
     );
@@ -122,8 +129,8 @@ module rapid_cpu_testbench();
     logic [XLEN-1:0] ex_pc_ext_o, ex_rd_output_o;
     logic ex_pc_load_o, ex_rs2_o;
     control_s ex_control_o;
-    EX_state_t o_ex_current_state, o_ex_next_state;
-
+    EX_state_t o_ex_current_state;
+    
     execute_stage ex_stage(
         .i_clk(i_clk),
         .i_reset(i_reset),
@@ -139,19 +146,47 @@ module rapid_cpu_testbench();
         .o_rs2(ex_rs2_o),
         .o_rd_output(ex_rd_output_o),
         .o_done(ex_done_o),
-        .o_current_state(o_ex_current_state),
-        .o_next_state(o_ex_next_state)
+        .o_current_state(o_ex_current_state)
     );
     /***** EX Stage *****/
 
+    /*********************** MEM Stage ***********************/
+    control_s mem_control_o;
+    logic [XLEN-1:0] mem_rd_output_o;
+
+    cpu_memory_unit mem_stage(
+        .i_clk(i_clk),
+        .i_reset(i_reset),
+        .i_pipeline_ready(pipeline_ready | i_reset),
+        .o_done(mem_done_o),
+        .i_control_sig(ex_control_o),
+        .o_control_sig(mem_control_o),
+        .i_data_in(ex_rd_output_o),
+        .rs2(ex_rs2_o),
+        .o_rd_output(mem_rd_output_o),
+        .mem_req(d_mem_req),
+        .mem_res(d_mem_res)
+    );
+    /*********************** MEM Stage ***********************/
+
+    /*********************** WB Stage ***********************/
+    writeback_stage wb_stage(
+        .i_clk(i_clk),
+        .i_reset(i_reset),
+        .i_pipeline_ready(pipeline_ready),
+        .i_data_in(mem_rd_output_o),
+        .i_control_signal(mem_control_o),
+        .o_rd_output(wb_rd_output_o),
+        .o_rd(wb_rd_o),
+        .o_done(wb_done_o)
+    );
+    /*********************** WB Stage ***********************/
+    
     initial begin
         i_clk = 0;
         reset_cpu();
-        push_instruction(); // clear NOP instruction
-
+        //do_clock(20);
         
-        
-        $stop; 
 
     end
 

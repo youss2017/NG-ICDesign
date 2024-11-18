@@ -22,7 +22,8 @@
 
 module cpu_memory_unit
 import memory_controller_interface::*;
-import rapid_pkg::*; (
+import rapid_pkg::control_s;
+import rapid_pkg::control_s_default; (
 	// Globals
 	input logic i_clk,
 	input logic i_reset,
@@ -62,9 +63,8 @@ import rapid_pkg::*; (
 	state_t state, state_nxt;
 
 	// cache <==> cpu data interface
-	dcache_interface #(.DATA_LENGTH(32), .ADDR_LENGTH(32)) iface(
-	   
-	);
+	dcache_interface #(.DATA_LENGTH(32), .ADDR_LENGTH(32)) iface();
+	typedef iface.addr_t addr_t;
 
 	// our cache implementation - we can swap it for others as
 	// long as they have the same interface
@@ -93,24 +93,18 @@ import rapid_pkg::*; (
 	logic [31:0] o_rd_output_nxt;
 	control_s o_control_sig_nxt;
 
+	/*
+	 * Workaround due to a bug in Vivado XSim, where the simulation will hang
+	 * because it cannot infer zero delay glitches on interfaces. See:
+	 * https://adaptivesupport.amd.com/s/question/0D54U00006VGb0GSAT/simulation-stuck-ie-no-progress-in-simulation-time-due-to-zero-delay-glitch-in-combinatorial-logic-is-their-a-switch-that-will-tell-the-simulator-to-wait-until-the-entire-alwayscomb-block-is-evaluated-before-deciding-whether-an-event-has-occurred?language=en_US
+	 * https://adaptivesupport.amd.com/s/question/0D52E00006iHmQxSAK/simulation-freezing-with-systemverilog-interfaces-fsm-handshake?language=en_US
+	 */
+	logic iface_valid; // use iface_valid instead of iface.valid in the rest of the module
+	assign iface.valid = iface_valid;
 
 /***********************************************************
  * Default signal values
  **********************************************************/
- 
-        always_ff @(posedge i_clk) begin
-			if(i_reset) begin
-				state <= STANDBY;
-				o_rd_output <= '0;
-				o_control_sig <= control_s_default();
-			end begin
-				state <= state_nxt;
-				if(i_pipeline_ready) begin
-					o_rd_output <= o_rd_output_nxt;
-					o_control_sig <= o_control_sig_nxt;
-				end
-			end
-		end
 
 
 	always_comb begin
@@ -151,7 +145,7 @@ import rapid_pkg::*; (
 		endcase
 
 		// left shift argument to proper position
-		iface.data = 'bx;
+		iface.wdata = 'bx;
 		unique case(addr[1:0])
 		2'b00: iface.wdata        = rs2;
 		2'b01: iface.wdata[15:8]  = rs2[7:0];  // only byte-access is possible
@@ -187,7 +181,7 @@ import rapid_pkg::*; (
 		// all cache requests must be word-aligned
 		iface.addr = {addr[31:2], 2'b00};
 		iface.wdata = rs2;
-		iface.valid = '0;
+		iface_valid = '0;
 
 		// passthrough certain control signals
 		o_control_sig_nxt = i_control_sig;
@@ -206,13 +200,13 @@ import rapid_pkg::*; (
 			o_done = !i_control_sig.mem;
 
 			// on MEM instruction, wait for cache to be ready then
-			if (i_control_sig.mem && iface.ready) begin
+			if(i_control_sig.mem && iface.ready) begin
 				// schedule a cache access
 				state_nxt = ACCESS;
-				iface.valid = '1;
+				iface_valid = '1;
 				o_done = '0;
 			end
-	   end
+		end
 
 		ACCESS: begin
 			// wait for cache access to complete
@@ -225,9 +219,22 @@ import rapid_pkg::*; (
 				state_nxt = STANDBY;
 			end
 		end
-		
 		endcase
 	end
+
+    always_ff @(posedge i_clk) begin
+        if(i_reset) begin
+            state <= STANDBY;
+            o_rd_output <= '0;
+            o_control_sig <= control_s_default();
+		end else begin
+            state <= state_nxt;
+            if(i_pipeline_ready) begin
+                o_rd_output <= o_rd_output_nxt;
+                o_control_sig <= o_control_sig_nxt;
+            end
+        end
+    end
 
 endmodule
 

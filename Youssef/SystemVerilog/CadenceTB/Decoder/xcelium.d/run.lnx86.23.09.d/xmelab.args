@@ -2,8 +2,11 @@
 // File created by:  xrun
 // Do not modify this file
 //
++define+DEBUG=1
 -ACCESS
-+r
++rwc
+-timescale
+1ps/1ps
 -no_analogsolver
 -MESSAGES
 -XLMODE

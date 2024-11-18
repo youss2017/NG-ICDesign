@@ -2,12 +2,12 @@
 // File created by:  xrun
 // Do not modify this file
 //
--gui
++define+DEBUG=1
 -MESSAGES
 +EMGRLOG
-xrun.log
+sim.log
 -XLSTIME
-1731446258
+1731962583
 -XLKEEP
 -XLMODE
 ./xcelium.d/run.lnx86.23.09.d

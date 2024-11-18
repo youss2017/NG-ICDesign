@@ -1,0 +1,94 @@
+xrun: 23.09-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun	23.09-s006: Started on Nov 18, 2024 at 15:43:03 EST
+xrun
+	-f decode.f
+		rapid_pkg.sv
+		decode_testbench.sv
+		instruction_decoder.sv
+	-sv
+	+define+DEBUG=1
+	-access +rwc
+	-l sim.log
+	-timescale 1ps/1ps
+file: rapid_pkg.sv
+	package worklib.rapid_pkg:sv
+		errors: 0, warnings: 0
+file: decode_testbench.sv
+	module worklib.decode_testbench:sv
+		errors: 0, warnings: 0
+file: instruction_decoder.sv
+	module worklib.instruction_decoder:sv
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		rapid_pkg
+		$unit_0x3032c4fe
+		decode_testbench
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.instruction_decoder:sv <0x00b297ad>
+			streams:   7, words: 14148
+		worklib.decode_testbench:sv <0x4d24af0a>
+			streams:  20, words: 16249
+		worklib.rapid_pkg:sv <0x0c6ce984>
+			streams:   1, words:   187
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                   Instances  Unique
+		Modules:                   2       2
+		Verilog packages:          1       1
+		Registers:                30      30
+		Scalar wires:             12       -
+		Vectored wires:            6       -
+		Always blocks:             2       2
+		Initial blocks:            1       1
+		Cont. assignments:         2       2
+		Pseudo assignments:       11       -
+		Compilation units:         1       1
+		Process Clocks:            1       1
+		Simulation timescale:  100ps
+	Writing initial simulation snapshot: worklib.decode_testbench:sv
+Loading snapshot worklib.decode_testbench:sv .................... Done
+xcelium> source /home/net/cadence/installs/XCELIUM2309/tools/xcelium/files/xmsimrc
+xcelium> run
+Starting decode_testbench...
+Time: 100 | Reset signal applied
+Time: 200 | Cycle: 0 | Current State: DE_WAIT | Next State: DE_WAIT | Done: 1 | Control Signal: '{load_upper_imm:'h0, uncond_branch:'h0, cond_branch:'h0, mem:'h0, alu_imm:'h0, alu_reg:'h0, iop:'h0, rs1_out:'h0, rs2_out:'h0, fcs_opcode:'hx, rs1:'h0, rs2:'h0, rd:'h0}
+Time: 300 | Cycle: 1 | Current State: DE_WAIT | Next State: DE_WAIT | Done: 1 | Control Signal: '{load_upper_imm:'h0, uncond_branch:'h0, cond_branch:'h0, mem:'h0, alu_imm:'h0, alu_reg:'h0, iop:'h0, rs1_out:'h0, rs2_out:'h0, fcs_opcode:'hx, rs1:'h0, rs2:'h0, rd:'h0}
+Time: 350 | Loaded instruction: 00500613 | PC: 00000020
+Time: 500 | Cycle: 0 | Current State: DE_DECODE | Next State: DE_WAIT | Done: 1 | Control Signal: '{load_upper_imm:'h0, uncond_branch:'h0, cond_branch:'h0, mem:'h0, alu_imm:'h1, alu_reg:'h0, iop:'h0, rs1_out:'h1, rs2_out:'h0, fcs_opcode:'h0, rs1:'h0, rs2:'h0, rd:'hc}
+Time: 600 | Cycle: 1 | Current State: DE_WAIT | Next State: DE_WAIT | Done: 1 | Control Signal: '{load_upper_imm:'h0, uncond_branch:'h0, cond_branch:'h0, mem:'h0, alu_imm:'h1, alu_reg:'h0, iop:'h0, rs1_out:'h1, rs2_out:'h0, fcs_opcode:'h0, rs1:'h0, rs2:'h0, rd:'hc}
+Time: 700 | Cycle: 2 | Current State: DE_WAIT | Next State: DE_WAIT | Done: 1 | Control Signal: '{load_upper_imm:'h0, uncond_branch:'h0, cond_branch:'h0, mem:'h0, alu_imm:'h1, alu_reg:'h0, iop:'h0, rs1_out:'h1, rs2_out:'h0, fcs_opcode:'h0, rs1:'h0, rs2:'h0, rd:'hc}
+Time: 800 | Cycle: 3 | Current State: DE_WAIT | Next State: DE_WAIT | Done: 1 | Control Signal: '{load_upper_imm:'h0, uncond_branch:'h0, cond_branch:'h0, mem:'h0, alu_imm:'h1, alu_reg:'h0, iop:'h0, rs1_out:'h1, rs2_out:'h0, fcs_opcode:'h0, rs1:'h0, rs2:'h0, rd:'hc}
+Time: 900 | Cycle: 4 | Current State: DE_WAIT | Next State: DE_WAIT | Done: 1 | Control Signal: '{load_upper_imm:'h0, uncond_branch:'h0, cond_branch:'h0, mem:'h0, alu_imm:'h1, alu_reg:'h0, iop:'h0, rs1_out:'h1, rs2_out:'h0, fcs_opcode:'h0, rs1:'h0, rs2:'h0, rd:'hc}
+Time: 950 | Loaded instruction: ffb00613 | PC: 00000020
+Time: 1100 | Cycle: 0 | Current State: DE_DECODE | Next State: DE_WAIT | Done: 1 | Control Signal: '{load_upper_imm:'h0, uncond_branch:'h0, cond_branch:'h0, mem:'h0, alu_imm:'h1, alu_reg:'h0, iop:'h1, rs1_out:'h1, rs2_out:'h0, fcs_opcode:'h0, rs1:'h0, rs2:'h0, rd:'hc}
+Time: 1200 | Cycle: 1 | Current State: DE_WAIT | Next State: DE_WAIT | Done: 1 | Control Signal: '{load_upper_imm:'h0, uncond_branch:'h0, cond_branch:'h0, mem:'h0, alu_imm:'h1, alu_reg:'h0, iop:'h1, rs1_out:'h1, rs2_out:'h0, fcs_opcode:'h0, rs1:'h0, rs2:'h0, rd:'hc}
+Time: 1300 | Cycle: 2 | Current State: DE_WAIT | Next State: DE_WAIT | Done: 1 | Control Signal: '{load_upper_imm:'h0, uncond_branch:'h0, cond_branch:'h0, mem:'h0, alu_imm:'h1, alu_reg:'h0, iop:'h1, rs1_out:'h1, rs2_out:'h0, fcs_opcode:'h0, rs1:'h0, rs2:'h0, rd:'hc}
+Time: 1400 | Cycle: 3 | Current State: DE_WAIT | Next State: DE_WAIT | Done: 1 | Control Signal: '{load_upper_imm:'h0, uncond_branch:'h0, cond_branch:'h0, mem:'h0, alu_imm:'h1, alu_reg:'h0, iop:'h1, rs1_out:'h1, rs2_out:'h0, fcs_opcode:'h0, rs1:'h0, rs2:'h0, rd:'hc}
+Time: 1500 | Cycle: 4 | Current State: DE_WAIT | Next State: DE_WAIT | Done: 1 | Control Signal: '{load_upper_imm:'h0, uncond_branch:'h0, cond_branch:'h0, mem:'h0, alu_imm:'h1, alu_reg:'h0, iop:'h1, rs1_out:'h1, rs2_out:'h0, fcs_opcode:'h0, rs1:'h0, rs2:'h0, rd:'hc}
+Testbench completed.
+Simulation stopped via $stop(1) at time 150 NS + 0
+./decode_testbench.sv:91         $stop;
+xcelium> ls
+decode.f
+decode_testbench.sv
+instruction_decoder.sv
+rapid_pkg.sv
+sim.history
+sim.log
+simulation.vcd
+xcelium.d
+xrun.history
+xrun.key
+xrun.log
+xcelium> simvision -64
+xmsim: *E,UNKOPT: unrecognized option for the simvision command (-64).
+xcelium> simvision -64bit
+xmsim: *E,UNKOPT: unrecognized option for the simvision command (-64bit).
+xcelium> simvision simulation.vcd
+xmsim: *E,TCLERR: SimVision/Verisium Debug process terminated before a connection was established.
+xcelium> exit
+TOOL:	xrun	23.09-s006: Exiting on Nov 18, 2024 at 15:43:36 EST  (total: 00:00:33)

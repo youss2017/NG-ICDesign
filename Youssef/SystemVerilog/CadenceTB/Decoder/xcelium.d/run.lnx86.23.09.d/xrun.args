@@ -4,6 +4,11 @@
 //
 -f
 decode.f
+-sv
++define+DEBUG=1
 -access
-+r
--gui
++rwc
+-l
+sim.log
+-timescale
+1ps/1ps

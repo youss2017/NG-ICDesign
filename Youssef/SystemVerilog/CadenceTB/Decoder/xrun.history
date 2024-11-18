@@ -1,3 +1,7 @@
 s1(12Nov2024:16:13:10):  xrun -f decode.f 
 s2(12Nov2024:16:14:52):  /home/net/cadence/installs/XCELIUM2309/tools.lnx86/bin/xrun -access -f decode.f 
 s3(12Nov2024:16:17:39):  xrun -f decode.f -access +r -gui 
+s4(12Nov2024:16:25:03):  xrun -f decode.f -access +r -gui 
+s5(18Nov2024:15:36:43):  xrun -f decode.f -access +rwc -l sim.log -timescale 1ps/1ps -t 1ps -finish 1000ps 
+s6(18Nov2024:15:39:35):  xrun -f decode.f 
+s7(18Nov2024:15:40:14):  xrun -f decode.f 

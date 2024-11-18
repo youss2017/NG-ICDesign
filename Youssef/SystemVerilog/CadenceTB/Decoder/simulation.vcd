@@ -1,0 +1,95 @@
+$date
+    Nov 18, 2024  15:43:36
+$end
+$version
+    TOOL:	xmsim	23.09-s006
+$end
+$timescale
+    100 ps
+$end
+
+$scope module decode_testbench $end
+$var parameter 32 !    XLEN $end
+$var reg       1 "    i_clk $end
+$var reg       1 #    i_reset $end
+$var reg      32 $    i_instruction [31:0] $end
+$var reg      32 %    i_pc [31:0] $end
+$var reg      32 &    o_pc [31:0] $end
+$var reg      32 '    o_imm [31:0] $end
+$var reg       1 (    i_pipeline_ready $end
+$var reg       1 )    o_done $end
+$var reg       1 *    o_current_state [0:0] $end
+$var reg       1 +    o_next_state [0:0] $end
+
+$scope module de $end
+$var parameter 32 ,    XLEN $end
+$var wire      1 -    i_clk  $end
+$var wire      1 .    i_reset  $end
+$var wire     32 /    i_instruction [31:0] $end
+$var wire      1 0    i_pipeline_ready  $end
+$var wire     32 1    i_pc [31:0] $end
+$var reg      32 2    o_pc [31:0] $end
+$var reg      32 3    o_imm [31:0] $end
+$var reg       1 4    o_done $end
+$var reg       1 5    o_current_state [0:0] $end
+$var reg       1 6    o_next_state [0:0] $end
+$var reg       1 7    current_state [0:0] $end
+$var reg       1 8    next_state [0:0] $end
+$var reg      32 9    pc [31:0] $end
+$var reg      32 :    instruction [31:0] $end
+
+$scope task decode_instruction $end
+$var reg      32 ;    instruction [31:0] $end
+$var reg      32 <    o_imm [31:0] $end
+$upscope $end
+
+$upscope $end
+
+
+$scope task load_instruction $end
+$var reg      32 =    instruction [31:0] $end
+$var reg      32 >    pc [31:0] $end
+$upscope $end
+
+
+$scope task do_clock $end
+$var integer  32 ?    cycles $end
+$upscope $end
+
+$upscope $end
+
+$enddefinitions $end
+#1500
+$dumpvars
+b100000 ,
+b100000 !
+0"
+0#
+b11111111101100000000011000010011 $
+b100000 %
+b100000 &
+b11111111111111111111111111111011 '
+0(
+1)
+0*
+0+
+1-
+0.
+b11111111101100000000011000010011 /
+00
+b100000 1
+b100000 2
+b11111111111111111111111111111011 3
+14
+05
+06
+07
+08
+b100000 9
+b11111111101100000000011000010011 :
+b11111111101100000000011000010011 ;
+b11111111111111111111111111111011 <
+b11111111101100000000011000010011 =
+b100000 >
+b101 ?
+$end

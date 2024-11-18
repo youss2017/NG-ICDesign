@@ -83,6 +83,7 @@ package rapid_pkg;
     typedef enum logic [1:0] {
         EX_RESET,
         EX_WAIT,
+        EX_READ_REGISTER,
         EX_EXECUTE
     } EX_state_t;
 
@@ -92,9 +93,11 @@ package rapid_pkg;
         MEM_WRITE
     } MEM_state_t;
 
-    typedef enum logic [0:0] {
+    typedef enum logic [1:0] {
+        WB_RESET,
         WB_WAIT,
-        WB_WRITE
+        WB_WRITE,
+        WB_TMP
     } WB_state_t;
     
 endpackage

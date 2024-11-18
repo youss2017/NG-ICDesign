@@ -11,18 +11,69 @@ module fake_memory (
     parameter MEM_SIZE = 65536; // in blocks, 1MiB
 
     bit [127:0] M[MEM_SIZE];
-    initial for(int i = 0; i < MEM_SIZE; i++) begin
-		// initialize mem to somewhat recognizable values (data = addr)
-		M[i][31:0]   = 32'h03200093;
-        M[i][63:32]  = 32'h03c00113;
-        M[i][95:64]  = 32'h04600193;
-        M[i][127:96] = 32'h05000213;
-/*        M[i][31:0]   = (i << 2) + 0;
-		M[i][63:32]  = (i << 2) + 1;
-		M[i][95:64]  = (i << 2) + 2;
-		M[i][127:96] = (i << 2) + 3;
-		*/
-	end
+    /*
+        0:       32'h00000013        addi x0 x0 0
+        4:       32'h00300093        addi x1 x0 3
+        8:       32'h00200113        addi x2 x0 2
+        c:       32'h00d00193        addi x3 x0 13
+        10:      32'h00c00213        addi x4 x0 12
+        14:      32'h401182b3        sub x5 x3 x1
+        18:      32'h40220333        sub x6 x4 x2
+        1c:      32'h006283b3        add x7 x5 x6
+    */
+
+    // -------- without nops ----------
+/*
+    // first few bytes is our program
+    initial begin
+        M[0][31:0]   = 32'h00000013; // nop addi x0, x0, x0
+        M[0][63:32]  = 32'h00300093;
+        M[0][95:64]  = 32'h00200113;
+        M[0][127:96] = 32'h00d00193;
+        M[1][31:0]   = 32'h00c00213;
+        M[1][63:32]  = 32'h401182b3;
+        M[1][95:64]  = 32'h40220333;
+        M[1][127:96] = 32'h006283b3;
+    end
+    
+    // rest of mem is nops
+    initial for(int i = 2; i < MEM_SIZE; i++) begin
+        M[i][31:0]   = 32'h00000013;
+        M[i][63:32]   = 32'h00000013;
+        M[i][95:64]   = 32'h00000013;
+        M[i][127:96]   = 32'h00000013;
+    end
+*/
+    // ----- with nops to wait for data dependency ------
+    
+        // first few bytes is our program
+        initial begin
+
+            M[0][31:0] = 32'h00000013; //        addi x0 x0 0
+            M[0][63:32] = 32'h00300093; //        addi x1 x0 3
+            M[0][95:64] = 32'h00200113; //        addi x2 x0 2
+            M[0][127:96] = 32'h00d00193; //        addi x3 x0 13
+            M[1][31:0] = 32'h00c00213; //        addi x4 x0 12
+            M[1][63:32] = 32'h00000013; //        addi x0 x0 0
+            M[1][95:64] = 32'h00000013; //        addi x0 x0 0
+            M[1][127:96] = 32'h401182b3; //        sub x5 x3 x1
+            M[2][31:0] = 32'h40220333; //        sub x6 x4 x2
+            M[2][63:32] = 32'h00000013; //        addi x0 x0 0
+            M[2][95:64] = 32'h00000013; //        addi x0 x0 0
+            M[2][127:96] = 32'h006283b3; //        add x7 x5 x6
+
+        end
+
+        // rest of mem is nops
+        initial for(int i = 3; i < MEM_SIZE; i++) begin
+            M[i][31:0]   = 32'h00000013;
+            M[i][63:32]   = 32'h00000013;
+            M[i][95:64]   = 32'h00000013;
+            M[i][127:96]   = 32'h00000013;
+        end
+    
+
+    // ----- END ------
 
     assign mem_res.data = M[mem_req.addr[19:4]];
 

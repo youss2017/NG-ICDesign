@@ -43,24 +43,36 @@ module writeback_stage
 
     control_s control_signal;
     logic [XLEN-1:0] data_in;
+    logic done;
 
-    always_ff @(posedge i_clk) begin
-        current_state <= next_state;
+    always_ff @(posedge i_clk, posedge i_reset) begin
+        if(i_reset) begin
+            current_state <= WB_RESET;
+        end else begin
+            current_state <= next_state;
+            o_done <= done;
+        end
     end
 
     always_comb begin
 
         case(current_state)
 
+            WB_RESET: begin
+                control_signal = control_s_default();
+                data_in = 0;
+                next_state = WB_WRITE;
+            end
+
             WB_WAIT: begin
                 if(i_pipeline_ready) begin
-                    o_done = 0;
+                    done = 0;
                     control_signal = i_control_signal;
                     data_in = i_data_in;
                     next_state = WB_WRITE;
                 end
                 else
-                    o_done = 1;
+                    done = 1;
             end
 
             WB_WRITE: begin
@@ -71,8 +83,10 @@ module writeback_stage
                 end
                 else
                     o_rd = 0;
-                next_state = WB_WAIT;
+                next_state = WB_TMP;
             end
+
+            WB_TMP: next_state = WB_WAIT;
 
         endcase
 

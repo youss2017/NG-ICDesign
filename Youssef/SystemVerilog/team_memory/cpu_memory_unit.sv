@@ -22,7 +22,8 @@
 
 module cpu_memory_unit
 import memory_controller_interface::*;
-import rapid_pkg::*; (
+import rapid_pkg::control_s;
+import rapid_pkg::control_s_default; (
 	// Globals
 	input logic i_clk,
 	input logic i_reset,
@@ -62,9 +63,8 @@ import rapid_pkg::*; (
 	state_t state, state_nxt;
 
 	// cache <==> cpu data interface
-	dcache_interface #(.DATA_LENGTH(32), .ADDR_LENGTH(32)) iface(
-	   
-	);
+	dcache_interface #(.DATA_LENGTH(32), .ADDR_LENGTH(32)) iface();
+	typedef iface.addr_t addr_t;
 
 	// our cache implementation - we can swap it for others as
 	// long as they have the same interface
@@ -97,20 +97,6 @@ import rapid_pkg::*; (
 /***********************************************************
  * Default signal values
  **********************************************************/
- 
-        always_ff @(posedge i_clk) begin
-			if(i_reset) begin
-				state <= STANDBY;
-				o_rd_output <= '0;
-				o_control_sig <= control_s_default();
-			end begin
-				state <= state_nxt;
-				if(i_pipeline_ready) begin
-					o_rd_output <= o_rd_output_nxt;
-					o_control_sig <= o_control_sig_nxt;
-				end
-			end
-		end
 
 
 	always_comb begin
@@ -151,7 +137,7 @@ import rapid_pkg::*; (
 		endcase
 
 		// left shift argument to proper position
-		iface.data = 'bx;
+		iface.wdata = 'bx;
 		unique case(addr[1:0])
 		2'b00: iface.wdata        = rs2;
 		2'b01: iface.wdata[15:8]  = rs2[7:0];  // only byte-access is possible
@@ -206,13 +192,13 @@ import rapid_pkg::*; (
 			o_done = !i_control_sig.mem;
 
 			// on MEM instruction, wait for cache to be ready then
-			if (i_control_sig.mem && iface.ready) begin
+			if(i_control_sig.mem && iface.ready) begin
 				// schedule a cache access
 				state_nxt = ACCESS;
 				iface.valid = '1;
 				o_done = '0;
 			end
-	   end
+		end
 
 		ACCESS: begin
 			// wait for cache access to complete
@@ -225,9 +211,22 @@ import rapid_pkg::*; (
 				state_nxt = STANDBY;
 			end
 		end
-		
 		endcase
 	end
+
+    always_ff @(posedge i_clk) begin
+        if(i_reset) begin	
+            state <= STANDBY;
+            o_rd_output <= '0;
+            o_control_sig <= control_s_default();
+		end else begin
+            state <= state_nxt;
+            if(i_pipeline_ready) begin
+                o_rd_output <= o_rd_output_nxt;
+                o_control_sig <= o_control_sig_nxt;
+            end
+        end
+    end
 
 endmodule
 

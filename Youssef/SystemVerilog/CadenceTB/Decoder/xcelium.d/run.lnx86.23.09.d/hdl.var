@@ -6,5 +6,3 @@ DEFINE RUNMODEDEFAULT 1
 DEFINE LIB_MAP ( + => worklib )
 define ELAB_SNAPSHOT
 define SNAPSHOT worklib.decode_testbench:sv
-define ELAB_SNAPSHOT
-define SNAPSHOT worklib.decode_testbench:sv

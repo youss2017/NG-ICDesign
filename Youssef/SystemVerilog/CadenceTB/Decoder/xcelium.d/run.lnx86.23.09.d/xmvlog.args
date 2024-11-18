@@ -8,6 +8,9 @@
 rapid_pkg.sv
 decode_testbench.sv
 instruction_decoder.sv
+-sv
+-DEFINE
+DEBUG=1
 -CDSLIB
 ./xcelium.d/run.lnx86.23.09.d/cdsrun.lib
 -HDLVAR

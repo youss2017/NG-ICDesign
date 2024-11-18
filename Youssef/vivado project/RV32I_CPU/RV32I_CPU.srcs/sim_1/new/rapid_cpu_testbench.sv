@@ -126,8 +126,8 @@ module rapid_cpu_testbench();
     /***** Register File *****/
 
     /***** EX Stage *****/
-    logic [XLEN-1:0] ex_pc_ext_o, ex_rd_output_o;
-    logic ex_pc_load_o, ex_rs2_o;
+    logic [XLEN-1:0] ex_pc_ext_o, ex_rd_output_o, ex_rs2_o;
+    logic ex_pc_load_o;
     control_s ex_control_o;
     EX_state_t o_ex_current_state;
     

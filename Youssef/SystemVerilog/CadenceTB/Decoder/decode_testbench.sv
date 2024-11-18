@@ -85,6 +85,9 @@ module decode_testbench
         do_clock(5);        
                 
         $display("Testbench completed.");
+
+	$dumpfile("simulation.vcd");
+	$dumpvars(0, decode_testbench);
         $stop;
     end
 

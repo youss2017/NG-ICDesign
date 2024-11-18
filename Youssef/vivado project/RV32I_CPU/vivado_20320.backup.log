@@ -1,0 +1,1057 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Mon Nov 18 01:41:57 2024
+# Process ID: 20320
+# Current directory: D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent16864 D:\Files\Desktop\NG-ICDesign\Youssef\vivado project\RV32I_CPU\RV32I_CPU.xpr
+# Log file: D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/vivado.log
+# Journal file: D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU\vivado.jou
+# Running On        :ZephyrusG14
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :22631
+# Processor Detail  :AMD Ryzen 9 4900HS with Radeon Graphics         
+# CPU Frequency     :2994 MHz
+# CPU Physical cores:8
+# CPU Logical cores :16
+# Host memory       :16556 MB
+# Swap memory       :7255 MB
+# Total Virtual     :23812 MB
+# Available Virtual :4881 MB
+#-----------------------------------------------------------
+start_gui
+open_project {D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.xpr}
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:k24c:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/k24c/1.0/board.xml as part xck24-ubva530-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:k24i:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/k24i/1.0/board.xml as part xck24-ubva530-2lvi-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:k26c:part0:1.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/k26c/1.2/board.xml as part xck26-sfvc784-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:k26c:part0:1.3 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/k26c/1.3/board.xml as part xck26-sfvc784-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:k26c:part0:1.4 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/k26c/1.4/board.xml as part xck26-sfvc784-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:k26i:part0:1.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/k26i/1.2/board.xml as part xck26-sfvc784-2lvi-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:k26i:part0:1.3 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/k26i/1.3/board.xml as part xck26-sfvc784-2lvi-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:k26i:part0:1.4 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/k26i/1.4/board.xml as part xck26-sfvc784-2lvi-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kc705:part0:1.6 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kc705/1.6/board.xml as part xc7k325tffg900-2 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu105:part0:1.6 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu105/1.6/board.xml as part xcku040-ffva1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu105:part0:1.7 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu105/1.7/board.xml as part xcku040-ffva1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu116:part0:1.4 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu116/1.4/board.xml as part xcku5p-ffvb676-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu116:part0:1.5 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu116/1.5/board.xml as part xcku5p-ffvb676-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu1500:part0:1.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu1500/1.2/board.xml as part xcku115-flvb2104-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kd240_som:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kd240_som/1.0/board.xml as part xck24-ubva530-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kr260_som:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kr260_som/1.0/board.xml as part xck26-sfvc784-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kr260_som:part0:1.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kr260_som/1.1/board.xml as part xck26-sfvc784-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kv260_som:part0:1.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kv260_som/1.2/board.xml as part xck26-sfvc784-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kv260_som:part0:1.3 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kv260_som/1.3/board.xml as part xck26-sfvc784-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kv260_som:part0:1.4 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kv260_som/1.4/board.xml as part xck26-sfvc784-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:sp701:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/sp701/1.0/board.xml as part xc7s100fgga676-2 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:sp701:part0:1.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/sp701/1.1/board.xml as part xc7s100fgga676-2 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vc707:part0:1.4 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vc707/1.4/board.xml as part xc7vx485tffg1761-2 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vc709:part0:1.8 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vc709/1.8/board.xml as part xc7vx690tffg1761-2 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:2.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/2.2/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.0/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.1/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.2/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.3 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.3/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190_newl:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190_newl/production/1.0/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190_newl:part0:1.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190_newl/production/1.1/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190_newl:part0:1.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190_newl/production/1.2/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu108:part0:1.6 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu108/1.6/board.xml as part xcvu095-ffva2104-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu108:part0:1.7 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu108/1.7/board.xml as part xcvu095-ffva2104-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu110:part0:1.4 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu110/1.4/board.xml as part xcvu190-flgc2104-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu118:part0:2.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu118/2.0/board.xml as part xcvu9p-flga2104-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu118:part0:2.3 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu118/2.3/board.xml as part xcvu9p-flga2104-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu118:part0:2.4 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu118/2.4/board.xml as part xcvu9p-flga2104-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu128:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu128/production/1.0/board.xml as part xcvu37p-fsvh2892-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu129:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu129/production/1.0/board.xml as part xcvu29p-fsga2577-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu1525:part0:1.3 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu1525/1.3/board.xml as part xcvu9p-fsgd2104-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/production/1.0/board.xml as part xcve2802-vsvh1760-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280:part0:1.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/production/1.1/board.xml as part xcve2802-vsvh1760-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280:part0:1.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/production/1.2/board.xml as part xcve2802-vsvh1760-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280_es:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/es/rev_a/1.0/board.xml as part xcve2802-vsvh1760-2lp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280_es:part0:1.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/es/rev_a/1.1/board.xml as part xcve2802-vsvh1760-2lp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280_es_revb:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/es/rev_b/1.0/board.xml as part xcve2802-vsvh1760-2mp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280_es_revb:part0:1.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/es/rev_b/1.1/board.xml as part xcve2802-vsvh1760-2mp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vermeo_t1_mpsoc:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vermeo_t1_mpsoc/1.0/board.xml as part xczu19eg-ffvd1760-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vermeo_t1_rfsoc:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vermeo_t1_rfsoc/1.0/board.xml as part xczu21dr-ffvd1156-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/production/1.0/board.xml as part xcvh1582-vsva3697-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158:part0:1.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/production/1.1/board.xml as part xcvh1582-vsva3697-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158_es:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/es/1.0/board.xml as part xcvh1582-vsva3697-2mp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158_es:part0:1.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/es/1.1/board.xml as part xcvh1582-vsva3697-2mp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:2.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/2.2/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:3.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/3.0/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:3.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/3.1/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:3.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/3.2/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180_newl:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180_newl/production/1.0/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180_newl:part0:1.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180_newl/production/1.1/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120/production/1.0/board.xml as part xcvp1202-vsva2785-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120:part0:1.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120/production/1.1/board.xml as part xcvp1202-vsva2785-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120:part0:1.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120/production/1.2/board.xml as part xcvp1202-vsva2785-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk180:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk180/production/1.0/board.xml as part xcvp1802-lsvc4072-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk180:part0:1.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk180/production/1.1/board.xml as part xcvp1802-lsvc4072-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk180:part0:1.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk180/production/1.2/board.xml as part xcvp1802-lsvc4072-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zc702:part0:1.4 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zc702/1.4/board.xml as part xc7z020clg484-1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zc706:part0:1.4 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zc706/1.4/board.xml as part xc7z045ffg900-2 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu102:part0:3.3 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu102/3.3/board.xml as part xczu9eg-ffvb1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu102:part0:3.4 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu102/3.4/board.xml as part xczu9eg-ffvb1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu104:part0:1.1 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu104/1.1/board.xml as part xczu7ev-ffvc1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu106:part0:2.4 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu106/2.4/board.xml as part xczu7ev-ffvc1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu106:part0:2.5 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu106/2.5/board.xml as part xczu7ev-ffvc1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu106:part0:2.6 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu106/2.6/board.xml as part xczu7ev-ffvc1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu111:part0:1.2 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu111/1.2/board.xml as part xczu28dr-ffvg1517-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu111:part0:1.3 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu111/1.3/board.xml as part xczu28dr-ffvg1517-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu111:part0:1.4 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu111/1.4/board.xml as part xczu28dr-ffvg1517-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu1275:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu1275/1.0/board.xml as part xczu29dr-ffvf1760-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu1285:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu1285/1.0/board.xml as part xczu39dr-ffvf1760-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu208:part0:2.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu208/production/2.0/board.xml as part xczu48dr-fsvg1517-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu208ld:part0:2.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu208ld/production/2.0/board.xml as part xczu58dr-fsvg1517-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216:part0:2.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216/production/2.0/board.xml as part xczu49dr-ffvf1760-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/production/2.0/board.xml as part xczu59dr-ffvf1760-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670:part0:2.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670/2.0/board.xml as part xczu67dr-fsve1156-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 available at D:/Dev/Xilinx/Vivado/2024.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670ld/1.0/board.xml as part xczu57dr-fsve1156-2-i specified in board_part file is either invalid or not available
+INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Dev/Xilinx/Vivado/2024.1/data/ip'.
+open_project: Time (s): cpu = 00:00:18 ; elapsed = 00:00:14 . Memory (MB): peak = 1508.043 ; gain = 412.293
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'rapid_cpu_testbench'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'D:/Dev/Xilinx/Vivado/2024.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'rapid_cpu_testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-100] Fetching design files from 'sources_1'...(this may take a while)...
+INFO: [USF-XSim-101] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -L uvm -prj rapid_cpu_testbench_vlog.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot rapid_cpu_testbench_behav xil_defaultlib.rapid_cpu_testbench xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2024.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/Dev/Xilinx/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot rapid_cpu_testbench_behav xil_defaultlib.rapid_cpu_testbench xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'o_rs2' [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/rapid_cpu_testbench.sv:146]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'rs2' [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/rapid_cpu_testbench.sv:165]
+WARNING: [VRFC 10-3823] variable 'ex_pc_ext_o' might have multiple concurrent drivers [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/rapid_cpu_testbench.sv:144]
+WARNING: [VRFC 10-3823] variable 'mem_req' might have multiple concurrent drivers [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_ifetch_unit.sv:64]
+WARNING: [VRFC 10-3129] assignment to input 'mem_req' [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_ifetch_unit.sv:64]
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '4' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "rapid_cpu_testbench_behav -key {Behavioral:sim_1:Functional:rapid_cpu_testbench} -tclbatch {rapid_cpu_testbench.tcl} -view {{D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/rapid_cpu_testbench_behav.wcfg}} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+open_wave_config {D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/rapid_cpu_testbench_behav.wcfg}
+source rapid_cpu_testbench.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 100000ns
+Time: 0 | Reset signal applied, i_reset = 0
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+WARNING: 15ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 15ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 15ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+[FAKEMEM] ReadReq  block [00000000]
+WARNING: 45ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 45ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 45ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+WARNING: 55ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 55ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 55ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+WARNING: 65ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 65ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 65ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+[FAKEMEM] ReadReq  block [00000010]
+[FAKEMEM] ReadReq  block [00000020]
+[FAKEMEM] ReadReq  block [00000030]
+[FAKEMEM] ReadReq  block [00000040]
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'rapid_cpu_testbench_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 100000ns
+launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:12 . Memory (MB): peak = 1638.695 ; gain = 94.148
+remove_bps -file {D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/dcache_dm1cycle.sv} -line 318
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+rapid_cpu_testbench_behav.wcfg
+add_wave {{/rapid_cpu_testbench/i_clk}} {{/rapid_cpu_testbench/i_reset}} {{/rapid_cpu_testbench/pready2}} {{/rapid_cpu_testbench/if_done_o}} {{/rapid_cpu_testbench/de_done_o}} {{/rapid_cpu_testbench/ex_done_o}} {{/rapid_cpu_testbench/mem_done_o}} {{/rapid_cpu_testbench/wb_done_o}} 
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+rapid_cpu_testbench_behav.wcfg
+add_wave {{/rapid_cpu_testbench/mem_stage/i_control_sig}} {{/rapid_cpu_testbench/mem_stage/o_control_sig}} {{/rapid_cpu_testbench/mem_stage/i_data_in}} {{/rapid_cpu_testbench/mem_stage/rs2}} {{/rapid_cpu_testbench/mem_stage/o_rd_output}} {{/rapid_cpu_testbench/mem_stage/mem_req}} {{/rapid_cpu_testbench/mem_stage/mem_res}} {{/rapid_cpu_testbench/mem_stage/state}} {{/rapid_cpu_testbench/mem_stage/state_nxt}} {{/rapid_cpu_testbench/mem_stage/is_word}} {{/rapid_cpu_testbench/mem_stage/is_byte}} {{/rapid_cpu_testbench/mem_stage/do_sx}} 
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+rapid_cpu_testbench_behav.wcfg
+add_wave {{/rapid_cpu_testbench/mem_stage/iface/addr}} {{/rapid_cpu_testbench/mem_stage/iface/wdata}} {{/rapid_cpu_testbench/mem_stage/iface/wmask}} {{/rapid_cpu_testbench/mem_stage/iface/rdata}} 
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+rapid_cpu_testbench_behav.wcfg
+add_wave {{/rapid_cpu_testbench/mem_stage/dcache/mem_res}} {{/rapid_cpu_testbench/mem_stage/dcache/mem_req}} {{/rapid_cpu_testbench/mem_stage/dcache/state}} {{/rapid_cpu_testbench/mem_stage/dcache/state_nxt}} {{/rapid_cpu_testbench/mem_stage/dcache/tag_read}} {{/rapid_cpu_testbench/mem_stage/dcache/tag_write}} {{/rapid_cpu_testbench/mem_stage/dcache/tag_req}} {{/rapid_cpu_testbench/mem_stage/dcache/data_read}} {{/rapid_cpu_testbench/mem_stage/dcache/data_write}} {{/rapid_cpu_testbench/mem_stage/dcache/data_req}} {{/rapid_cpu_testbench/mem_stage/dcache/addr}} {{/rapid_cpu_testbench/mem_stage/dcache/wmask}} {{/rapid_cpu_testbench/mem_stage/dcache/wdata}} {{/rapid_cpu_testbench/mem_stage/dcache/rw}} 
+relaunch_sim
+Command: launch_simulation -step compile -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'rapid_cpu_testbench'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'D:/Dev/Xilinx/Vivado/2024.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'rapid_cpu_testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-100] Fetching design files from 'sources_1'...(this may take a while)...
+INFO: [USF-XSim-101] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -L uvm -prj rapid_cpu_testbench_vlog.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+Command: launch_simulation -step elaborate -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'rapid_cpu_testbench'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot rapid_cpu_testbench_behav xil_defaultlib.rapid_cpu_testbench xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2024.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/Dev/Xilinx/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot rapid_cpu_testbench_behav xil_defaultlib.rapid_cpu_testbench xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'o_rs2' [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/rapid_cpu_testbench.sv:146]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'rs2' [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/rapid_cpu_testbench.sv:165]
+WARNING: [VRFC 10-3823] variable 'ex_pc_ext_o' might have multiple concurrent drivers [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/rapid_cpu_testbench.sv:144]
+WARNING: [VRFC 10-3823] variable 'mem_req' might have multiple concurrent drivers [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_ifetch_unit.sv:64]
+WARNING: [VRFC 10-3129] assignment to input 'mem_req' [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_ifetch_unit.sv:64]
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '4' seconds
+Time resolution is 1 ps
+Time: 0 | Reset signal applied, i_reset = 0
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+WARNING: 15ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 15ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 15ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+[FAKEMEM] ReadReq  block [00000000]
+WARNING: 45ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 45ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 45ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+WARNING: 55ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 55ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 55ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+WARNING: 65ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:137
+WARNING: 65ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:149
+WARNING: 65ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:164
+[FAKEMEM] ReadReq  block [00000010]
+[FAKEMEM] ReadReq  block [00000020]
+[FAKEMEM] ReadReq  block [00000030]
+[FAKEMEM] ReadReq  block [00000040]
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 2710.543 ; gain = 0.000
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\Files\Desktop\NG-ICDesign\Youssef\vivado project\RV32I_CPU\RV32I_CPU.srcs\sources_1\new\dcache_dm1cycle.sv:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\Files\Desktop\NG-ICDesign\Youssef\vivado project\RV32I_CPU\RV32I_CPU.srcs\sources_1\new\cpu_memory_unit.sv:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\Files\Desktop\NG-ICDesign\Youssef\vivado project\RV32I_CPU\RV32I_CPU.srcs\sources_1\new\dcache_dm1cycle.sv:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\Files\Desktop\NG-ICDesign\Youssef\vivado project\RV32I_CPU\RV32I_CPU.srcs\sources_1\new\dcache_dm1cycle.sv:]
+ERROR: [Common 17-180] Spawn failed: No error
+relaunch_sim
+Command: launch_simulation -step compile -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'rapid_cpu_testbench'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -L uvm -prj rapid_cpu_testbench_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/instruction_decoder.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module instruction_decoder
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/register_file.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module register_file
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_ifetch_unit.sv" into library xil_defaultlib
+WARNING: [VRFC 10-8896] design element 'rapid_pkg' is previously defined; ignoring this definition [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/rapid_pkg.sv:3]
+INFO: [VRFC 10-311] analyzing module dcache_dm1cycle
+INFO: [VRFC 10-311] analyzing module cache_data
+INFO: [VRFC 10-311] analyzing module cache_tag
+INFO: [VRFC 10-311] analyzing module cpu_ifetch_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/memory_controller_interface.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cpu_memory_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/dcache_dm1cycle.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/dcache_interface.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/fake_memory.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fake_memory
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/writeback_stage.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module writeback_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/execute_bench.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module execute_bench
+WARNING: [VRFC 10-3824] variable 'pass' must explicitly be declared as automatic or static [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/execute_bench.sv:108]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/decode_testbench.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decode_testbench
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/execute_stage.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module execute_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/rapid_cpu_testbench.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rapid_cpu_testbench
+WARNING: [VRFC 10-2938] 'ex_pc_ext_o' is already implicitly declared on line 86 [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/rapid_cpu_testbench.sv:129]
+WARNING: [VRFC 10-2938] 'ex_pc_load_o' is already implicitly declared on line 85 [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/rapid_cpu_testbench.sv:130]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/register_testbench.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module register_testbench
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/cpu_ifetch_unit_tb.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cpu_ifetch_unit_tb
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+Command: launch_simulation -step elaborate -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'rapid_cpu_testbench'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot rapid_cpu_testbench_behav xil_defaultlib.rapid_cpu_testbench xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2024.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/Dev/Xilinx/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot rapid_cpu_testbench_behav xil_defaultlib.rapid_cpu_testbench xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'o_rs2' [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/rapid_cpu_testbench.sv:146]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'rs2' [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/rapid_cpu_testbench.sv:165]
+WARNING: [VRFC 10-3823] variable 'ex_pc_ext_o' might have multiple concurrent drivers [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sim_1/new/rapid_cpu_testbench.sv:144]
+WARNING: [VRFC 10-3823] variable 'mem_req' might have multiple concurrent drivers [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_ifetch_unit.sv:64]
+WARNING: [VRFC 10-3129] assignment to input 'mem_req' [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_ifetch_unit.sv:64]
+WARNING: [VRFC 10-3823] variable 'mem_req' might have multiple concurrent drivers [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:74]
+WARNING: [VRFC 10-3129] assignment to input 'mem_req' [D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:74]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package xil_defaultlib.memory_controller_interface
+Compiling package xil_defaultlib.rapid_pkg
+Compiling package xil_defaultlib.$unit_rapid_pkg_sv_457943007
+Compiling module xil_defaultlib.fake_memory
+Compiling module xil_defaultlib.dcache_interface(DATA_LENGTH=128...
+Compiling module xil_defaultlib.cache_data
+Compiling module xil_defaultlib.cache_tag
+Compiling module xil_defaultlib.dcache_dm1cycle(iface=dcache_int...
+Compiling module xil_defaultlib.cpu_ifetch_unit
+Compiling module xil_defaultlib.instruction_decoder
+Compiling module xil_defaultlib.register_file
+Compiling module xil_defaultlib.execute_stage
+Compiling module xil_defaultlib.dcache_interface(DATA_LENGTH=32,...
+Compiling module xil_defaultlib.cache_data
+Compiling module xil_defaultlib.cache_tag
+Compiling module xil_defaultlib.dcache_dm1cycle(iface=dcache_int...
+Compiling module xil_defaultlib.cpu_memory_unit
+Compiling module xil_defaultlib.writeback_stage
+Compiling module xil_defaultlib.rapid_cpu_testbench
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot rapid_cpu_testbench_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 2710.543 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '5' seconds
+launch_simulation: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 2710.543 ; gain = 0.000
+Time resolution is 1 ps
+Time: 0 | Reset signal applied, i_reset = 0
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 5ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+WARNING: 15ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 15ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 15ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+[FAKEMEM] ReadReq  block [00000000]
+WARNING: 45ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 45ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 45ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+WARNING: 55ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 55ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 55ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+WARNING: 65ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 65ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 65ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+[FAKEMEM] ReadReq  block [00000010]
+[FAKEMEM] ReadReq  block [00000020]
+[FAKEMEM] ReadReq  block [00000030]
+[FAKEMEM] ReadReq  block [00000040]
+[FAKEMEM] ReadReq  block [00000000]
+[FAKEMEM] ReadReq  block [00000050]
+WARNING: 905ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 905ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 905ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+WARNING: 905ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 905ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 905ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+WARNING: 905ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 905ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 905ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+WARNING: 905ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 905ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 905ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+WARNING: 935ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 935ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 935ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+WARNING: 945ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:138
+WARNING: 945ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:150
+WARNING: 945ns : none of the conditions were true for unique case from File:D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.srcs/sources_1/new/cpu_memory_unit.sv:165
+[FAKEMEM] ReadReq  block [00000060]
+[FAKEMEM] ReadReq  block [00000070]
+[FAKEMEM] ReadReq  block [00000080]
+[FAKEMEM] ReadReq  block [00000090]
+[FAKEMEM] ReadReq  block [000000a0]
+[FAKEMEM] ReadReq  block [000000b0]
+[FAKEMEM] ReadReq  block [000000c0]
+[FAKEMEM] ReadReq  block [000000d0]
+[FAKEMEM] ReadReq  block [000000e0]
+[FAKEMEM] ReadReq  block [000000f0]
+[FAKEMEM] ReadReq  block [00000100]
+[FAKEMEM] ReadReq  block [00000110]
+[FAKEMEM] ReadReq  block [00000120]
+[FAKEMEM] ReadReq  block [00000130]
+[FAKEMEM] ReadReq  block [00000140]
+[FAKEMEM] ReadReq  block [00000150]
+[FAKEMEM] ReadReq  block [00000160]
+[FAKEMEM] ReadReq  block [00000170]
+[FAKEMEM] ReadReq  block [00000180]
+[FAKEMEM] ReadReq  block [00000190]
+[FAKEMEM] ReadReq  block [000001a0]
+[FAKEMEM] ReadReq  block [000001b0]
+[FAKEMEM] ReadReq  block [000001c0]
+[FAKEMEM] ReadReq  block [000001d0]
+[FAKEMEM] ReadReq  block [000001e0]
+[FAKEMEM] ReadReq  block [000001f0]
+[FAKEMEM] ReadReq  block [00000200]
+[FAKEMEM] ReadReq  block [00000210]
+[FAKEMEM] ReadReq  block [00000220]
+[FAKEMEM] ReadReq  block [00000230]
+[FAKEMEM] ReadReq  block [00000240]
+[FAKEMEM] ReadReq  block [00000250]
+[FAKEMEM] ReadReq  block [00000260]
+[FAKEMEM] ReadReq  block [00000270]
+[FAKEMEM] ReadReq  block [00000280]
+[FAKEMEM] ReadReq  block [00000290]
+[FAKEMEM] ReadReq  block [000002a0]
+[FAKEMEM] ReadReq  block [000002b0]
+[FAKEMEM] ReadReq  block [000002c0]
+[FAKEMEM] ReadReq  block [000002d0]
+[FAKEMEM] ReadReq  block [000002e0]
+[FAKEMEM] ReadReq  block [000002f0]
+[FAKEMEM] ReadReq  block [00000300]
+[FAKEMEM] ReadReq  block [00000310]
+[FAKEMEM] ReadReq  block [00000320]
+[FAKEMEM] ReadReq  block [00000330]
+[FAKEMEM] ReadReq  block [00000340]
+[FAKEMEM] ReadReq  block [00000350]
+[FAKEMEM] ReadReq  block [00000360]
+[FAKEMEM] ReadReq  block [00000370]
+[FAKEMEM] ReadReq  block [00000380]
+[FAKEMEM] ReadReq  block [00000390]
+[FAKEMEM] ReadReq  block [000003a0]
+[FAKEMEM] ReadReq  block [000003b0]
+[FAKEMEM] ReadReq  block [000003c0]
+[FAKEMEM] ReadReq  block [000003d0]
+[FAKEMEM] ReadReq  block [000003e0]
+[FAKEMEM] ReadReq  block [000003f0]
+[FAKEMEM] ReadReq  block [00000400]
+[FAKEMEM] ReadReq  block [00000410]
+[FAKEMEM] ReadReq  block [00000420]
+[FAKEMEM] ReadReq  block [00000430]
+[FAKEMEM] ReadReq  block [00000440]
+[FAKEMEM] ReadReq  block [00000450]
+[FAKEMEM] ReadReq  block [00000460]
+[FAKEMEM] ReadReq  block [00000470]
+[FAKEMEM] ReadReq  block [00000480]
+[FAKEMEM] ReadReq  block [00000490]
+[FAKEMEM] ReadReq  block [000004a0]
+[FAKEMEM] ReadReq  block [000004b0]
+[FAKEMEM] ReadReq  block [000004c0]
+[FAKEMEM] ReadReq  block [000004d0]
+[FAKEMEM] ReadReq  block [000004e0]
+[FAKEMEM] ReadReq  block [000004f0]
+[FAKEMEM] ReadReq  block [00000500]
+[FAKEMEM] ReadReq  block [00000510]
+[FAKEMEM] ReadReq  block [00000520]
+[FAKEMEM] ReadReq  block [00000530]
+[FAKEMEM] ReadReq  block [00000540]
+[FAKEMEM] ReadReq  block [00000550]
+[FAKEMEM] ReadReq  block [00000560]
+[FAKEMEM] ReadReq  block [00000570]
+[FAKEMEM] ReadReq  block [00000580]
+[FAKEMEM] ReadReq  block [00000590]
+[FAKEMEM] ReadReq  block [000005a0]
+[FAKEMEM] ReadReq  block [000005b0]
+[FAKEMEM] ReadReq  block [000005c0]
+[FAKEMEM] ReadReq  block [000005d0]
+[FAKEMEM] ReadReq  block [000005e0]
+[FAKEMEM] ReadReq  block [000005f0]
+[FAKEMEM] ReadReq  block [00000600]
+[FAKEMEM] ReadReq  block [00000610]
+[FAKEMEM] ReadReq  block [00000620]
+[FAKEMEM] ReadReq  block [00000630]
+[FAKEMEM] ReadReq  block [00000640]
+[FAKEMEM] ReadReq  block [00000650]
+[FAKEMEM] ReadReq  block [00000660]
+[FAKEMEM] ReadReq  block [00000670]
+[FAKEMEM] ReadReq  block [00000680]
+[FAKEMEM] ReadReq  block [00000690]
+[FAKEMEM] ReadReq  block [000006a0]
+[FAKEMEM] ReadReq  block [000006b0]
+[FAKEMEM] ReadReq  block [000006c0]
+[FAKEMEM] ReadReq  block [000006d0]
+[FAKEMEM] ReadReq  block [000006e0]
+[FAKEMEM] ReadReq  block [000006f0]
+[FAKEMEM] ReadReq  block [00000700]
+[FAKEMEM] ReadReq  block [00000710]
+[FAKEMEM] ReadReq  block [00000720]
+[FAKEMEM] ReadReq  block [00000730]
+[FAKEMEM] ReadReq  block [00000740]
+[FAKEMEM] ReadReq  block [00000750]
+[FAKEMEM] ReadReq  block [00000760]
+[FAKEMEM] ReadReq  block [00000770]
+[FAKEMEM] ReadReq  block [00000780]
+[FAKEMEM] ReadReq  block [00000790]
+[FAKEMEM] ReadReq  block [000007a0]
+[FAKEMEM] ReadReq  block [000007b0]
+[FAKEMEM] ReadReq  block [000007c0]
+[FAKEMEM] ReadReq  block [000007d0]
+[FAKEMEM] ReadReq  block [000007e0]
+[FAKEMEM] ReadReq  block [000007f0]
+[FAKEMEM] ReadReq  block [00000800]
+[FAKEMEM] ReadReq  block [00000810]
+[FAKEMEM] ReadReq  block [00000820]
+[FAKEMEM] ReadReq  block [00000830]
+[FAKEMEM] ReadReq  block [00000840]
+[FAKEMEM] ReadReq  block [00000850]
+[FAKEMEM] ReadReq  block [00000860]
+[FAKEMEM] ReadReq  block [00000870]
+[FAKEMEM] ReadReq  block [00000880]
+[FAKEMEM] ReadReq  block [00000890]
+[FAKEMEM] ReadReq  block [000008a0]
+[FAKEMEM] ReadReq  block [000008b0]
+[FAKEMEM] ReadReq  block [000008c0]
+[FAKEMEM] ReadReq  block [000008d0]
+[FAKEMEM] ReadReq  block [000008e0]
+[FAKEMEM] ReadReq  block [000008f0]
+[FAKEMEM] ReadReq  block [00000900]
+[FAKEMEM] ReadReq  block [00000910]
+[FAKEMEM] ReadReq  block [00000920]
+[FAKEMEM] ReadReq  block [00000930]
+[FAKEMEM] ReadReq  block [00000940]
+[FAKEMEM] ReadReq  block [00000950]
+[FAKEMEM] ReadReq  block [00000960]
+[FAKEMEM] ReadReq  block [00000970]
+[FAKEMEM] ReadReq  block [00000980]
+[FAKEMEM] ReadReq  block [00000990]
+[FAKEMEM] ReadReq  block [000009a0]
+[FAKEMEM] ReadReq  block [000009b0]
+[FAKEMEM] ReadReq  block [000009c0]
+[FAKEMEM] ReadReq  block [000009d0]
+[FAKEMEM] ReadReq  block [000009e0]
+[FAKEMEM] ReadReq  block [000009f0]
+[FAKEMEM] ReadReq  block [00000a00]
+[FAKEMEM] ReadReq  block [00000a10]
+[FAKEMEM] ReadReq  block [00000a20]
+[FAKEMEM] ReadReq  block [00000a30]
+[FAKEMEM] ReadReq  block [00000a40]
+[FAKEMEM] ReadReq  block [00000a50]
+[FAKEMEM] ReadReq  block [00000a60]
+[FAKEMEM] ReadReq  block [00000a70]
+[FAKEMEM] ReadReq  block [00000a80]
+[FAKEMEM] ReadReq  block [00000a90]
+[FAKEMEM] ReadReq  block [00000aa0]
+[FAKEMEM] ReadReq  block [00000ab0]
+[FAKEMEM] ReadReq  block [00000ac0]
+[FAKEMEM] ReadReq  block [00000ad0]
+[FAKEMEM] ReadReq  block [00000ae0]
+[FAKEMEM] ReadReq  block [00000af0]
+[FAKEMEM] ReadReq  block [00000b00]
+[FAKEMEM] ReadReq  block [00000b10]
+[FAKEMEM] ReadReq  block [00000b20]
+[FAKEMEM] ReadReq  block [00000b30]
+[FAKEMEM] ReadReq  block [00000b40]
+[FAKEMEM] ReadReq  block [00000b50]
+[FAKEMEM] ReadReq  block [00000b60]
+[FAKEMEM] ReadReq  block [00000b70]
+[FAKEMEM] ReadReq  block [00000b80]
+[FAKEMEM] ReadReq  block [00000b90]
+[FAKEMEM] ReadReq  block [00000ba0]
+[FAKEMEM] ReadReq  block [00000bb0]
+[FAKEMEM] ReadReq  block [00000bc0]
+[FAKEMEM] ReadReq  block [00000bd0]
+[FAKEMEM] ReadReq  block [00000be0]
+[FAKEMEM] ReadReq  block [00000bf0]
+[FAKEMEM] ReadReq  block [00000c00]
+[FAKEMEM] ReadReq  block [00000c10]
+[FAKEMEM] ReadReq  block [00000c20]
+[FAKEMEM] ReadReq  block [00000c30]
+[FAKEMEM] ReadReq  block [00000c40]
+[FAKEMEM] ReadReq  block [00000c50]
+[FAKEMEM] ReadReq  block [00000c60]
+[FAKEMEM] ReadReq  block [00000c70]
+[FAKEMEM] ReadReq  block [00000c80]
+[FAKEMEM] ReadReq  block [00000c90]
+[FAKEMEM] ReadReq  block [00000ca0]
+[FAKEMEM] ReadReq  block [00000cb0]
+[FAKEMEM] ReadReq  block [00000cc0]
+[FAKEMEM] ReadReq  block [00000cd0]
+[FAKEMEM] ReadReq  block [00000ce0]
+[FAKEMEM] ReadReq  block [00000cf0]
+[FAKEMEM] ReadReq  block [00000d00]
+[FAKEMEM] ReadReq  block [00000d10]
+[FAKEMEM] ReadReq  block [00000d20]
+[FAKEMEM] ReadReq  block [00000d30]
+[FAKEMEM] ReadReq  block [00000d40]
+[FAKEMEM] ReadReq  block [00000d50]
+[FAKEMEM] ReadReq  block [00000d60]
+[FAKEMEM] ReadReq  block [00000d70]
+[FAKEMEM] ReadReq  block [00000d80]
+[FAKEMEM] ReadReq  block [00000d90]
+[FAKEMEM] ReadReq  block [00000da0]
+[FAKEMEM] ReadReq  block [00000db0]
+[FAKEMEM] ReadReq  block [00000dc0]
+[FAKEMEM] ReadReq  block [00000dd0]
+[FAKEMEM] ReadReq  block [00000de0]
+[FAKEMEM] ReadReq  block [00000df0]
+[FAKEMEM] ReadReq  block [00000e00]
+[FAKEMEM] ReadReq  block [00000e10]
+[FAKEMEM] ReadReq  block [00000e20]
+[FAKEMEM] ReadReq  block [00000e30]
+[FAKEMEM] ReadReq  block [00000e40]
+[FAKEMEM] ReadReq  block [00000e50]
+[FAKEMEM] ReadReq  block [00000e60]
+[FAKEMEM] ReadReq  block [00000e70]
+[FAKEMEM] ReadReq  block [00000e80]
+[FAKEMEM] ReadReq  block [00000e90]
+[FAKEMEM] ReadReq  block [00000ea0]
+[FAKEMEM] ReadReq  block [00000eb0]
+[FAKEMEM] ReadReq  block [00000ec0]
+[FAKEMEM] ReadReq  block [00000ed0]
+[FAKEMEM] ReadReq  block [00000ee0]
+[FAKEMEM] ReadReq  block [00000ef0]
+[FAKEMEM] ReadReq  block [00000f00]
+[FAKEMEM] ReadReq  block [00000f10]
+[FAKEMEM] ReadReq  block [00000f20]
+[FAKEMEM] ReadReq  block [00000f30]
+[FAKEMEM] ReadReq  block [00000f40]
+[FAKEMEM] ReadReq  block [00000f50]
+[FAKEMEM] ReadReq  block [00000f60]
+[FAKEMEM] ReadReq  block [00000f70]
+[FAKEMEM] ReadReq  block [00000f80]
+[FAKEMEM] ReadReq  block [00000f90]
+[FAKEMEM] ReadReq  block [00000fa0]
+[FAKEMEM] ReadReq  block [00000fb0]
+[FAKEMEM] ReadReq  block [00000fc0]
+[FAKEMEM] ReadReq  block [00000fd0]
+[FAKEMEM] ReadReq  block [00000fe0]
+[FAKEMEM] ReadReq  block [00000ff0]
+[FAKEMEM] ReadReq  block [00001000]
+[FAKEMEM] ReadReq  block [00001010]
+[FAKEMEM] ReadReq  block [00001020]
+[FAKEMEM] ReadReq  block [00001030]
+[FAKEMEM] ReadReq  block [00001040]
+[FAKEMEM] ReadReq  block [00001050]
+[FAKEMEM] ReadReq  block [00001060]
+[FAKEMEM] ReadReq  block [00001070]
+[FAKEMEM] ReadReq  block [00001080]
+[FAKEMEM] ReadReq  block [00001090]
+[FAKEMEM] ReadReq  block [000010a0]
+[FAKEMEM] ReadReq  block [000010b0]
+[FAKEMEM] ReadReq  block [000010c0]
+[FAKEMEM] ReadReq  block [000010d0]
+[FAKEMEM] ReadReq  block [000010e0]
+[FAKEMEM] ReadReq  block [000010f0]
+[FAKEMEM] ReadReq  block [00001100]
+[FAKEMEM] ReadReq  block [00001110]
+[FAKEMEM] ReadReq  block [00001120]
+[FAKEMEM] ReadReq  block [00001130]
+[FAKEMEM] ReadReq  block [00001140]
+[FAKEMEM] ReadReq  block [00001150]
+[FAKEMEM] ReadReq  block [00001160]
+[FAKEMEM] ReadReq  block [00001170]
+[FAKEMEM] ReadReq  block [00001180]
+[FAKEMEM] ReadReq  block [00001190]
+[FAKEMEM] ReadReq  block [000011a0]
+[FAKEMEM] ReadReq  block [000011b0]
+[FAKEMEM] ReadReq  block [000011c0]
+[FAKEMEM] ReadReq  block [000011d0]
+[FAKEMEM] ReadReq  block [000011e0]
+[FAKEMEM] ReadReq  block [000011f0]
+[FAKEMEM] ReadReq  block [00001200]
+[FAKEMEM] ReadReq  block [00001210]
+[FAKEMEM] ReadReq  block [00001220]
+[FAKEMEM] ReadReq  block [00001230]
+[FAKEMEM] ReadReq  block [00001240]
+[FAKEMEM] ReadReq  block [00001250]
+[FAKEMEM] ReadReq  block [00001260]
+[FAKEMEM] ReadReq  block [00001270]
+[FAKEMEM] ReadReq  block [00001280]
+[FAKEMEM] ReadReq  block [00001290]
+[FAKEMEM] ReadReq  block [000012a0]
+[FAKEMEM] ReadReq  block [000012b0]
+[FAKEMEM] ReadReq  block [000012c0]
+[FAKEMEM] ReadReq  block [000012d0]
+[FAKEMEM] ReadReq  block [000012e0]
+[FAKEMEM] ReadReq  block [000012f0]
+[FAKEMEM] ReadReq  block [00001300]
+[FAKEMEM] ReadReq  block [00001310]
+[FAKEMEM] ReadReq  block [00001320]
+[FAKEMEM] ReadReq  block [00001330]
+[FAKEMEM] ReadReq  block [00001340]
+[FAKEMEM] ReadReq  block [00001350]
+[FAKEMEM] ReadReq  block [00001360]
+[FAKEMEM] ReadReq  block [00001370]
+[FAKEMEM] ReadReq  block [00001380]
+[FAKEMEM] ReadReq  block [00001390]
+[FAKEMEM] ReadReq  block [000013a0]
+[FAKEMEM] ReadReq  block [000013b0]
+[FAKEMEM] ReadReq  block [000013c0]
+[FAKEMEM] ReadReq  block [000013d0]
+[FAKEMEM] ReadReq  block [000013e0]
+[FAKEMEM] ReadReq  block [000013f0]
+[FAKEMEM] ReadReq  block [00001400]
+[FAKEMEM] ReadReq  block [00001410]
+[FAKEMEM] ReadReq  block [00001420]
+[FAKEMEM] ReadReq  block [00001430]
+[FAKEMEM] ReadReq  block [00001440]
+[FAKEMEM] ReadReq  block [00001450]
+[FAKEMEM] ReadReq  block [00001460]
+[FAKEMEM] ReadReq  block [00001470]
+[FAKEMEM] ReadReq  block [00001480]
+[FAKEMEM] ReadReq  block [00001490]
+[FAKEMEM] ReadReq  block [000014a0]
+[FAKEMEM] ReadReq  block [000014b0]
+[FAKEMEM] ReadReq  block [000014c0]
+[FAKEMEM] ReadReq  block [000014d0]
+[FAKEMEM] ReadReq  block [000014e0]
+[FAKEMEM] ReadReq  block [000014f0]
+[FAKEMEM] ReadReq  block [00001500]
+[FAKEMEM] ReadReq  block [00001510]
+[FAKEMEM] ReadReq  block [00001520]
+[FAKEMEM] ReadReq  block [00001530]
+[FAKEMEM] ReadReq  block [00001540]
+[FAKEMEM] ReadReq  block [00001550]
+[FAKEMEM] ReadReq  block [00001560]
+[FAKEMEM] ReadReq  block [00001570]
+[FAKEMEM] ReadReq  block [00001580]
+[FAKEMEM] ReadReq  block [00001590]
+[FAKEMEM] ReadReq  block [000015a0]
+[FAKEMEM] ReadReq  block [000015b0]
+[FAKEMEM] ReadReq  block [000015c0]
+[FAKEMEM] ReadReq  block [000015d0]
+[FAKEMEM] ReadReq  block [000015e0]
+[FAKEMEM] ReadReq  block [000015f0]
+[FAKEMEM] ReadReq  block [00001600]
+[FAKEMEM] ReadReq  block [00001610]
+[FAKEMEM] ReadReq  block [00001620]
+[FAKEMEM] ReadReq  block [00001630]
+[FAKEMEM] ReadReq  block [00001640]
+[FAKEMEM] ReadReq  block [00001650]
+[FAKEMEM] ReadReq  block [00001660]
+[FAKEMEM] ReadReq  block [00001670]
+[FAKEMEM] ReadReq  block [00001680]
+[FAKEMEM] ReadReq  block [00001690]
+[FAKEMEM] ReadReq  block [000016a0]
+[FAKEMEM] ReadReq  block [000016b0]
+[FAKEMEM] ReadReq  block [000016c0]
+[FAKEMEM] ReadReq  block [000016d0]
+[FAKEMEM] ReadReq  block [000016e0]
+[FAKEMEM] ReadReq  block [000016f0]
+[FAKEMEM] ReadReq  block [00001700]
+[FAKEMEM] ReadReq  block [00001710]
+[FAKEMEM] ReadReq  block [00001720]
+[FAKEMEM] ReadReq  block [00001730]
+[FAKEMEM] ReadReq  block [00001740]
+[FAKEMEM] ReadReq  block [00001750]
+[FAKEMEM] ReadReq  block [00001760]
+[FAKEMEM] ReadReq  block [00001770]
+[FAKEMEM] ReadReq  block [00001780]
+[FAKEMEM] ReadReq  block [00001790]
+[FAKEMEM] ReadReq  block [000017a0]
+[FAKEMEM] ReadReq  block [000017b0]
+[FAKEMEM] ReadReq  block [000017c0]
+[FAKEMEM] ReadReq  block [000017d0]
+[FAKEMEM] ReadReq  block [000017e0]
+[FAKEMEM] ReadReq  block [000017f0]
+[FAKEMEM] ReadReq  block [00001800]
+[FAKEMEM] ReadReq  block [00001810]
+[FAKEMEM] ReadReq  block [00001820]
+[FAKEMEM] ReadReq  block [00001830]
+[FAKEMEM] ReadReq  block [00001840]
+[FAKEMEM] ReadReq  block [00001850]
+[FAKEMEM] ReadReq  block [00001860]
+[FAKEMEM] ReadReq  block [00001870]
+[FAKEMEM] ReadReq  block [00001880]
+[FAKEMEM] ReadReq  block [00001890]
+[FAKEMEM] ReadReq  block [000018a0]
+[FAKEMEM] ReadReq  block [000018b0]
+[FAKEMEM] ReadReq  block [000018c0]
+[FAKEMEM] ReadReq  block [000018d0]
+[FAKEMEM] ReadReq  block [000018e0]
+[FAKEMEM] ReadReq  block [000018f0]
+[FAKEMEM] ReadReq  block [00001900]
+[FAKEMEM] ReadReq  block [00001910]
+[FAKEMEM] ReadReq  block [00001920]
+[FAKEMEM] ReadReq  block [00001930]
+[FAKEMEM] ReadReq  block [00001940]
+[FAKEMEM] ReadReq  block [00001950]
+[FAKEMEM] ReadReq  block [00001960]
+[FAKEMEM] ReadReq  block [00001970]
+[FAKEMEM] ReadReq  block [00001980]
+[FAKEMEM] ReadReq  block [00001990]
+[FAKEMEM] ReadReq  block [000019a0]
+[FAKEMEM] ReadReq  block [000019b0]
+[FAKEMEM] ReadReq  block [000019c0]
+[FAKEMEM] ReadReq  block [000019d0]
+[FAKEMEM] ReadReq  block [000019e0]
+[FAKEMEM] ReadReq  block [000019f0]
+[FAKEMEM] ReadReq  block [00001a00]
+[FAKEMEM] ReadReq  block [00001a10]
+[FAKEMEM] ReadReq  block [00001a20]
+[FAKEMEM] ReadReq  block [00001a30]
+[FAKEMEM] ReadReq  block [00001a40]
+[FAKEMEM] ReadReq  block [00001a50]
+[FAKEMEM] ReadReq  block [00001a60]
+[FAKEMEM] ReadReq  block [00001a70]
+[FAKEMEM] ReadReq  block [00001a80]
+[FAKEMEM] ReadReq  block [00001a90]
+[FAKEMEM] ReadReq  block [00001aa0]
+[FAKEMEM] ReadReq  block [00001ab0]
+[FAKEMEM] ReadReq  block [00001ac0]
+[FAKEMEM] ReadReq  block [00001ad0]
+[FAKEMEM] ReadReq  block [00001ae0]
+[FAKEMEM] ReadReq  block [00001af0]
+[FAKEMEM] ReadReq  block [00001b00]
+[FAKEMEM] ReadReq  block [00001b10]
+[FAKEMEM] ReadReq  block [00001b20]
+[FAKEMEM] ReadReq  block [00001b30]
+[FAKEMEM] ReadReq  block [00001b40]
+[FAKEMEM] ReadReq  block [00001b50]
+[FAKEMEM] ReadReq  block [00001b60]
+[FAKEMEM] ReadReq  block [00001b70]
+[FAKEMEM] ReadReq  block [00001b80]
+[FAKEMEM] ReadReq  block [00001b90]
+[FAKEMEM] ReadReq  block [00001ba0]
+[FAKEMEM] ReadReq  block [00001bb0]
+[FAKEMEM] ReadReq  block [00001bc0]
+[FAKEMEM] ReadReq  block [00001bd0]
+[FAKEMEM] ReadReq  block [00001be0]
+[FAKEMEM] ReadReq  block [00001bf0]
+[FAKEMEM] ReadReq  block [00001c00]
+[FAKEMEM] ReadReq  block [00001c10]
+[FAKEMEM] ReadReq  block [00001c20]
+[FAKEMEM] ReadReq  block [00001c30]
+[FAKEMEM] ReadReq  block [00001c40]
+[FAKEMEM] ReadReq  block [00001c50]
+[FAKEMEM] ReadReq  block [00001c60]
+[FAKEMEM] ReadReq  block [00001c70]
+[FAKEMEM] ReadReq  block [00001c80]
+[FAKEMEM] ReadReq  block [00001c90]
+[FAKEMEM] ReadReq  block [00001ca0]
+[FAKEMEM] ReadReq  block [00001cb0]
+[FAKEMEM] ReadReq  block [00001cc0]
+[FAKEMEM] ReadReq  block [00001cd0]
+[FAKEMEM] ReadReq  block [00001ce0]
+[FAKEMEM] ReadReq  block [00001cf0]
+[FAKEMEM] ReadReq  block [00001d00]
+[FAKEMEM] ReadReq  block [00001d10]
+[FAKEMEM] ReadReq  block [00001d20]
+[FAKEMEM] ReadReq  block [00001d30]
+[FAKEMEM] ReadReq  block [00001d40]
+[FAKEMEM] ReadReq  block [00001d50]
+[FAKEMEM] ReadReq  block [00001d60]
+[FAKEMEM] ReadReq  block [00001d70]
+[FAKEMEM] ReadReq  block [00001d80]
+[FAKEMEM] ReadReq  block [00001d90]
+[FAKEMEM] ReadReq  block [00001da0]
+[FAKEMEM] ReadReq  block [00001db0]
+[FAKEMEM] ReadReq  block [00001dc0]
+[FAKEMEM] ReadReq  block [00001dd0]
+[FAKEMEM] ReadReq  block [00001de0]
+[FAKEMEM] ReadReq  block [00001df0]
+[FAKEMEM] ReadReq  block [00001e00]
+[FAKEMEM] ReadReq  block [00001e10]
+[FAKEMEM] ReadReq  block [00001e20]
+[FAKEMEM] ReadReq  block [00001e30]
+[FAKEMEM] ReadReq  block [00001e40]
+[FAKEMEM] ReadReq  block [00001e50]
+[FAKEMEM] ReadReq  block [00001e60]
+[FAKEMEM] ReadReq  block [00001e70]
+[FAKEMEM] ReadReq  block [00001e80]
+[FAKEMEM] ReadReq  block [00001e90]
+[FAKEMEM] ReadReq  block [00001ea0]
+[FAKEMEM] ReadReq  block [00001eb0]
+[FAKEMEM] ReadReq  block [00001ec0]
+[FAKEMEM] ReadReq  block [00001ed0]
+[FAKEMEM] ReadReq  block [00001ee0]
+[FAKEMEM] ReadReq  block [00001ef0]
+[FAKEMEM] ReadReq  block [00001f00]
+[FAKEMEM] ReadReq  block [00001f10]
+[FAKEMEM] ReadReq  block [00001f20]
+[FAKEMEM] ReadReq  block [00001f30]
+[FAKEMEM] ReadReq  block [00001f40]
+[FAKEMEM] ReadReq  block [00001f50]
+[FAKEMEM] ReadReq  block [00001f60]
+[FAKEMEM] ReadReq  block [00001f70]
+[FAKEMEM] ReadReq  block [00001f80]
+[FAKEMEM] ReadReq  block [00001f90]
+[FAKEMEM] ReadReq  block [00001fa0]
+[FAKEMEM] ReadReq  block [00001fb0]
+[FAKEMEM] ReadReq  block [00001fc0]
+[FAKEMEM] ReadReq  block [00001fd0]
+[FAKEMEM] ReadReq  block [00001fe0]
+[FAKEMEM] ReadReq  block [00001ff0]
+[FAKEMEM] ReadReq  block [00002000]
+[FAKEMEM] ReadReq  block [00002010]
+[FAKEMEM] ReadReq  block [00002020]
+[FAKEMEM] ReadReq  block [00002030]
+[FAKEMEM] ReadReq  block [00002040]
+[FAKEMEM] ReadReq  block [00002050]
+[FAKEMEM] ReadReq  block [00002060]
+[FAKEMEM] ReadReq  block [00002070]
+[FAKEMEM] ReadReq  block [00002080]
+[FAKEMEM] ReadReq  block [00002090]
+[FAKEMEM] ReadReq  block [000020a0]
+[FAKEMEM] ReadReq  block [000020b0]
+[FAKEMEM] ReadReq  block [000020c0]
+[FAKEMEM] ReadReq  block [000020d0]
+[FAKEMEM] ReadReq  block [000020e0]
+[FAKEMEM] ReadReq  block [000020f0]
+[FAKEMEM] ReadReq  block [00002100]
+[FAKEMEM] ReadReq  block [00002110]
+[FAKEMEM] ReadReq  block [00002120]
+[FAKEMEM] ReadReq  block [00002130]
+[FAKEMEM] ReadReq  block [00002140]
+[FAKEMEM] ReadReq  block [00002150]
+[FAKEMEM] ReadReq  block [00002160]
+[FAKEMEM] ReadReq  block [00002170]
+[FAKEMEM] ReadReq  block [00002180]
+[FAKEMEM] ReadReq  block [00002190]
+[FAKEMEM] ReadReq  block [000021a0]
+[FAKEMEM] ReadReq  block [000021b0]
+[FAKEMEM] ReadReq  block [000021c0]
+[FAKEMEM] ReadReq  block [000021d0]
+[FAKEMEM] ReadReq  block [000021e0]
+[FAKEMEM] ReadReq  block [000021f0]
+[FAKEMEM] ReadReq  block [00002200]
+[FAKEMEM] ReadReq  block [00002210]
+[FAKEMEM] ReadReq  block [00002220]
+[FAKEMEM] ReadReq  block [00002230]
+[FAKEMEM] ReadReq  block [00002240]
+[FAKEMEM] ReadReq  block [00002250]
+[FAKEMEM] ReadReq  block [00002260]
+[FAKEMEM] ReadReq  block [00002270]
+[FAKEMEM] ReadReq  block [00002280]
+[FAKEMEM] ReadReq  block [00002290]
+[FAKEMEM] ReadReq  block [000022a0]
+[FAKEMEM] ReadReq  block [000022b0]
+[FAKEMEM] ReadReq  block [000022c0]
+[FAKEMEM] ReadReq  block [000022d0]
+[FAKEMEM] ReadReq  block [000022e0]
+[FAKEMEM] ReadReq  block [000022f0]
+[FAKEMEM] ReadReq  block [00002300]
+[FAKEMEM] ReadReq  block [00002310]
+[FAKEMEM] ReadReq  block [00002320]
+[FAKEMEM] ReadReq  block [00002330]
+[FAKEMEM] ReadReq  block [00002340]
+[FAKEMEM] ReadReq  block [00002350]
+[FAKEMEM] ReadReq  block [00002360]
+[FAKEMEM] ReadReq  block [00002370]
+[FAKEMEM] ReadReq  block [00002380]
+[FAKEMEM] ReadReq  block [00002390]
+[FAKEMEM] ReadReq  block [000023a0]
+[FAKEMEM] ReadReq  block [000023b0]
+[FAKEMEM] ReadReq  block [000023c0]
+[FAKEMEM] ReadReq  block [000023d0]
+[FAKEMEM] ReadReq  block [000023e0]
+[FAKEMEM] ReadReq  block [000023f0]
+[FAKEMEM] ReadReq  block [00002400]
+[FAKEMEM] ReadReq  block [00002410]
+[FAKEMEM] ReadReq  block [00002420]
+[FAKEMEM] ReadReq  block [00002430]
+[FAKEMEM] ReadReq  block [00002440]
+[FAKEMEM] ReadReq  block [00002450]
+[FAKEMEM] ReadReq  block [00002460]
+[FAKEMEM] ReadReq  block [00002470]
+[FAKEMEM] ReadReq  block [00002480]
+[FAKEMEM] ReadReq  block [00002490]
+[FAKEMEM] ReadReq  block [000024a0]
+[FAKEMEM] ReadReq  block [000024b0]
+[FAKEMEM] ReadReq  block [000024c0]
+[FAKEMEM] ReadReq  block [000024d0]
+[FAKEMEM] ReadReq  block [000024e0]
+[FAKEMEM] ReadReq  block [000024f0]
+[FAKEMEM] ReadReq  block [00002500]
+[FAKEMEM] ReadReq  block [00002510]
+[FAKEMEM] ReadReq  block [00002520]
+[FAKEMEM] ReadReq  block [00002530]
+[FAKEMEM] ReadReq  block [00002540]
+[FAKEMEM] ReadReq  block [00002550]
+[FAKEMEM] ReadReq  block [00002560]
+[FAKEMEM] ReadReq  block [00002570]
+[FAKEMEM] ReadReq  block [00002580]
+[FAKEMEM] ReadReq  block [00002590]
+[FAKEMEM] ReadReq  block [000025a0]
+[FAKEMEM] ReadReq  block [000025b0]
+[FAKEMEM] ReadReq  block [000025c0]
+[FAKEMEM] ReadReq  block [000025d0]
+[FAKEMEM] ReadReq  block [000025e0]
+[FAKEMEM] ReadReq  block [000025f0]
+[FAKEMEM] ReadReq  block [00002600]
+[FAKEMEM] ReadReq  block [00002610]
+[FAKEMEM] ReadReq  block [00002620]
+[FAKEMEM] ReadReq  block [00002630]
+[FAKEMEM] ReadReq  block [00002640]
+[FAKEMEM] ReadReq  block [00002650]
+[FAKEMEM] ReadReq  block [00002660]
+[FAKEMEM] ReadReq  block [00002670]
+[FAKEMEM] ReadReq  block [00002680]
+[FAKEMEM] ReadReq  block [00002690]
+[FAKEMEM] ReadReq  block [000026a0]
+[FAKEMEM] ReadReq  block [000026b0]
+[FAKEMEM] ReadReq  block [000026c0]
+[FAKEMEM] ReadReq  block [000026d0]
+[FAKEMEM] ReadReq  block [000026e0]
+[FAKEMEM] ReadReq  block [000026f0]
+[FAKEMEM] ReadReq  block [00002700]
+[FAKEMEM] ReadReq  block [00002710]
+relaunch_sim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:11 . Memory (MB): peak = 2710.543 ; gain = 0.000
+relaunch_sim

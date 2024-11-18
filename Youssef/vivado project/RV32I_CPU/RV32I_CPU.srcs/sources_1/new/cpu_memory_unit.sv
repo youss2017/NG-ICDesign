@@ -70,7 +70,8 @@ import rapid_pkg::control_s_default; (
 	// long as they have the same interface
 	dcache_dm1cycle dcache(
 		.clk(i_clk), .rst(i_reset),
-		.iface(iface.secondary)
+		.iface(iface.secondary),
+		.mem_req(mem_req), .mem_res(mem_res)
 	);
 
 	// Aliases for signals

@@ -181,7 +181,7 @@ import rapid_pkg::control_s_default; (
 		iface.rw = i_control_sig.iop;
 		// all cache requests must be word-aligned
 		iface.addr = {addr[31:2], 2'b00};
-		iface.wdata = rs2;
+		/* likely a bug, iface.wdata is set above: iface.wdata = rs2; */
 		iface_valid = '0;
 
 		// passthrough certain control signals

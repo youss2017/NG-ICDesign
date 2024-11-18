@@ -23,3 +23,8 @@
 #-----------------------------------------------------------
 start_gui
 open_project {D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/RV32I_CPU.xpr}
+launch_simulation
+open_wave_config {D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/rapid_cpu_testbench_behav.wcfg}
+source rapid_cpu_testbench.tcl
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+add_wave {{/rapid_cpu_testbench/mem_stage/dcache/cdata/mem}} 

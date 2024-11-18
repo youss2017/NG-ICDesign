@@ -17,7 +17,7 @@ Time Resolution for simulation is 1ps
 Compiling package xil_defaultlib.memory_controller_interface
 Compiling package xil_defaultlib.rapid_pkg
 Compiling package xil_defaultlib.$unit_rapid_pkg_sv_457943007
-Compiling module xil_defaultlib.fake_memory
+Compiling module xil_defaultlib.fake_memory_default
 Compiling module xil_defaultlib.dcache_interface(DATA_LENGTH=128...
 Compiling module xil_defaultlib.cache_data
 Compiling module xil_defaultlib.cache_tag

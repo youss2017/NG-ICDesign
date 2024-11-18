@@ -28,3 +28,32 @@ open_wave_config {D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/
 source rapid_cpu_testbench.tcl
 current_wave_config {rapid_cpu_testbench_behav.wcfg}
 add_wave {{/rapid_cpu_testbench/mem_stage/dcache/cdata/mem}} 
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+add_wave {{/rapid_cpu_testbench/i_clk}} {{/rapid_cpu_testbench/i_reset}} {{/rapid_cpu_testbench/pready2}} {{/rapid_cpu_testbench/if_done_o}} {{/rapid_cpu_testbench/de_done_o}} {{/rapid_cpu_testbench/ex_done_o}} {{/rapid_cpu_testbench/mem_done_o}} {{/rapid_cpu_testbench/wb_done_o}} 
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+add_wave {{/rapid_cpu_testbench/mem_stage/dcache/mem_res}} {{/rapid_cpu_testbench/mem_stage/dcache/mem_req}} {{/rapid_cpu_testbench/mem_stage/dcache/state}} {{/rapid_cpu_testbench/mem_stage/dcache/state_nxt}} {{/rapid_cpu_testbench/mem_stage/dcache/tag_read}} {{/rapid_cpu_testbench/mem_stage/dcache/tag_write}} {{/rapid_cpu_testbench/mem_stage/dcache/tag_req}} {{/rapid_cpu_testbench/mem_stage/dcache/data_read}} {{/rapid_cpu_testbench/mem_stage/dcache/data_write}} {{/rapid_cpu_testbench/mem_stage/dcache/data_req}} {{/rapid_cpu_testbench/mem_stage/dcache/addr}} {{/rapid_cpu_testbench/mem_stage/dcache/wmask}} {{/rapid_cpu_testbench/mem_stage/dcache/wdata}} {{/rapid_cpu_testbench/mem_stage/dcache/rw}} 
+restart
+run all
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+add_wave {{/rapid_cpu_testbench/mem_stage/iface/addr}} {{/rapid_cpu_testbench/mem_stage/iface/wdata}} {{/rapid_cpu_testbench/mem_stage/iface/wmask}} {{/rapid_cpu_testbench/mem_stage/iface/rdata}} {{/rapid_cpu_testbench/mem_stage/iface/rw}} {{/rapid_cpu_testbench/mem_stage/iface/rvalid}} {{/rapid_cpu_testbench/mem_stage/iface/valid}} {{/rapid_cpu_testbench/mem_stage/iface/ready}} 
+restart
+run 770 ns
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+add_wave {{/rapid_cpu_testbench/mem_stage/rs2}} 
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+add_wave {{/rapid_cpu_testbench/mem_stage/i_control_sig}} {{/rapid_cpu_testbench/mem_stage/o_control_sig}} {{/rapid_cpu_testbench/mem_stage/i_data_in}} {{/rapid_cpu_testbench/mem_stage/rs2}} {{/rapid_cpu_testbench/mem_stage/o_rd_output}} {{/rapid_cpu_testbench/mem_stage/mem_req}} {{/rapid_cpu_testbench/mem_stage/mem_res}} {{/rapid_cpu_testbench/mem_stage/state}} {{/rapid_cpu_testbench/mem_stage/state_nxt}} {{/rapid_cpu_testbench/mem_stage/is_word}} {{/rapid_cpu_testbench/mem_stage/is_byte}} {{/rapid_cpu_testbench/mem_stage/do_sx}} {{/rapid_cpu_testbench/mem_stage/addr}} {{/rapid_cpu_testbench/mem_stage/o_rd_output_nxt}} {{/rapid_cpu_testbench/mem_stage/o_control_sig_nxt}} {{/rapid_cpu_testbench/mem_stage/iface_valid}} 
+save_wave_config {D:/Files/Desktop/NG-ICDesign/Youssef/vivado project/RV32I_CPU/rapid_cpu_testbench_behav.wcfg}
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+add_wave {{/rapid_cpu_testbench/de_stage/o_control_signal}} 
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+add_wave {{/rapid_cpu_testbench/reg_file/i_rs2_out}} 
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+add_wave {{/rapid_cpu_testbench/reg_file/o_rs2_data}} 
+current_wave_config {rapid_cpu_testbench_behav.wcfg}
+add_wave {{/rapid_cpu_testbench/ex_stage/i_rs2}} {{/rapid_cpu_testbench/ex_stage/o_rs2}} 
+restart
+run 770 ns
+relaunch_sim
+restart
+run 770 ns
+run all

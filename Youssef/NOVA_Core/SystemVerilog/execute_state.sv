@@ -1,6 +1,5 @@
 `timescale 1ns / 1ps
 
-
 module execute_state
 import rapid_pkg::*;
 (
@@ -13,38 +12,37 @@ import rapid_pkg::*;
     input logic signed  [XLEN-1:0]       i_imm,
     output logic        [XLEN-1:0]       o_pc,
     output control_s                     o_control_signal,
-    output logic signed  [XLEN-1:0]      i_rs1,
-    output logic signed  [XLEN-1:0]      i_rs2,
-    output logic signed  [XLEN-1:0]      i_imm
+    output logic signed  [XLEN-1:0]      o_rs1,
+    output logic signed  [XLEN-1:0]      o_rs2,
+    output logic signed  [XLEN-1:0]      o_imm
 );
 
-    control_ex_s im_control_signal;
-    logic signed [XLEN-1:0] im_rs1, im_rs2, im_imm, im_pc;
+    // internal value
 
-    always_ff @(posedge i_clk or negedge i_clk, posedge i_reset) begin
+    control_ex_s iv_control_signal;
+    logic signed [XLEN-1:0] iv_rs1, iv_rs2, iv_imm, iv_pc;
+
+    assign o_pc = iv_pc;
+    assign o_control_signal = iv_control_signal;
+    assign o_rs1 = iv_rs1;
+    assign o_rs2 = iv_rs2;
+    assign o_imm = iv_imm;
+
+    always_ff @(posedge i_clk, posedge i_reset) begin
 
         if (i_reset) begin
-            im_control_signal <= control_ex_s_default();
-            im_rs1 <= 0;
-            im_rs2 <= 0;
-            im_imm <= 0;
-            im_pc <= 0;
+            iv_control_signal <= control_ex_s_default();
+            iv_rs1 <= 0;
+            iv_rs2 <= 0;
+            iv_imm <= 0;
+            iv_pc <= 0;
         end else begin
-            if (i_clk) begin
-                // Load data from inputs ports to local state
-                im_pc <= i_pc;
-                im_control_signal <= i_control_signal;
-                im_rs1 <= i_rs1;
-                im_rs2 <= i_rs2;
-                im_imm <= i_imm;
-            end else begin
-                // Update output ports from local state
-                o_pc <= im_pc;
-                o_control_signal <= im_control_signal;
-                o_rs1 <= im_rs1;
-                o_rs2 <= im_rs2;
-                o_imm <= im_imm;
-            end
+            // Load data from inputs ports to local state
+            iv_pc <= i_reset ? i_pc : RESET_VECTOR;
+            iv_control_signal <= i_reset ? i_control_signal : control_ex_s_default();
+            iv_rs1 <= i_reset ? i_rs1 : 0;
+            iv_rs2 <= i_reset ? i_rs2 : 0;
+            iv_imm <= i_reset ? i_imm : 0;
         end        
 
     end

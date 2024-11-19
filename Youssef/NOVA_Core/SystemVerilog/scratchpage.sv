@@ -1,27 +1,6 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: Youssef
-// 
-// Create Date: 10/29/2024 05:32:50 PM
-// Design Name: 
-// Module Name: register_file
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
-import rapid_pkg::*;
 
-module register_file (
+module regfile (
     input  logic            i_clk,
     input  logic            i_reset,
     input  logic            i_rs1_out,

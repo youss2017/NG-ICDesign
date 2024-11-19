@@ -47,54 +47,53 @@ module execute_logic
         o_control_signal.fcs_opcode = i_control_signal.fcs_opcode;
         o_control_signal.rd = i_control_signal.rd;
 
-            // ADD/SUB/SLL/SLT/SLTU/XOR/SRL/SRA/OR/AND and Immediate version
-            if (control_signal.alu_imm || control_signal.alu_reg) begin
-                // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
-                //  ============================ IMMEDIATE LEVEL INSTRUCTIONS ============================
-                // ADDI	         00100	 110 (ALU IMM)	            000	                0	     110-000-0
-                // SLTI	         00100	 110 (ALU IMM)	            010	                0	     110-010-0
-                // SLTIU         00100	 110 (ALU IMM)	            011	                0	     110-011-0
-                // XORI	         00100	 110 (ALU IMM)	            100	                0	     110-100-0
-                // ORI	         00100	 110 (ALU IMM)	            110	                0	     110-110-0
-                // ANDI	         00100	 110 (ALU IMM)	            111	                0	     110-111-0
-                // SLLI	         00100	 110 (ALU IMM)	            001	                0	     110-001-0
-                // SRLI	         00100	 110 (ALU IMM)	            101	                0	     110-101-0
-                // SRAI	         00100	 110 (ALU IMM)	            101	                1	     110-101-0
-                //  ============================ REGISTER LEVEL INSTRUCTIONS =============================
-                // ADD	         01100	 111 (ALU REG)	            000                 0	     111-000-0
-                // SUB	         01100	 111 (ALU REG)	            000                 1	     111-000-1
-                // SLL	         01100	 111 (ALU REG)	            001                 0	     111-001-0
-                // SLT	         01100	 111 (ALU REG)	            010                 0	     111-010-0
-                // SLTU	         01100	 111 (ALU REG)	            011	                0	     111-011-0
-                // XOR	         01100	 111 (ALU REG)	            100	                0	     111-100-0
-                // SRL	         01100	 111 (ALU REG)	            101	                0	     111-101-0
-                // SRA	         01100	 111 (ALU REG)	            101	                1	     111-101-1
-                // OR	         01100	 111 (ALU REG)	            110	                0	     111-110-0
-                // AND	         01100	 111 (ALU REG)	            111	                0	     111-111-0
+        // ADD/SUB/SLL/SLT/SLTU/XOR/SRL/SRA/OR/AND and Immediate version
+        if (i_control_signal.alu_imm || i_control_signal.alu_reg) begin
+            // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
+            //  ============================ IMMEDIATE LEVEL INSTRUCTIONS ============================
+            // ADDI	         00100	 110 (ALU IMM)	            000	                0	     110-000-0
+            // SLTI	         00100	 110 (ALU IMM)	            010	                0	     110-010-0
+            // SLTIU         00100	 110 (ALU IMM)	            011	                0	     110-011-0
+            // XORI	         00100	 110 (ALU IMM)	            100	                0	     110-100-0
+            // ORI	         00100	 110 (ALU IMM)	            110	                0	     110-110-0
+            // ANDI	         00100	 110 (ALU IMM)	            111	                0	     110-111-0
+            // SLLI	         00100	 110 (ALU IMM)	            001	                0	     110-001-0
+            // SRLI	         00100	 110 (ALU IMM)	            101	                0	     110-101-0
+            // SRAI	         00100	 110 (ALU IMM)	            101	                1	     110-101-0
+            //  ============================ REGISTER LEVEL INSTRUCTIONS =============================
+            // ADD	         01100	 111 (ALU REG)	            000                 0	     111-000-0
+            // SUB	         01100	 111 (ALU REG)	            000                 1	     111-000-1
+            // SLL	         01100	 111 (ALU REG)	            001                 0	     111-001-0
+            // SLT	         01100	 111 (ALU REG)	            010                 0	     111-010-0
+            // SLTU	         01100	 111 (ALU REG)	            011	                0	     111-011-0
+            // XOR	         01100	 111 (ALU REG)	            100	                0	     111-100-0
+            // SRL	         01100	 111 (ALU REG)	            101	                0	     111-101-0
+            // SRA	         01100	 111 (ALU REG)	            101	                1	     111-101-1
+            // OR	         01100	 111 (ALU REG)	            110	                0	     111-110-0
+            // AND	         01100	 111 (ALU REG)	            111	                0	     111-111-0
+            case (control_signal.fcs_opcode)
+                ADD_or_SUB: o_rd_output = control_signal.iop ? $signed(port1) - $signed(port2) : $signed(port1) + $signed(port2); // ADDI
+                SLT: o_rd_output = $signed(port1) < $signed(port2) ? 1 : 0;// SLTI
+                // For SLTIU we have to do unsigned comparison,
+                // To do this we can convert the upper bits to 0
+                // this way it will look like its unsigned
+                SLTU: o_rd_output = $unsigned(port1) < $unsigned(port2) ? 1 : 0 ; // SLTIU
+                XOR_: o_rd_output = $unsigned(port1) ^ $unsigned(port2);          // XORI
+                OR_: o_rd_output = $signed(port1) | $signed(port2);               // ORI
+                AND_: o_rd_output = $signed(port1) & $signed(port2);              // ANDI
+                SLL: o_rd_output = $unsigned(port1) << $unsigned(port2);          // SLLI
+                SRL_or_SRA: begin 
+                    if (!control_signal.iop) o_rd_output = $unsigned(port1) >> $unsigned(port2); // SRLI
+                    else o_rd_output = $unsigned(port1) >>> $unsigned(port2);                    // SRAI
+                end
+            endcase
 
-                case (control_signal.fcs_opcode)
-                    ADD_or_SUB: rd_output = control_signal.iop ? $signed(port1) - $signed(port2) : $signed(port1) + $signed(port2); // ADDI
-                    SLT: rd_output = $signed(port1) < $signed(port2) ? 1 : 0;// SLTI
-                    // For SLTIU we have to do unsigned comparison,
-                    // To do this we can convert the upper bits to 0
-                    // this way it will look like its unsigned
-                    SLTU: rd_output = $unsigned(port1) < $unsigned(port2) ? 1 : 0 ; // SLTIU
-                    XOR_: rd_output = $signed(port1) ^ $signed(port2);              // XORI
-                    OR_: rd_output = $signed(port1) | $signed(port2);               // ORI
-                    AND_: rd_output = $signed(port1) & $signed(port2);              // ANDI
-                    SLL: rd_output = $unsigned(port1) << $unsigned(port2);           // SLLI
-                    SRL_or_SRA: begin 
-                        if (!control_signal.iop) rd_output = $unsigned(port1) >> $unsigned(port2); // SRLI
-                        else rd_output = $unsigned(port1) >>> $unsigned(port2);                   // SRAI
-                    end
-                endcase
-
-                pc_ext = 0;
-                pc_load = 0;
-            end
+            pc_ext = 0;
+            pc_load = 0;
+        end
             
             // BEQ/BNE/BLT/BGE/BLTU/BEGU
-            else if (control_signal.cond_branch) begin
+            else if (i_control_signal.cond_branch) begin
 
                 // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
                 // BEQ	         11000	 010 (COND.BRANCH)	         000	            0	      100-000-0
@@ -104,7 +103,7 @@ module execute_logic
                 // BLTU	         11000	 010 (COND.BRANCH)	         110	            0	      100-110-0
                 // BGEU	         11000	 010 (COND.BRANCH)	         111	            0	      100-111-0
 
-                case (control_signal.fcs_opcode)
+                case (i_control_signal.fcs_opcode)
                     /* BEQ */  3'b000: pc_load = port1 == port2;
                     /* BNE */  3'b001: pc_load = port1 != port2;
                     /* BLT */  3'b100: pc_load = $signed(port1) < $signed(port2);
@@ -117,24 +116,24 @@ module execute_logic
             end
 
         // JAL/JALR
-        else if (control_signal.uncond_branch) begin
+        else if (i_control_signal.uncond_branch) begin
             // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
             // JAL	         11011	 001 (UNCOND.BRANCH)	     000	            0	      000-000-0
             // JALR	         11001	 001 (UNCOND.BRANCH)	     000	            1	      000-000-1
     
             /* JAL */ 
         rd_output = pc + 4; // This is rd
-        pc_ext = $signed(control_signal.iop ? port1 /* JALR */ : pc /* JAL */) + $signed(imm); // This is pc
+        pc_ext = $signed(i_control_signal.iop ? port1 /* JALR */ : pc /* JAL */) + $signed(imm); // This is pc
         pc_load = 1;
 
         end
 
         // LUI and AUIPC
-        else if (control_signal.load_upper_imm) begin
+        else if (i_control_signal.load_upper_imm) begin
             // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
             // LUI	         01101	 000 (LOAD UPP IMM)	         000	            1	      000-000-0
             // AUIPC	     00101	 000 (LOAD UPP IMM)	         000	            0	      000-000-1
-            if (control_signal.iop) begin
+            if (i_control_signal.iop) begin
                 // LUI
                 rd_output[31:12] = imm;
                 rd_output[11:0] = 0;
@@ -146,7 +145,7 @@ module execute_logic
         end
 
         // Memory Operations
-        else if(control_signal.mem) begin
+        else if(i_control_signal.mem) begin
                 // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
                 // LB	         00000	 011 (MEM LOAD/STORE)	     000	            0         011-000-0
                 // LH	         00000	 011 (MEM LOAD/STORE)	     001	            0         011-001-0

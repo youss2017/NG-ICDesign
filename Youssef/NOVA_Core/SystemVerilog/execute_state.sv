@@ -2,6 +2,7 @@
 
 
 module execute_state
+import rapid_pkg::*;
 (
     input logic                          i_clk,
     input logic                          i_reset,
@@ -16,7 +17,6 @@ module execute_state
     output logic signed  [XLEN-1:0]      i_rs2,
     output logic signed  [XLEN-1:0]      i_imm
 );
-    import rapid_pkg::*;
 
     control_ex_s im_control_signal;
     logic signed [XLEN-1:0] im_rs1, im_rs2, im_imm, im_pc;

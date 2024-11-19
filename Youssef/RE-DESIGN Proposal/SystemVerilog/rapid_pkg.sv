@@ -39,11 +39,25 @@ package rapid_pkg;
         logic [4:0] rs1;
         logic [4:0] rs2;
         logic [4:0] rd;
-    } control_s;
+    } control_ex_s;
+
+    // A struct which contains controls signals
+    typedef struct {
+        logic mem;
+        logic iop;
+        logic [2:0] fcs_opcode;
+        logic [4:0] rd;
+    } control_mem_s;
+    
+
+    // A struct which contains controls signals
+    typedef struct {
+        logic [4:0] rd;
+    } control_wb_s;
 
 
     // Define a default state function for control_s
-    function automatic control_s control_s_default();
+    function automatic control_ex_s control_ex_s_default();
         control_s_default = '{ 
             load_upper_imm: '0,
             uncond_branch: '0,
@@ -61,44 +75,5 @@ package rapid_pkg;
         };
     endfunction
 
-
-    typedef enum { CACHE_READ, CACHE_WRITE } cache_rw;
-    typedef enum { CACHE_NOP, QUARTER_WORD, HALF_WORD, WORD } cache_operation;
-
-    // Internal Stage states
-    typedef enum logic [2:0] {
-        IF_RESET,
-        IF_FETCH,
-        IF_WAIT,
-        IF_NEXT,
-        IF_HALT
-    } IF_state_t;
-
-    typedef enum logic [1:0] {
-        DE_RESET,
-        DE_WAIT, 
-        DE_DECODE,
-        DE_LOAD_REGISTERS
-    } DE_state_t;
-
-    typedef enum logic [1:0] {
-        EX_RESET,
-        EX_WAIT,
-        EX_READ_REGISTER,
-        EX_EXECUTE
-    } EX_state_t;
-
-    typedef enum logic [1:0] {
-        MEM_WAIT,
-        MEM_READ,
-        MEM_WRITE
-    } MEM_state_t;
-
-    typedef enum logic [1:0] {
-        WB_RESET,
-        WB_WAIT,
-        WB_WRITE,
-        WB_TMP
-    } WB_state_t;
     
 endpackage

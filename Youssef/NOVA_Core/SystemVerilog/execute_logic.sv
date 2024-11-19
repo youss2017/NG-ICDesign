@@ -36,9 +36,15 @@ module execute_logic
     input logic signed  [XLEN-1:0]      i_imm,
     output control_mem_s                o_control_signal,
     output logic                        o_pc_load,
-    output logic        [XLEN-1:0]      o_rs2,
+    output logic        [XLEN-1:0]      o_pc_ext,
+    output logic        [XLEN-1:0]      o_memory_data,
     output logic        [XLEN-1:0]      o_rd_output
 );
+    wire [XLEN-1:0] port2;
+
+    // (TODO): check this logic and put a reasonable comment here.
+    assign o_memory_data = i_rs2;
+    assign port2 = i_control_signal.alu_reg ? i_rs2 : i_imm;
 
     always_comb begin
 
@@ -46,6 +52,7 @@ module execute_logic
         o_control_signal.iop = i_control_signal.iop;
         o_control_signal.fcs_opcode = i_control_signal.fcs_opcode;
         o_control_signal.rd = i_control_signal.rd;
+        o_control_signal.debug_instruction = i_control_signal.debug_instruction;
 
         // ADD/SUB/SLL/SLT/SLTU/XOR/SRL/SRA/OR/AND and Immediate version
         if (i_control_signal.alu_imm || i_control_signal.alu_reg) begin
@@ -71,25 +78,25 @@ module execute_logic
             // SRA	         01100	 111 (ALU REG)	            101	                1	     111-101-1
             // OR	         01100	 111 (ALU REG)	            110	                0	     111-110-0
             // AND	         01100	 111 (ALU REG)	            111	                0	     111-111-0
-            case (control_signal.fcs_opcode)
-                ADD_or_SUB: o_rd_output = control_signal.iop ? $signed(port1) - $signed(port2) : $signed(port1) + $signed(port2); // ADDI
-                SLT: o_rd_output = $signed(port1) < $signed(port2) ? 1 : 0;// SLTI
+            case (i_control_signal.fcs_opcode)
+                ADD_or_SUB: o_rd_output = i_control_signal.iop ? $signed(i_rs1) - $signed(port2) : $signed(i_rs1) + $signed(port2); // ADDI
+                SLT: o_rd_output = $signed(i_rs1) < $signed(port2) ? 1 : 0;// SLTI
                 // For SLTIU we have to do unsigned comparison,
                 // To do this we can convert the upper bits to 0
                 // this way it will look like its unsigned
-                SLTU: o_rd_output = $unsigned(port1) < $unsigned(port2) ? 1 : 0 ; // SLTIU
-                XOR_: o_rd_output = $unsigned(port1) ^ $unsigned(port2);          // XORI
-                OR_: o_rd_output = $signed(port1) | $signed(port2);               // ORI
-                AND_: o_rd_output = $signed(port1) & $signed(port2);              // ANDI
-                SLL: o_rd_output = $unsigned(port1) << $unsigned(port2);          // SLLI
+                SLTU: o_rd_output = $unsigned(i_rs1) < $unsigned(port2) ? 1 : 0 ; // SLTIU
+                XOR_: o_rd_output = $unsigned(i_rs1) ^ $unsigned(port2);          // XORI
+                OR_: o_rd_output = $signed(i_rs1) | $signed(port2);               // ORI
+                AND_: o_rd_output = $signed(i_rs1) & $signed(port2);              // ANDI
+                SLL: o_rd_output = $unsigned(i_rs1) << $unsigned(port2);          // SLLI
                 SRL_or_SRA: begin 
-                    if (!control_signal.iop) o_rd_output = $unsigned(port1) >> $unsigned(port2); // SRLI
-                    else o_rd_output = $unsigned(port1) >>> $unsigned(port2);                    // SRAI
+                    if (!i_control_signal.iop) o_rd_output = $unsigned(i_rs1) >> $unsigned(port2); // SRLI
+                    else o_rd_output = $unsigned(i_rs1) >>> $unsigned(port2);                    // SRAI
                 end
             endcase
 
-            pc_ext = 0;
-            pc_load = 0;
+            o_pc_ext = 0;
+            o_pc_load = 0;
         end
             
             // BEQ/BNE/BLT/BGE/BLTU/BEGU
@@ -104,15 +111,15 @@ module execute_logic
                 // BGEU	         11000	 010 (COND.BRANCH)	         111	            0	      100-111-0
 
                 case (i_control_signal.fcs_opcode)
-                    /* BEQ */  3'b000: pc_load = port1 == port2;
-                    /* BNE */  3'b001: pc_load = port1 != port2;
-                    /* BLT */  3'b100: pc_load = $signed(port1) < $signed(port2);
-                    /* BGE */  3'b101: pc_load = $signed(port1) >= $signed(port2);
-                    /* BLTU */ 3'b110: pc_load = $unsigned(port1) < $unsigned(port2);
-                    /* BGEU */ 3'b111: pc_load = $unsigned(port1) >= $unsigned(port2);
+                    /* BEQ */  3'b000: o_pc_load = i_rs1 == i_rs2;
+                    /* BNE */  3'b001: o_pc_load = i_rs1 != i_rs2;
+                    /* BLT */  3'b100: o_pc_load = $signed(i_rs1) < $signed(i_rs2);
+                    /* BGE */  3'b101: o_pc_load = $signed(i_rs1) >= $signed(i_rs2);
+                    /* BLTU */ 3'b110: o_pc_load = $unsigned(i_rs1) < $unsigned(i_rs2);
+                    /* BGEU */ 3'b111: o_pc_load = $unsigned(i_rs1) >= $unsigned(i_rs2);
                 endcase
                 
-                pc_ext = pc_load ? ($signed(pc) + $signed(imm)) : RESET_VECTOR;
+                o_pc_ext = ($signed(i_pc) + $signed(i_imm));
             end
 
         // JAL/JALR
@@ -122,9 +129,9 @@ module execute_logic
             // JALR	         11001	 001 (UNCOND.BRANCH)	     000	            1	      000-000-1
     
             /* JAL */ 
-        rd_output = pc + 4; // This is rd
-        pc_ext = $signed(i_control_signal.iop ? port1 /* JALR */ : pc /* JAL */) + $signed(imm); // This is pc
-        pc_load = 1;
+        o_rd_output = i_pc + 4; // This is rd
+        o_pc_ext = $signed(i_control_signal.iop ? i_rs1 /* JALR */ : i_pc /* JAL */) + $signed(i_imm); // This is pc
+        o_pc_load = 1;
 
         end
 
@@ -135,13 +142,12 @@ module execute_logic
             // AUIPC	     00101	 000 (LOAD UPP IMM)	         000	            0	      000-000-1
             if (i_control_signal.iop) begin
                 // LUI
-                rd_output[31:12] = imm;
-                rd_output[11:0] = 0;
+                o_rd_output = i_imm;
             end else 
                 // AUPIC
-                rd_output = $signed(pc) + ($signed(imm) << 12);
-            pc_ext = 0;
-            pc_load = 0;
+                o_rd_output = $signed(i_pc) + $signed(i_imm);
+            o_pc_ext = 0;
+            o_pc_load = 0;
         end
 
         // Memory Operations
@@ -155,12 +161,12 @@ module execute_logic
                 // SB	         01000	 011 (MEM LOAD/STORE)	     000	            1	      011-000-1
                 // SH	         01000	 011 (MEM LOAD/STORE)	     001	            1	      011-001-1
                 // SW	         01000	 011 (MEM LOAD/STORE)	     010	            1	      011-010-1
-                rd_output = port1 + imm;
-                pc_ext = 0;
-                pc_load = 0;
+                o_rd_output = i_rs1 + i_imm;
+                o_pc_ext = 0;
+                o_pc_load = 0;
         end else begin
-            pc_ext = 0;
-            pc_load = 0;
+            o_pc_ext = 0;
+            o_pc_load = 0;
         end
 
     end

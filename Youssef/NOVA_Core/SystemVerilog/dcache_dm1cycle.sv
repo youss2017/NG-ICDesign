@@ -80,7 +80,6 @@ import memory_controller_interface::*; #(
  * Data structures for data and tag cache memories
  **********************************************************/
 
-
 	typedef logic [MCI_DATA_LENGTH-1:0] cache_data_t;
 
 	typedef struct packed {

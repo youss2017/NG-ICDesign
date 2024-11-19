@@ -38,7 +38,7 @@ module register_file (
     always_comb begin
         
         if (i_rs1_out) 
-           if (i_rd == i_rs1)
+           if (i_rd > 0 && i_rd == i_rs1)
                o_rs1_data = i_rd_data;
            else
                o_rs1_data = register_file[i_rs1];
@@ -46,7 +46,7 @@ module register_file (
             o_rs1_data = 'bz;
             
         if (i_rs2_out) 
-           if (i_rd == i_rs2)
+           if (i_rd > 0 && i_rd == i_rs2)
                o_rs2_data = i_rd_data;
            else
                o_rs2_data = register_file[i_rs2];
@@ -57,7 +57,7 @@ module register_file (
 
 	always_ff @(posedge i_clk, posedge i_reset) begin
 		if(i_reset) begin
-            for(bit [4:0] i = 0; i < 32; i++)
+            for(int i = 0; i < 32; i++)
                 register_file[i] <= 0;
 		end else begin
 			if (i_rd > 0) 

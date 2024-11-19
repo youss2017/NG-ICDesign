@@ -1,6 +1,5 @@
 `timescale 1ns / 100ps
 
-
 module decoder_state
 (
     input  logic                        i_clk,
@@ -10,33 +9,25 @@ module decoder_state
     output logic         [XLEN-1:0]     o_pc,
     output logic         [XLEN-1:0]     o_instruction
 );
-    import rapid_pkg::RESET_VECTOR;
 
-    // im_ stands for intermediate value
+    // iv_ stands for internal value
 
-    logic [XLEN-1:0] im_pc, im_instruction;
+    logic [XLEN-1:0] iv_pc, iv_instruction;
 
-    always_ff @(posedge i_clk or negedge i_clk, posedge i_reset) begin
+    assign o_pc = iv_pc;
+    assign o_instruction = iv_instruction;
 
-        if (i_reset)
-            im_pc <= RESET_VECTOR;
-            im_instruction <= 0;
-        else begin
-            
-            if(i_clk) begin
-                // Store data from input ports
-                im_pc <= i_pc;
-                im_instruction <= i_instruction;
-            end else begin
-                // Update output ports
-                o_pc <= im_pc;
-                o_instruction <= im_instruction;
-            end
+    always_ff @(posedge i_clk, posedge i_reset) begin
 
+        if (i_reset) begin
+            iv_pc          <= 0;
+            iv_instruction <= 0;
+        end else begin
+            // Store data from input ports
+            iv_pc <= i_pc;
+            iv_instruction <= i_instruction;
         end
 
     end
 
 endmodule
-
-

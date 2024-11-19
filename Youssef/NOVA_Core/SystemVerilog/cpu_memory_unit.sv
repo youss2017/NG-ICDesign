@@ -7,9 +7,8 @@
  *
  * Corresponding to the MEM stage of a 5-stage RISC-V
  * pipeline. Ideally, this implementation is designed such
- * that it will be connected to pipeline registers for input
- * and output. Access time depends on underlying cache
- * implementation.
+ * that it will be connected to pipeline registers for input,
+ * and output changes as soon as the cache returns valid data.
  **********************************************************/
 
 
@@ -17,36 +16,34 @@
 `include "dcache_interface.sv"
 `include "rapid_pkg.sv" 
 
-// -- change to choose dcache implementation --
+// -- change to choose dcache implementation (also below) --
 `include "dcache_dm1cycle.sv"
 
 module cpu_memory_unit
 import memory_controller_interface::*;
-import rapid_pkg::control_s;
-import rapid_pkg::control_s_default; (
+import rapid_pkg::*;
+(
 	// Globals
 	input logic i_clk,
 	input logic i_reset,
 
-	// Pipeline synchronization
-	input logic i_pipeline_ready,
-	output logic o_done,
-
 	// Control signals (in)
-	input control_s i_control_sig,
-
-	// Control signals (out)
-	output control_s o_control_sig,
+	input control_mem_s i_control_sig,
 
 	// Datapath (in)
 	input logic [31:0] i_data_in, // the memory address to access
-	input logic [31:0] rs2,       // the value to store in memory
+	input logic [31:0] i_rs2,       // the value to store in memory
 
 	// Datapath (out)
 	output logic [31:0] o_rd_output,
+	// Control signals (out)
+	output logic [4:0] o_rd,
+
+	// Pipeline synchronization
+	output logic o_pipeline_ready,
 
 	// To/from memory controller
-	input mci_request_t mem_req,
+	output mci_request_t mem_req,
 	input mci_response_t mem_res
 );
 
@@ -74,25 +71,26 @@ import rapid_pkg::control_s_default; (
 		.mem_req(mem_req), .mem_res(mem_res)
 	);
 
+	// Pipeline-registered values (latched when pipeline advances)
+	control_mem_s ir_control_sig;
+	logic [31:0]  ir_data_in;
+	logic [31:0]  ir_rs2;
+
 	// Aliases for signals
 	logic is_word;  // LW, SW
 	/*logic is_half;  // lh, lhu, sh (unused)*/
 	logic is_byte;  // LB, LBU, SB
 	logic do_sx;    // LH, LB
 
-	assign is_word = i_control_sig.fcs_opcode[1];
+	assign is_word = ir_control_sig.fcs_opcode[1];
 	/*assign is_half = finite_state_control[0];*/
-	assign is_byte = ~i_control_sig.fcs_opcode[0];
-	assign do_sx = i_control_sig.fcs_opcode[2];
+	assign is_byte = ~ir_control_sig.fcs_opcode[0];
+	assign do_sx = ir_control_sig.fcs_opcode[2];
 
 	// the target memory address to access
 	addr_t addr;
 	// assign addr = rs1 + imm;
-	assign addr = i_data_in; // the value from the ALU is already computed
-
-	// next value for the latched (pipeline-registered) outputs
-	logic [31:0] o_rd_output_nxt;
-	control_s o_control_sig_nxt;
+	assign addr = ir_data_in; // the value from the ALU is already computed
 
 	/*
 	 * Workaround due to a bug in Vivado XSim, where the simulation will hang
@@ -109,8 +107,8 @@ import rapid_pkg::control_s_default; (
 
 
 	always_comb begin
-		// data from the cache, after shift/sign extend if needed
-		logic [31:0] cache_value;
+		// data from the cache, after any applicable shift/sign extend
+		logic [31:0] cache_value; // (intermediate variable)
 
 		// no state change by default
 		state_nxt = state;
@@ -148,10 +146,10 @@ import rapid_pkg::control_s_default; (
 		// left shift argument to proper position
 		iface.wdata = 'bx;
 		unique case(addr[1:0])
-		2'b00: iface.wdata        = rs2;
-		2'b01: iface.wdata[15:8]  = rs2[7:0];  // only byte-access is possible
-		2'b10: iface.wdata[31:16] = rs2[15:0]; // for byte- or half-word access
-		2'b11: iface.wdata[31:24] = rs2[7:0];  // only byte-access is possible
+		2'b00: iface.wdata        = ir_rs2;
+		2'b01: iface.wdata[15:8]  = ir_rs2[7:0];  // only byte-access is possible
+		2'b10: iface.wdata[31:16] = ir_rs2[15:0]; // for byte- or half-word access
+		2'b11: iface.wdata[31:24] = ir_rs2[7:0];  // only byte-access is possible
 		endcase
 
 		/*
@@ -177,17 +175,17 @@ import rapid_pkg::control_s_default; (
 				cache_value[31:16] = do_sx ? {{16{cache_value[15]}}} : 16'b0;
 		end
 
-		// connect the rest of cache signals
-		iface.rw = i_control_sig.iop;
+		// connect the rest of cache signals to the cache
+		iface.rw = ir_control_sig.iop;
+
 		// all cache requests must be word-aligned
 		iface.addr = {addr[31:2], 2'b00};
-		iface.wdata = rs2;
 		iface_valid = '0;
 
-		// passthrough certain control signals
-		o_control_sig_nxt = i_control_sig;
-		o_rd_output_nxt = i_data_in;
-		o_done = '0;
+		// passthrough certain control signals by default
+		o_rd = ir_control_sig.rd;
+		o_rd_output = ir_data_in;
+		o_pipeline_ready = '0;
 
 
 /***********************************************************
@@ -196,44 +194,41 @@ import rapid_pkg::control_s_default; (
 
 
 		case(state)
-		STANDBY: begin
+		STANDBY: begin 
 			// we're immediately done if instruction is not MEM
-			o_done = !i_control_sig.mem;
+			o_pipeline_ready = !ir_control_sig.mem;
 
-			// on MEM instruction, wait for cache to be ready then
-			if(i_control_sig.mem && iface.ready) begin
-				// schedule a cache access
+			// on MEM instruction, schedule cache access
+			if(ir_control_sig.mem && iface.ready) begin
 				state_nxt = ACCESS;
 				iface_valid = '1;
-				o_done = '0;
 			end
 		end
-
+		
 		ACCESS: begin
 			// wait for cache access to complete
-			o_done = iface.rvalid;
-			o_rd_output_nxt = cache_value;
-
-			// notice that we only return to STANDYBY if i_pipeline_ready is asserted,
-			// to prevent STANDBY from scheduling cache requests indefinitely
-			if(i_pipeline_ready) begin
+			o_rd_output = cache_value;
+			if(iface.rvalid) begin
+				o_pipeline_ready = '1;
 				state_nxt = STANDBY;
 			end
 		end
 		endcase
 	end
 
-    always_ff @(posedge i_clk) begin
+    always_ff @(posedge i_clk, posedge i_reset) begin
         if(i_reset) begin
             state <= STANDBY;
-            o_rd_output <= '0;
-            o_control_sig <= control_s_default();
+			ir_control_sig <= control_mem_s_default();
+			ir_data_in <= '0;
+			ir_rs2 <= '0;
 		end else begin
             state <= state_nxt;
-            if(i_pipeline_ready) begin
-                o_rd_output <= o_rd_output_nxt;
-                o_control_sig <= o_control_sig_nxt;
-            end
+			if(o_pipeline_ready) begin
+				ir_control_sig <= i_control_sig;
+				ir_data_in <= i_data_in;
+				ir_rs2 = i_rs2;
+			end
         end
     end
 

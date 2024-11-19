@@ -61,85 +61,84 @@ module decoder_logic
     output logic signed  [XLEN-1:0]     o_imm
 );
 
-    logic [XLEN-1:0] instruction;
-
     always_comb begin
-        control_signal = control_s_default();
-            
-            case(instruction[6:0])
+        o_control_signal = control_ex_s_default();
+        o_control_signal.debug_instruction = i_instruction;
+        
+            case(i_instruction[6:0])
     
             upper_family:               
                         begin 
-                                control_signal.load_upper_imm = 1;
-                                control_signal.iop = instruction[5:5];
-                                o_imm = $signed({instruction[31:12], 12'b0}); 
-                                control_signal.rd = instruction[11:7];
+                                o_control_signal .load_upper_imm = 1;
+                                o_control_signal .iop = i_instruction[5:5];
+                                o_imm = $signed({i_instruction[31:12], 12'b0}); 
+                                o_control_signal .rd = i_instruction[11:7];
                         end
     
             uncond_branch_family:       
                         begin 
-                                control_signal.uncond_branch = 1;
-                                control_signal.iop = instruction[3:3];
-                                o_imm = $signed({instruction[31:31], instruction[19:12], instruction[30:20], 1'b0}); 
-                                control_signal.rd = instruction[11:7];
+                                o_control_signal .uncond_branch = 1;
+                                o_control_signal .iop = i_instruction[3:3];
+                                o_imm = $signed({i_instruction[31:31], i_instruction[19:12], i_instruction[30:20], 1'b0}); 
+                                o_control_signal .rd = i_instruction[11:7];
                         end
     
             cond_branch_family:         
                         begin 
-                                control_signal.cond_branch = 1;
+                                o_control_signal .cond_branch = 1;
                                 // No IOP
-                                o_imm = $signed({instruction[31:31], instruction[7:7], instruction[30:25], instruction[11:8], 1'b0}); 
-                                control_signal.rs1 = instruction[19:15];
-                                control_signal.rs1_out = 1;
-                                control_signal.rs2 = instruction[24:20];
-                                control_signal.rs2_out = 1;
+                                o_imm = $signed({i_instruction[31:31], i_instruction[7:7], i_instruction[30:25], i_instruction[11:8], 1'b0}); 
+                                o_control_signal .rs1 = i_instruction[19:15];
+                                o_control_signal.rs1_out = 1;
+                                o_control_signal.rs2 = i_instruction[24:20];
+                                o_control_signal.rs2_out = 1;
                         end
     
             mem_load_family:            
                         begin 
-                                control_signal.mem = 1;
+                                o_control_signal .mem = 1;
                                 // IOP is 0 relative to Store instructions
-                                o_imm = $signed({instruction[31:20]}); 
-                                control_signal.rs1 = instruction[19:15]; // ALU uses *rd = (imm + *rs1) as store location
-                                control_signal.rs1_out = 1;
-                                control_signal.rd = instruction[11:7];
+                                o_imm = $signed({i_instruction[31:20]}); 
+                                o_control_signal .rs1 = i_instruction[19:15]; // ALU uses *rd = (imm + *rs1) as store location
+                                o_control_signal .rs1_out = 1;
+                                o_control_signal .rd = i_instruction[11:7];
                         end
     
             mem_store_family:           
                         begin 
-                                control_signal.mem = 1;
-                                control_signal.iop = instruction[5:5];
-                                o_imm = $signed({instruction[31:25], instruction[11:7]}); 
-                                control_signal.rs1 = instruction[19:15];
-                                control_signal.rs1_out = 1;
-                                control_signal.rs2 = instruction[24:20];
-                                control_signal.rs2_out = 1;
+                                o_control_signal .mem = 1;
+                                o_control_signal .iop = i_instruction[5:5];
+                                o_imm = $signed({i_instruction[31:25], i_instruction[11:7]}); 
+                                o_control_signal .rs1 = i_instruction[19:15];
+                                o_control_signal .rs1_out = 1;
+                                o_control_signal .rs2 = i_instruction[24:20];
+                                o_control_signal .rs2_out = 1;
                         end
     
             imm_family:                 
                         begin 
-                                control_signal.alu_imm = 1;
-                                control_signal.iop = instruction[30:30];
-                                o_imm = $signed({instruction[31:20]}); 
-                                control_signal.rs1 = instruction[19:15];
-                                control_signal.rs1_out = 1;
-                                control_signal.rd = instruction[11:7];
+                                o_control_signal .alu_imm = 1;
+                                o_control_signal .iop = i_instruction[30:30];
+                                o_imm = $signed({i_instruction[31:20]}); 
+                                o_control_signal .rs1 = i_instruction[19:15];
+                                o_control_signal .rs1_out = 1;
+                                o_control_signal .rd = i_instruction[11:7];
                         end
     
             reg_family:                 
                         begin 
-                            control_signal.alu_reg = 1;
-                            control_signal.iop = instruction[30:30];
-                            control_signal.rs1 = instruction[19:15]; 
-                            control_signal.rs1_out = 1;
-                            control_signal.rs2 = instruction[24:20]; 
-                            control_signal.rs2_out = 1;
-                            control_signal.rd = instruction[11:7];
+                            o_control_signal .alu_reg = 1;
+                            o_control_signal .iop = i_instruction[30:30];
+                            o_control_signal .rs1 = i_instruction[19:15]; 
+                            o_control_signal .rs1_out = 1;
+                            o_control_signal .rs2 = i_instruction[24:20]; 
+                            o_control_signal .rs2_out = 1;
+                            o_control_signal .rd = i_instruction[11:7];
                         end
                 
             endcase
 
-            control_signal.fcs_opcode = instruction[14:12]; 
+            o_control_signal .fcs_opcode = i_instruction[14:12]; 
     end
 
 

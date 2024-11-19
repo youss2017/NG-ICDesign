@@ -1,77 +1,88 @@
-`ifndef CPU_IFETCH_UNIT_SV
-`define CPU_IFETCH_UNIT_SV
+`timescale 1ns / 100ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: RAPID Team
+// Engineer: Youssef Samwel, Nicolas Sayed
+// 
+// Create Date: 11/5/2024 10:47:00 AM
+// Design Name: RAPID IF Stage
+// Module Name: instruction_fetch
+// Project Name: RAPID CPU Core
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+//
+// A very basic instruction fetch unit, doesn't prefetch data and uses an FSM.
+// It isn't able to stream instructions back-to-back, so NOPs will be pushed into
+// the pipeline while the unit is waiting for the cache.
+//
+// Holds the current PC and instruction on the output, until it receives the
+// i_pipeline_ready signal to begin fetching adn pushing the next instruction.
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
+import rapid_pkg::*;
 
-/***********************************************************
- * CPU Instruct Fetch Unit Implementation * PROTOTYPE *
- *
- * Very rough implementation to get something started, uses
- * the same implementation for the instruction cache as the
- * data cache; later we can replace it with a cache
- * optimized for instructions.
- **********************************************************/
-
-
-`include "memory_controller_interface.sv"
-`include "dcache_interface.sv"
-`include "rapid_pkg.sv" 
-
-// -- change to choose dcache implementation --
+// -- change to choose cache implementation (also below) --
 `include "dcache_dm1cycle.sv"
 
 module cpu_ifetch_unit
 import memory_controller_interface::*;
-import rapid_pkg::RESET_VECTOR; (
-	// Globals
-	input logic i_clk,
-	input logic i_reset,
+(
+    input  logic                 i_clk,
+    input  logic                 i_reset,
+    input  logic  [XLEN-1:0]     i_ext_pc,
+    input  logic                 i_pc_load,
+    input  logic                 i_pipeline_ready, /* push next instruction */
+    output logic  [XLEN-1:0]     o_pc,
+    output logic  [XLEN-1:0]     o_instruction,
 
-	// Pipeline synchronization
-	input logic i_pipeline_ready,
-	output logic o_done,
-
-	// Control signals (in)
-	input logic   i_ext_pc_load,
-
-	// Datapath (in)
-	output logic [31:0] i_ext_pc,
-
-	// Datapath (out)
-	output logic [31:0] o_pc,
-	output logic [31:0] o_instruction,
-
+    /*
+    output IF_state_t            o_current_state,
+    output IF_state_t            o_next_state
+    */
+    
 	// To/from memory controller
-	input mci_request_t mem_req,
+	output mci_request_t mem_req,
 	input mci_response_t mem_res
 );
+
 
 /***********************************************************
  * Module core
  **********************************************************/
 
-	// cache <==> cpu interface
-	// note that we're using 128-bit "quad words" as the cache data type
-	// to fetch four instructions at a time and buffer them
-	dcache_interface #(.DATA_LENGTH(128), .ADDR_LENGTH(32)) iface();
-	typedef iface.addr_t addr_t;
-	typedef iface.word_t qword_t;
 
-	// our cache implementation - we can swap it for others as
-	// long as they have the same interface
-	dcache_dm1cycle cache(
-		.clk(i_clk), .rst(i_reset),
-		.iface(iface.secondary),
-		.mem_req(mem_req), 
-		.mem_res(mem_res)
-	);
+    // FSM states
+    enum logic [1:0] {
+        RESET,
+        SCHEDULE_CACHE,
+        WAIT_FOR_CACHE,
+        WAIT_FOR_PIPELINE
+    } state, state_nxt;
 
-	addr_t prefetch_addr;      // corresponds to the last cache read request
-	addr_t prefetch_addr_nxt;
+    /*
+    // This is only used to track state for verification
+    assign o_current_state = current_state;
+    assign o_next_state = next_state;
+    */
 
-	// next value for the latched (pipeline-registered) outputs
-	logic [31:0] o_pc_nxt; // also is the instruction to fetch right now
-	logic [31:0] o_instruction_nxt;
-	
+    // instantiate cache subsystem
+    dcache_interface #(.DATA_LENGTH(XLEN), .ADDR_LENGTH(XLEN)) iface();
+    dcache_dm1cycle cache(
+        .clk(i_clk), .rst(i_reset),
+        .iface(iface.secondary),
+        .mem_req(mem_req), .mem_res(mem_res)
+    );
+
+    logic [XLEN-1:0] pc;
+    logic [XLEN-1:0] pc_nxt;
+
 	/*
 	 * Workaround due to a bug in Vivado XSim, where the simulation will hang
 	 * because it cannot infer zero delay glitches on interfaces. See:
@@ -81,63 +92,77 @@ import rapid_pkg::RESET_VECTOR; (
 	logic iface_valid; // use iface_valid instead of iface.valid in the rest of the module
 	assign iface.valid = iface_valid;
 
-	always_comb begin
-		// default signal values
-		o_done = '0;
-		prefetch_addr_nxt = prefetch_addr;
+/***********************************************************
+ * Default signal values
+ **********************************************************/
 
-		iface.addr = prefetch_addr_nxt;
-		iface_valid = '0;
-		iface.rw = '0; // IF never writes to cache 
-		iface.wmask = 'bx;
-		iface.wdata = 'bx;
 
-		o_pc_nxt = i_ext_pc_load ? i_ext_pc : o_pc + 4;
-		o_instruction_nxt = 'bx;
+    always_comb begin
 
-		// check if cache read bus already has the instruction we want,
-		// (the read bus is a whole block (16 bytes) so the higher 32-4=28
-		// bits uniquelly identify a block address)
-		if(o_pc_nxt[31:4] == prefetch_addr[31:4] && iface.rvalid) begin
-			// it does - we are done and able to push a new instruction to the pipeline		
-			o_done = 1;
-			// instruction always lie on word-boundaries - grab it from the cache bus
-			o_instruction_nxt = iface.rdata[32*o_pc_nxt[3:2] +: 32];
+        state_nxt = state; // no state change by default
+        pc_nxt = pc;
 
-			// schedule prefetch for next block of instructions one cycle
-			// earlier if we are at the last instruction; must do it just
-			// before the pipeline advances to prevent overwriting current;
-			// TODO: there may be better ways to do this, like using a
-			// dedicated prefetch buffer between cache and output
-			if(iface.ready && o_pc_nxt[3:2] == 'b11 && i_pipeline_ready) begin
-				// remember the addr of the block we just requested
-				prefetch_addr_nxt = {(o_pc_nxt[31:4]) + 'b1, 4'b0000};
-				iface_valid = '1;
-			end
-		end else if(iface.ready) begin
-			// we don't have this instruction block - schedule fetch from cache
-			prefetch_addr_nxt = {o_pc_nxt[31:4], 4'b0000};
-			iface_valid = '1;
-		end
-	end
+        // IF pushes noops to the pipeline while it's waiting for the icache
+        o_pc = '0;
+        o_instruction = NOOP_INSTRUCTION;
 
-	always_ff @(posedge i_clk) begin
-		if(i_reset) begin
-			// TODO bug: should we substract 4 from the reset vector?
-			o_pc <= RESET_VECTOR;
-			o_instruction <= '0;
-			// must NOT match reset vector or we might consider it already
-			// fetched by the cache and return garbage on the first cycle
-			prefetch_addr <= ~RESET_VECTOR; 
-		end else begin
-			prefetch_addr <= prefetch_addr_nxt;
+        iface_valid = '0;
+        iface.addr = pc;
+        iface.rw = '0; // IF never writes to cache
+        iface.wdata = 'bx;
+        iface.wmask = 'bx;
+
+
+/***********************************************************
+ * FSM logic
+ **********************************************************/
+
+
+        case (state)
+		RESET: begin
+			// reset can't jump straight to wait_for_pipeline
+			// because we shouldn't increment pc
 			if(i_pipeline_ready) begin
-				o_pc <= o_pc_nxt;
-				o_instruction <= o_instruction_nxt;
+				state_nxt = SCHEDULE_CACHE;
 			end
 		end
-	end
+
+		WAIT_FOR_PIPELINE: begin
+			o_pc = pc;
+			o_instruction = iface.rdata;
+			if(i_pipeline_ready) begin
+				pc_nxt = i_pc_load ? i_ext_pc : pc + 4;
+				state_nxt = SCHEDULE_CACHE;
+			end
+		end
+
+		SCHEDULE_CACHE: begin
+			// we need a dedicated state to schedule the cache (instead of scheduling
+			// from the wait_for_pipeline similar to how the mem unit does it) because
+			// the pc is different if coming from RESET or WAIT_FOR_PIPELINE
+			iface_valid = '1;
+			if(iface.ready) begin
+				state_nxt = WAIT_FOR_CACHE;
+			end
+		end
+
+		WAIT_FOR_CACHE: begin
+			if(iface.rvalid) begin
+				state_nxt = WAIT_FOR_PIPELINE;
+			end
+		end
+        endcase
+
+    end
+
+    always_ff @(posedge i_clk, posedge i_reset) begin
+        if (i_reset) begin
+            state <= RESET;
+            pc <= RESET_VECTOR;
+        end else begin
+            state <= state_nxt;
+            pc <= pc_nxt;
+        end
+    end
 
 endmodule
-
-`endif // CPU_IFETCH_UNIT_SV

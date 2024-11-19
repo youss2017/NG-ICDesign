@@ -1,0 +1,31 @@
+Time resolution is 1 ps
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:136
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:148
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:163
+WARNING: 7ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:136
+WARNING: 7ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:148
+WARNING: 7ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:163
+[FAKEMEM] ReadReq  block [00000000]
+Stopped at time : 33 ns : File "U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/execute_logic.sv" Line 113
+Stopped at time : 33 ns : File "U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/execute_logic.sv" Line 113
+Stopped at time : 33 ns : File "U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/execute_logic.sv" Line 114
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:136
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:148
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique cas

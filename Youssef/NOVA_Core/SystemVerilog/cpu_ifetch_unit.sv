@@ -141,12 +141,23 @@ import memory_controller_interface::*;
 			// from the wait_for_pipeline similar to how the mem unit does it) because
 			// the pc is different if coming from RESET or WAIT_FOR_PIPELINE
 			iface_valid = '1;
+			
+			/* bug fix - load pc command received mid-cache operation; restart cache fetch */
+			if(i_pc_load) begin
+			     pc_nxt = i_ext_pc;
+			     state_nxt = SCHEDULE_CACHE;
+			end else
 			if(iface.ready) begin
 				state_nxt = WAIT_FOR_CACHE;
 			end
 		end
 
 		WAIT_FOR_CACHE: begin
+			/* bug fix - load pc command received mid-cache operation; restart cache fetch */
+			if(i_pc_load) begin
+			     pc_nxt = i_ext_pc;
+			     state_nxt = SCHEDULE_CACHE;
+			end else		
 			if(iface.rvalid) begin
 				state_nxt = WAIT_FOR_PIPELINE;
 			end

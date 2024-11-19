@@ -45,7 +45,8 @@
 //             if an overflow happens. fix this bro
 
 localparam upper_family = 'b0110111; // LUI and AUPIC
-localparam uncond_branch_family = 'b1101111; // JAL and JALR
+localparam uncond_branch_jal = 'b1101111; // JAL
+localparam uncond_branch_jalr = 'b1100111; // JALR
 localparam cond_branch_family = 'b1100011; // BEQ, BNE, BLT, BGE, BLTU, BGEU
 localparam mem_load_family = 'b0000011; // LB, LH, LW, LBU, LHU
 localparam mem_store_family = 'b0100011; // SB ,SH ,SW
@@ -75,11 +76,19 @@ module decoder_logic
                                 o_control_signal .rd = i_instruction[11:7];
                         end
     
-            uncond_branch_family:       
+            uncond_branch_jal:       
                         begin 
                                 o_control_signal .uncond_branch = 1;
-                                o_control_signal .iop = i_instruction[3:3];
-                                o_imm = $signed({i_instruction[31:31], i_instruction[19:12], i_instruction[30:20], 1'b0}); 
+                                o_control_signal .iop = 1'b0;
+                                o_imm = $signed({i_instruction[31:31], i_instruction[19:12], i_instruction[30:21], 1'b0}); 
+                                o_control_signal .rd = i_instruction[11:7];
+                        end
+                        
+            uncond_branch_jalr:       
+                        begin 
+                                o_control_signal .uncond_branch = 1;
+                                o_control_signal .iop = 1'b1;
+                                o_imm = $signed({i_instruction[31:20]});
                                 o_control_signal .rd = i_instruction[11:7];
                         end
     

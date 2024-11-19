@@ -227,7 +227,7 @@ import rapid_pkg::*;
 			if(o_pipeline_ready) begin
 				ir_control_sig <= i_control_sig;
 				ir_data_in <= i_data_in;
-				ir_rs2 = i_rs2;
+				ir_rs2 <= i_rs2;
 			end
         end
     end

@@ -40,7 +40,18 @@ import rapid_pkg::XLEN;
         forward_rs1_data = ex_rs1_data
     */
 
-    assign o_forward_rs1 = (i_ex_rs1 == i_mem_rd) ? i_mem_rd_data : i_ex_rs1_data;
-    assign o_forward_rs2 = (i_ex_rs2 == i_mem_rd) ? i_mem_rd_data : i_ex_rs2_data;
+    always_comb begin : port1_forwarding
+        if (i_ex_rs1 == i_mem_rd && i_ex_rs1 > 0)
+            o_forward_rs1 = i_mem_rd_data;
+        else
+            o_forward_rs1 = i_ex_rs1_data;        
+    end
+
+    always_comb begin : port2_forwarding
+        if (i_ex_rs2 == i_mem_rd && i_ex_rs2 > 0)
+            o_forward_rs2 = i_mem_rd_data;
+        else
+            o_forward_rs2 = i_ex_rs1_data;        
+    end
 
 endmodule

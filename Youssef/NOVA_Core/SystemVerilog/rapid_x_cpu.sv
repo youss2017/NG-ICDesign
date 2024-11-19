@@ -166,16 +166,17 @@ import memory_controller_interface::*;
         .o_rd_output(ex_rd_output)
     );
 
-    forwarding_unit forward_unit(
-        .i_ex_rs1(ex_control_signal.rs1), /* index from execute stage */
-        .i_ex_rs2(ex_control_signal.rs2), /* index from execute stage */
-        .i_mem_rd(mem_rd), /* index from memory stage */
-        .i_ex_rs1_data(ex_rs1), /* data from execute stage */
-        .i_ex_rs2_data(ex_rs2), /* data from execute stage */
-        .i_mem_rd_data(mem_rd_output), /* data from memory stage */
-        .o_forward_rs1(forwarded_rs1), // forwarded data
-        .o_forward_rs2(forwarded_rs2)  // forwarded data
-    )
+
+//    forwarding_unit forward_unit(
+//        .i_ex_rs1(ex_control_signal.rs1), /* index from execute stage */
+//        .i_ex_rs2(ex_control_signal.rs2), /* index from execute stage */
+//        .i_mem_rd(mem_rd), /* index from memory stage */
+//        .i_ex_rs1_data(ex_rs1), /* data from execute stage */
+//        .i_ex_rs2_data(ex_rs2), /* data from execute stage */
+//        .i_mem_rd_data(mem_rd_output), /* data from memory stage */
+//        .o_forward_rs1(forwarded_rs1), // forwarded data
+//        .o_forward_rs2(forwarded_rs2)  // forwarded data
+//    );
 
     cpu_memory_unit memory_unit(
         .i_clk(i_clk),

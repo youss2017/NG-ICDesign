@@ -10,6 +10,7 @@ sv xil_defaultlib  \
 "../../../../../../execute_logic.sv" \
 "../../../../../../execute_state.sv" \
 "../../../../../../rapid-x testbenches/fake_memory.sv" \
+"../../../../../../forwarding_unit.sv" \
 "../../../../../../memory_controller_interface.sv" \
 "../../../../../../rapid_x_cpu.sv" \
 "../../../../../../register_file.sv" \

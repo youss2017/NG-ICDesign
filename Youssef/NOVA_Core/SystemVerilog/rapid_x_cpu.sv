@@ -67,6 +67,12 @@ import memory_controller_interface::*;
     logic [4:0] mem_rd;
     logic mem_pipeline_ready;
 
+    // forwarding wires for execute_logic
+    // redirects data inputs from decoder_logic
+    // to the rd_output from memory_stage if
+    // rd matches either rs1/rs2
+    wire [XLEN-1:0] forwarded_rs1, forwarded_rs2;
+
     // The IF_stage will read multiple instructions
     // when it fetches data from RAM, so the first
     // data load may have high latency but subsequent
@@ -124,6 +130,7 @@ import memory_controller_interface::*;
     decoder_state de_state(
         .i_clk(i_clk),
         .i_reset(i_reset),
+        .i_pc_load(ex_pc_load),
         .i_instruction(if_instruction),
         .i_pc(if_pc),
         .o_pc(de_pc),
@@ -156,8 +163,8 @@ import memory_controller_interface::*;
     execute_logic ex_logic(
         .i_pc(ex_pc),
         .i_control_signal(ex_control_signal),
-        .i_rs1(ex_rs1),
-        .i_rs2(ex_rs2),
+        .i_rs1(/*ex_rs1*/forwarded_rs1),
+        .i_rs2(/*ex_rs2*/forwarded_rs2),
         .i_imm(ex_imm),
         .o_control_signal(ex_mem_signal),
         .o_pc_load(ex_pc_load),
@@ -166,17 +173,16 @@ import memory_controller_interface::*;
         .o_rd_output(ex_rd_output)
     );
 
-
-//    forwarding_unit forward_unit(
-//        .i_ex_rs1(ex_control_signal.rs1), /* index from execute stage */
-//        .i_ex_rs2(ex_control_signal.rs2), /* index from execute stage */
-//        .i_mem_rd(mem_rd), /* index from memory stage */
-//        .i_ex_rs1_data(ex_rs1), /* data from execute stage */
-//        .i_ex_rs2_data(ex_rs2), /* data from execute stage */
-//        .i_mem_rd_data(mem_rd_output), /* data from memory stage */
-//        .o_forward_rs1(forwarded_rs1), // forwarded data
-//        .o_forward_rs2(forwarded_rs2)  // forwarded data
-//    );
+    forward_unit funit(
+        .i_ex_rs1(ex_control_signal.rs1), /* index from execute stage */
+        .i_ex_rs2(ex_control_signal.rs2), /* index from execute stage */
+        .i_mem_rd(mem_rd), /* index from memory stage */
+        .i_mem_rd_data(mem_rd_output), /* data from memory stage */
+        .i_ex_rs1_data(ex_rs1), /* data from execute stage */
+        .i_ex_rs2_data(ex_rs2), /* data from execute stage */
+        .o_forward_rs1(forwarded_rs1), // forwarded data
+        .o_forward_rs2(forwarded_rs2)  // forwarded data
+    );
 
     cpu_memory_unit memory_unit(
         .i_clk(i_clk),

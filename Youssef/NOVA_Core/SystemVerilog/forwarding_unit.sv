@@ -21,8 +21,7 @@
 
 import rapid_pkg::*;
 
-module forwarding_unit
-import rapid_pkg::XLEN;
+module forward_unit
 (   
     input   logic [4:0]       i_ex_rs1,
     input   logic [4:0]       i_ex_rs2,
@@ -51,7 +50,7 @@ import rapid_pkg::XLEN;
         if (i_ex_rs2 == i_mem_rd && i_ex_rs2 > 0)
             o_forward_rs2 = i_mem_rd_data;
         else
-            o_forward_rs2 = i_ex_rs1_data;        
+            o_forward_rs2 = i_ex_rs2_data;        
     end
 
 endmodule

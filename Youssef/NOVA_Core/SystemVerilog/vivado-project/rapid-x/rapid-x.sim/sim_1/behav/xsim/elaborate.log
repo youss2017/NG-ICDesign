@@ -5,10 +5,6 @@ Running: C:/Xilinx/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'i_rs1' [U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/rapid_x_cpu.sv:159]
-WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'i_rs2' [U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/rapid_x_cpu.sv:160]
-WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'o_forward_rs1' [U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/rapid_x_cpu.sv:176]
-WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'o_forward_rs2' [U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/rapid_x_cpu.sv:177]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -27,7 +23,7 @@ Compiling module xil_defaultlib.decoder_state
 Compiling module xil_defaultlib.decoder_logic
 Compiling module xil_defaultlib.execute_state
 Compiling module xil_defaultlib.execute_logic
-Compiling module xil_defaultlib.forwarding_unit
+Compiling module xil_defaultlib.forward_unit
 Compiling module xil_defaultlib.cpu_memory_unit
 Compiling module xil_defaultlib.rapid_x_cpu
 Compiling module xil_defaultlib.rapid_x_testbench

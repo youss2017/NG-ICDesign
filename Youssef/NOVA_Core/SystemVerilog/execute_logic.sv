@@ -90,8 +90,8 @@ module execute_logic
                 AND_: o_rd_output = $signed(i_rs1) & $signed(port2);              // ANDI
                 SLL: o_rd_output = $unsigned(i_rs1) << $unsigned(port2);          // SLLI
                 SRL_or_SRA: begin 
-                    if (!i_control_signal.iop) o_rd_output = $unsigned(i_rs1) >> $unsigned(port2); // SRLI
-                    else o_rd_output = $unsigned(i_rs1) >>> $unsigned(port2);                    // SRAI
+                    if (!i_control_signal.iop) o_rd_output = $unsigned(i_rs1) >> $unsigned(port2[4:0]); // SRLI
+                    else o_rd_output = $unsigned(i_rs1) >>> $unsigned(port2[4:0]);                    // SRAI
                 end
             endcase
 

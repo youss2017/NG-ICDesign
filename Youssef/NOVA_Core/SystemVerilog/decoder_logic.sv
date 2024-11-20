@@ -127,7 +127,7 @@ module decoder_logic
             imm_family:                 
                         begin 
                                 o_control_signal .alu_imm = 1;
-                                o_control_signal .iop =  i_instruction[14:12] == 3'b101; // Only SRAI has an IOP signal
+                                o_control_signal .iop = (i_instruction[14:12] == 3'b101); // Only SRAI has an IOP signal
                                 o_imm = $signed({i_instruction[31:20]}); 
                                 o_control_signal .rs1 = i_instruction[19:15];
                                 o_control_signal .rs1_out = 1;

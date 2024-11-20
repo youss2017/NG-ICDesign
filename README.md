@@ -1,7 +1,7 @@
 <h1>Project Organization</h1>
 <hr/>
 
-<h1>Northrop Grumman ASIC Design Project</h1>
+<h1>RAPID-X Core | Northrop Grumman ASIC Design Project</h1>
 <hr/>
 
 <ol>
@@ -9,9 +9,8 @@
 		Navigation
 	</h1>
  <p>
-	Ongoing Core Design can be found in <a href="https://github.com/youss2017/NG-ICDesign/tree/master/RAPID-Core%20RTL/SystemVerilog">RAPID-Core RTL/SystemVerilog</a>
+	Ongoing Core Design can be found in <a href="https://github.com/youss2017/NG-ICDesign/tree/master/RAPID-X%20Core">RAPID-X Core/SystemVerilog</a>
  </p>
-	Ongoing Cache Subsystem (pending)
 
  </p>
 	<h1>

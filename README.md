@@ -9,7 +9,7 @@
 		Navigation
 	</h1>
  <p>
-	Ongoing Core Design can be found in <a href="https://github.com/youss2017/NG-ICDesign/tree/master/RAPID-X%20Core">RAPID-X Core/SystemVerilog</a>
+	Ongoing Core Design can be found in <a href="https://github.com/youss2017/NG-ICDesign/tree/master/RAPID-X%20Core">RAPID-X Core</a>
  </p>
 
  </p>

@@ -193,16 +193,16 @@ import memory_controller_interface::*; #(
 		tag_write = {'0, '0, '0};
 
 		tag_req.we = '0;
-		tag_req.index = iface.addr[INDEX_MSB:INDEX_LSB];
+		tag_req.index = addr[INDEX_MSB:INDEX_LSB];
 
 		data_req.we = '0;
-		data_req.index = iface.addr[INDEX_MSB:INDEX_LSB];
+		data_req.index = addr[INDEX_MSB:INDEX_LSB];
 
 		iface.rdata = '0;
 		iface.ready = '0;
 		iface.rvalid = '0;
 
-		mem_req.addr = iface.addr;
+		mem_req.addr = addr;
 		mem_req.data = data_read;
 		mem_req.rw = '0;
 		mem_req.valid = '0;

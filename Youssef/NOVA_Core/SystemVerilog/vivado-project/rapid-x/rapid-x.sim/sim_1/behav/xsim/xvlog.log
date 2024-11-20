@@ -20,7 +20,7 @@ INFO: [VRFC 10-311] analyzing module execute_state
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/rapid-x testbenches/fake_memory.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module fake_memory
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/forwarding_unit.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module forwarding_unit
+INFO: [VRFC 10-311] analyzing module forward_unit
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/memory_controller_interface.sv" into library xil_defaultlib
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/Youssef/NOVA_Core/SystemVerilog/rapid_x_cpu.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module rapid_x_cpu

@@ -90,8 +90,8 @@ module execute_logic
                 AND_: o_rd_output = $signed(i_rs1) & $signed(port2);              // ANDI
                 SLL: o_rd_output = $unsigned(i_rs1) << $unsigned(port2);          // SLLI
                 SRL_or_SRA: begin 
-                    if (!i_control_signal.iop) o_rd_output = $unsigned(i_rs1) >> $unsigned(port2); // SRLI
-                    else o_rd_output = $unsigned(i_rs1) >>> $unsigned(port2);                    // SRAI
+                    if (!i_control_signal.iop) o_rd_output = $unsigned(i_rs1) >> $unsigned(port2[4:0]); // SRLI
+                    else o_rd_output = $unsigned(i_rs1) >>> $unsigned(port2[4:0]);                    // SRAI
                 end
             endcase
 
@@ -127,12 +127,14 @@ module execute_logic
             // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
             // JAL	         11011	 001 (UNCOND.BRANCH)	     000	            0	      000-000-0
             // JALR	         11001	 001 (UNCOND.BRANCH)	     000	            1	      000-000-1
-    
-            /* JAL */ 
-        o_rd_output = i_pc + 4; // This is rd
-        o_pc_ext = $signed(i_control_signal.iop ? i_rs1 /* JALR */ : i_pc /* JAL */) + $signed(i_imm); // This is pc
-        o_pc_load = 1;
-
+            o_rd_output = i_pc + 4; // This is rd
+            if (i_control_signal.iop)
+                // JALR
+                o_pc_ext = $signed(i_rs1 /* JALR */) + $signed(i_imm); // This is new pc value
+            else
+                // JAL
+                o_pc_ext = $signed(i_pc /* JAL */) + $signed(i_imm); // This is new pc value
+            o_pc_load = 1;
         end
 
         // LUI and AUIPC

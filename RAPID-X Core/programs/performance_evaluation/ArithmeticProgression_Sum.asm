@@ -14,7 +14,7 @@ Why:
         li t3, 1          # Increment value
 
 loop:   add t0, t0, t1    # Add current term to sum
-        addi t1, t1, t3   # Increment term
+        add t1, t1, t3   # Increment term
         addi t2, t2, -1   # Decrement loop counter
         bne t2, x0, loop  # Repeat if counter not zero
 

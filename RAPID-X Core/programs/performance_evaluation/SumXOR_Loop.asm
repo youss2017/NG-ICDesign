@@ -8,6 +8,13 @@ Why:
 2. No data dependencies between instructions make it suitable for performance testing.
 3. Provides a large loop iteration count for sustained instruction flow.
 */
+/*
+        RAPID-X Benchmark Results 11/24/2024:
+        Total Time: 22,056 ns
+        Clock Period: 2ns
+        Clock Frequency: 500 MHz
+        Cycles: 
+*/
 
         li t0, 0          # Initialize sum to 0
         li t1, 0          # Initialize XOR result to 0

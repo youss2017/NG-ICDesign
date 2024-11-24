@@ -9,6 +9,13 @@ Why:
 2. Exercises the shift unit in the CPU pipeline extensively.
 3. Avoids complex data dependencies, enabling isolated performance evaluation.
 */
+/*
+        RAPID-X Benchmark Results 11/24/2024:
+        Total Time: 72,376 ns
+        Clock Period: 2ns
+        Clock Frequency: 500 MHz
+        Cycles: 31,817
+*/
         li t0, 0x80000000 # Initial value with high bit set
         li t1, 0          # Accumulator for rotated values
         li t2, 10000      # Loop counter

@@ -8,6 +8,13 @@ Why:
 2. Predictable data flow and low instruction complexity allow for clear performance insights.
 3. Large loop ensures sustained load on the instruction pipeline.
 */
+/*
+        RAPID-X Benchmark Results 11/24/2024:
+        Total Time: 50,680 ns
+        Clock Period: 2ns
+        Clock Frequency: 500 MHz
+        Cycles: 31,817
+*/
         li t0, 0          # Initialize sum to 0
         li t1, 1          # Starting value of progression
         li t2, 10000      # Number of terms

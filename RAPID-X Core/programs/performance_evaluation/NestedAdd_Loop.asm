@@ -9,6 +9,13 @@ Provides a mix of inner and outer loops for evaluating branch prediction.
 Tests the handling of nested data dependencies and instruction execution order.
 Generates a significant number of instructions for performance measurement.
 */
+/*
+        RAPID-X Benchmark Results 11/24/2024:
+        Total Time: 63,634 ns
+        Clock Period: 2ns
+        Clock Frequency: 500 MHz
+        Cycles: 31,817
+*/
         li t0, 0          # Outer sum accumulator
         li t1, 10         # Outer loop counter
         li t2, 0          # Inner sum accumulator

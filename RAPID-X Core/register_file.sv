@@ -58,7 +58,10 @@ module register_file (
 	always_ff @(posedge i_clk, posedge i_reset) begin
 		if(i_reset) begin
             for(int i = 0; i < 32; i++)
-                register_file[i] <= 0;
+                if(i == 2) continue;
+                else
+                    register_file[i] <= 0;
+            register_file[2] <= RESET_STACK_POINTER;
 		end else begin
 			if (i_rd > 0) 
 				register_file[i_rd] <= i_rd_data;

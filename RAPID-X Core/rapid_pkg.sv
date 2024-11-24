@@ -5,6 +5,7 @@ package rapid_pkg;
     parameter int XLEN = 32;
 
     parameter bit [XLEN-1:0] RESET_VECTOR = 0;
+    parameter bit [XLEN-1:0] RESET_STACK_POINTER = 1024;
     parameter bit [XLEN-1:0] WORD_WIDTH = 4;
     parameter bit [XLEN-1:0] NOP_INSTRUCTION = 32'h00000033; // add x0, x0, x0
     parameter bit [XLEN-1:0] NOOP_INSTRUCTION = 32'h00000033; // add x0, x0, x0

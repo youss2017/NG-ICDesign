@@ -1,0 +1,30 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/rapid_pkg.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv" into library xil_defaultlib
+WARNING: [VRFC 10-8896] design element 'rapid_pkg' is previously defined; ignoring this definition [U:/Senior Design/RAPID-X Core/rapid_pkg.sv:3]
+INFO: [VRFC 10-311] analyzing module dcache_dm1cycle
+INFO: [VRFC 10-311] analyzing module cache_data
+INFO: [VRFC 10-311] analyzing module cache_tag
+INFO: [VRFC 10-311] analyzing module cpu_memory_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/cpu_ifetch_unit.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cpu_ifetch_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/dcache_dm1cycle.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/dcache_interface.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/decoder_logic.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decoder_logic
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/decoder_state.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decoder_state
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/execute_logic.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module execute_logic
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/execute_state.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module execute_state
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/rapid-x testbenches/fake_memory.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fake_memory
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/forwarding_unit.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module forward_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/memory_controller_interface.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/rapid_x_cpu.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rapid_x_cpu
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/register_file.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module register_file
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "U:/Senior Design/RAPID-X Core/rapid-x testbenches/rapid_x_testbench.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rapid_x_testbench

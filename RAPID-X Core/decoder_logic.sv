@@ -44,14 +44,14 @@
 // FIXME/TODO: The ALU does not set the overflow bit in status register
 //             if an overflow happens. fix this bro
 
-localparam upper_family = 'b0110111; // LUI and AUPIC
-localparam uncond_branch_jal = 'b1101111; // JAL
-localparam uncond_branch_jalr = 'b1100111; // JALR
-localparam cond_branch_family = 'b1100011; // BEQ, BNE, BLT, BGE, BLTU, BGEU
-localparam mem_load_family = 'b0000011; // LB, LH, LW, LBU, LHU
-localparam mem_store_family = 'b0100011; // SB ,SH ,SW
-localparam imm_family = 'b0010011; // ADDI, SLTI, SLTIU, XORI, ORI, ANDI, SLLI, SRLI, SRAI
-localparam reg_family = 'b0110011; // ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND
+localparam upper_family = 7'b0?10111; // LUI and AUPIC
+localparam uncond_branch_jal = 7'b1101111; // JAL
+localparam uncond_branch_jalr = 7'b1100111; // JALR
+localparam cond_branch_family = 7'b1100011; // BEQ, BNE, BLT, BGE, BLTU, BGEU
+localparam mem_load_family = 7'b0000011; // LB, LH, LW, LBU, LHU
+localparam mem_store_family = 7'b0100011; // SB ,SH ,SW
+localparam imm_family = 7'b0010011; // ADDI, SLTI, SLTIU, XORI, ORI, ANDI, SLLI, SRLI, SRAI
+localparam reg_family = 7'b0110011; // ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND
 
 import rapid_pkg::*;
 
@@ -90,6 +90,7 @@ module decoder_logic
                                 o_control_signal .iop = 1'b1;
                                 o_imm = $signed({i_instruction[31:20]});
                                 o_control_signal .rd = i_instruction[11:7];
+                                o_control_signal .rs1 = i_instruction[19:15];
                         end
     
             cond_branch_family:         

@@ -1,9 +1,31 @@
 Vivado Simulator v2024.1
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: E:/VIVADO/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot rapid_x_testbench_behav xil_defaultlib.rapid_x_testbench xil_defaultlib.glbl -log elaborate.log 
+Running: C:/Xilinx/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot rapid_x_testbench_behav xil_defaultlib.rapid_x_testbench xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
 Completed static elaboration
-INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package xil_defaultlib.memory_controller_interface
+Compiling package xil_defaultlib.rapid_pkg
+Compiling package xil_defaultlib.$unit_rapid_pkg_sv_2351329124
+Compiling module xil_defaultlib.fake_memory_default
+Compiling module xil_defaultlib.dcache_interface(DATA_LENGTH=32,...
+Compiling module xil_defaultlib.cache_data
+Compiling module xil_defaultlib.cache_tag
+Compiling module xil_defaultlib.dcache_dm1cycle(iface=dcache_int...
+Compiling module xil_defaultlib.cpu_ifetch_unit
+Compiling module xil_defaultlib.register_file
+Compiling module xil_defaultlib.decoder_state
+Compiling module xil_defaultlib.decoder_logic
+Compiling module xil_defaultlib.execute_state
+Compiling module xil_defaultlib.execute_logic
+Compiling module xil_defaultlib.forward_unit
+Compiling module xil_defaultlib.cpu_memory_unit
+Compiling module xil_defaultlib.rapid_x_cpu
+Compiling module xil_defaultlib.rapid_x_testbench
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot rapid_x_testbench_behav

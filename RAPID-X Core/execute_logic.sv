@@ -79,19 +79,18 @@ module execute_logic
             // OR	         01100	 111 (ALU REG)	            110	                0	     111-110-0
             // AND	         01100	 111 (ALU REG)	            111	                0	     111-111-0
             case (i_control_signal.fcs_opcode)
-                ADD_or_SUB: o_rd_output = i_control_signal.iop ? $signed(i_rs1) - $signed(port2) : $signed(i_rs1) + $signed(port2); // ADDI
-                SLT: o_rd_output = $signed(i_rs1) < $signed(port2) ? 1 : 0;// SLTI
-                // For SLTIU we have to do unsigned comparison,
-                // To do this we can convert the upper bits to 0
-                // this way it will look like its unsigned
-                SLTU: o_rd_output = $unsigned(i_rs1) < $unsigned(port2) ? 1 : 0 ; // SLTIU
-                XOR_: o_rd_output = $unsigned(i_rs1) ^ $unsigned(port2);          // XORI
-                OR_: o_rd_output = $signed(i_rs1) | $signed(port2);               // ORI
-                AND_: o_rd_output = $signed(i_rs1) & $signed(port2);              // ANDI
-                SLL: o_rd_output = $unsigned(i_rs1) << $unsigned(port2);          // SLLI
+            // TODO/FIXME: We can merge SLT and SLTU sinces sign extension happens in decoder
+            // also, we should be able to remove all the sign extension here
+                ADD_or_SUB: o_rd_output = i_control_signal.iop ? i_rs1 - port2 : i_rs1 + port2; // ADDI
+                SLT: o_rd_output = i_rs1 < port2 ? 1 : 0;// SLTI
+                SLTU: o_rd_output = i_rs1 < port2 ? 1 : 0 ; // SLTIU
+                XOR_: o_rd_output = i_rs1 ^ port2;          // XORI
+                OR_: o_rd_output = i_rs1 | port2;               // ORI
+                AND_: o_rd_output = i_rs1 & port2;              // ANDI
+                SLL: o_rd_output = i_rs1 << port2;          // SLLI
                 SRL_or_SRA: begin 
-                    if (!i_control_signal.iop) o_rd_output = $unsigned(i_rs1) >> $unsigned(port2[4:0]); // SRLI
-                    else o_rd_output = $unsigned(i_rs1) >>> $unsigned(port2[4:0]);                    // SRAI
+                    if (!i_control_signal.iop) o_rd_output = i_rs1 >> port2[4:0]; // SRLI
+                    else o_rd_output = i_rs1 >>> port2[4:0];                    // SRAI
                 end 
             endcase
 
@@ -113,13 +112,13 @@ module execute_logic
                 case (i_control_signal.fcs_opcode)
                     /* BEQ */  3'b000: o_pc_load = i_rs1 == i_rs2;
                     /* BNE */  3'b001: o_pc_load = i_rs1 != i_rs2;
-                    /* BLT */  3'b100: o_pc_load = $signed(i_rs1) < $signed(i_rs2);
-                    /* BGE */  3'b101: o_pc_load = $signed(i_rs1) >= $signed(i_rs2);
-                    /* BLTU */ 3'b110: o_pc_load = $unsigned(i_rs1) < $unsigned(i_rs2);
-                    /* BGEU */ 3'b111: o_pc_load = $unsigned(i_rs1) >= $unsigned(i_rs2);
+                    /* BLT */  3'b100: o_pc_load = i_rs1 < i_rs2;
+                    /* BGE */  3'b101: o_pc_load = i_rs1 >= i_rs2;
+                    /* BLTU */ 3'b110: o_pc_load = i_rs1 < i_rs2;
+                    /* BGEU */ 3'b111: o_pc_load = i_rs1 >= i_rs2;
                 endcase
                 
-                o_pc_ext = ($signed(i_pc) + $signed(i_imm));
+                o_pc_ext = i_pc + i_imm;
             end
 
         // JAL/JALR
@@ -127,13 +126,13 @@ module execute_logic
             // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
             // JAL	         11011	 001 (UNCOND.BRANCH)	     000	            0	      000-000-0
             // JALR	         11001	 001 (UNCOND.BRANCH)	     000	            1	      000-000-1
-            o_rd_output = i_pc + 4; // This is rd
+            o_rd_output = i_pc + 4; // This is rd value
             if (i_control_signal.iop)
                 // JALR
-                o_pc_ext = $signed(i_rs1 /* JALR */) + $signed(i_imm); // This is new pc value
+                o_pc_ext = i_rs1 /* JALR */ + i_imm; // This is new pc value
             else
                 // JAL
-                o_pc_ext = $signed(i_pc /* JAL */) + $signed(i_imm); // This is new pc value
+                o_pc_ext = i_pc /* JAL */ + i_imm; // This is new pc value
             o_pc_load = 1;
         end
 
@@ -142,12 +141,12 @@ module execute_logic
             // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
             // LUI	         01101	 000 (LOAD UPP IMM)	         000	            1	      000-000-0
             // AUIPC	     00101	 000 (LOAD UPP IMM)	         000	            0	      000-000-1
-            if (i_control_signal.iop) begin
+            if (i_control_signal.iop)
                 // LUI
                 o_rd_output = i_imm;
-            end else 
+            else 
                 // AUPIC
-                o_rd_output = $signed(i_pc) + $signed(i_imm);
+                o_rd_output = i_pc + i_imm;
             o_pc_ext = 0;
             o_pc_load = 0;
         end

@@ -9,12 +9,26 @@ Why:
 3. Provides a large loop iteration count for sustained instruction flow.
 */
 /*
-        RAPID-X Benchmark Results 11/24/2024:
-        Total Time: 22,056 ns
+        RAPID-X Benchmark Results 11/25/2024:
+        Total Time: 340,056.000 ns
         Clock Period: 2ns
-        Clock Frequency: 500 MHz
-        Cycles: 
 */
+
+/*
+        RAPID Core
+        Total Time:             506.76us
+        Clock Period:           10ns
+        Clock Frequency:        100MHz
+        Clock Cycles:           50,676
+*/
+
+/*
+        RIPES.ME:
+        CPI: 1.4
+        Cycles: 70,008
+*/
+
+// Program Instructions: 50006 
 
         li t0, 0          # Initialize sum to 0
         li t1, 0          # Initialize XOR result to 0
@@ -26,5 +40,4 @@ loop:   add t0, t0, t3    # Add increment to sum
         addi t3, t3, 1    # Increment current value
         addi t2, t2, -1   # Decrement loop counter
         bne t2, x0, loop  # Repeat if counter not zero
-
         nop

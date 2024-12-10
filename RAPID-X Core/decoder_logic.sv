@@ -44,7 +44,8 @@
 // FIXME/TODO: The ALU does not set the overflow bit in status register
 //             if an overflow happens. fix this bro
 
-localparam upper_family = 7'b0?10111; // LUI and AUPIC
+localparam upper_family = 7'b0010111; // LUI and AUPIC
+localparam upper_family2 = 7'b0110111; // LUI and AUPIC
 localparam uncond_branch_jal = 7'b1101111; // JAL
 localparam uncond_branch_jalr = 7'b1100111; // JALR
 localparam cond_branch_family = 7'b1100011; // BEQ, BNE, BLT, BGE, BLTU, BGEU
@@ -69,6 +70,14 @@ module decoder_logic
             case(i_instruction[6:0])
     
             upper_family:               
+                        begin 
+                                o_control_signal .load_upper_imm = 1;
+                                o_control_signal .iop = i_instruction[5:5];
+                                o_imm = $signed({i_instruction[31:12], 12'b0}); 
+                                o_control_signal .rd = i_instruction[11:7];
+                        end
+                            
+            upper_family2:               
                         begin 
                                 o_control_signal .load_upper_imm = 1;
                                 o_control_signal .iop = i_instruction[5:5];

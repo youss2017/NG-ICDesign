@@ -11,10 +11,16 @@ Why:
 */
 /*
         RAPID-X Benchmark Results 11/24/2024:
-        Total Time: 72,376 ns
+        Total Time: 400,056.000 ns
         Clock Period: 2ns
-        Clock Frequency: 500 MHz
-        Cycles: 31,817
+*/
+
+/*
+        RAPID Core
+        Total Time:             579.1us
+        Clock Period:           10ns
+        Clock Frequency:        100MHz
+        Clock Cycles:           57910
 */
         li t0, 0x80000000 # Initial value with high bit set
         li t1, 0          # Accumulator for rotated values

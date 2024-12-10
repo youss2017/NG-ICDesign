@@ -9,11 +9,17 @@ Why:
 3. High instruction count ensures a robust performance evaluation.
 */
 /*
-        RAPID-X Benchmark Results 11/24/2024:
-        Total Time: 63,634 ns
-        Clock Period: 2ns
-        Clock Frequency: 500 MHz
-        Cycles: 31,817
+        RAPID-X Benchmark Results 11/25/2024:
+        Total Time: 340,062.000 ns
+        Clock Period: 2 ns
+*/
+
+/*
+        RAPID Core
+        Total Time:             506.79us
+        Clock Period:           10ns
+        Clock Frequency:        100MHz
+        Clock Cycles:           50679
 */
 
         li t0, 0xFFFF     # Initialize t0 with all bits set

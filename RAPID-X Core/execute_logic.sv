@@ -83,11 +83,11 @@ module execute_logic
             // also, we should be able to remove all the sign extension here
                 ADD_or_SUB: o_rd_output = i_control_signal.iop ? i_rs1 - port2 : i_rs1 + port2; // ADDI
                 SLT: o_rd_output = i_rs1 < port2 ? 1 : 0;// SLTI
-                SLTU: o_rd_output = i_rs1 < port2 ? 1 : 0 ; // SLTIU
+                SLTU: o_rd_output = $unsigned(i_rs1) < $unsigned(port2) ? 1 : 0 ; // SLTIU
                 XOR_: o_rd_output = i_rs1 ^ port2;          // XORI
                 OR_: o_rd_output = i_rs1 | port2;               // ORI
                 AND_: o_rd_output = i_rs1 & port2;              // ANDI
-                SLL: o_rd_output = i_rs1 << port2;          // SLLI
+                SLL: o_rd_output = i_rs1 << port2[4:0];          // SLLI
                 SRL_or_SRA: begin 
                     if (!i_control_signal.iop) o_rd_output = i_rs1 >> port2[4:0]; // SRLI
                     else o_rd_output = i_rs1 >>> port2[4:0];                    // SRAI
@@ -114,11 +114,11 @@ module execute_logic
                     /* BNE */  3'b001: o_pc_load = i_rs1 != i_rs2;
                     /* BLT */  3'b100: o_pc_load = i_rs1 < i_rs2;
                     /* BGE */  3'b101: o_pc_load = i_rs1 >= i_rs2;
-                    /* BLTU */ 3'b110: o_pc_load = i_rs1 < i_rs2;
-                    /* BGEU */ 3'b111: o_pc_load = i_rs1 >= i_rs2;
+                    /* BLTU */ 3'b110: o_pc_load = $unsigned(i_rs1) < $unsigned(i_rs2);
+                    /* BGEU */ 3'b111: o_pc_load = $unsigned(i_rs1) >= $unsigned(i_rs2);
                 endcase
                 
-                o_pc_ext = i_pc + i_imm;
+                o_pc_ext = (i_pc + i_imm) & ~32'h00000001;
             end
 
         // JAL/JALR
@@ -129,10 +129,10 @@ module execute_logic
             o_rd_output = i_pc + 4; // This is rd value
             if (i_control_signal.iop)
                 // JALR
-                o_pc_ext = i_rs1 /* JALR */ + i_imm; // This is new pc value
+                o_pc_ext = (i_rs1 /* JALR */ + i_imm) & ~32'h00000001; // This is new pc value
             else
                 // JAL
-                o_pc_ext = i_pc /* JAL */ + i_imm; // This is new pc value
+                o_pc_ext = (i_pc /* JAL */ + i_imm) & ~32'h00000001; // This is new pc value
             o_pc_load = 1;
         end
 

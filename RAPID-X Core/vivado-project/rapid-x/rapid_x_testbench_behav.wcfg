@@ -14,13 +14,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="993.835 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,001.233 ns"></ZoomEndTime>
-      <Cursor1Time time="997.135 ns"></Cursor1Time>
+      <ZoomStartTime time="260,544 ps"></ZoomStartTime>
+      <ZoomEndTime time="263,053 ps"></ZoomEndTime>
+      <Cursor1Time time="799,535 ps"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="95"></ValueColumnWidth>
+      <ValueColumnWidth column_width="91"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="10" />
    <wvobject fp_name="/rapid_x_testbench/clk" type="logic">
@@ -110,7 +110,6 @@
       <wvobject fp_name="/rapid_x_testbench/rapid_x/de_logic/o_control_signal" type="array">
          <obj_property name="ElementShortName">o_control_signal</obj_property>
          <obj_property name="ObjectShortName">o_control_signal</obj_property>
-         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/rapid_x_testbench/rapid_x/de_logic/o_imm" type="array">
          <obj_property name="ElementShortName">o_imm[31:0]</obj_property>

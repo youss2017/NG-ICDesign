@@ -15,6 +15,7 @@ module decoder_state_testbench();
     decoder_state dut(
         .i_clk(i_clk),
         .i_reset(i_reset),
+        .i_pc_load(0),
         .i_instruction(i_instruction),
         .i_pc(i_pc),
         .o_pc(o_pc),
@@ -31,8 +32,8 @@ module decoder_state_testbench();
             i_pc = $random();
             i_instruction = $random();
             push_clock();
-            assert(i_pc == o_pc) else begin $display("i_pc != o_pc"); detectedBugs = 1; end
-            assert(i_instruction == o_instruction) else begin $display("i_instruction != o_instruction"); detectedBugs = 1; end
+            assert(i_pc == o_pc) $display("[PASSED] i_pc==o_pc"); else begin $display("i_pc != o_pc"); detectedBugs = 1; end
+            assert(i_instruction == o_instruction) $display("[PASSED] i_instr==o_instr"); else begin $display("i_instruction != o_instruction"); detectedBugs = 1; end
         end
 
         if(detectedBugs)

@@ -10,10 +10,18 @@ Why:
 */
 /*
         RAPID-X Benchmark Results 11/24/2024:
-        Total Time: 50,680 ns
+        Total Time: 280,050.000 ns
         Clock Period: 2ns
         Clock Frequency: 500 MHz
         Cycles: 31,817
+*/
+
+/*
+        RAPID Core
+        Total Time:             434.39us
+        Clock Period:           10ns
+        Clock Frequency:        100MHz
+        Clock Cycles:           43439
 */
         li t0, 0          # Initialize sum to 0
         li t1, 1          # Starting value of progression

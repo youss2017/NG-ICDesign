@@ -11,11 +11,15 @@ Generates a significant number of instructions for performance measurement.
 */
 /*
         RAPID-X Benchmark Results 11/24/2024:
-        Total Time: 63,634 ns
+        Total Time: 220,304.000 ns
         Clock Period: 2ns
-        Clock Frequency: 500 MHz
-        Cycles: 31,817
 */
+
+/*
+        RAPID
+        BUGGED DOESNT FINISH
+*/
+
         li t0, 0          # Outer sum accumulator
         li t1, 10         # Outer loop counter
         li t2, 0          # Inner sum accumulator

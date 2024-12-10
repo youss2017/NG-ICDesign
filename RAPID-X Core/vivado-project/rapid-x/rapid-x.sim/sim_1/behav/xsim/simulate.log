@@ -1,0 +1,76 @@
+Time resolution is 1 ps
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 7ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 7ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 7ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+[FAKEMEM] ReadReq  block [00000000]
+[FAKEMEM] ReadReq  block [00000010]
+[FAKEMEM] ReadReq  block [00000020]
+[FAKEMEM] ReadReq  block [00000030]
+[FAKEMEM] ReadReq  block [00000040]
+[FAKEMEM] ReadReq  block [00000050]
+[FAKEMEM] ReadReq  block [00000060]
+[FAKEMEM] ReadReq  block [00000070]
+[FAKEMEM] ReadReq  block [00000080]
+[FAKEMEM] ReadReq  block [00000090]
+[FAKEMEM] ReadReq  block [000000a0]
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 7ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 7ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 7ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+[FAKEMEM] ReadReq  block [00000000]
+[FAKEMEM] ReadReq  block [00000010]
+[FAKEMEM] ReadReq  block [00000020]
+[FAKEMEM] ReadReq  block [00000030]
+[FAKEMEM] ReadReq  block [00000040]
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 0ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 5ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+WARNING: 7ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:136
+WARNING: 7ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:148
+WARNING: 7ns : none of the conditions were true for unique case from File:U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv:163
+[FAKEMEM] ReadReq  block [00000000]
+[FAKEMEM] ReadReq  block [00000010]
+[FAKEMEM] ReadReq  block [00000020]
+[FAKEMEM] ReadReq  block [00000030]
+[FAKEMEM] ReadReq  block [00000040]

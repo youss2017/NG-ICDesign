@@ -1,0 +1,36 @@
+xrun: 23.09-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun	23.09-s006: Started on Feb 01, 2025 at 12:54:00 EST
+xrun
+	-f run.f
+		core_src/rapid_pkg.sv
+		core_src/memory_controller_interface.sv
+		core_src/dcache_dm1cycle.sv
+		core_src/cpu_memory_unit.sv
+		core_src/register_file.sv
+		core_src/cpu_ifetch_unit.sv
+		core_src/decoder_logic.sv
+		core_src/decoder_state.sv
+		core_src/execute_logic.sv
+		core_src/execute_state.sv
+		core_src/forwarding_unit.sv
+		core_src/rapid_x_cpu.sv
+		fake_memory.sv
+		rapid_x_testbench.sv
+	-incdir core_src
+file: core_src/dcache_dm1cycle.sv
+	addr_t addr;
+	          |
+xmvlog: *E,ILLPDL (core_src/dcache_dm1cycle.sv,162|11): Mixing of ansi & non-ansi style port declaration is not legal.
+	addr_t wmask;
+	           |
+xmvlog: *E,ILLPDL (core_src/dcache_dm1cycle.sv,163|12): Mixing of ansi & non-ansi style port declaration is not legal.
+	addr_t wdata;
+	           |
+xmvlog: *E,ILLPDL (core_src/dcache_dm1cycle.sv,164|12): Mixing of ansi & non-ansi style port declaration is not legal.
+	addr_t rw;
+	        |
+xmvlog: *E,ILLPDL (core_src/dcache_dm1cycle.sv,165|9): Mixing of ansi & non-ansi style port declaration is not legal.
+	module worklib.dcache_dm1cycle:sv
+		errors: 4, warnings: 0
+xrun: *E,VLGERR: An error occurred during parsing.  Review the log file for errors with the code *E and fix those identified problems to proceed.  Exiting with code (status 1).
+TOOL:	xrun	23.09-s006: Exiting on Feb 01, 2025 at 12:54:01 EST  (total: 00:00:01)

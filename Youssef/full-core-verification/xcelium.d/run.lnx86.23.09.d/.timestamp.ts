@@ -1,0 +1,15 @@
+1737836115 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/decoder_state.sv
+1738431187 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/register_file.sv
+1737836115 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/forwarding_unit.sv
+1737836115 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/execute_logic.sv
+1738428205 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/fake_memory.sv
+1738432280 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/rapid_pkg.sv
+1737836115 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/rapid_x_cpu.sv
+1738432438 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/dcache_dm1cycle.sv
+1737836115 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/execute_state.sv
+1738429080 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/dcache_interface.sv
+1738432028 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/cpu_memory_unit.sv
+1738430750 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/memory_controller_interface.sv
+1738431197 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/rapid_x_testbench.sv
+1738432197 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/cpu_ifetch_unit.sv
+1737836115 /home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/decoder_logic.sv

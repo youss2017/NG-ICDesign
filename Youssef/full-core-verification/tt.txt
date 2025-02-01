@@ -1,0 +1,54 @@
+TOOL:	xrun	23.09-s006: Started on Feb 01, 2025 at 11:53:16 EST
+xrun: 23.09-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+file: core_src/dcache_interface.sv
+	parameter DATA_LENGTH,  // Word width
+	                     |
+xmvlog: *E,SVVMAP (core_src/dcache_interface.sv,9|22): Omitting the assignment to constant_param_expression in a param_assignment in a parameter_port_list currently is not supported.
+) (
+|
+xmvlog: *E,SVVMAP (core_src/dcache_interface.sv,11|0): Omitting the assignment to constant_param_expression in a param_assignment in a parameter_port_list currently is not supported.
+	interface worklib.dcache_interface:sv
+		errors: 2, warnings: 0
+file: core_src/cpu_ifetch_unit.sv
+`include "dcache_dm1cycle.sv"
+                            |
+xmvlog: *E,COFILX (core_src/cpu_ifetch_unit.sv,32|28): cannot open include file 'dcache_dm1cycle.sv'.
+	module worklib.cpu_ifetch_unit:sv
+		errors: 0, warnings: 0
+file: core_src/decoder_logic.sv
+    output control_ex_s                 o_control_signal,
+                      |
+xmvlog: *E,SVNOTY (core_src/decoder_logic.sv,62|22): Syntactically this identifier appears to begin a datatype but it does not refer to a visible datatype in the current scope.
+	module worklib.decoder_logic:sv
+		errors: 1, warnings: 0
+file: core_src/decoder_state.sv
+	module worklib.decoder_state:sv
+		errors: 0, warnings: 0
+file: core_src/execute_logic.sv
+    input control_ex_s                  i_control_signal,
+                     |
+xmvlog: *E,SVNOTY (core_src/execute_logic.sv,33|21): Syntactically this identifier appears to begin a datatype but it does not refer to a visible datatype in the current scope.
+    output control_mem_s                o_control_signal,
+                       |
+xmvlog: *E,SVNOTY (core_src/execute_logic.sv,37|23): Syntactically this identifier appears to begin a datatype but it does not refer to a visible datatype in the current scope.
+	module worklib.execute_logic:sv
+		errors: 2, warnings: 0
+file: core_src/forwarding_unit.sv
+	module worklib.forward_unit:sv
+		errors: 0, warnings: 0
+file: core_src/rapid_x_cpu.sv
+    control_ex_s de_control_signal;
+                                 |
+xmvlog: *E,ILLPDL (core_src/rapid_x_cpu.sv,50|33): Mixing of ansi & non-ansi style port declaration is not legal.
+    control_ex_s ex_control_signal;
+                                 |
+xmvlog: *E,ILLPDL (core_src/rapid_x_cpu.sv,58|33): Mixing of ansi & non-ansi style port declaration is not legal.
+    control_mem_s ex_mem_signal;
+                              |
+xmvlog: *E,ILLPDL (core_src/rapid_x_cpu.sv,61|30): Mixing of ansi & non-ansi style port declaration is not legal.
+	module worklib.rapid_x_cpu:sv
+		errors: 3, warnings: 0
+	Total errors/warnings found outside modules and primitives:
+		errors: 1, warnings: 0
+xrun: *E,VLGERR: An error occurred during parsing.  Review the log file for errors with the code *E and fix those identified problems to proceed.  Exiting with code (status 1).
+TOOL:	xrun	23.09-s006: Exiting on Feb 01, 2025 at 11:53:16 EST  (total: 00:00:00)

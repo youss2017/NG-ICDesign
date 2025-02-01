@@ -1,0 +1,30 @@
+s1(01Feb2025:11:52:35):  xrun -f run.f 
+s2(01Feb2025:11:53:02):  xrun -f run.f 
+s3(01Feb2025:11:53:16):  xrun -f run.f 
+s4(01Feb2025:11:55:38):  xrun -f run.f 
+s5(01Feb2025:11:57:05):  xrun -f run.f 
+s6(01Feb2025:11:57:21):  xrun -f run.f 
+s7(01Feb2025:11:58:02):  xrun -f run.f 
+s8(01Feb2025:11:58:04):  xrun -f run.f 
+s9(01Feb2025:12:00:16):  xrun run.f 
+s10(01Feb2025:12:00:43):  xrun -f run.f -incdir core_src 
+s11(01Feb2025:12:08:26):  xrun -f run.f -incdir core_src 
+s12(01Feb2025:12:10:10):  xrun -f run.f -incdir core_src 
+s13(01Feb2025:12:13:21):  xrun -f run.f -incdir core_src 
+s14(01Feb2025:12:19:30):  xrun -f run.f -incdir core_src 
+s15(01Feb2025:12:25:54):  xrun -f run.f -incdir core_src 
+s16(01Feb2025:12:28:44):  xrun -f run.f -incdir core_src 
+s17(01Feb2025:12:28:46):  xrun -f run.f -incdir core_src 
+s18(01Feb2025:12:29:09):  xrun -f run.f -incdir core_src 
+s19(01Feb2025:12:31:11):  xrun -f run.f -incdir core_src 
+s20(01Feb2025:12:31:17):  xrun -f run.f -incdir core_src 
+s21(01Feb2025:12:32:08):  xrun -f run.f -incdir core_src 
+s22(01Feb2025:12:33:20):  xrun -f run.f -incdir core_src 
+s23(01Feb2025:12:33:43):  xrun -f run.f -incdir core_src 
+s24(01Feb2025:12:34:36):  xrun -f run.f -incdir core_src 
+s25(01Feb2025:12:38:25):  xrun -f run.f -incdir core_src 
+s26(01Feb2025:12:40:36):  xrun -f run.f -incdir core_src 
+s27(01Feb2025:12:46:42):  xrun -f run.f -incdir core_src 
+s28(01Feb2025:12:50:01):  xrun -f run.f -incdir core_src 
+s29(01Feb2025:12:51:23):  xrun -f run.f -incdir core_src 
+s30(01Feb2025:12:54:00):  xrun -f run.f -incdir core_src 

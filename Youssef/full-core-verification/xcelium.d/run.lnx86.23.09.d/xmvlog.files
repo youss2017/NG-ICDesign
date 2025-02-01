@@ -1,0 +1,17 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/rapid_pkg.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/register_file.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/dcache_interface.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/dcache_dm1cycle.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/cpu_ifetch_unit.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/decoder_logic.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/decoder_state.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/execute_logic.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/execute_state.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/forwarding_unit.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/rapid_x_cpu.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/fake_memory.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/rapid_x_testbench.sv

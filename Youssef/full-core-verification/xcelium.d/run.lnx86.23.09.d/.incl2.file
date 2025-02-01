@@ -1,0 +1,6 @@
+core_src/dcache_interface.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/dcache_interface.sv
+core_src/memory_controller_interface.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/memory_controller_interface.sv
+core_src/dcache_dm1cycle.sv
+/home/net/yo800238/NG-ICDesign/Youssef/full-core-verification/core_src/dcache_dm1cycle.sv

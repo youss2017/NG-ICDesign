@@ -1,0 +1,29 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2023 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[18:27:12.053161] Configured Lic search path (21.01-s002): 5280@license.cs.ucf.edu
+
+Version: 21.18-s082_1, built Tue Jul 18 10:08:41 PDT 2023
+Options: -files synthesize_execute_logic.tcl 
+Date:    Tue Jan 28 18:27:12 2025
+Host:    net1580 (x86_64 w/Linux 4.18.0-553.22.1.el8_10.x86_64) (10cores*40cpus*2physical cpus*Intel(R) Xeon(R) CPU E5-2640 v4 @ 2.40GHz 25600KB) (48929100KB)
+PID:     2817542
+OS:      Rocky Linux release 8.10 (Green Obsidian)
+
+
+[18:27:12.418529] Periodic Lic check successful
+[18:27:12.418537] Feature usage summary:
+[18:27:12.418538] Genus_Synthesis
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+XIO:  fatal IO error 2 (No such file or directory) on X server "localhost:23.0"
+      after 134 requests (134 known processed) with 1 events remaining.

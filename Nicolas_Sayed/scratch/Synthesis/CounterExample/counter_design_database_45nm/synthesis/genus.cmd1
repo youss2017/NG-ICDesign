@@ -1,0 +1,7 @@
+# Cadence Genus(TM) Synthesis Solution, Version 21.18-s082_1, built Jul 18 2023 13:08:41
+
+# Date: Tue Jan 28 17:39:05 2025
+# Host: net1580 (x86_64 w/Linux 4.18.0-553.22.1.el8_10.x86_64) (10cores*40cpus*2physical cpus*Intel(R) Xeon(R) CPU E5-2640 v4 @ 2.40GHz 25600KB)
+# OS:   Rocky Linux release 8.10 (Green Obsidian)
+
+source scripts/synthesize_execute_logic.tcl

@@ -1,0 +1,98 @@
+*** Message Type: info ***
+When: Thu Jan 30 09:02:15 PM EST 2025
+SimVision started.
+Version: TOOL:  simvision(64)   23.09-s006
+User: ni581013
+Host: net1580.net.ucf.edu
+Platform: Linux/x86_64/4.18.0-553.22.1.el8_10.x86_64
+Started: Thu Jan 30 09:02:15 PM EST 2025
+Command: /home/net/cadence/installs/XCELIUM2309/tools.lnx86/simvision/bin/64bit/simvision.exe -connect dc:net1580.net.ucf.edu:58319 -64BIT -nocopyright
+Work Directory: /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/Synthesis/CounterExample/counter_design_database_45nm/gate_level_simulation
+ 
+*** Message Type: info ***
+When: Thu Jan 30 09:02:19 PM EST 2025
+Create browser window: "Design Browser 1"
+ 
+*** Message Type: info ***
+When: Thu Jan 30 09:02:48 PM EST 2025
+Create console window: "Console"
+ 
+*** Message Type: info ***
+When: Thu Jan 30 09:03:00 PM EST 2025
+Connect to Simulator
+      Design: worklib.counter_test:v
+   Languages: verilog
+   Simulator: XM-Sim
+     Version: TOOL:     xmsim(64)       23.09-s006
+        User: ni581013
+        Host: net1580.net.ucf.edu
+Time Started: Thu Jan 30 09:02:05 PM EST 2025
+  Process ID: 2897765
+   Directory: /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/Synthesis/CounterExample/counter_design_database_45nm/gate_level_simulation
+     Command: xrun -timescale 1ns/10ps counter_netlist.v counter_test.v -v slow_vdd1v0_basicCells.v -access +rwc -define SDF_TEST -mess -gui -64bit
+
+ 
+*** Message Type: info ***
+When: Thu Jan 30 09:03:01 PM EST 2025
+Create utility window: "Properties"
+ 
+*** Message Type: info ***
+When: Thu Jan 30 09:03:50 PM EST 2025
+Create waveform window: "Waveform 1"
+ 
+*** Message Type: info ***
+When: Thu Jan 30 09:08:39 PM EST 2025
+Delete waveform window: "Waveform 1"
+ 
+*** Message Type: info ***
+When: Thu Jan 30 09:10:09 PM EST 2025
+Create waveform window: "Waveform 2"
+ 
+*** Message Type: info ***
+When: Thu Jan 30 09:10:56 PM EST 2025
+Delete waveform window: "Waveform 2"
+ 
+*** Message Type: info ***
+When: Thu Jan 30 09:11:07 PM EST 2025
+Delete browser window: "Design Browser 1"
+ 
+*** Message Type: error ***
+When: Thu Jan 30 09:11:19 PM EST 2025
+invalid command name ".watchList0.bottom.statusbar.indicator-autosave.autosave"
+    while executing
+".watchList0.bottom.statusbar.indicator-autosave.autosave configure -image image284"
+    ("after" script)
+ 
+*** Message Type: error ***
+When: Thu Jan 30 09:11:19 PM EST 2025
+invalid command name ".watchList0.bottom.statusbar.indicator-autosave.autosave"
+    while executing
+".watchList0.bottom.statusbar.indicator-autosave.autosave configure -image image284"
+    ("after" script)
+ 
+*** Message Type: error ***
+When: Thu Jan 30 09:11:19 PM EST 2025
+invalid command name ".watchList0.bottom.statusbar.indicator-autosave.autosave"
+    while executing
+".watchList0.bottom.statusbar.indicator-autosave.autosave configure -image image284"
+    ("after" script)
+ 
+*** Message Type: info ***
+When: Thu Jan 30 09:11:21 PM EST 2025
+Exit XM-Sim: user
+      Design: worklib.counter_test:v
+   Languages: verilog
+   Simulator: XM-Sim
+     Version: TOOL:     xmsim(64)       23.09-s006
+        User: ni581013
+        Host: net1580.net.ucf.edu
+Time Started: Thu Jan 30 09:02:05 PM EST 2025
+  Process ID: 2897765
+   Directory: /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/scratch/Synthesis/CounterExample/counter_design_database_45nm/gate_level_simulation
+     Command: xrun -timescale 1ns/10ps counter_netlist.v counter_test.v -v slow_vdd1v0_basicCells.v -access +rwc -define SDF_TEST -mess -gui -64bit
+
+ 
+*** Message Type: info ***
+When: Thu Jan 30 09:11:22 PM EST 2025
+SimVision Exit.
+ 

@@ -1,0 +1,161 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2023 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[17:48:16.053209] Configured Lic search path (21.01-s002): 5280@license.cs.ucf.edu
+
+Version: 21.18-s082_1, built Tue Jul 18 10:08:41 PDT 2023
+Options: -files synthesize_execute_logic.tcl 
+Date:    Tue Jan 28 17:48:16 2025
+Host:    net1580 (x86_64 w/Linux 4.18.0-553.22.1.el8_10.x86_64) (10cores*40cpus*2physical cpus*Intel(R) Xeon(R) CPU E5-2640 v4 @ 2.40GHz 25600KB) (48929100KB)
+PID:     2810748
+OS:      Rocky Linux release 8.10 (Green Obsidian)
+
+
+[17:48:16.199882] Periodic Lic check successful
+[17:48:16.199891] Feature usage summary:
+[17:48:16.199891] Genus_Synthesis
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+Finished loading tool scripts (24 seconds elapsed).
+
+#@ Processing -files option
+@genus 1> source synthesize_execute_logic.tcl
+#@ Begin verbose source ./synthesize_execute_logic.tcl
+@file(synthesize_execute_logic.tcl) 2: set_db init_lib_search_path ../lib/
+  Setting attribute of root '/': 'init_lib_search_path' = ../lib/
+@file(synthesize_execute_logic.tcl) 3: set_db init_hdl_search_path ../rtl/
+  Setting attribute of root '/': 'init_hdl_search_path' = ../rtl/
+@file(synthesize_execute_logic.tcl) 6: read_libs slow_vdd1v0_basicCells.lib
+
+Threads Configured:3
+
+  Message Summary for Library slow_vdd1v0_basicCells.lib:
+  *******************************************************
+  Missing a function attribute in the output pin definition. [LBR-518]: 1
+  *******************************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'slow_vdd1v0_basicCells.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Else the library cell will be marked as timing model i.e. unusable. Timing_model means that the cell does not have any defined function. If there is no output pin, Genus will mark library cell as unusable i.e. the attribute 'usable' will be marked to 'false' on the libcell. Therefore, the cell is not used for mapping and it will not be picked up from the library for synthesis. If you query the attribute 'unusable_reason' on the libcell; result will be: 'Library cell has no output pins.'Note: The message LBR-9 is only for the logical pins and not for the power_ground pins. Genus will depend upon the output function defined in the pin group (output pin) of the cell, to use it for mapping. The pg_pin will not have any function defined.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+@file(synthesize_execute_logic.tcl) 9: read_hdl rapid_pkg.sv
+package rapid_pkg;
+                |
+Error   : Parsing error. [VLOGPT-1] [read_hdl]
+        : Expecting token ';', found '<identifier>' in file './rapid_pkg.sv' on line 3, column 17.
+        : Invalid Verilog syntax is parsed, or unsupported Verilog syntax is encountered.
+    parameter int XLEN = 32;
+                     |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './rapid_pkg.sv' on line 5, column 22.
+        : The design must be read in with 'read_hdl -sv'.
+    parameter int XLEN = 32;
+                     |
+Error   : Missing required value in declaration. [VLOGPT-57] [read_hdl]
+        : Const declaration in file './rapid_pkg.sv' on line 5, column 22.
+        : Illegal Verilog syntax is encountered.
+    parameter int XLEN = 32;
+                     |
+Error   : Parsing error. [VLOGPT-1] [read_hdl]
+        : Expecting token ';', found '<identifier>' in file './rapid_pkg.sv' on line 5, column 22.
+    parameter bit [XLEN-1:0] RESET_VECTOR = 0;
+                  |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './rapid_pkg.sv' on line 7, column 19.
+    parameter bit [XLEN-1:0] RESET_VECTOR = 0;
+                   |
+Error   : Reference to undeclared variable. A variable/parameter must be declared before it is referenced. [VLOGPT-20] [read_hdl]
+        : Symbol 'XLEN' in file './rapid_pkg.sv' on line 7, column 20.
+        : Verilog module is using a parameter that is not defined in the module. You will get a notification for this, if you read the verilog file using the read_hdl command.
+    parameter bit [XLEN-1:0] RESET_VECTOR = 0;
+                                        |
+Error   : Missing required value in declaration. [VLOGPT-57] [read_hdl]
+        : Const declaration in file './rapid_pkg.sv' on line 7, column 41.
+    parameter bit [XLEN-1:0] RESET_VECTOR = 0;
+                                        |
+Error   : Parsing error. [VLOGPT-1] [read_hdl]
+        : Expecting token ';', found '<identifier>' in file './rapid_pkg.sv' on line 7, column 41.
+    parameter bit [XLEN-1:0] RESET_STACK_POINTER = 1024;
+                  |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './rapid_pkg.sv' on line 8, column 19.
+    parameter bit [XLEN-1:0] RESET_STACK_POINTER = 1024;
+                   |
+Error   : Reference to undeclared variable. A variable/parameter must be declared before it is referenced. [VLOGPT-20] [read_hdl]
+        : Symbol 'XLEN' in file './rapid_pkg.sv' on line 8, column 20.
+    parameter bit [XLEN-1:0] RESET_STACK_POINTER = 1024;
+                                               |
+Error   : Redeclared variable. [VLOGPT-22] [read_hdl]
+        : Redeclaration of symbol 'bit' in file './rapid_pkg.sv' on line 8, column 48.
+        : A variable cannot be redeclared in the same scope. Check the reported RTL file and remove duplicate declarations.
+    parameter bit [XLEN-1:0] RESET_STACK_POINTER = 1024;
+                                               |
+Error   : Missing required value in declaration. [VLOGPT-57] [read_hdl]
+        : Const declaration in file './rapid_pkg.sv' on line 8, column 48.
+    parameter bit [XLEN-1:0] RESET_STACK_POINTER = 1024;
+                                               |
+Error   : Parsing error. [VLOGPT-1] [read_hdl]
+        : Expecting token ';', found '<identifier>' in file './rapid_pkg.sv' on line 8, column 48.
+    parameter bit [XLEN-1:0] WORD_WIDTH = 4;
+                  |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './rapid_pkg.sv' on line 9, column 19.
+    parameter bit [XLEN-1:0] WORD_WIDTH = 4;
+                   |
+Error   : Reference to undeclared variable. A variable/parameter must be declared before it is referenced. [VLOGPT-20] [read_hdl]
+        : Symbol 'XLEN' in file './rapid_pkg.sv' on line 9, column 20.
+    parameter bit [XLEN-1:0] WORD_WIDTH = 4;
+                                      |
+Error   : Redeclared variable. [VLOGPT-22] [read_hdl]
+        : Redeclaration of symbol 'bit' in file './rapid_pkg.sv' on line 9, column 39.
+    parameter bit [XLEN-1:0] WORD_WIDTH = 4;
+                                      |
+Error   : Missing required value in declaration. [VLOGPT-57] [read_hdl]
+        : Const declaration in file './rapid_pkg.sv' on line 9, column 39.
+    parameter bit [XLEN-1:0] WORD_WIDTH = 4;
+                                      |
+Error   : Parsing error. [VLOGPT-1] [read_hdl]
+        : Expecting token ';', found '<identifier>' in file './rapid_pkg.sv' on line 9, column 39.
+    parameter bit [XLEN-1:0] NOP_INSTRUCTION = 32'h00000033; // add x0, x0, x0
+                  |
+Error   : SystemVerilog feature. [VLOGPT-9] [read_hdl]
+        : Parameter declaration outside module scope in file './rapid_pkg.sv' on line 10, column 19.
+    parameter bit [XLEN-1:0] NOP_INSTRUCTION = 32'h00000033; // add x0, x0, x0
+                   |
+Error   : Reference to undeclared variable. A variable/parameter must be declared before it is referenced. [VLOGPT-20] [read_hdl]
+        : Symbol 'XLEN' in file './rapid_pkg.sv' on line 10, column 20.
+    parameter bit [XLEN-1:0] NOP_INSTRUCTION = 32'h00000033; // add x0, x0, x0
+                                           |
+Error   : Redeclared variable. [VLOGPT-22] [read_hdl]
+        : Redeclaration of symbol 'bit' in file './rapid_pkg.sv' on line 10, column 44.
+    parameter bit [XLEN-1:0] NOP_INSTRUCTION = 32'h00000033; // add x0, x0, x0
+                                           |
+Error   : Missing required value in declaration. [VLOGPT-57] [read_hdl]
+        : Const declaration in file './rapid_pkg.sv' on line 10, column 44.
+    parameter bit [XLEN-1:0] NOP_INSTRUCTION = 32'h00000033; // add x0, x0, x0
+                                           |
+Error   : Parsing error. [VLOGPT-1] [read_hdl]
+        : Expecting token ';', found '<identifier>' in file './rapid_pkg.sv' on line 10, column 44.
+#@ End verbose source ./synthesize_execute_logic.tcl
+1
+Encountered problems processing file: synthesize_execute_logic.tcl
+WARNING: This version of the tool is 560 days old.
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 79s, ST: 10s, FG: 10s, CPU: 4.3%}, MEM {curr: 1.2G, peak: 1.3G, phys curr: 0.3G, phys peak: 0.3G}, SYS {load: 3.2, cpu: 40, total: 46.7G, free: 7.2G}
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 136s, ST: 10s, FG: 10s, CPU: 4.2%}, MEM {curr: 1.2G, peak: 1.3G, phys curr: 0.3G, phys peak: 0.3G}, SYS {load: 3.2, cpu: 40, total: 46.7G, free: 7.2G}

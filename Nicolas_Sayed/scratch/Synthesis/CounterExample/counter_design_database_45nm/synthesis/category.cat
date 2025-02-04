@@ -1,0 +1,4 @@
+######################################################
+# Encounter Timing Debug Categories Definitions.
+######################################################
+create_path_category -name IN->OUT -from_port * -to_port * -comment {Basic Path Analysis}

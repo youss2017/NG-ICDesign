@@ -35,6 +35,26 @@ module register_file (
 );
     reg [XLEN-1:0] regs [0:31];
 
+	int hFile;
+	int clockCycle;
+
+	// Open debug file
+	initial begin
+		hFile = $fopen("debug_log.txt", "w");
+		if (hFile == 0) begin
+			$error("Error: unable to open debug file");
+			$finish;
+		end
+	end
+
+	always_ff @(posedge i_clk iff i_reset == 0) begin
+		if (i_rd > 0) begin
+			clockCycle = clockCycle + 1;
+			$fwrite(hFile, "%d:\tx%d = %d / 0x%08X\n", clockCycle, i_rd, i_rd_data, i_rd_data);
+			$fflush(hFile);
+		end
+	end
+
     always_comb begin
         
         if (i_rs1_out) 

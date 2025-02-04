@@ -159,23 +159,23 @@ module dcache_dm1cycle (
 	cache_req_t data_req;
 
 	// input signals latched at the time valid was asserted
-	addr_t addr;
-	addr_t wmask;
-	addr_t wdata;
-	addr_t rw;
+	reg [31:0] /*addr_t*/ addr;
+	reg [31:0] /*addr_t*/ wmask;
+	reg [31:0] /*addr_t*/ wdata;
+	reg [31:0] /*addr_t*/ rw;
 
 	// connect data/tag cache memories
 	cache_data cdata (
-		.clk,
-		.data_req,
-		.data_write,
-		.data_read
+		.clk(clk),
+		.data_req(data_req),
+		.data_write(data_write),
+		.data_read(data_read)
 	);
 	cache_tag ctag (
-		.clk, .rst,
-		.tag_req,
-		.tag_write,
-		.tag_read
+		.clk(clk), .rst(rst),
+		.tag_req(tag_req),
+		.tag_write(tag_write),
+		.tag_read(tag_read)
 	);
 
 

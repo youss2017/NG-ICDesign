@@ -25,8 +25,8 @@ class risc_packet;
 			OPCODE_JAL:/1,
 			OPCODE_JALR:/1,
 			OPCODE_BRANCH:/1,
-			OPCODE_LOAD:/1,
-			OPCODE_STORE:/1,
+			//OPCODE_LOAD:/1,
+			//OPCODE_STORE:/1,
 			OPCODE_IMM:/1,
 			OPCODE_REG:/1 
 		};		

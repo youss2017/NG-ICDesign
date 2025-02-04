@@ -1,0 +1,6 @@
+xrun: 23.09-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun	23.09-s006: Started on Feb 02, 2025 at 18:12:51 EST
+xrun
+	--helpall
+xrun: *SE,NOSOPT1: Unknown option (--helpall).
+TOOL:	xrun	23.09-s006: Exiting on Feb 02, 2025 at 18:12:51 EST  (total: 00:00:00)

@@ -1,0 +1,9 @@
+0.7
+2020.2
+May 22 2024
+19:03:11
+U:/Senior Design/Youssef/Scratch/learning/flipflop.sv,1734034290,systemVerilog,,U:/Senior Design/Youssef/Scratch/learning/mux2_1.sv,,flipflop,,uvm,,,,,,
+U:/Senior Design/Youssef/Scratch/learning/learning_project/learning_project.sim/sim_1/behav/xsim/glbl.v,1708598507,verilog,,,,glbl,,uvm,,,,,,
+U:/Senior Design/Youssef/Scratch/learning/mux2_1.sv,1734029848,systemVerilog,,U:/Senior Design/Youssef/Scratch/learning/shift_register_8.sv,,mux2_1,,uvm,,,,,,
+U:/Senior Design/Youssef/Scratch/learning/shift_register_8.sv,1734104785,systemVerilog,,U:/Senior Design/Youssef/Scratch/learning/uvm/tb_top.sv,,shift_bus;shift_register_8,,uvm,,,,,,
+U:/Senior Design/Youssef/Scratch/learning/uvm/tb_top.sv,1734104726,systemVerilog,,,,tb_top,,uvm,,,,,,

@@ -29,7 +29,7 @@
 import rapid_pkg::*;
 
 // -- change to choose cache implementation (also below) --
-`include "dcache_dm1cycle.sv"
+//`include "dcache_dm1cycle.sv"
 
 module cpu_ifetch_unit
 import memory_controller_interface::*;

@@ -1,0 +1,12 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  \
+"../../../../../flipflop.sv" \
+"../../../../../mux2_1.sv" \
+"../../../../../shift_register_8.sv" \
+"../../../../../uvm/tb_top.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

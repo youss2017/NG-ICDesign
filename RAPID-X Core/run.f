@@ -1,0 +1,14 @@
+core_src/rapid_pkg.sv
+core_src/memory_controller_interface.sv
+core_src/dcache_dm1cycle.sv
+core_src/cpu_memory_unit.sv
+core_src/register_file.sv
+core_src/cpu_ifetch_unit.sv
+core_src/decoder_logic.sv
+core_src/decoder_state.sv
+core_src/execute_logic.sv
+core_src/execute_state.sv
+core_src/forwarding_unit.sv
+core_src/rapid_x_cpu.sv
+fake_memory.sv
+rapid_x_testbench.sv

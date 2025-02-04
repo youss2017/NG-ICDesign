@@ -4,6 +4,9 @@ package rapid_pkg;
 
     parameter int XLEN = 32;
 
+    typedef bit [XLEN-1:0] addr_t;
+    typedef bit [XLEN-1:0] word_t;
+
     parameter bit [XLEN-1:0] RESET_VECTOR = 0;
     parameter bit [XLEN-1:0] RESET_STACK_POINTER = 1024;
     parameter bit [XLEN-1:0] WORD_WIDTH = 4;

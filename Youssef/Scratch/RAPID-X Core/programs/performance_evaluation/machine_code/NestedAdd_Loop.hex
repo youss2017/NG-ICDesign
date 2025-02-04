@@ -1,0 +1,31 @@
+00000293
+00a00313
+00000393
+3e800e13
+00100e93
+3e800f13
+01d383b3
+ffff0f13
+fe0f1ce3
+007282b3
+fff30313
+fe0314e3
+00000013
+
+    0:        00000293        addi x5 x0 0
+    4:        00a00313        addi x6 x0 10
+    8:        00000393        addi x7 x0 0
+    c:        3e800e13        addi x28 x0 1000
+    10:        00100e93        addi x29 x0 1
+
+00000014 <outer>:
+    14:        3e800f13        addi x30 x0 1000
+
+00000018 <inner>:
+    18:        01d383b3        add x7 x7 x29
+    1c:        ffff0f13        addi x30 x30 -1
+    20:        fe0f1ce3        bne x30 x0 -8 <inner>
+    24:        007282b3        add x5 x5 x7
+    28:        fff30313        addi x6 x6 -1
+    2c:        fe0314e3        bne x6 x0 -24 <outer>
+    30:        00000013        addi x0 x0 0

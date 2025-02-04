@@ -12,12 +12,12 @@
  **********************************************************/
 
 
-`include "memory_controller_interface.sv"
+//`include "memory_controller_interface.sv"
 `include "dcache_interface.sv"
-`include "rapid_pkg.sv" 
+//`include "rapid_pkg.sv" 
 
 // -- change to choose dcache implementation (also below) --
-`include "dcache_dm1cycle.sv"
+//`include "dcache_dm1cycle.sv"
 
 module cpu_memory_unit
 import memory_controller_interface::*;
@@ -61,7 +61,6 @@ import rapid_pkg::*;
 
 	// cache <==> cpu data interface
 	dcache_interface #(.DATA_LENGTH(32), .ADDR_LENGTH(32)) iface();
-	typedef iface.addr_t addr_t;
 
 	// our cache implementation - we can swap it for others as
 	// long as they have the same interface

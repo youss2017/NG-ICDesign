@@ -33,7 +33,27 @@ module register_file (
     output logic [XLEN-1:0] o_rs1_data,
     output logic [XLEN-1:0] o_rs2_data
 );
-    reg [XLEN-1:0] register_file [0:31];
+    reg [XLEN-1:0] regs [0:31];
+
+	int hFile;
+	int clockCycle;
+
+	// Open debug file
+	initial begin
+		hFile = $fopen("debug_log.txt", "w");
+		if (hFile == 0) begin
+			$error("Error: unable to open debug file");
+			$finish;
+		end
+	end
+
+	always_ff @(posedge i_clk iff i_reset == 0) begin
+		if (i_rd > 0) begin
+			clockCycle = clockCycle + 1;
+			$fwrite(hFile, "%d:\tx%d = %d / 0x%08X\n", clockCycle, i_rd, i_rd_data, i_rd_data);
+			$fflush(hFile);
+		end
+	end
 
     always_comb begin
         
@@ -41,7 +61,7 @@ module register_file (
            if (i_rd > 0 && i_rd == i_rs1)
                o_rs1_data = i_rd_data;
            else
-               o_rs1_data = register_file[i_rs1];
+               o_rs1_data = regs[i_rs1];
         else 
             o_rs1_data = 'bz;
             
@@ -49,7 +69,7 @@ module register_file (
            if (i_rd > 0 && i_rd == i_rs2)
                o_rs2_data = i_rd_data;
            else
-               o_rs2_data = register_file[i_rs2];
+               o_rs2_data = regs[i_rs2];
         else 
             o_rs2_data = 'bz;
                 
@@ -60,11 +80,11 @@ module register_file (
             for(int i = 0; i < 32; i++)
                 if(i == 2) continue;
                 else
-                    register_file[i] <= 0;
-            register_file[2] <= RESET_STACK_POINTER;
+                    regs[i] <= 0;
+            regs[2] <= RESET_STACK_POINTER;
 		end else begin
 			if (i_rd > 0) 
-				register_file[i_rd] <= i_rd_data;
+				regs[i_rd] <= i_rd_data;
 		end
 	end
 

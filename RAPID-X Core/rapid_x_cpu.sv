@@ -65,7 +65,6 @@ import memory_controller_interface::*;
     // the cpu_memory_unit
     logic [XLEN-1:0] mem_rd_output;
     logic [4:0] mem_rd;
-    logic mem_pipeline_ready;
 
     // forwarding wires for execute_logic
     // redirects data inputs from decoder_logic

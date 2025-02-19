@@ -3,12 +3,12 @@
 
 module fake_memory 
 import memory_controller_interface::*; #(
-	parameter MEM_DELAY = 5,     // Delay for all accesses in simulation units
+	parameter MEM_DELAY = 1,     // Delay for all accesses in simulation units
 	parameter MEM_SIZE = 262144, // Size of memory in words (default 1MiB)
     parameter WORD_LENGTH = 32,  // 32-bits = 4 bytes = 1 word
     // Memory initialization data -- entries in this file should be
     // hexadecimal values of WORD_LENGTH bits long, and separated by newlines. 
-    parameter INIT_FILENAME = "U:\\Senior Design\\RAPID-X Core\\rapid-x testbenches\\fake_memory_init.txt"
+    parameter INIT_FILENAME = "fake_memory_init.txt"
 ) (
 	input i_clk,
     input mci_request_t mem_req,

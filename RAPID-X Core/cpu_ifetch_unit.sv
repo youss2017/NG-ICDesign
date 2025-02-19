@@ -58,22 +58,8 @@ import memory_controller_interface::*;
  **********************************************************/
 
 
-    // FSM states
-    enum logic [1:0] {
-        RESET,
-        SCHEDULE_CACHE,
-        WAIT_FOR_CACHE,
-        WAIT_FOR_PIPELINE
-    } state, state_nxt;
-
-    /*
-    // This is only used to track state for verification
-    assign o_current_state = current_state;
-    assign o_next_state = next_state;
-    */
-
-    // instantiate cache subsystem
-    dcache_interface #(.DATA_LENGTH(XLEN), .ADDR_LENGTH(XLEN)) iface();
+    // instantiate cache subsystem - we bring 128 bits (4 words = 16 bytes) at a time
+    dcache_interface #(.DATA_LENGTH(128), .ADDR_LENGTH(XLEN)) iface();
     dcache_dm1cycle cache(
         .clk(i_clk), .rst(i_reset),
         .iface(iface.secondary),
@@ -82,6 +68,31 @@ import memory_controller_interface::*;
 
     logic [XLEN-1:0] pc;
     logic [XLEN-1:0] pc_nxt;
+    logic [XLEN-1:0] last_dispatched_inst_reg;
+    logic waiting_on_cache_reg;
+    logic waiting_on_cache_reg_nxt;
+
+    // Very fast cache - caches four instructions at a time (16 bytes)
+    logic [127:0] fastline_reg;
+    logic [127:0] fastline_reg_nxt;
+
+    // The address the fastline was retrieved from
+    logic [XLEN-1:0] fastline_addr_reg;
+    logic [XLEN-1:0] fastline_addr_reg_nxt;
+
+    // The address of the pending cache retrieval
+    logic [XLEN-1:0] cachereq_addr_reg;
+    logic [XLEN-1:0] cachereq_addr_reg_nxt;
+
+    // Commonly used information
+    logic [XLEN-5:0] pc_highbits;
+    logic [1:0] pc_lowbits;
+    logic pc_is_in_fastline;
+    logic pc_is_in_cachereq;
+    assign pc_highbits = pc[XLEN-1:4];
+    assign pc_lowbits = pc[3:2];
+    assign pc_is_in_fastline = (pc_highbits == fastline_addr_reg[31:4]);
+    assign pc_is_in_cachereq = (pc_highbits == cachereq_addr_reg[31:4]);
 
 	/*
 	 * Workaround due to a bug in Vivado XSim, where the simulation will hang
@@ -92,88 +103,89 @@ import memory_controller_interface::*;
 	logic iface_valid; // use iface_valid instead of iface.valid in the rest of the module
 	assign iface.valid = iface_valid;
 
+
 /***********************************************************
- * Default signal values
+ * Main logic (FSM-less design)
  **********************************************************/
 
-
     always_comb begin
-
-        state_nxt = state; // no state change by default
-        pc_nxt = pc;
-
-        // IF pushes noops to the pipeline while it's waiting for the icache
         o_pc = '0;
         o_instruction = NOOP_INSTRUCTION;
 
         iface_valid = '0;
-        iface.addr = pc;
+        iface.addr = '0;
         iface.rw = '0; // IF never writes to cache
         iface.wdata = 'bx;
         iface.wmask = 'bx;
 
+        // No change unless overriden
+        pc_nxt = pc;
+        fastline_reg_nxt = fastline_reg;
+        fastline_addr_reg_nxt = fastline_addr_reg;
+        cachereq_addr_reg_nxt = cachereq_addr_reg;
+        waiting_on_cache_reg_nxt = waiting_on_cache_reg;
 
-/***********************************************************
- * FSM logic
- **********************************************************/
+        // Only one of these scenerarios can occur
+        if(i_reset) begin
+            // First scenario - reset
+            o_pc = '0;
+            o_instruction = NOOP_INSTRUCTION;
 
+            pc_nxt = RESET_VECTOR;
+            fastline_reg_nxt = '0;
+            fastline_addr_reg_nxt = ~RESET_VECTOR; // must not match reset vec.
+            cachereq_addr_reg_nxt = ~RESET_VECTOR;
+            waiting_on_cache_reg_nxt = '0;
+        end else if(!i_pipeline_ready) begin
+            // Second scenario - waiting for pipeline, don't change the output!
+            o_pc = pc;
+            o_instruction = last_dispatched_inst_reg;
+        end else if(i_pc_load) begin
+            // Third scenerio - externally setting PC: stalls
+            o_pc = '0;
+            o_instruction = NOOP_INSTRUCTION;
+            pc_nxt = i_ext_pc;
+        end else if(pc_is_in_fastline) begin
+            // Fourth scenario - instruction is found in fastline
+            o_pc = pc;
+            o_instruction = fastline_reg[32*pc_lowbits +: 32];
+            pc_nxt = pc + 4;
+        end else if(pc_is_in_cachereq && iface.rvalid) begin
+            // Fifth scenario - cache just retrieved our instruction
+            o_pc = pc;
+            o_instruction = iface.rdata[32*pc_lowbits +: 32];
+            pc_nxt = pc + 4;
+        end else begin
+            // Sixth scenario - we don't have the instruction: stall.
+            o_pc = '0;
+            o_instruction = NOOP_INSTRUCTION;
+        end
 
-        case (state)
-		RESET: begin
-			// reset can't jump straight to wait_for_pipeline
-			// because we shouldn't increment pc
-			if(i_pipeline_ready) begin
-				state_nxt = SCHEDULE_CACHE;
-			end
-		end
-
-		WAIT_FOR_PIPELINE: begin
-			o_pc = pc;
-			o_instruction = iface.rdata;
-			if(i_pipeline_ready) begin
-				pc_nxt = i_pc_load ? i_ext_pc : pc + 4;
-				state_nxt = SCHEDULE_CACHE;
-			end
-		end
-
-		SCHEDULE_CACHE: begin
-			// we need a dedicated state to schedule the cache (instead of scheduling
-			// from the wait_for_pipeline similar to how the mem unit does it) because
-			// the pc is different if coming from RESET or WAIT_FOR_PIPELINE
-			iface_valid = '1;
-			
-			/* bug fix - load pc command received mid-cache operation; restart cache fetch */
-			if(i_pc_load) begin
-			     pc_nxt = i_ext_pc;
-			     state_nxt = SCHEDULE_CACHE;
-			end else
-			if(iface.ready) begin
-				state_nxt = WAIT_FOR_CACHE;
-			end
-		end
-
-		WAIT_FOR_CACHE: begin
-			/* bug fix - load pc command received mid-cache operation; restart cache fetch */
-			if(i_pc_load) begin
-			     pc_nxt = i_ext_pc;
-			     state_nxt = SCHEDULE_CACHE;
-			end else		
-			if(iface.rvalid) begin
-				state_nxt = WAIT_FOR_PIPELINE;
-			end
-		end
-        endcase
-
+        // Parallel cache request handling
+        if(iface.rvalid && waiting_on_cache_reg && !i_reset) begin
+            // Cache just returned us some data: put it in the fastline
+            fastline_addr_reg_nxt = cachereq_addr_reg;
+            fastline_reg_nxt = iface.rdata;
+            waiting_on_cache_reg_nxt = 0;
+        end
+        if(iface.ready && !i_reset) begin
+            // Cache is ready: prefetch next group of instructions
+            cachereq_addr_reg_nxt = {{ pc_highbits + (pc_is_in_fastline ? 1 : 0), 4'b0000 }};
+            if(cachereq_addr_reg != cachereq_addr_reg_nxt) begin
+                iface.addr = cachereq_addr_reg_nxt;
+                iface_valid = '1;
+                waiting_on_cache_reg_nxt = 1;
+            end
+        end
     end
 
-    always_ff @(posedge i_clk, posedge i_reset) begin
-        if (i_reset) begin
-            state <= RESET;
-            pc <= RESET_VECTOR;
-        end else begin
-            state <= state_nxt;
-            pc <= pc_nxt;
-        end
+    always_ff @(posedge i_clk) begin
+        pc <= pc_nxt;
+        fastline_reg <= fastline_reg_nxt;
+        fastline_addr_reg <= fastline_addr_reg_nxt;
+        cachereq_addr_reg <= cachereq_addr_reg_nxt;
+        waiting_on_cache_reg <= waiting_on_cache_reg_nxt;
+        last_dispatched_inst_reg <= o_instruction;
     end
 
 endmodule

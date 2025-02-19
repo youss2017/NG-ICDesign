@@ -1,0 +1,66 @@
+[2025-02-04 21:27:48.192466] |==============================================================================|
+[2025-02-04 21:27:48.192609] |=========                      OpenRAM v1.2.48                       =========|
+[2025-02-04 21:27:48.192659] |=========                                                            =========|
+[2025-02-04 21:27:48.192691] |=========               VLSI Design and Automation Lab               =========|
+[2025-02-04 21:27:48.192710] |=========        Computer Science and Engineering Department         =========|
+[2025-02-04 21:27:48.192725] |=========            University of California Santa Cruz             =========|
+[2025-02-04 21:27:48.192738] |=========                                                            =========|
+[2025-02-04 21:27:48.192750] |=========          Usage help: openram-user-group@ucsc.edu           =========|
+[2025-02-04 21:27:48.192764] |=========        Development help: openram-dev-group@ucsc.edu        =========|
+[2025-02-04 21:27:48.192777] |=========                See LICENSE for license info                =========|
+[2025-02-04 21:27:48.192789] |==============================================================================|
+[2025-02-04 21:27:48.192804] ** Start: 02/04/2025 21:27:48
+[2025-02-04 21:27:48.192820] Technology: freepdk45
+[2025-02-04 21:27:48.192834] Total size: 2048 bits
+[2025-02-04 21:27:48.192879] Word size: 32
+Words: 64
+Banks: 1
+[2025-02-04 21:27:48.192934] RW ports: 1
+R-only ports: 0
+W-only ports: 0
+[2025-02-04 21:27:48.192987] DRC/LVS/PEX is only run on the top-level design to save run-time (inline_lvsdrc=True to do inline checking).
+[2025-02-04 21:27:48.193034] DRC/LVS/PEX is disabled (check_lvsdrc=True to enable).
+[2025-02-04 21:27:48.193079] Characterization is disabled (using analytical delay models) (analytical_delay=False to simulate).
+[2025-02-04 21:27:48.193130] Words per row: None
+[2025-02-04 21:27:48.193177] Output files are: 
+[2025-02-04 21:27:48.193220] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.lvs
+[2025-02-04 21:27:48.193264] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.sp
+[2025-02-04 21:27:48.193310] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.v
+[2025-02-04 21:27:48.193361] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.lib
+[2025-02-04 21:27:48.193406] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.py
+[2025-02-04 21:27:48.193450] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.html
+[2025-02-04 21:27:48.193493] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.log
+[2025-02-04 21:27:48.193536] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.lef
+[2025-02-04 21:27:48.193581] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.gds
+[2025-02-04 21:27:49.632350] ** Submodules: 1.4 seconds
+[2025-02-04 21:27:49.643675] ** Placement: 0.0 seconds
+[2025-02-04 21:29:55.607943] ** Routing: 126.0 seconds
+[2025-02-04 21:29:55.612527] ** Verification: 0.0 seconds
+[2025-02-04 21:29:55.612613] ** SRAM creation: 127.4 seconds
+[2025-02-04 21:29:55.612666] SP: Writing to /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.sp
+[2025-02-04 21:29:55.653967] ** Spice writing: 0.0 seconds
+[2025-02-04 21:29:55.654060] DELAY: Writing stimulus...
+[2025-02-04 21:29:55.769595] ** DELAY: 0.1 seconds
+[2025-02-04 21:29:55.790482] GDS: Writing to /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.gds
+[2025-02-04 21:29:55.867121] ** GDS: 0.1 seconds
+[2025-02-04 21:29:55.867224] LEF: Writing to /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.lef
+[2025-02-04 21:29:55.874590] ** LEF: 0.0 seconds
+[2025-02-04 21:29:55.874733] LVS: Writing to /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.lvs.sp
+[2025-02-04 21:29:55.895002] ** LVS writing: 0.0 seconds
+[2025-02-04 21:29:55.895104] LIB: Characterizing... 
+[2025-02-04 21:29:56.024124] WARNING: file lib.py: line 778: Failed to retrieve git id
+
+[2025-02-04 21:29:56.136704] WARNING: file lib.py: line 778: Failed to retrieve git id
+
+[2025-02-04 21:29:56.268104] WARNING: file lib.py: line 778: Failed to retrieve git id
+
+[2025-02-04 21:29:56.460293] WARNING: file lib.py: line 778: Failed to retrieve git id
+
+[2025-02-04 21:29:56.460713] ** Characterization: 0.6 seconds
+[2025-02-04 21:29:56.460839] Config: Writing to /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.py
+[2025-02-04 21:29:56.460893] ** Config: 0.0 seconds
+[2025-02-04 21:29:56.463812] Datasheet: Writing to /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.html
+[2025-02-04 21:29:56.465497] ** Datasheet: 0.0 seconds
+[2025-02-04 21:29:56.465562] Verilog: Writing to /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_64_1rw_freepdk45.v
+[2025-02-04 21:29:56.465664] ** Verilog: 0.0 seconds
+[2025-02-04 21:29:56.466096] ** End: 128.3 seconds

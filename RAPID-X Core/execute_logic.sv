@@ -56,6 +56,7 @@ module execute_logic
 
         // ADD/SUB/SLL/SLT/SLTU/XOR/SRL/SRA/OR/AND and Immediate version
         if (i_control_signal.alu_imm || i_control_signal.alu_reg) begin
+
             // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
             //  ============================ IMMEDIATE LEVEL INSTRUCTIONS ============================
             // ADDI	         00100	 110 (ALU IMM)	            000	                0	     110-000-0
@@ -81,9 +82,9 @@ module execute_logic
             case (i_control_signal.fcs_opcode)
             // TODO/FIXME: We can merge SLT and SLTU sinces sign extension happens in decoder
             // also, we should be able to remove all the sign extension here
-                ADD_or_SUB: o_rd_output = i_control_signal.iop ? i_rs1 - port2 : i_rs1 + port2; // ADDI
-                SLT: o_rd_output = i_rs1 < port2 ? 1 : 0;// SLTI
-                SLTU: o_rd_output = $unsigned(i_rs1) < $unsigned(port2) ? 1 : 0 ; // SLTIU
+                ADD_or_SUB: o_rd_output = i_control_signal.iop ? (i_rs1 - port2) : (i_rs1 + port2); // ADDI
+                SLT: o_rd_output = $signed(i_rs1) < $signed(port2);// SLTI
+                SLTU: o_rd_output = $unsigned(i_rs1) < $unsigned(port2) ; // SLTIU
                 XOR_: o_rd_output = i_rs1 ^ port2;          // XORI
                 OR_: o_rd_output = i_rs1 | port2;               // ORI
                 AND_: o_rd_output = i_rs1 & port2;              // ANDI
@@ -94,8 +95,8 @@ module execute_logic
                 end 
             endcase
 
-            o_pc_ext = 0;
-            o_pc_load = 0;
+            o_pc_ext = 'b0;
+            o_pc_load = 'b0;
         end
             
             // BEQ/BNE/BLT/BGE/BLTU/BEGU
@@ -119,6 +120,7 @@ module execute_logic
                 endcase
                 
                 o_pc_ext = (i_pc + i_imm) & ~32'h00000001;
+                o_rd_output = 'bz;
             end
 
         // JAL/JALR
@@ -166,8 +168,9 @@ module execute_logic
                 o_pc_ext = 0;
                 o_pc_load = 0;
         end else begin
-            o_pc_ext = 0;
-            o_pc_load = 0;
+            o_pc_ext = 'b0;
+            o_pc_load = 'b0;
+            o_rd_output = 'b0;
         end
 
     end

@@ -119,7 +119,8 @@ import memory_controller_interface::*;
         .i_rd(mem_rd),
         .i_rd_data(mem_rd_output),
         .o_rs1_data(reg_rs1_data),
-        .o_rs2_data(reg_rs2_data)
+        .o_rs2_data(reg_rs2_data),
+        .ex_mem_signal(ex_mem_signal)
     );
 
     // This module is responsible for storing the state

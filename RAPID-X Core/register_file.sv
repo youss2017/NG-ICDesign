@@ -31,7 +31,8 @@ module register_file (
     input  logic [4:0]      i_rd,
     input  logic [31:0]     i_rd_data,
     output logic [XLEN-1:0] o_rs1_data,
-    output logic [XLEN-1:0] o_rs2_data
+    output logic [XLEN-1:0] o_rs2_data,
+    input control_mem_s ex_mem_signal
 );
     reg [XLEN-1:0] regs [0:31];
 
@@ -40,18 +41,23 @@ module register_file (
 
 	// Open debug file
 	initial begin
-		hFile = $fopen("debug_log.txt", "w");
+		hFile = $fopen("core.log", "w");
 		if (hFile == 0) begin
 			$error("Error: unable to open debug file");
 			$finish;
 		end
 	end
 
-	always_ff @(posedge i_clk iff i_reset == 0) begin
-		if (i_rd > 0) begin
+	always_ff @(negedge i_clk iff i_reset == 0) begin
+	   if (ex_mem_signal.debug_instruction != 51) begin
 			clockCycle = clockCycle + 1;
-			$fwrite(hFile, "%d:\tx%d = %d / 0x%08X\n", clockCycle, i_rd, i_rd_data, i_rd_data);
+			$fwrite(hFile, "%04d (%X): ", clockCycle, ex_mem_signal.debug_instruction);
+			for (int i = 0; i < 32; i++) begin
+			     $fwrite(hFile, "%X ", regs[i]);
+			end
+			$fwrite(hFile, "\n");
 			$fflush(hFile);
+			if (clockCycle == 262144) $finish;
 		end
 	end
 

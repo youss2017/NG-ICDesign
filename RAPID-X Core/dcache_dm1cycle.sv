@@ -40,7 +40,6 @@ import memory_controller_interface::*;
 /***********************************************************
  * Local parameters
  **********************************************************/
-
 package dcache_params;
 	parameter DATA_LENGTH = 32;//iface.DATA_LENGTH; // word size in bits (must be multiple of 8)
 	parameter ADDR_LENGTH = 32;//iface.ADDR_LENGTH; // address bus width
@@ -49,7 +48,7 @@ package dcache_params;
 	parameter BLOCK_COUNT = 4096;
 
 	// Cache block size (aka line size) in words
-	parameter BLOCK_SIZE = MCI_DATA_LENGTH / DATA_LENGTH;
+	parameter BLOCK_SIZE = 128 / 32;//MCI_DATA_LENGTH / DATA_LENGTH;
 
 	// Derive field lengths
 	parameter OFFSET_BITS = $clog2(DATA_LENGTH / 8 * BLOCK_SIZE);

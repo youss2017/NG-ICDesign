@@ -18,7 +18,7 @@
  * This cache transfer one block/line at a time to the
  * memory controller, consequently the cache block size is
  * the same as the data bus width of the memory controller.
- *MCI_DATA_LENGTH
+ *
  * CPU <==> Cache communication signals are defined in
  *   dcache_interface.sv
  * Cache <==> Memory communication signals are defined in
@@ -33,98 +33,13 @@
 
 
 `include "dcache_interface.sv"
-//`include "memory_controller_interface.sv"
+`include "memory_controller_interface.sv"
 
-import memory_controller_interface::*; 
-
-/***********************************************************
- * Local parameters
- **********************************************************/
-
-package dcache_params;
-	parameter DATA_LENGTH = 32;//iface.DATA_LENGTH; // word size in bits (must be multiple of 8)
-	parameter ADDR_LENGTH = 32;//iface.ADDR_LENGTH; // address bus width
-
-	// Cache capacity in blocks (must be power of two; default 64 KiB)
-	parameter BLOCK_COUNT = 4096;
-
-	// Cache block size (aka line size) in words
-	parameter BLOCK_SIZE = MCI_DATA_LENGTH / DATA_LENGTH;
-
-	// Derive field lengths
-	parameter OFFSET_BITS = $clog2(DATA_LENGTH / 8 * BLOCK_SIZE);
-	parameter INDEX_BITS = $clog2(BLOCK_COUNT);
-	parameter TAG_BITS = ADDR_LENGTH - INDEX_BITS - OFFSET_BITS;
-	// Derive field bounds
-	parameter OFFSET_LSB = 0;
-	parameter OFFSET_MSB = OFFSET_LSB + OFFSET_BITS - 1;
-	parameter INDEX_LSB = OFFSET_MSB + 1;
-	parameter INDEX_MSB = INDEX_LSB + INDEX_BITS - 1;
-	parameter TAG_LSB = INDEX_MSB + 1;
-	parameter TAG_MSB = TAG_LSB + TAG_BITS - 1;
-endpackage
-import dcache_params::*;
-
-/***********************************************************
- * Nested modules
- **********************************************************/
-
-/***********************************************************
- * Data structures for data and tag cache memories
- **********************************************************/
-typedef logic [MCI_DATA_LENGTH-1:0] cache_data_t;
-
-typedef struct packed {
-	logic valid;
-	logic dirty;
-	logic [TAG_BITS-1:0] tag;
-} cache_tag_t;
-
-typedef struct {
-	logic [INDEX_BITS-1:0] index;
-	logic we;  // write-enable
-} cache_req_t;
-
-
-// Data memory; asynchronous reads, synchronous writes.
-module cache_data #(
+module dcache_dm1cycle
+import memory_controller_interface::*; #(
 	// Cache capacity in blocks (must be power of two; default 64 KiB)
 	parameter BLOCK_COUNT = 4096
 ) (
-	input logic clk,
-	input cache_req_t data_req,     // command
-	input cache_data_t data_write,  // write port
-	output cache_data_t data_read   // read port
-);
-	cache_data_t mem[BLOCK_COUNT];
-	assign data_read = mem[data_req.index];
-	always_ff @(posedge clk) begin
-		if(data_req.we)
-			mem[data_req.index] <= data_write;
-	end
-endmodule
-
-// Tag memory; asynchronous reads, synchronous writes, with reset function.
-module cache_tag (
-	input logic clk, input logic rst,
-	input cache_req_t tag_req,    // command
-	input cache_tag_t tag_write,  // write port
-	output cache_tag_t tag_read   // read port
-);
-	cache_tag_t mem[BLOCK_COUNT];
-	assign tag_read = mem[tag_req.index];
-	always_ff @(posedge clk) begin
-		if(rst) begin
-			for(int i = 0; i < BLOCK_COUNT; i++)
-				mem[i] <= '0;
-		end else begin
-			if(tag_req.we)
-				mem[tag_req.index] <= tag_write;
-		end
-	end
-endmodule
-
-module dcache_dm1cycle (
 	input logic clk, input logic rst,
 	dcache_interface.secondary iface, // cpu <-> cache
 	input mci_response_t mem_res,    // mem -> cache
@@ -134,8 +49,91 @@ module dcache_dm1cycle (
 	// SystemVerilog forbids hierarchical names (names with ".") in
 	// type references - so we must typedef them first if we can to
 	// initialize parameters of these types later.
-	//typedef iface.word_t word_t;
-	//typedef iface.addr_t addr_t;
+	typedef iface.word_t word_t;
+	typedef iface.addr_t addr_t;
+
+/***********************************************************
+ * Local parameters
+ **********************************************************/
+
+
+	localparam DATA_LENGTH = iface.DATA_LENGTH; // word size in bits (must be multiple of 8)
+	localparam ADDR_LENGTH = iface.ADDR_LENGTH; // address bus width
+
+  	// Cache block size (aka line size) in words
+	localparam BLOCK_SIZE = MCI_DATA_LENGTH / DATA_LENGTH;
+
+	// Derive field lengths
+	localparam OFFSET_BITS = $clog2(DATA_LENGTH / 8 * BLOCK_SIZE);
+	localparam INDEX_BITS = $clog2(BLOCK_COUNT);
+	localparam TAG_BITS = ADDR_LENGTH - INDEX_BITS - OFFSET_BITS;
+	// Derive field bounds
+	localparam OFFSET_LSB = 0;
+	localparam OFFSET_MSB = OFFSET_LSB + OFFSET_BITS - 1;
+	localparam INDEX_LSB = OFFSET_MSB + 1;
+	localparam INDEX_MSB = INDEX_LSB + INDEX_BITS - 1;
+	localparam TAG_LSB = INDEX_MSB + 1;
+	localparam TAG_MSB = TAG_LSB + TAG_BITS - 1;
+
+
+/***********************************************************
+ * Data structures for data and tag cache memories
+ **********************************************************/
+
+	typedef logic [MCI_DATA_LENGTH-1:0] cache_data_t;
+
+	typedef struct packed {
+		logic valid;
+		logic dirty;
+		logic [TAG_BITS-1:0] tag;
+	} cache_tag_t;
+
+	typedef struct {
+		logic [INDEX_BITS-1:0] index;
+		logic we;  // write-enable
+	} cache_req_t;
+
+
+/***********************************************************
+ * Nested modules
+ **********************************************************/
+
+
+	// Data memory; asynchronous reads, synchronous writes.
+	module cache_data(
+		input logic clk,
+		input cache_req_t data_req,     // command
+		input cache_data_t data_write,  // write port
+		output cache_data_t data_read   // read port
+	);
+		cache_data_t mem[BLOCK_COUNT];
+		assign data_read = mem[data_req.index];
+		always_ff @(posedge clk) begin
+			if(data_req.we)
+				mem[data_req.index] <= data_write;
+		end
+	endmodule
+
+	// Tag memory; asynchronous reads, synchronous writes, with reset function.
+	module cache_tag(
+		input logic clk, input logic rst,
+		input cache_req_t tag_req,    // command
+		input cache_tag_t tag_write,  // write port
+		output cache_tag_t tag_read   // read port
+	);
+		cache_tag_t mem[BLOCK_COUNT];
+		assign tag_read = mem[tag_req.index];
+		always_ff @(posedge clk) begin
+			if(rst) begin
+				for(int i = 0; i < BLOCK_COUNT; i++)
+					mem[i] <= '0;
+			end else begin
+				if(tag_req.we)
+					mem[tag_req.index] <= tag_write;
+			end
+		end
+	endmodule
+
 
 /***********************************************************
  * Module core
@@ -159,23 +157,23 @@ module dcache_dm1cycle (
 	cache_req_t data_req;
 
 	// input signals latched at the time valid was asserted
-	reg [31:0] /*addr_t*/ addr;
-	reg [31:0] /*addr_t*/ wmask;
-	reg [31:0] /*addr_t*/ wdata;
-	reg [31:0] /*addr_t*/ rw;
+	addr_t addr;
+	addr_t wmask;
+	addr_t wdata;
+	addr_t rw;
 
 	// connect data/tag cache memories
 	cache_data cdata (
-		.clk(clk),
-		.data_req(data_req),
-		.data_write(data_write),
-		.data_read(data_read)
+		.clk,
+		.data_req,
+		.data_write,
+		.data_read
 	);
 	cache_tag ctag (
-		.clk(clk), .rst(rst),
-		.tag_req(tag_req),
-		.tag_write(tag_write),
-		.tag_read(tag_read)
+		.clk, .rst,
+		.tag_req,
+		.tag_write,
+		.tag_read
 	);
 
 
@@ -195,16 +193,16 @@ module dcache_dm1cycle (
 		tag_write = {'0, '0, '0};
 
 		tag_req.we = '0;
-		tag_req.index = iface.addr[INDEX_MSB:INDEX_LSB];
+		tag_req.index = addr[INDEX_MSB:INDEX_LSB];
 
 		data_req.we = '0;
-		data_req.index = iface.addr[INDEX_MSB:INDEX_LSB];
+		data_req.index = addr[INDEX_MSB:INDEX_LSB];
 
 		iface.rdata = '0;
 		iface.ready = '0;
 		iface.rvalid = '0;
 
-		mem_req.addr = iface.addr;
+		mem_req.addr = addr;
 		mem_req.data = data_read;
 		mem_req.rw = '0;
 		mem_req.valid = '0;

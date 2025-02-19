@@ -5,13 +5,14 @@
  * CPU Functional Unit <==> Cache Interface
  **********************************************************/
 
-interface dcache_interface 
-import rapid_pkg::*;
-#(
-	parameter DATA_LENGTH=32,  // Word width
-	parameter ADDR_LENGTH=32   // Address bus width
+interface dcache_interface #(
+	parameter DATA_LENGTH,  // Word width
+	parameter ADDR_LENGTH   // Address bus width
 ) (
 );
+
+	typedef logic [ADDR_LENGTH-1:0] addr_t;
+	typedef logic [DATA_LENGTH-1:0] word_t;
 
 	addr_t addr;    // memory address
 	word_t wdata;   // value for writes

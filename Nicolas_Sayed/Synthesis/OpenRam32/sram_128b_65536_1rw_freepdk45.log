@@ -1,0 +1,34 @@
+[2025-02-04 23:37:45.821610] |==============================================================================|
+[2025-02-04 23:37:45.821732] |=========                      OpenRAM v1.2.48                       =========|
+[2025-02-04 23:37:45.821759] |=========                                                            =========|
+[2025-02-04 23:37:45.821775] |=========               VLSI Design and Automation Lab               =========|
+[2025-02-04 23:37:45.821789] |=========        Computer Science and Engineering Department         =========|
+[2025-02-04 23:37:45.821802] |=========            University of California Santa Cruz             =========|
+[2025-02-04 23:37:45.821831] |=========                                                            =========|
+[2025-02-04 23:37:45.821879] |=========          Usage help: openram-user-group@ucsc.edu           =========|
+[2025-02-04 23:37:45.821945] |=========        Development help: openram-dev-group@ucsc.edu        =========|
+[2025-02-04 23:37:45.821991] |=========                See LICENSE for license info                =========|
+[2025-02-04 23:37:45.822047] |==============================================================================|
+[2025-02-04 23:37:45.822136] ** Start: 02/04/2025 23:37:45
+[2025-02-04 23:37:45.822196] Technology: freepdk45
+[2025-02-04 23:37:45.822240] Total size: 8388608 bits
+[2025-02-04 23:37:45.822287] Word size: 128
+Words: 65536
+Banks: 1
+[2025-02-04 23:37:45.822345] RW ports: 1
+R-only ports: 0
+W-only ports: 0
+[2025-02-04 23:37:45.822388] DRC/LVS/PEX is only run on the top-level design to save run-time (inline_lvsdrc=True to do inline checking).
+[2025-02-04 23:37:45.822431] DRC/LVS/PEX is disabled (check_lvsdrc=True to enable).
+[2025-02-04 23:37:45.822474] Characterization is disabled (using analytical delay models) (analytical_delay=False to simulate).
+[2025-02-04 23:37:45.822520] Words per row: 8
+[2025-02-04 23:37:45.822579] Output files are: 
+[2025-02-04 23:37:45.822623] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_128b_65536_1rw_freepdk45.lvs
+[2025-02-04 23:37:45.822665] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_128b_65536_1rw_freepdk45.sp
+[2025-02-04 23:37:45.822709] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_128b_65536_1rw_freepdk45.v
+[2025-02-04 23:37:45.822752] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_128b_65536_1rw_freepdk45.lib
+[2025-02-04 23:37:45.822794] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_128b_65536_1rw_freepdk45.py
+[2025-02-04 23:37:45.822861] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_128b_65536_1rw_freepdk45.html
+[2025-02-04 23:37:45.822904] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_128b_65536_1rw_freepdk45.log
+[2025-02-04 23:37:45.822959] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_128b_65536_1rw_freepdk45.lef
+[2025-02-04 23:37:45.823002] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_128b_65536_1rw_freepdk45.gds

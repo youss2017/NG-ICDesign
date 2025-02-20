@@ -4,6 +4,7 @@ module decoder_state
 (
     input  logic                        i_clk,
     input  logic                        i_reset,
+    input  logic                        i_pipeline_enable,
     input  logic                        i_pc_load,
     input  logic         [XLEN-1:0]     i_instruction,
     input  logic         [XLEN-1:0]     i_pc,
@@ -22,7 +23,7 @@ module decoder_state
         if (i_reset) begin
             iv_pc          <= 0;
             iv_instruction <= 0;
-        end else begin
+        end else if(i_pipeline_enable) begin
             // Store data from input ports
             iv_pc          <= i_pc_load ? 0 : i_pc;
             iv_instruction <= i_pc_load ? 0 : i_instruction;

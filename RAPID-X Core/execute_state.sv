@@ -5,6 +5,7 @@ import rapid_pkg::*;
 (
     input logic                          i_clk,
     input logic                          i_reset,
+    input logic                          i_pipeline_enable,
     input logic                          i_pc_load,
     input logic         [XLEN-1:0]       i_pc,
     input control_ex_s                   i_control_signal,
@@ -37,7 +38,7 @@ import rapid_pkg::*;
             iv_rs2            <= 0;
             iv_imm            <= 0;
             iv_pc             <= 0;
-        end else begin
+        end else if(i_pipeline_enable) begin
             // Load data from inputs ports to local state
             iv_pc               <= i_pc_load ?  0                       : i_pc;
             iv_control_signal   <= i_pc_load ?  control_ex_s_default()  : i_control_signal;

@@ -3,12 +3,12 @@
 
 module fake_memory 
 import memory_controller_interface::*; #(
-	parameter MEM_DELAY = 5,     // Delay for all accesses in simulation units
+	parameter MEM_DELAY = 1,     // Delay for all accesses in simulation units
 	parameter MEM_SIZE = 262144, // Size of memory in words (default 1MiB)
     parameter WORD_LENGTH = 32,  // 32-bits = 4 bytes = 1 word
     // Memory initialization data -- entries in this file should be
     // hexadecimal values of WORD_LENGTH bits long, and separated by newlines. 
-    parameter INIT_FILENAME = "U:\\Senior Design\\RAPID-X Core\\rapid-x testbenches\\fake_memory_init.txt"
+    parameter INIT_FILENAME = "fake_memory_init.txt"
 ) (
 	input i_clk,
     input mci_request_t mem_req,
@@ -23,7 +23,10 @@ import memory_controller_interface::*; #(
     // Initialize our fake memory file - wordwise.
 	typedef logic [WORD_LENGTH-1:0] word_t;
 	word_t mem[MEM_SIZE];
-	initial $readmemh(INIT_FILENAME, mem);
+	initial begin
+	   for(int i = 0; i < MEM_SIZE; i++) mem[i] = 0;
+	   $readmemh(INIT_FILENAME, mem);
+	end
 	
 	// mem[WORDS_IN_BLOCK*block_addr+x] gets the x'th word from a particular memory block.  
 	mci_addr_t block_addr;
@@ -52,7 +55,7 @@ import memory_controller_interface::*; #(
                 $display("[FAKEMEM] ReadReq  block [%x]", mem_req.addr);
             end
 
-            #MEM_DELAY mem_res.ready <= '1;
+            mem_res.ready <= #(MEM_DELAY) '1;
         end
     end
 

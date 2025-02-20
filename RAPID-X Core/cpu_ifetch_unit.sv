@@ -1,7 +1,7 @@
 `timescale 1ns / 100ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: RAPID Team
-// Engineer: Youssef Samwel, Nicolas Sayed
+// Engineer: Youssef Samwel, Nicolas Sayed, Pablo Rodriguez
 // 
 // Create Date: 11/5/2024 10:47:00 AM
 // Design Name: RAPID IF Stage
@@ -11,12 +11,12 @@
 // Tool Versions: 
 // Description: 
 //
-// A very basic instruction fetch unit, doesn't prefetch data and uses an FSM.
-// It isn't able to stream instructions back-to-back, so NOPs will be pushed into
-// the pipeline while the unit is waiting for the cache.
+// A basic instruction fetch unit, which prefetches four instructions at a time.
+// With good cache behaviour, it can stream instructions back-to-back. Otherwise
+// pushes NOOPs if it needs to wait for the cache or memory.
 //
 // Holds the current PC and instruction on the output, until it receives the
-// i_pipeline_ready signal to begin fetching adn pushing the next instruction.
+// i_pipeline_ready signal to begin fetching and pushing the next instruction.
 // 
 // Dependencies: 
 // 
@@ -72,7 +72,7 @@ import memory_controller_interface::*;
     logic waiting_on_cache_reg;
     logic waiting_on_cache_reg_nxt;
 
-    // Very fast cache - caches four instructions at a time (16 bytes)
+    // Prefetch input queue - caches four instructions at a time (16 bytes)
     logic [127:0] fastline_reg;
     logic [127:0] fastline_reg_nxt;
 
@@ -87,8 +87,9 @@ import memory_controller_interface::*;
     // Commonly used information
     logic [XLEN-5:0] pc_highbits;
     logic [1:0] pc_lowbits;
-    logic pc_is_in_fastline;
-    logic pc_is_in_cachereq;
+    logic pc_is_in_fastline; // whether the instruction we need right now is in the prefetch input queue
+    logic pc_is_in_cachereq; // whether the instruction we need right now is incoming from the cache
+    logic do_fetch_ahead;
     assign pc_highbits = pc[XLEN-1:4];
     assign pc_lowbits = pc[3:2];
     assign pc_is_in_fastline = (pc_highbits == fastline_addr_reg[31:4]);
@@ -162,15 +163,18 @@ import memory_controller_interface::*;
         end
 
         // Parallel cache request handling
-        if(iface.rvalid && waiting_on_cache_reg && !i_reset) begin
-            // Cache just returned us some data: put it in the fastline
+        do_fetch_ahead = pc_is_in_fastline;
+        if(iface.rvalid && waiting_on_cache_reg && pc_is_in_cachereq && !i_reset) begin
+            // Cache just returned us some data: put it in the queue
             fastline_addr_reg_nxt = cachereq_addr_reg;
             fastline_reg_nxt = iface.rdata;
             waiting_on_cache_reg_nxt = 0;
+            // force a prefetch if possible
+            do_fetch_ahead = '1;
         end
         if(iface.ready && !i_reset) begin
             // Cache is ready: prefetch next group of instructions
-            cachereq_addr_reg_nxt = {{ pc_highbits + (pc_is_in_fastline ? 1 : 0), 4'b0000 }};
+            cachereq_addr_reg_nxt = {{ pc_highbits + (do_fetch_ahead ? 1 : 0), 4'b0000 }};
             if(cachereq_addr_reg != cachereq_addr_reg_nxt) begin
                 iface.addr = cachereq_addr_reg_nxt;
                 iface_valid = '1;
@@ -179,13 +183,22 @@ import memory_controller_interface::*;
         end
     end
 
-    always_ff @(posedge i_clk) begin
-        pc <= pc_nxt;
-        fastline_reg <= fastline_reg_nxt;
-        fastline_addr_reg <= fastline_addr_reg_nxt;
-        cachereq_addr_reg <= cachereq_addr_reg_nxt;
-        waiting_on_cache_reg <= waiting_on_cache_reg_nxt;
-        last_dispatched_inst_reg <= o_instruction;
+    always_ff @(posedge i_clk, posedge i_reset) begin
+        if(i_reset) begin
+            pc <= RESET_VECTOR;
+            fastline_reg <= '0;
+            fastline_addr_reg <= ~RESET_VECTOR; // must not match reset vec.
+            cachereq_addr_reg <= ~RESET_VECTOR;
+            waiting_on_cache_reg <= '0;
+            last_dispatched_inst_reg <= NOOP_INSTRUCTION;
+        end else begin
+            pc <= pc_nxt;
+            fastline_reg <= fastline_reg_nxt;
+            fastline_addr_reg <= fastline_addr_reg_nxt;
+            cachereq_addr_reg <= cachereq_addr_reg_nxt;
+            waiting_on_cache_reg <= waiting_on_cache_reg_nxt;
+            last_dispatched_inst_reg <= o_instruction;
+        end
     end
 
 endmodule

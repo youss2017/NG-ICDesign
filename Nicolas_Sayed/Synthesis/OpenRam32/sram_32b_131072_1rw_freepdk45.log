@@ -1,0 +1,38 @@
+[2025-02-18 05:09:21.579475] |==============================================================================|
+[2025-02-18 05:09:21.580954] |=========                      OpenRAM v1.2.48                       =========|
+[2025-02-18 05:09:21.581062] |=========                                                            =========|
+[2025-02-18 05:09:21.581120] |=========               VLSI Design and Automation Lab               =========|
+[2025-02-18 05:09:21.581171] |=========        Computer Science and Engineering Department         =========|
+[2025-02-18 05:09:21.581384] |=========            University of California Santa Cruz             =========|
+[2025-02-18 05:09:21.581435] |=========                                                            =========|
+[2025-02-18 05:09:21.581486] |=========          Usage help: openram-user-group@ucsc.edu           =========|
+[2025-02-18 05:09:21.581536] |=========        Development help: openram-dev-group@ucsc.edu        =========|
+[2025-02-18 05:09:21.581587] |=========                See LICENSE for license info                =========|
+[2025-02-18 05:09:21.581636] |==============================================================================|
+[2025-02-18 05:09:21.581699] ** Start: 02/18/2025 05:09:21
+[2025-02-18 05:09:21.581753] Technology: freepdk45
+[2025-02-18 05:09:21.581805] Total size: 4194304 bits
+[2025-02-18 05:09:21.581863] Word size: 32
+Words: 131072
+Banks: 1
+[2025-02-18 05:09:21.581916] RW ports: 1
+R-only ports: 0
+W-only ports: 0
+[2025-02-18 05:09:21.581966] DRC/LVS/PEX is only run on the top-level design to save run-time (inline_lvsdrc=True to do inline checking).
+[2025-02-18 05:09:21.582015] DRC/LVS/PEX is disabled (check_lvsdrc=True to enable).
+[2025-02-18 05:09:21.582064] Characterization is disabled (using analytical delay models) (analytical_delay=False to simulate).
+[2025-02-18 05:09:21.582115] Words per row: None
+[2025-02-18 05:09:21.582169] Output files are: 
+[2025-02-18 05:09:21.582219] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_131072_1rw_freepdk45.lvs
+[2025-02-18 05:09:21.582268] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_131072_1rw_freepdk45.sp
+[2025-02-18 05:09:21.582324] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_131072_1rw_freepdk45.v
+[2025-02-18 05:09:21.582374] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_131072_1rw_freepdk45.lib
+[2025-02-18 05:09:21.582423] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_131072_1rw_freepdk45.py
+[2025-02-18 05:09:21.582472] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_131072_1rw_freepdk45.html
+[2025-02-18 05:09:21.582521] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_131072_1rw_freepdk45.log
+[2025-02-18 05:09:21.582570] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_131072_1rw_freepdk45.lef
+[2025-02-18 05:09:21.582619] /home/ofi/OpenRam/OpenRAM-1.2.48/openram_output/sram_32b_131072_1rw_freepdk45.gds
+[2025-02-18 05:09:21.621342] WARNING: file sram_config.py: line 160: Extremely large number of columns for 16-way maximum column mux.
+
+[2025-02-18 05:09:21.621608] ERROR: file sram_config.py: line 173: Number of words exceeds 2048
+

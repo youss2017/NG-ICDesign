@@ -116,7 +116,7 @@ import memory_controller_interface::*;
         .i_rs2_out(de_control_signal.rs2_out),
         .i_rs1(de_control_signal.rs1),
         .i_rs2(de_control_signal.rs2),
-        .i_rd(mem_rd),
+        .i_rd(mem_ready ? mem_rd : 0),
         .i_rd_data(mem_rd_output),
         .o_rs1_data(reg_rs1_data),
         .o_rs2_data(reg_rs2_data)
@@ -129,6 +129,7 @@ import memory_controller_interface::*;
     decoder_state de_state(
         .i_clk(i_clk),
         .i_reset(i_reset),
+        .i_pipeline_enable(mem_ready),
         .i_pc_load(ex_pc_load),
         .i_instruction(if_instruction),
         .i_pc(if_pc),
@@ -146,6 +147,7 @@ import memory_controller_interface::*;
     execute_state ex_state(
         .i_clk(i_clk),
         .i_reset(i_reset),
+        .i_pipeline_enable(mem_ready),
         .i_pc_load(ex_pc_load),
         .i_pc(de_pc),
         .i_control_signal(de_control_signal),
@@ -175,7 +177,7 @@ import memory_controller_interface::*;
     forward_unit funit(
         .i_ex_rs1(ex_control_signal.rs1), /* index from execute stage */
         .i_ex_rs2(ex_control_signal.rs2), /* index from execute stage */
-        .i_mem_rd(mem_rd), /* index from memory stage */
+        .i_mem_rd(mem_ready ? mem_rd : 0), /* index from memory stage */
         .i_mem_rd_data(mem_rd_output), /* data from memory stage */
         .i_ex_rs1_data(ex_rs1), /* data from execute stage */
         .i_ex_rs2_data(ex_rs2), /* data from execute stage */

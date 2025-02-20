@@ -23,7 +23,10 @@ import memory_controller_interface::*; #(
     // Initialize our fake memory file - wordwise.
 	typedef logic [WORD_LENGTH-1:0] word_t;
 	word_t mem[MEM_SIZE];
-	initial $readmemh(INIT_FILENAME, mem);
+	initial begin
+	   for(int i = 0; i < MEM_SIZE; i++) mem[i] = 0;
+	   $readmemh(INIT_FILENAME, mem);
+	end
 	
 	// mem[WORDS_IN_BLOCK*block_addr+x] gets the x'th word from a particular memory block.  
 	mci_addr_t block_addr;
@@ -52,7 +55,7 @@ import memory_controller_interface::*; #(
                 $display("[FAKEMEM] ReadReq  block [%x]", mem_req.addr);
             end
 
-            #MEM_DELAY mem_res.ready <= '1;
+            mem_res.ready <= #(MEM_DELAY) '1;
         end
     end
 

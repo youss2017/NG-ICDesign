@@ -51,7 +51,7 @@ analytical_delay = True
 # Must turn on options for verification, final routing, etc.
 ###################
 # When enabled, layout is not generated (and no DRC or LVS are performed)
-netlist_only = True # TODO
+netlist_only = False
 # Whether we should do the final power routing
 route_supplies = True
 supply_pin_type = "ring"

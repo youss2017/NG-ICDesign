@@ -55,8 +55,11 @@ import memory_controller_interface::*; (
  **********************************************************/
 
 
-	localparam DATA_LENGTH = iface.DATA_LENGTH; // word size in bits (must be multiple of 8, 16, 32, 64, or 128)
-	localparam ADDR_LENGTH = iface.ADDR_LENGTH; // address bus width (fixed at 32 by openram)
+	// localparam DATA_LENGTH = iface.DATA_LENGTH; // word size in bits (must be multiple of 8, 16, 32, 64, or 128)
+	// localparam ADDR_LENGTH = iface.ADDR_LENGTH; // address bus width (fixed at 32 by openram)
+	// cheeky fix for Xcellium:
+	localparam DATA_LENGTH = $size(word_t);
+	localparam ADDR_LENGTH = $size(addr_t);
 
     localparam BLOCK_COUNT = 512; // must match openram num_words!
 	localparam BLOCK_SIZE = MCI_DATA_LENGTH / DATA_LENGTH; // words per sram row (16, 8, 4, 2, or 1 depending on DATA_LENGTH)

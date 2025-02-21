@@ -6,8 +6,8 @@
  **********************************************************/
 
 interface dcache_interface #(
-	parameter DATA_LENGTH,  // Word width
-	parameter ADDR_LENGTH   // Address bus width
+	parameter DATA_LENGTH = 32,  // Word width
+	parameter ADDR_LENGTH = 32  // Address bus width
 ) (
 );
 

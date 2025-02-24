@@ -1,0 +1,10 @@
+
+*.log*
+*.cmd*
+*.shm
+*.history
+*.log
+*.d
+*.simvision
+*.key
+

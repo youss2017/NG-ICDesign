@@ -1,0 +1,12 @@
+
+*.log*
+*.cmd*
+*.shm
+*.history
+*.log
+*.d
+*.simvision
+*.key
+work/*
+!work/*.tcl
+!work/*.sh

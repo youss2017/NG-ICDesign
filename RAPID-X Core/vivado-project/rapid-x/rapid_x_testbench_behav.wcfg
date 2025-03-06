@@ -15,13 +15,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="25.861 ns"></ZoomEndTime>
-      <Cursor1Time time="0.000 ns"></Cursor1Time>
+      <ZoomStartTime time="118.388 ns"></ZoomStartTime>
+      <ZoomEndTime time="146.063 ns"></ZoomEndTime>
+      <Cursor1Time time="128.161 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="203"></NameColumnWidth>
-      <ValueColumnWidth column_width="175"></ValueColumnWidth>
+      <ValueColumnWidth column_width="171"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="10" />
    <wvobject fp_name="/rapid_x_testbench/clk" type="logic">
@@ -236,7 +236,7 @@
          <obj_property name="ElementShortName">i_rs1[31:0]</obj_property>
          <obj_property name="ObjectShortName">i_rs1[31:0]</obj_property>
          <obj_property name="Radix">HEXRADIX</obj_property>
-         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+         <obj_property name="CustomSignalColor">#A52A2A</obj_property>
          <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
       <wvobject fp_name="/rapid_x_testbench/rapid_x/ex_logic/i_rs2" type="array">
@@ -274,6 +274,7 @@
    <wvobject fp_name="group283" type="group">
       <obj_property name="label">MEMORY UNIT</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/rapid_x_testbench/rapid_x/memory_unit/i_data_in" type="array">
          <obj_property name="ElementShortName">i_data_in[31:0]</obj_property>
          <obj_property name="ObjectShortName">i_data_in[31:0]</obj_property>
@@ -291,6 +292,27 @@
          <obj_property name="ElementShortName">i_control_sig</obj_property>
          <obj_property name="ObjectShortName">i_control_sig</obj_property>
          <obj_property name="isExpanded"></obj_property>
+         <wvobject fp_name="/rapid_x_testbench/rapid_x/memory_unit/i_control_sig.mem" type="logic">
+            <obj_property name="ElementShortName">.mem</obj_property>
+            <obj_property name="ObjectShortName">.mem</obj_property>
+         </wvobject>
+         <wvobject fp_name="/rapid_x_testbench/rapid_x/memory_unit/i_control_sig.iop" type="logic">
+            <obj_property name="ElementShortName">.iop</obj_property>
+            <obj_property name="ObjectShortName">.iop</obj_property>
+         </wvobject>
+         <wvobject fp_name="/rapid_x_testbench/rapid_x/memory_unit/i_control_sig.fcs_opcode" type="array">
+            <obj_property name="ElementShortName">.fcs_opcode[2:0]</obj_property>
+            <obj_property name="ObjectShortName">.fcs_opcode[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/rapid_x_testbench/rapid_x/memory_unit/i_control_sig.rd" type="array">
+            <obj_property name="ElementShortName">.rd[4:0]</obj_property>
+            <obj_property name="ObjectShortName">.rd[4:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/rapid_x_testbench/rapid_x/memory_unit/i_control_sig.debug_instruction" type="array">
+            <obj_property name="ElementShortName">.debug_instruction[31:0]</obj_property>
+            <obj_property name="ObjectShortName">.debug_instruction[31:0]</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+         </wvobject>
       </wvobject>
    </wvobject>
 </wave_config>

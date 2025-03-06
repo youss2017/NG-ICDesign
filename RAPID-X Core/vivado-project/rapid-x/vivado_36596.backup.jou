@@ -1,35 +1,222 @@
 #-----------------------------------------------------------
-# Vivado v2024.1 (64-bit)
-# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
-# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
-# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Thu Nov 21 01:36:10 2024
-# Process ID: 19936
-# Current directory: U:/Senior Design/RAPID-X Core/vivado-project/rapid-x
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent22084 U:\Senior Design\RAPID-X Core\vivado-project\rapid-x\rapid-x.xpr
-# Log file: U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/vivado.log
-# Journal file: U:/Senior Design/RAPID-X Core/vivado-project/rapid-x\vivado.jou
-# Running On        :DESKTOP-339EFSV
-# Platform          :Windows Server 2016 or Windows 10
-# Operating System  :22631
-# Processor Detail  :AMD Ryzen 7 5700X3D 8-Core Processor           
-# CPU Frequency     :3000 MHz
-# CPU Physical cores:8
-# CPU Logical cores :16
-# Host memory       :51481 MB
-# Swap memory       :3221 MB
-# Total Virtual     :54702 MB
-# Available Virtual :38472 MB
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Tue Feb 18 14:55:50 2025
+# Process ID         : 36596
+# Current directory  : U:/Senior Design/RAPID-X Core/vivado-project/rapid-x
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent38520 U:\Senior Design\RAPID-X Core\vivado-project\rapid-x\rapid-x.xpr
+# Log file           : U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/vivado.log
+# Journal file       : U:/Senior Design/RAPID-X Core/vivado-project/rapid-x\vivado.jou
+# Running On         : DESKTOP-T92VI6B
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 19045
+# Processor Detail   : AMD Ryzen 7 5700X3D 8-Core Processor           
+# CPU Frequency      : 3000 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 42895 MB
+# Swap memory        : 8357 MB
+# Total Virtual      : 51252 MB
+# Available Virtual  : 8817 MB
 #-----------------------------------------------------------
 start_gui
 open_project {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.xpr}
 update_compile_order -fileset sources_1
 launch_simulation
+launch_simulation
+launch_simulation
+launch_simulation
 open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
 source rapid_x_testbench.tcl
-relaunch_sim
-relaunch_sim
-relaunch_sim
-relaunch_sim
+restart
+run 10 us
+restart
+run 10 us
 save_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
 close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+reset
+run 10us
+restart
+run 10 us
+relaunch_sim
+relaunch_sim
+restart
+run 10 us
+save_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+restart
+run 10 us
+relaunch_sim
+restart
+run 10 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+restart
+run 10 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+restart
+run 10 us
+relaunch_sim
+restart
+run .00001 us
+run 10 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+restart
+run 10 us
+relaunch_sim
+relaunch_sim
+run 10 us
+relaunch_sim
+run 10 us
+close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+run 10 us
+restart
+run 181 ns
+restart
+run 180 ns
+add_bp {U:/Senior Design/RAPID-X Core/execute_logic.sv} 51
+run 1 ns
+step
+step
+step
+step
+step
+step
+step
+step
+step
+run 1 ns
+step
+step
+run 1 ns
+restart
+run 360 ns
+remove_bps -file {U:/Senior Design/RAPID-X Core/execute_logic.sv} -line 51
+restart
+run 190 ns
+relaunch_sim
+relaunch_sim
+restart
+run 190 ns
+relaunch_sim
+relaunch_sim
+restart
+run 190 ns
+relaunch_sim
+relaunch_sim
+run 190 ns
+restart
+run 190 ns
+relaunch_sim
+relaunch_sim
+restart
+run 190 ns
+relaunch_sim
+relaunch_sim
+restart
+run 190 ns
+relaunch_sim
+restart
+run 190 ns
+relaunch_sim
+relaunch_sim
+restart
+run 190 ns
+relaunch_sim
+relaunch_sim
+restart
+run 190 ns
+relaunch_sim
+relaunch_sim
+restart
+run 190 ns
+restart
+run 10 us
+save_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+restart
+run 10 us
+close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+restart
+run 10 us
+close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+restart
+run 100 us
+close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+restart
+run 100 us
+add_bp {U:/Senior Design/RAPID-X Core/execute_logic.sv} 95
+remove_bps -file {U:/Senior Design/RAPID-X Core/execute_logic.sv} -line 95
+add_bp {U:/Senior Design/RAPID-X Core/execute_logic.sv} 59
+restart
+remove_bps -file {U:/Senior Design/RAPID-X Core/execute_logic.sv} -line 59
+run 34278 ns
+add_bp {U:/Senior Design/RAPID-X Core/execute_logic.sv} 59
+run 1 ns
+step
+step
+step
+relaunch_sim
+close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+restart
+run 200 us
+close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+run 1 s
+run 10 ms
+close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+run all
+close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+run all
+close_sim
+launch_simulation
+open_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+source rapid_x_testbench.tcl
+run 10 us
+save_wave_config {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid_x_testbench_behav.wcfg}
+restart
+run 196 ns

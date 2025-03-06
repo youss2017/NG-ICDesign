@@ -35,7 +35,7 @@ module register_file (
     input control_mem_s ex_mem_signal
 );
     reg [XLEN-1:0] regs [0:31];
-
+/*
 	int hFile;
 	int clockCycle;
 
@@ -49,7 +49,7 @@ module register_file (
 	end
 
 	always_ff @(negedge i_clk iff i_reset == 0) begin
-	   if (ex_mem_signal.debug_instruction != 51) begin
+	   if (ex_mem_signal.debug_instruction != 51 && ex_mem_signal.debug_instruction != 0) begin
 			clockCycle = clockCycle + 1;
 			$fwrite(hFile, "%04d (%X): ", clockCycle, ex_mem_signal.debug_instruction);
 			for (int i = 0; i < 32; i++) begin
@@ -59,7 +59,7 @@ module register_file (
 			$fflush(hFile);
 			if (clockCycle == 262144) $finish;
 		end
-	end
+	end*/
 
     always_comb begin
         

@@ -1,10 +1,9 @@
 # compile verilog/system verilog design source files
 sv xil_defaultlib  \
 "../../../../../../rapid_pkg.sv" \
-"../../../../../../memory_controller_interface.sv" \
+"../../../../../../dcache_dm1cycle.sv" \
 "../../../../../../cpu_ifetch_unit.sv" \
 "../../../../../../cpu_memory_unit.sv" \
-"../../../../../../dcache_dm1cycle.sv" \
 "../../../../../../dcache_interface.sv" \
 "../../../../../../decoder_logic.sv" \
 "../../../../../../decoder_state.sv" \
@@ -12,6 +11,7 @@ sv xil_defaultlib  \
 "../../../../../../execute_state.sv" \
 "../../../../../../rapid-x testbenches/fake_memory.sv" \
 "../../../../../../forwarding_unit.sv" \
+"../../../../../../memory_controller_interface.sv" \
 "../../../../../../rapid_x_cpu.sv" \
 "../../../../../../register_file.sv" \
 "../../../../../../rapid-x testbenches/rapid_x_testbench.sv" \

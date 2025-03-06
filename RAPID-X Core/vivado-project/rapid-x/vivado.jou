@@ -1,0 +1,93 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Thu Mar  6 08:45:57 2025
+# Process ID         : 32004
+# Current directory  : U:/Senior Design/RAPID-X Core/vivado-project/rapid-x
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent36648 U:\Senior Design\RAPID-X Core\vivado-project\rapid-x\rapid-x.xpr
+# Log file           : U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/vivado.log
+# Journal file       : U:/Senior Design/RAPID-X Core/vivado-project/rapid-x\vivado.jou
+# Running On         : DESKTOP-T92VI6B
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 19045
+# Processor Detail   : AMD Ryzen 7 5700X3D 8-Core Processor           
+# CPU Frequency      : 3000 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 42895 MB
+# Swap memory        : 9126 MB
+# Total Virtual      : 52021 MB
+# Available Virtual  : 22475 MB
+#-----------------------------------------------------------
+start_gui
+open_project {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.xpr}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+close [ open {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv} w ]
+add_files {{U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv}}
+update_compile_order -fileset sources_1
+create_ip -name blk_mem_gen -vendor xilinx.com -library ip -version 8.4 -module_name blk_cpu_mem
+set_property -dict [list \
+  CONFIG.Additional_Inputs_for_Power_Estimation {true} \
+  CONFIG.Assume_Synchronous_Clk {true} \
+  CONFIG.Enable_A {Use_ENA_Pin} \
+  CONFIG.Memory_Type {True_Dual_Port_RAM} \
+  CONFIG.Operating_Mode_A {WRITE_FIRST} \
+  CONFIG.Register_PortA_Output_of_Memory_Primitives {false} \
+  CONFIG.Register_PortB_Output_of_Memory_Primitives {false} \
+  CONFIG.Write_Depth_A {2048} \
+  CONFIG.Write_Width_A {32} \
+] [get_ips blk_cpu_mem]
+generate_target {instantiation_template} [get_files {{u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}]
+generate_target all [get_files  {{u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}]
+catch { config_ip_cache -export [get_ips -all blk_cpu_mem] }
+export_ip_user_files -of_objects [get_files {{u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] {{u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}]
+launch_runs blk_cpu_mem_synth_1 -jobs 8
+wait_on_run blk_cpu_mem_synth_1
+export_simulation -lib_map_path [list {modelsim=U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.cache/compile_simlib/modelsim} {questa=U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.cache/compile_simlib/questa} {riviera=U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.cache/compile_simlib/riviera} {activehdl=U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.cache/compile_simlib/activehdl}] -of_objects [get_files {{u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}] -directory {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.ip_user_files/sim_scripts} -ip_user_files_dir {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.ip_user_files} -ipstatic_source_dir {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.ip_user_files/ipstatic} -use_ip_compiled_libs -force -quiet
+close [ open {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_if.sv} w ]
+add_files {{U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_if.sv}}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top rapid_soc [current_fileset]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sources_1
+refresh_design
+refresh_design
+refresh_design
+refresh_design
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+close_design
+open_run synth_1 -name synth_1
+report_utilization -name utilization_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+set_property -dict [list \
+  CONFIG.Coe_File {U:/Senior Design/Youssef/program1.coe} \
+  CONFIG.Fill_Remaining_Memory_Locations {true} \
+  CONFIG.Load_Init_File {true} \
+  CONFIG.Remaining_Memory_Locations {00000033} \
+] [get_ips blk_cpu_mem]
+generate_target all [get_files  {{u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}]
+catch { config_ip_cache -export [get_ips -all blk_cpu_mem] }
+export_ip_user_files -of_objects [get_files {{u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}] -no_script -sync -force -quiet
+reset_run blk_cpu_mem_synth_1
+launch_runs blk_cpu_mem_synth_1 -jobs 8
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sim_1/new/soc_ifetch_test.sv} w ]
+add_files -fileset sim_1 {{U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sim_1/new/soc_ifetch_test.sv}}
+update_compile_order -fileset sim_1

@@ -1,0 +1,24 @@
+sv xpm  \
+"C:/Xilinx/Vivado/2024.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv" \
+
+sv xil_defaultlib  \
+"../../../../../rapid_pkg.sv" \
+"../../../../../cpu_ifetch_unit.sv" \
+"../../../../../dcache_dm1cycle.sv" \
+"../../../../../cpu_memory_unit.sv" \
+"../../../../../dcache_interface.sv" \
+"../../../../../decoder_logic.sv" \
+"../../../../../decoder_state.sv" \
+"../../../../../execute_logic.sv" \
+"../../../../../execute_state.sv" \
+"../../../../../rapid-x testbenches/fake_memory.sv" \
+"../../../../../forwarding_unit.sv" \
+"../../../../../memory_controller_interface.sv" \
+"../../../../../rapid_x_cpu.sv" \
+"../../../../../register_file.sv" \
+"../../../../../rapid-x testbenches/rapid_x_testbench.sv" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

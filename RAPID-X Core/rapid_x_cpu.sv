@@ -7,20 +7,7 @@
 import rapid_pkg::*;
 
 
-module rapid_x_cpu
-import memory_controller_interface::*;
-(
-    input logic i_clk,
-    input logic i_reset,
-
-    // Instruction Cache <==> Main Memory
-    input mci_response_t mem_res_port1,
-    output mci_request_t mem_req_port1,
-
-    // Data Cache <==> Main Memory
-    input mci_response_t mem_res_port2,
-    output mci_request_t mem_req_port2
-);
+module rapid_x_cpu(rapid_if.cpu bus);
 
     // These signals come from the execute state
     // module. They are used by IF stage to branch
@@ -92,16 +79,17 @@ import memory_controller_interface::*;
     //		keep current instruction value
     //		and do not change PC value
     cpu_ifetch_unit instruction_fetch_unit(
-         .i_clk(i_clk),
-         .i_reset(i_reset),
+         .i_clk(bus.i_clk),
+         .i_reset(bus.i_reset),
          .i_pipeline_ready(mem_ready),
          .i_ext_pc(ex_pc_ext),
          .i_pc_load(ex_pc_load),
+         .i_ram_input(bus.port1_read_data),
          .o_pc(if_pc),
-         .o_instruction(if_instruction),
-         .mem_req(mem_req_port1),
-         .mem_res(mem_res_port1)
+         .o_instruction(if_instruction)
     );
+
+    assign bus.port1_address = if_pc + 4; // We read the next instruction in the current instruction.
 
     // The register file will set all register to 0
     // when the reset signal is high (it also uses
@@ -110,8 +98,8 @@ import memory_controller_interface::*;
     // when the memory stage is writing to register file
     // while the ALU is reading from the register file.
     register_file reg_file(
-        .i_clk(i_clk),
-        .i_reset(i_reset),
+        .i_clk(bus.i_clk),
+        .i_reset(bus.i_reset),
         .i_rs1_out(de_control_signal.rs1_out),
         .i_rs2_out(de_control_signal.rs2_out),
         .i_rs1(de_control_signal.rs1),
@@ -119,7 +107,8 @@ import memory_controller_interface::*;
         .i_rd(mem_ready ? mem_rd : 0),
         .i_rd_data(mem_rd_output),
         .o_rs1_data(reg_rs1_data),
-        .o_rs2_data(reg_rs2_data)
+        .o_rs2_data(reg_rs2_data),
+        .ex_mem_signal(ex_mem_signal)
     );
 
     // This module is responsible for storing the state
@@ -127,8 +116,8 @@ import memory_controller_interface::*;
     // clock, it uses continous assignment to update the
     // output ports which will be used by the decoder_logic.
     decoder_state de_state(
-        .i_clk(i_clk),
-        .i_reset(i_reset),
+        .i_clk(bus.i_clk),
+        .i_reset(bus.i_reset),
         .i_pipeline_enable(mem_ready),
         .i_pc_load(ex_pc_load),
         .i_instruction(if_instruction),
@@ -145,8 +134,8 @@ import memory_controller_interface::*;
     );
 
     execute_state ex_state(
-        .i_clk(i_clk),
-        .i_reset(i_reset),
+        .i_clk(bus.i_clk),
+        .i_reset(bus.i_reset),
         .i_pipeline_enable(mem_ready),
         .i_pc_load(ex_pc_load),
         .i_pc(de_pc),
@@ -186,19 +175,15 @@ import memory_controller_interface::*;
     );
 
     cpu_memory_unit memory_unit(
-        .i_clk(i_clk),
-        .i_reset(i_reset),
+        .bus(bus),
         .i_control_sig(ex_mem_signal),
         .i_data_in(ex_rd_output), // the memory address to access
                                   // this can also be the value to
                                   // write to the register value.
-        .i_rs2(ex_memory_data),       // the value to store in memory
+        .i_memory_data(ex_memory_data),       // the value to store in memory
         .o_rd_output(mem_rd_output), // we connect this value to the register file
                                     // instead of the WB stage.
-        .o_rd(mem_rd),
-        .o_pipeline_ready(mem_ready),
-        .mem_req(mem_req_port2),
-        .mem_res(mem_res_port2)
+        .o_rd(mem_rd)
     );
 
 

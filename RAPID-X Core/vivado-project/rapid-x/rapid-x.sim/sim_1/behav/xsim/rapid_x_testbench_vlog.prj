@@ -1,9 +1,9 @@
 # compile verilog/system verilog design source files
 sv xil_defaultlib  \
 "../../../../../../rapid_pkg.sv" \
-"../../../../../../dcache_dm1cycle.sv" \
 "../../../../../../cpu_ifetch_unit.sv" \
 "../../../../../../cpu_memory_unit.sv" \
+"../../../../../../dcache_dm1cycle.sv" \
 "../../../../../../dcache_interface.sv" \
 "../../../../../../decoder_logic.sv" \
 "../../../../../../decoder_state.sv" \

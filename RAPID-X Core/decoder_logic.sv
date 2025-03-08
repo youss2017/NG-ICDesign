@@ -64,8 +64,6 @@ module decoder_logic
 );
 
     always_comb begin
-        o_control_signal = control_ex_s_default();
-        o_control_signal.debug_instruction = i_instruction;
         
             case(i_instruction[6:0])
     
@@ -75,6 +73,15 @@ module decoder_logic
                                 o_control_signal .iop = i_instruction[5:5];
                                 o_imm = $signed({i_instruction[31:12], 12'b0}); 
                                 o_control_signal .rd = i_instruction[11:7];
+                                o_control_signal.uncond_branch = 0;
+                                o_control_signal.cond_branch = 0;
+                                o_control_signal.mem = 0;
+                                o_control_signal.alu_imm = 0;
+                                o_control_signal.alu_reg = 0;
+                                o_control_signal.rs1_out = 0;
+                                o_control_signal.rs2_out = 0;
+                                o_control_signal.rs1 = 0;
+                                o_control_signal.rs2 = 0;
                         end
                             
             upper_family2:               
@@ -83,6 +90,15 @@ module decoder_logic
                                 o_control_signal .iop = i_instruction[5:5];
                                 o_imm = $signed({i_instruction[31:12], 12'b0}); 
                                 o_control_signal .rd = i_instruction[11:7];
+                                o_control_signal.uncond_branch = 0;
+                                o_control_signal.cond_branch = 0;
+                                o_control_signal.mem = 0;
+                                o_control_signal.alu_imm = 0;
+                                o_control_signal.alu_reg = 0;
+                                o_control_signal.rs1_out = 0;
+                                o_control_signal.rs2_out = 0;
+                                o_control_signal.rs1 = 0;
+                                o_control_signal.rs2 = 0;
                         end
     
             uncond_branch_jal:       
@@ -91,6 +107,15 @@ module decoder_logic
                                 o_control_signal .iop = 1'b0;
                                 o_imm = $signed({i_instruction[31:31], i_instruction[19:12], i_instruction[30:21], 1'b0}); 
                                 o_control_signal .rd = i_instruction[11:7];
+                                o_control_signal .rs1_out = 0;
+                                o_control_signal.load_upper_imm = 0;
+                                o_control_signal.cond_branch = 0;
+                                o_control_signal.mem = 0;
+                                o_control_signal.alu_imm = 0;
+                                o_control_signal.alu_reg = 0;
+                                o_control_signal.rs2_out = 0;
+                                o_control_signal.rs1 = 0;
+                                o_control_signal.rs2 = 0;
                         end
                         
             uncond_branch_jalr:       
@@ -101,6 +126,13 @@ module decoder_logic
                                 o_control_signal .rd = i_instruction[11:7];
                                 o_control_signal .rs1 = i_instruction[19:15];
                                 o_control_signal.rs1_out = 1'b1;
+                                o_control_signal.load_upper_imm = 0;
+                                o_control_signal.cond_branch = 0;
+                                o_control_signal.mem = 0;
+                                o_control_signal.alu_imm = 0;
+                                o_control_signal.alu_reg = 0;
+                                o_control_signal.rs2_out = 0;
+                                o_control_signal.rs2 = 0;
                         end
     
             cond_branch_family:         
@@ -112,6 +144,13 @@ module decoder_logic
                                 o_control_signal.rs1_out = 1;
                                 o_control_signal.rs2 = i_instruction[24:20];
                                 o_control_signal.rs2_out = 1;
+                                o_control_signal.load_upper_imm = 0;
+                                o_control_signal.uncond_branch = 0;
+                                o_control_signal.mem = 0;
+                                o_control_signal.alu_imm = 0;
+                                o_control_signal.alu_reg = 0;
+                                o_control_signal.iop = 0;
+                                o_control_signal.rd = 0;
                         end
     
             mem_load_family:            
@@ -122,6 +161,14 @@ module decoder_logic
                                 o_control_signal .rs1 = i_instruction[19:15]; // ALU uses *rd = (imm + *rs1) as store location
                                 o_control_signal .rs1_out = 1;
                                 o_control_signal .rd = i_instruction[11:7];
+                                o_control_signal.load_upper_imm = 0;
+                                o_control_signal.uncond_branch = 0;
+                                o_control_signal.cond_branch = 0;
+                                o_control_signal.alu_imm = 0;
+                                o_control_signal.alu_reg = 0;
+                                o_control_signal.iop = 0;
+                                o_control_signal.rs2_out = 0;
+                                o_control_signal.rs2 = 0;
                         end
     
             mem_store_family:           
@@ -133,6 +180,12 @@ module decoder_logic
                                 o_control_signal .rs1_out = 1;
                                 o_control_signal .rs2 = i_instruction[24:20];
                                 o_control_signal .rs2_out = 1;
+                                o_control_signal.load_upper_imm = 0;
+                                o_control_signal.uncond_branch = 0;
+                                o_control_signal.cond_branch = 0;
+                                o_control_signal.alu_imm = 0;
+                                o_control_signal.alu_reg = 0;
+                                o_control_signal.rd = 0;
                         end
     
             imm_family:                 
@@ -143,27 +196,46 @@ module decoder_logic
                                 o_control_signal .rs1 = i_instruction[19:15];
                                 o_control_signal .rs1_out = 1;
                                 o_control_signal .rd = i_instruction[11:7];
+                                o_control_signal.load_upper_imm = 0;
+                                o_control_signal.uncond_branch = 0;
+                                o_control_signal.cond_branch = 0;
+                                o_control_signal.mem = 0;
+                                o_control_signal.alu_reg = 0;
+                                o_control_signal.rs2_out = 0;
+                                o_control_signal.rs2 = 0;
                         end
     
             reg_family:                 
                         begin 
-                            o_control_signal .alu_reg = 1;
-                            o_control_signal .iop = (i_instruction[30:30]);
-                            o_control_signal .rs1 = i_instruction[19:15]; 
-                            o_control_signal .rs1_out = 1;
-                            o_control_signal .rs2 = i_instruction[24:20]; 
-                            o_control_signal .rs2_out = 1;
-                            o_control_signal .rd = i_instruction[11:7];
+                                o_control_signal .alu_reg = 1;
+                                o_control_signal .iop = (i_instruction[30:30]);
+                                o_control_signal .rs1 = i_instruction[19:15]; 
+                                o_control_signal .rs1_out = 1;
+                                o_control_signal .rs2 = i_instruction[24:20]; 
+                                o_control_signal .rs2_out = 1;
+                                o_control_signal .rd = i_instruction[11:7];
+                                o_imm = 0;
+                                o_control_signal.load_upper_imm = 0;
+                                o_control_signal.uncond_branch = 0;
+                                o_control_signal.cond_branch = 0;
+                                o_control_signal.mem = 0;
+                                o_control_signal.alu_imm = 0;
                         end
                         
             default: begin
-                            o_control_signal .alu_reg = 1;
-                            o_control_signal .iop = 0;
-                            o_control_signal .rs1 = 0;
-                            o_control_signal .rs1_out = 0;
-                            o_control_signal .rs2 = 0; 
-                            o_control_signal .rs2_out = 0;
-                            o_control_signal .rd = 0;
+                        o_imm = 0;
+                        o_control_signal.load_upper_imm = 0;
+                        o_control_signal.uncond_branch = 0;
+                        o_control_signal.cond_branch = 0;
+                        o_control_signal.mem = 0;
+                        o_control_signal.alu_imm = 0;
+                        o_control_signal.alu_reg = 0;
+                        o_control_signal.iop = 0;
+                        o_control_signal.rs1_out = 0;
+                        o_control_signal.rs2_out = 0;
+                        o_control_signal.rs1 = 0;
+                        o_control_signal.rs2 = 0;
+                        o_control_signal.rd = 0;
             end
                 
             endcase

@@ -52,7 +52,6 @@ module execute_logic
         o_control_signal.iop = i_control_signal.iop;
         o_control_signal.fcs_opcode = i_control_signal.fcs_opcode;
         o_control_signal.rd = i_control_signal.rd;
-        o_control_signal.debug_instruction = i_control_signal.debug_instruction;
 
         // ADD/SUB/SLL/SLT/SLTU/XOR/SRL/SRA/OR/AND and Immediate version
         if (i_control_signal.alu_imm || i_control_signal.alu_reg) begin
@@ -117,10 +116,11 @@ module execute_logic
                     /* BGE */  3'b101: o_pc_load = i_rs1 >= i_rs2;
                     /* BLTU */ 3'b110: o_pc_load = $unsigned(i_rs1) < $unsigned(i_rs2);
                     /* BGEU */ 3'b111: o_pc_load = $unsigned(i_rs1) >= $unsigned(i_rs2);
+                               default: o_pc_load = 0;
                 endcase
                 
                 o_pc_ext = (i_pc + i_imm) & ~32'h00000001;
-                o_rd_output = 'bz;
+                o_rd_output = 0;
             end
 
         // JAL/JALR
@@ -168,9 +168,9 @@ module execute_logic
                 o_pc_ext = 0;
                 o_pc_load = 0;
         end else begin
-            o_pc_ext = 'b0;
-            o_pc_load = 'b0;
-            o_rd_output = 'b0;
+            o_pc_ext = 0;
+            o_pc_load = 0;
+            o_rd_output = 0;
         end
 
     end

@@ -19,8 +19,8 @@ vcom -work xpm -93  -incr \
 vlog -work xil_defaultlib  -incr -l xpm -l xil_defaultlib \
 "../../../../../rapid_pkg.sv" \
 "../../../../../cpu_ifetch_unit.sv" \
-"../../../../../dcache_dm1cycle.sv" \
 "../../../../../cpu_memory_unit.sv" \
+"../../../../../dcache_dm1cycle.sv" \
 "../../../../../dcache_interface.sv" \
 "../../../../../decoder_logic.sv" \
 "../../../../../decoder_state.sv" \
@@ -29,6 +29,7 @@ vlog -work xil_defaultlib  -incr -l xpm -l xil_defaultlib \
 "../../../../../rapid-x testbenches/fake_memory.sv" \
 "../../../../../forwarding_unit.sv" \
 "../../../../../memory_controller_interface.sv" \
+"../../../rapid-x.srcs/sources_1/new/rapid_if.sv" \
 "../../../../../rapid_x_cpu.sv" \
 "../../../../../register_file.sv" \
 "../../../../../rapid-x testbenches/rapid_x_testbench.sv" \

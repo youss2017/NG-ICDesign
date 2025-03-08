@@ -1,1 +1,1 @@
-Â9The reference checkpoint is from an old version of Vivado
+Â6No compile time benefit to using incremental synthesis

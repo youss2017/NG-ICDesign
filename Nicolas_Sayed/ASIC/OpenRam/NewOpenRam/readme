@@ -1,6 +1,13 @@
-This directory contains helpful files for doing SKILL text editing.
+loadtech - SSHAFT technology file parser
+6/2/2005 Rhett Davis (rhett_davis@ncsu.edu)
 
-skill.vim - SKILL/DFII syntax highlighting for vim (http:///www.vim.org)
-diva.vim - Diva rules syntax highlighting for vim
-skill.nedit - SKILL syntax highlighting for nedit
-(http://fnpspa.fnal.gov/nirvana/nedit.html)
+To compile this code at NCSU, use the following commands:
+  add gnu
+  add gcc295 (solaris only)
+  make
+
+You can also clean up the directory with
+  make clean
+
+You can also install in the ../../../bin directory with
+  make install

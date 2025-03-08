@@ -22,27 +22,62 @@
 
 module rapid_soc(
     input wire i_clk,
-    input wire i_reset
+    input wire i_reset,
+    
+    output [7:0] segement,
+    output [3:0] anode
 );
 
-    rapid_if bus(.i_clk(i_clk), .i_reset(i_reset));
+    
+    //clock_divider #(.TARGET_VALUE(3)) cpu_clk_div(.clk(i_clk), .reset(0), .out_clk(cpu_clk));
+
+    // CPU signals
+    logic [31:0] instruction_fetch_address, instruction_fetch_data;
+    logic [31:0] mmu_address, mmu_input_data, mmu_output_data, mmu_we;
+    // MMU signals
+    logic ram_enable, lcd_enable;
+
+    rapid_x_cpu cpu(
+        .clk(i_clk),
+        .reset(i_reset),
+        .instruction_fetch_address(instruction_fetch_address),
+        .instruction_fetch_data(instruction_fetch_data),
+        .mmu_address(mmu_address),
+        .mmu_input_data(mmu_input_data),
+        .mmu_output_data(mmu_output_data),
+        .mmu_we(mmu_we)
+    );
+
+    memory_managment_unit mmu(
+        .mmu_address(mmu_address),
+        .ram_enable(ram_enable),
+        .lcd_enable(lcd_enable)
+    );
 
     blk_cpu_mem cpu_ram(
-        .clka(i_clk), // TODO(Youssef): switch to divided clock
-        .ena(1), // TODO(Youssef): Get proper signal
+        .clka(i_clk),
+        .ena(1),
         .wea(0),
-        .addra(bus.port1_address),
-        .dina('hX),
-        .douta(bus.port1_read_data),
+        .addra(instruction_fetch_address[10:0]),
+        .dina(0),
+        .douta(instruction_fetch_data),
         
-        .clkb(i_clk), // TODO(Youssef): switch to divided clock
-        .enb(1), // TODO(Youssef): Get proper signal
-        .web(bus.port2_we),
-        .addrb(bus.port2_address),
-        .dinb(bus.port2_write_data),
-        .doutb(bus.port2_read_data)
+        .clkb(i_clk),
+        .enb(ram_enable),
+        .web(mmu_we),
+        .addrb(mmu_address),
+        .dinb(mmu_output_data),
+        .doutb(mmu_input_data)
     );
     
-    rapid_x_cpu cpu(bus);
-
+    lcd_display lcd(
+        .clk(i_clk),
+        .reset(i_reset),
+        .load(lcd_enable & mmu_we),
+        .value(mmu_output_data),
+        .o_signal(segement),
+        .o_anode_select(anode)
+    );
+    
+    
 endmodule

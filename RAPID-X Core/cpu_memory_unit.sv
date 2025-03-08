@@ -10,7 +10,14 @@
  **********************************************************/
 
 module cpu_memory_unit(
-            rapid_if.cpu        bus,
+            input clk,
+            input reset,
+
+            output logic [31:0] mmu_address,
+            input  logic [31:0] mmu_input_data,
+            output logic [31:0] mmu_output_data,
+            output logic mmu_we,
+
             input control_mem_s i_control_sig,
             input [31:0]        i_data_in, // We either forward this value to WB stage
                                            // or use it as memory address for R/W operations
@@ -34,14 +41,13 @@ module cpu_memory_unit(
 
     mem_access_t state, next_state;
     
-    always_ff @(posedge bus.i_clk iff bus.i_reset == 0 or posedge bus.i_reset) begin
+    always_ff @(posedge clk or posedge reset) begin
         
-        if (bus.i_reset) begin
-            o_pipeline_enable <= 1;
+        if (reset) begin
             state <= STANDBY;
         end else begin
             state <= next_state;
-        end // bus.i_reset end
+        end // reset end
 
     end
 
@@ -53,11 +59,11 @@ module cpu_memory_unit(
 
                 STANDBY: begin
                     o_pipeline_enable = 0;
-                    bus.port2_address = i_data_in; // Set memory read/write address
-                    bus.port2_we = 0;
+                    mmu_address = i_data_in; // Set memory read/write address
+                    mmu_output_data = 0;
+                    mmu_we = 0;
                     o_rd = 0;
                     o_rd_output = 0;
-                    o_pipeline_enable = 0;
                     next_state = READY;
                 end
 
@@ -65,27 +71,27 @@ module cpu_memory_unit(
                     // Regardless of operation type, we move on to the next instruction.
                     next_state = STANDBY;
                     o_pipeline_enable = 1;
-                    bus.port2_address = i_data_in;
-                    bus.port2_we = i_control_sig.iop;
+                    mmu_address = i_data_in;
+                    mmu_we = i_control_sig.iop;
                     if (i_control_sig.iop) begin : store_operation
                         o_rd = 0;
-                        o_rd_output = 'hz;
+                        o_rd_output = 0;
                         case (i_control_sig.fcs_opcode)
-                            3'b000 /* SB */: bus.port2_write_data = (bus.port2_read_data & 32'hFFFFFF00) | i_memory_data;
-                            3'b001 /* SH */: bus.port2_write_data = (bus.port2_read_data & 32'hFFFF0000) | i_memory_data;
-                            3'b010 /* SW */: bus.port2_write_data = i_memory_data;
-                            default: bus.port2_write_data = 'hz;
+                            3'b000 /* SB */: mmu_output_data = (mmu_input_data & 32'hFFFFFF00) | i_memory_data;
+                            3'b001 /* SH */: mmu_output_data = (mmu_input_data & 32'hFFFF0000) | i_memory_data;
+                            3'b010 /* SW */: mmu_output_data = i_memory_data;
+                            default: mmu_output_data = 0;
                         endcase
                     end else begin : load_operation
-                        bus.port2_write_data = 'hz;
+                        mmu_output_data = 0;
 
                         case (i_control_sig.fcs_opcode)
-                            3'b000 /* LB */ : o_rd_output = { {24{bus.port2_read_data[7]}}, bus.port2_read_data[7:0] };
-                            3'b001 /* LH */ : o_rd_output = { {16{bus.port2_read_data[15]}}, bus.port2_read_data[15:0] };
-                            3'b100 /* LW */ : o_rd_output = bus.port2_read_data;
-                            3'b100 /* LBU */: o_rd_output = bus.port2_read_data[7:0];
-                            3'b101 /* LHU */: o_rd_output = bus.port2_read_data[15:0];
-                            default: o_rd_output = 'hz;
+                            3'b000 /* LB */ : o_rd_output = { {24{mmu_input_data[7]}}, mmu_input_data[7:0] };
+                            3'b001 /* LH */ : o_rd_output = { {16{mmu_input_data[15]}}, mmu_input_data[15:0] };
+                            3'b010 /* LW */ : o_rd_output = mmu_input_data;
+                            3'b100 /* LBU */: o_rd_output = mmu_input_data[7:0];
+                            3'b101 /* LHU */: o_rd_output = mmu_input_data[15:0];
+                            default: o_rd_output = 0;
                         endcase
                         o_rd = i_control_sig.rd;
                     end
@@ -98,8 +104,9 @@ module cpu_memory_unit(
             o_pipeline_enable = 1;
             o_rd_output = i_data_in;
             o_rd = i_control_sig.rd;
-            bus.port2_we = 0;
-            bus.port2_address = 0;
+            mmu_we = 0;
+            mmu_address = 0;
+            mmu_output_data = 0;
         end
 
     end

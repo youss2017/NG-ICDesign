@@ -7,7 +7,18 @@
 import rapid_pkg::*;
 
 
-module rapid_x_cpu(rapid_if.cpu bus);
+module rapid_x_cpu(
+    input clk,
+    input reset,
+
+    input [31:0] instruction_fetch_data,
+    output logic [31:0] instruction_fetch_address,
+
+    output logic [31:0] mmu_address,
+    input logic [31:0] mmu_input_data,
+    output logic [31:0] mmu_output_data,
+    output logic mmu_we
+);
 
     // These signals come from the execute state
     // module. They are used by IF stage to branch
@@ -51,7 +62,7 @@ module rapid_x_cpu(rapid_if.cpu bus);
     // The following are connections from
     // the cpu_memory_unit
     logic [XLEN-1:0] mem_rd_output;
-    logic [4:0] mem_rd;
+    logic [3:0] mem_rd;
 
     // forwarding wires for execute_logic
     // redirects data inputs from decoder_logic
@@ -79,17 +90,17 @@ module rapid_x_cpu(rapid_if.cpu bus);
     //		keep current instruction value
     //		and do not change PC value
     cpu_ifetch_unit instruction_fetch_unit(
-         .i_clk(bus.i_clk),
-         .i_reset(bus.i_reset),
+         .i_clk(clk),
+         .i_reset(reset),
          .i_pipeline_ready(mem_ready),
          .i_ext_pc(ex_pc_ext),
          .i_pc_load(ex_pc_load),
-         .i_ram_input(bus.port1_read_data),
+         .i_ram_input(instruction_fetch_data),
          .o_pc(if_pc),
          .o_instruction(if_instruction)
     );
 
-    assign bus.port1_address = if_pc + 4; // We read the next instruction in the current instruction.
+    assign instruction_fetch_address = if_pc + 4; // We read the next instruction in the current instruction.
 
     // The register file will set all register to 0
     // when the reset signal is high (it also uses
@@ -98,8 +109,8 @@ module rapid_x_cpu(rapid_if.cpu bus);
     // when the memory stage is writing to register file
     // while the ALU is reading from the register file.
     register_file reg_file(
-        .i_clk(bus.i_clk),
-        .i_reset(bus.i_reset),
+        .i_clk(clk),
+        .i_reset(reset),
         .i_rs1_out(de_control_signal.rs1_out),
         .i_rs2_out(de_control_signal.rs2_out),
         .i_rs1(de_control_signal.rs1),
@@ -116,8 +127,8 @@ module rapid_x_cpu(rapid_if.cpu bus);
     // clock, it uses continous assignment to update the
     // output ports which will be used by the decoder_logic.
     decoder_state de_state(
-        .i_clk(bus.i_clk),
-        .i_reset(bus.i_reset),
+        .i_clk(clk),
+        .i_reset(reset),
         .i_pipeline_enable(mem_ready),
         .i_pc_load(ex_pc_load),
         .i_instruction(if_instruction),
@@ -134,8 +145,8 @@ module rapid_x_cpu(rapid_if.cpu bus);
     );
 
     execute_state ex_state(
-        .i_clk(bus.i_clk),
-        .i_reset(bus.i_reset),
+        .i_clk(clk),
+        .i_reset(reset),
         .i_pipeline_enable(mem_ready),
         .i_pc_load(ex_pc_load),
         .i_pc(de_pc),
@@ -175,7 +186,14 @@ module rapid_x_cpu(rapid_if.cpu bus);
     );
 
     cpu_memory_unit memory_unit(
-        .bus(bus),
+        .clk(clk),
+        .reset(reset),
+
+        .mmu_address(mmu_address),
+        .mmu_input_data(mmu_input_data),
+        .mmu_output_data(mmu_output_data),
+        .mmu_we(mmu_we),
+
         .i_control_sig(ex_mem_signal),
         .i_data_in(ex_rd_output), // the memory address to access
                                   // this can also be the value to
@@ -183,7 +201,9 @@ module rapid_x_cpu(rapid_if.cpu bus);
         .i_memory_data(ex_memory_data),       // the value to store in memory
         .o_rd_output(mem_rd_output), // we connect this value to the register file
                                     // instead of the WB stage.
-        .o_rd(mem_rd)
+        .o_rd(mem_rd),
+
+        .o_pipeline_enable(mem_ready)
     );
 
 

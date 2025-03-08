@@ -57,8 +57,10 @@ if {$::dispatch::connected} {
 
 OPTRACE "blk_cpu_mem_synth_1" START { ROLLUP_AUTO }
 set_param tcl.statsThreshold 360
-set_param synth.incrementalSynthesisCache {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/.Xil/Vivado-32004-DESKTOP-T92VI6B/incrSyn}
+set_param chipscope.maxJobs 4
+set_param synth.incrementalSynthesisCache C:/Users/youssef/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-40720-DESKTOP-T92VI6B/incrSyn
 set_param checkpoint.writeSynthRtdsInDcp 1
+set_param xicom.use_bs_reader 1
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 set_param project.vivado.isBlockSynthRun true
@@ -79,7 +81,7 @@ set_property ip_output_repo {u:/Senior Design/RAPID-X Core/vivado-project/rapid-
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet {{u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}
+read_ip -quiet {{U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}
 set_property used_in_implementation false [get_files -all {{u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_cpu_mem/blk_cpu_mem_ooc.xdc}}]
 
 OPTRACE "Adding files" END { }

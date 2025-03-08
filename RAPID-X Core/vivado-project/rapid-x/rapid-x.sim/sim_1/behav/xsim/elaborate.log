@@ -1,34 +1,14 @@
 Vivado Simulator v2024.2.0
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2024.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot rapid_x_testbench_behav xil_defaultlib.rapid_x_testbench xil_defaultlib.glbl -log elaborate.log 
+Running: C:/Xilinx/Vivado/2024.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot rapid_x_testbench_behav xil_defaultlib.rapid_x_testbench xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 5 for port 'i_rd' [U:/Senior Design/RAPID-X Core/rapid_x_cpu.sv:119]
-WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 5 for port 'i_mem_rd' [U:/Senior Design/RAPID-X Core/rapid_x_cpu.sv:181]
-Completed static elaboration
-Starting simulation data flow analysis
-Completed simulation data flow analysis
-Time Resolution for simulation is 1ps
-Compiling package xil_defaultlib.memory_controller_interface
-Compiling package xil_defaultlib.rapid_pkg
-Compiling package xil_defaultlib.$unit_rapid_pkg_sv_2351329124
-Compiling module xil_defaultlib.fake_memory_default
-Compiling module xil_defaultlib.dcache_interface(DATA_LENGTH=128...
-Compiling module xil_defaultlib.sram_150b_512_1rw_freepdk45_defa...
-Compiling module xil_defaultlib.dcache_dm1cycle(iface=dcache_int...
-Compiling module xil_defaultlib.cpu_ifetch_unit
-Compiling module xil_defaultlib.register_file
-Compiling module xil_defaultlib.decoder_state
-Compiling module xil_defaultlib.decoder_logic
-Compiling module xil_defaultlib.execute_state
-Compiling module xil_defaultlib.execute_logic
-Compiling module xil_defaultlib.forward_unit
-Compiling module xil_defaultlib.dcache_interface_default
-Compiling module xil_defaultlib.dcache_dm1cycle_default
-Compiling module xil_defaultlib.cpu_memory_unit
-Compiling module xil_defaultlib.rapid_x_cpu
-Compiling module xil_defaultlib.rapid_x_testbench
-Compiling module xil_defaultlib.glbl
-Built simulation snapshot rapid_x_testbench_behav
+ERROR: [VRFC 10-3180] cannot find port 'mem_req_port2' on this module [U:/Senior Design/RAPID-X Core/rapid-x testbenches/rapid_x_testbench.sv:44]
+ERROR: [VRFC 10-3180] cannot find port 'mem_res_port2' on this module [U:/Senior Design/RAPID-X Core/rapid-x testbenches/rapid_x_testbench.sv:43]
+ERROR: [VRFC 10-3180] cannot find port 'mem_req_port1' on this module [U:/Senior Design/RAPID-X Core/rapid-x testbenches/rapid_x_testbench.sv:42]
+ERROR: [VRFC 10-3180] cannot find port 'mem_res_port1' on this module [U:/Senior Design/RAPID-X Core/rapid-x testbenches/rapid_x_testbench.sv:41]
+ERROR: [VRFC 10-3180] cannot find port 'i_reset' on this module [U:/Senior Design/RAPID-X Core/rapid-x testbenches/rapid_x_testbench.sv:40]
+ERROR: [VRFC 10-8530] module 'fake_memory_default' is ignored due to previous errors [U:/Senior Design/RAPID-X Core/rapid-x testbenches/fake_memory.sv:4]
+ERROR: [XSIM 43-3322] Static elaboration of top level Verilog design unit(s) in library work failed.

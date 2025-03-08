@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1741453900">
+  <File Type="PA-TCL" Name="rapid_soc.tcl"/>
+  <File Type="REPORTS-TCL" Name="rapid_soc_reports.tcl"/>
+  <File Type="INIT-TIMING" Name="rapid_soc_timing_summary_init.rpt"/>
+  <File Type="OPT-DCP" Name="rapid_soc_opt.dcp"/>
+  <File Type="OPT-DRC" Name="rapid_soc_drc_opted.rpt"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="rapid_soc_methodology_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="rapid_soc.hwdef"/>
+  <File Type="OPT-TIMING" Name="rapid_soc_timing_summary_opted.rpt"/>
+  <File Type="OPT-RQA-PB" Name="rapid_soc_rqa_opted.pb"/>
+  <File Type="PWROPT-DCP" Name="rapid_soc_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="rapid_soc_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="rapid_soc_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="rapid_soc_placed.dcp"/>
+  <File Type="PLACE-IO" Name="rapid_soc_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="rapid_soc_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="rapid_soc_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="rapid_soc_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="rapid_soc_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="rapid_soc_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="rapid_soc_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="rapid_soc_timing_summary_placed.rpt"/>
+  <File Type="PLACE-RQA-PB" Name="rapid_soc_rqa_placed.pb"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="rapid_soc_postplace_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="rapid_soc_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="rapid_soc_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="rapid_soc_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-TIMING" Name="rapid_soc_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="rapid_soc_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="rapid_soc_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="rapid_soc_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="rapid_soc_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="rapid_soc_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="rapid_soc_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="rapid_soc_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="rapid_soc_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="rapid_soc_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="rapid_soc_power_routed.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="rapid_soc_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="rapid_soc_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="rapid_soc_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="rapid_soc_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="rapid_soc_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="rapid_soc_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="rapid_soc_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="rapid_soc_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="rapid_soc_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="rapid_soc_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="rapid_soc_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="rapid_soc_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-RQS-PB" Name="rapid_soc_rqs_routed.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="rapid_soc_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="rapid_soc_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="rapid_soc_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="rapid_soc_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="rapid_soc_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="rapid_soc_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="rapid_soc_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="rapid_soc_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BG-BIT" Name="rapid_soc.bit"/>
+  <File Type="BG-BIN" Name="rapid_soc.bin"/>
+  <File Type="BITSTR-MSK" Name="rapid_soc.msk"/>
+  <File Type="BITSTR-RBT" Name="rapid_soc.rbt"/>
+  <File Type="BITSTR-NKY" Name="rapid_soc.nky"/>
+  <File Type="BITSTR-BMM" Name="rapid_soc_bd.bmm"/>
+  <File Type="BITSTR-MMI" Name="rapid_soc.mmi"/>
+  <File Type="PDI-FILE" Name="rapid_soc.pdi"/>
+  <File Type="BOOT-PDI-FILE" Name="rapid_soc_boot.pdi"/>
+  <File Type="PL-PDI-FILE" Name="rapid_soc_pld.pdi"/>
+  <File Type="RCFI_FILE" Name="rapid_soc.rcfi"/>
+  <File Type="CFI_FILE" Name="rapid_soc.cfi"/>
+  <File Type="RNPI_FILE" Name="rapid_soc.rnpi"/>
+  <File Type="NPI_FILE" Name="rapid_soc.npi"/>
+  <File Type="RBD_FILE" Name="rapid_soc.rbd"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="rapid_soc.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="rapid_soc.sysdef"/>
+  <File Type="BG-BGN" Name="rapid_soc.bgn"/>
+  <File Type="BG-DRC" Name="rapid_soc.drc"/>
+  <File Type="RDI-RDI" Name="rapid_soc.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="ROUTE-RQS" Name="rapid_soc_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="rapid_soc_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/anode_mux.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/bounded_counter.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/clock_divider.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../rapid_pkg.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../cpu_ifetch_unit.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../cpu_memory_unit.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../decoder_logic.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../decoder_state.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../execute_logic.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../execute_state.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../forwarding_unit.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/lcd_display.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/memory_managment_unit.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../rapid_x_cpu.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../register_file.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/segment_driver.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/rapid_soc.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/rapid_if.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../dcache_interface.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../memory_controller_interface.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../dcache_dm1cycle.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../rapid-x testbenches/decoder_state_testbench.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../../Youssef/program1.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="rapid_soc"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/new/constraints.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/constraints.xdc"/>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/rapid_x_cpu.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="blk_cpu_mem"/>
+</GenRun>

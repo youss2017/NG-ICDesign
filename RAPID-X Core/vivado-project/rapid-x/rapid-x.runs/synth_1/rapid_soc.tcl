@@ -56,11 +56,6 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param tcl.statsThreshold 360
-set_param synth.incrementalSynthesisCache {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/.Xil/Vivado-32004-DESKTOP-T92VI6B/incrSyn}
-set_param checkpoint.writeSynthRtdsInDcp 1
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -77,20 +72,27 @@ set_property ip_output_repo {u:/Senior Design/RAPID-X Core/vivado-project/rapid-
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
+add_files {{U:/Senior Design/Youssef/program1.coe}}
 read_verilog -library xil_defaultlib -sv {
+  {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/bounded_counter.sv}
+  {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/clock_divider.sv}
   {U:/Senior Design/RAPID-X Core/rapid_pkg.sv}
   {U:/Senior Design/RAPID-X Core/cpu_ifetch_unit.sv}
+  {U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv}
   {U:/Senior Design/RAPID-X Core/decoder_logic.sv}
   {U:/Senior Design/RAPID-X Core/decoder_state.sv}
   {U:/Senior Design/RAPID-X Core/execute_logic.sv}
   {U:/Senior Design/RAPID-X Core/execute_state.sv}
   {U:/Senior Design/RAPID-X Core/forwarding_unit.sv}
-  {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_if.sv}
+  {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv}
+  {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/memory_managment_unit.sv}
   {U:/Senior Design/RAPID-X Core/rapid_x_cpu.sv}
   {U:/Senior Design/RAPID-X Core/register_file.sv}
+  {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/segment_driver.sv}
   {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv}
 }
-read_ip -quiet {{u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}
+read_verilog -library xil_defaultlib {{U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/anode_mux.v}}
+read_ip -quiet {{U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}
 set_property used_in_implementation false [get_files -all {{u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_cpu_mem/blk_cpu_mem_ooc.xdc}}]
 
 OPTRACE "Adding files" END { }
@@ -102,6 +104,9 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
+read_xdc {{U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc}}
+set_property used_in_implementation false [get_files {{U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc}}]
+
 set_param ips.enableIPCacheLiteLoad 1
 
 read_checkpoint -auto_incremental -incremental {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/utils_1/imports/synth_1/rapid_x_cpu.dcp}

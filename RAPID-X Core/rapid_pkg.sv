@@ -46,7 +46,6 @@ package rapid_pkg;
         logic [4:0] rs1;
         logic [4:0] rs2;
         logic [4:0] rd;
-        logic [XLEN-1:0] debug_instruction;
     } control_ex_s;
 
     // Control signal for cpu memory stage
@@ -55,7 +54,6 @@ package rapid_pkg;
         logic iop;
         logic [2:0] fcs_opcode;
         logic [4:0] rd;
-        logic [XLEN-1:0] debug_instruction;
     } control_mem_s;
     
 
@@ -74,8 +72,7 @@ package rapid_pkg;
             fcs_opcode: '0,
             rs1: '0,
             rs2: '0,
-            rd: '0,
-            debug_instruction: 'x
+            rd: '0
         };
     endfunction
 
@@ -85,8 +82,7 @@ package rapid_pkg;
             mem: '0,
             iop: '0,
             fcs_opcode: '0,
-            rd: '0,
-            debug_instruction: 'x
+            rd: '0
         };
     endfunction
 

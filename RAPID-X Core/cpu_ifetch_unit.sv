@@ -25,22 +25,22 @@ module cpu_ifetch_unit
     input  logic                 i_pc_load,
     input  logic                 i_pipeline_ready, /* push next instruction */
     input  logic  [XLEN-1:0]     i_ram_input,
-    // The cpu will read [o_pc + 4] always
+    // The cpu will read [o_pc + 1] always
     output logic  [XLEN-1:0]     o_pc,
     output logic  [XLEN-1:0]     o_instruction
 );
     
     always_ff @(posedge i_clk iff i_reset == 0 or posedge i_reset) begin
         if (i_reset) begin
-            o_pc <= -4;
+            o_pc <= -2;
             o_instruction = NOP_INSTRUCTION;
         end
         else begin
             if (i_pc_load) begin
-                o_pc <= i_ext_pc - 4;
+                o_pc <= i_ext_pc - 1;
                 o_instruction = NOP_INSTRUCTION;
             end else begin
-                o_pc <= i_pipeline_ready ? (o_pc + 4) : o_pc;
+                o_pc <= i_pipeline_ready ? (o_pc + 1) : o_pc;
                 o_instruction = i_pipeline_ready ? i_ram_input : NOP_INSTRUCTION;
             end
         end

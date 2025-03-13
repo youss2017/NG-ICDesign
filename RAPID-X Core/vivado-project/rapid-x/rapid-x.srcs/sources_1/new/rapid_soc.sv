@@ -25,20 +25,43 @@ module rapid_soc(
     input wire i_reset,
     
     output [7:0] segement,
-    output [3:0] anode
-);
-
+    output [3:0] anode,
     
-    //clock_divider #(.TARGET_VALUE(3)) cpu_clk_div(.clk(i_clk), .reset(0), .out_clk(cpu_clk));
+    output hSync,
+    output vSync,
+    output [3:0] red,
+    output [3:0] green,
+    output [3:0] blue,
+    
+    input clk_source,
+    input clk_button,
+    
+    // MMU signals    
+    output logic mmu_we,
+    output logic ram_enable,
+    output logic lcd_enable,
+    output logic display_enable,
+    
+    output logic rst_indicator,
+    output logic clk_indicator
+);
+   
+    clock_divider #(.TARGET_VALUE(16)) cpu_clk_div(.clk(i_clk), .reset(0), .out_clk(cpu_clk));
 
     // CPU signals
     logic [31:0] instruction_fetch_address, instruction_fetch_data;
     logic [31:0] mmu_address, mmu_input_data, mmu_output_data, mmu_we;
-    // MMU signals
-    logic ram_enable, lcd_enable;
+    
+    assign rst_indicator = i_reset;
+    assign clk_indicator = clk_source;
+    
+    initial begin
+        $monitor("MMU: ADDRS(%d), DATA(%d), WE(%d), RAM_EN(%d), LCD_EN(%d), DISP_EN(%d)\n", 
+        mmu_address, mmu_output_data, mmu_we, ram_enable, lcd_enable, display_enable);
+    end
 
     rapid_x_cpu cpu(
-        .clk(i_clk),
+        .clk(clk_source ? clk_button : cpu_clk),
         .reset(i_reset),
         .instruction_fetch_address(instruction_fetch_address),
         .instruction_fetch_data(instruction_fetch_data),
@@ -51,7 +74,8 @@ module rapid_soc(
     memory_managment_unit mmu(
         .mmu_address(mmu_address),
         .ram_enable(ram_enable),
-        .lcd_enable(lcd_enable)
+        .lcd_enable(lcd_enable),
+        .display_enable(display_enable)
     );
 
     blk_cpu_mem cpu_ram(
@@ -77,6 +101,20 @@ module rapid_soc(
         .value(mmu_output_data),
         .o_signal(segement),
         .o_anode_select(anode)
+    );
+    
+    display_engine graphics_engine(
+        .clk(i_clk),
+        
+        .enable(display_enable),
+        .framebuffer_address(mmu_address),
+        .framebuffer_data(mmu_output_data),
+        
+        .hSync(hSync),
+        .vSync(vSync),
+        .red(red),
+        .green(green),
+        .blue(blue)
     );
     
     

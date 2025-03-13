@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/rapid_soc.tcl"
+  variable script "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/rapid_soc.tcl"
   variable category "vivado_synth"
 }
 
@@ -56,6 +56,12 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param tcl.statsThreshold 360
+set_param chipscope.maxJobs 4
+set_param checkpoint.writeSynthRtdsInDcp 1
+set_param xicom.use_bs_reader 1
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -63,37 +69,39 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.cache/wt} [current_project]
-set_property parent.project_path {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.xpr} [current_project]
+set_property webtalk.parent_dir {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.cache/wt} [current_project]
+set_property parent.project_path {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.xpr} [current_project]
 set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo {u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.cache/ip} [current_project]
+set_property ip_output_repo {c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-add_files {{U:/Senior Design/Youssef/program1.coe}}
+add_files C:/Users/youssef/Documents/NG-ICDesign/Youssef/program1.coe
 read_verilog -library xil_defaultlib -sv {
-  {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/bounded_counter.sv}
-  {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/clock_divider.sv}
-  {U:/Senior Design/RAPID-X Core/rapid_pkg.sv}
-  {U:/Senior Design/RAPID-X Core/cpu_ifetch_unit.sv}
-  {U:/Senior Design/RAPID-X Core/cpu_memory_unit.sv}
-  {U:/Senior Design/RAPID-X Core/decoder_logic.sv}
-  {U:/Senior Design/RAPID-X Core/decoder_state.sv}
-  {U:/Senior Design/RAPID-X Core/execute_logic.sv}
-  {U:/Senior Design/RAPID-X Core/execute_state.sv}
-  {U:/Senior Design/RAPID-X Core/forwarding_unit.sv}
-  {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv}
-  {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/memory_managment_unit.sv}
-  {U:/Senior Design/RAPID-X Core/rapid_x_cpu.sv}
-  {U:/Senior Design/RAPID-X Core/register_file.sv}
-  {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/segment_driver.sv}
-  {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/bounded_counter.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/clock_divider.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_pkg.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/cpu_ifetch_unit.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/cpu_memory_unit.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/decoder_module.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/execute_stage.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/memory_managment_unit.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/register_file.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/segment_driver.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/vga_driver.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv}
 }
-read_verilog -library xil_defaultlib {{U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/anode_mux.v}}
-read_ip -quiet {{U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}
-set_property used_in_implementation false [get_files -all {{u:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_cpu_mem/blk_cpu_mem_ooc.xdc}}]
+read_verilog -library xil_defaultlib {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/anode_mux.v}}
+read_ip -quiet {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}
+set_property used_in_implementation false [get_files -all {{c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_cpu_mem/blk_cpu_mem_ooc.xdc}}]
+
+read_ip -quiet {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0.xci}}
+set_property used_in_implementation false [get_files -all {{c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0_ooc.xdc}}]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -104,12 +112,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc {{U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc}}
-set_property used_in_implementation false [get_files {{U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc}}]
+read_xdc {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc}}
+set_property used_in_implementation false [get_files {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc}}]
 
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental {U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/utils_1/imports/synth_1/rapid_x_cpu.dcp}
+read_checkpoint -auto_incremental -incremental {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/utils_1/imports/synth_1/rapid_x_cpu.dcp}
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

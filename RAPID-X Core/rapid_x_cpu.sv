@@ -33,8 +33,6 @@ module rapid_x_cpu(
     // These signals come from the ifetch_unit
     // and are connected to the decoder_state
     logic [XLEN-1:0] if_instruction, if_pc;
-    // Connections to decoder_state register output
-    wire  [XLEN-1:0] de_pc, de_instruction;
     // The pipeline cannot move unless the memory
     // stage has finished accessing memory. This
     // signal is used to determine if all other
@@ -100,7 +98,7 @@ module rapid_x_cpu(
          .o_instruction(if_instruction)
     );
 
-    assign instruction_fetch_address = if_pc + 4; // We read the next instruction in the current instruction.
+    assign instruction_fetch_address = if_pc + 1; // We read the next instruction in the current instruction.
 
     // The register file will set all register to 0
     // when the reset signal is high (it also uses
@@ -118,15 +116,14 @@ module rapid_x_cpu(
         .i_rd(mem_ready ? mem_rd : 0),
         .i_rd_data(mem_rd_output),
         .o_rs1_data(reg_rs1_data),
-        .o_rs2_data(reg_rs2_data),
-        .ex_mem_signal(ex_mem_signal)
+        .o_rs2_data(reg_rs2_data)
     );
 
     // This module is responsible for storing the state
     // from the cpu_ifetch_unit on the rising edge of the
     // clock, it uses continous assignment to update the
     // output ports which will be used by the decoder_logic.
-    decoder_state de_state(
+    decoder_module de_stage(
         .i_clk(clk),
         .i_reset(reset),
         .i_pipeline_enable(mem_ready),
@@ -134,17 +131,29 @@ module rapid_x_cpu(
         .i_instruction(if_instruction),
         .i_pc(if_pc),
         .o_pc(de_pc),
-        .o_instruction(de_instruction)
-    );
-
-    // The decoder_logic module uses combitional logic.
-    decoder_logic de_logic(
-        .i_instruction(de_instruction),
         .o_control_signal(de_control_signal),
         .o_imm(de_imm_data)
     );
-
-    execute_state ex_state(
+    
+    execute_stage ex_stage(
+        .i_clk(clk),
+        .i_reset(reset),
+        .i_pipeline_enable(mem_ready),
+        .i_pc(de_pc),
+        .i_control_signal(de_control_signal),
+        .i_rs1(reg_rs1_data),
+        .i_rs2(reg_rs2_data),
+        .i_mem_rd(mem_rd),
+        .i_mem_rd_data(mem_rd_output),
+        .i_imm(de_imm_data),
+        .o_control_signal(ex_mem_signal),
+        .o_pc_load(ex_pc_load),
+        .o_pc_ext(ex_pc_ext),
+        .o_memory_data(ex_memory_data),
+        .o_rd_output(ex_rd_output)
+    );
+    
+    /*execute_state ex_state(
         .i_clk(clk),
         .i_reset(reset),
         .i_pipeline_enable(mem_ready),
@@ -164,8 +173,8 @@ module rapid_x_cpu(
     execute_logic ex_logic(
         .i_pc(ex_pc),
         .i_control_signal(ex_control_signal),
-        .i_rs1(/*ex_rs1*/forwarded_rs1),
-        .i_rs2(/*ex_rs2*/forwarded_rs2),
+        .i_rs1(forwarded_rs1),
+        .i_rs2(forwarded_rs2),
         .i_imm(ex_imm),
         .o_control_signal(ex_mem_signal),
         .o_pc_load(ex_pc_load),
@@ -175,15 +184,15 @@ module rapid_x_cpu(
     );
 
     forward_unit funit(
-        .i_ex_rs1(ex_control_signal.rs1), /* index from execute stage */
-        .i_ex_rs2(ex_control_signal.rs2), /* index from execute stage */
-        .i_mem_rd(mem_ready ? mem_rd : 0), /* index from memory stage */
-        .i_mem_rd_data(mem_rd_output), /* data from memory stage */
-        .i_ex_rs1_data(ex_rs1), /* data from execute stage */
-        .i_ex_rs2_data(ex_rs2), /* data from execute stage */
+        .i_ex_rs1(ex_control_signal.rs1), /* index from execute stage * /
+        .i_ex_rs2(ex_control_signal.rs2), /* index from execute stage * /
+        .i_mem_rd(mem_ready ? mem_rd : 0), /* index from memory stage * /
+        .i_mem_rd_data(mem_rd_output), /* data from memory stage * /
+        .i_ex_rs1_data(ex_rs1), /* data from execute stage * /
+        .i_ex_rs2_data(ex_rs2), /* data from execute stage * /
         .o_forward_rs1(forwarded_rs1), // forwarded data
         .o_forward_rs2(forwarded_rs2)  // forwarded data
-    );
+    );*/
 
     cpu_memory_unit memory_unit(
         .clk(clk),

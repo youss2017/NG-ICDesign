@@ -1,7 +1,7 @@
 onbreak {quit -f}
 onerror {quit -f}
 
-vsim  -lib xil_defaultlib rapid_x_testbench_opt
+vsim  -lib xil_defaultlib soc_tb_opt
 
 set NumericStdNoWarnings 1
 set StdArithNoWarnings 1
@@ -12,7 +12,7 @@ view wave
 view structure
 view signals
 
-do {rapid_x_testbench.udo}
+do {soc_tb.udo}
 
 run 1000ns
 

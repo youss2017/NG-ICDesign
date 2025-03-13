@@ -3,12 +3,12 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Sat Mar  8 12:12:59 2025
-# Process ID         : 26336
-# Current directory  : U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/impl_1
+# Start of session at: Wed Mar 12 15:12:03 2025
+# Process ID         : 42476
+# Current directory  : C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/impl_1
 # Command line       : vivado.exe -log rapid_soc.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source rapid_soc.tcl -notrace
-# Log file           : U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/impl_1/rapid_soc.vdi
-# Journal file       : U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/impl_1\vivado.jou
+# Log file           : C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/impl_1/rapid_soc.vdi
+# Journal file       : C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/impl_1\vivado.jou
 # Running On         : DESKTOP-T92VI6B
 # Platform           : Windows Server 2016 or Windows 10
 # Operating System   : 19045
@@ -17,8 +17,8 @@
 # CPU Physical cores : 8
 # CPU Logical cores  : 16
 # Host memory        : 42895 MB
-# Swap memory        : 9126 MB
-# Total Virtual      : 52021 MB
-# Available Virtual  : 14708 MB
+# Swap memory        : 10218 MB
+# Total Virtual      : 53113 MB
+# Available Virtual  : 10218 MB
 #-----------------------------------------------------------
 source rapid_soc.tcl -notrace

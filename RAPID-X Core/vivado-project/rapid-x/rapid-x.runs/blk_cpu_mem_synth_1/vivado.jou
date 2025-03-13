@@ -3,12 +3,12 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Fri Mar  7 20:16:13 2025
-# Process ID         : 40544
-# Current directory  : U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/blk_cpu_mem_synth_1
+# Start of session at: Wed Mar 12 15:09:46 2025
+# Process ID         : 6792
+# Current directory  : C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/blk_cpu_mem_synth_1
 # Command line       : vivado.exe -log blk_cpu_mem.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source blk_cpu_mem.tcl
-# Log file           : U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/blk_cpu_mem_synth_1/blk_cpu_mem.vds
-# Journal file       : U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/blk_cpu_mem_synth_1\vivado.jou
+# Log file           : C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/blk_cpu_mem_synth_1/blk_cpu_mem.vds
+# Journal file       : C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/blk_cpu_mem_synth_1\vivado.jou
 # Running On         : DESKTOP-T92VI6B
 # Platform           : Windows Server 2016 or Windows 10
 # Operating System   : 19045
@@ -17,8 +17,8 @@
 # CPU Physical cores : 8
 # CPU Logical cores  : 16
 # Host memory        : 42895 MB
-# Swap memory        : 9126 MB
-# Total Virtual      : 52021 MB
-# Available Virtual  : 11323 MB
+# Swap memory        : 10218 MB
+# Total Virtual      : 53113 MB
+# Available Virtual  : 10089 MB
 #-----------------------------------------------------------
 source blk_cpu_mem.tcl -notrace

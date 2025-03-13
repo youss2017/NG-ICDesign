@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='U:/Senior Design/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/blk_cpu_mem_synth_1'
+HD_PWD='C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/blk_cpu_mem_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

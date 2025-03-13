@@ -40,6 +40,9 @@ module cpu_memory_unit(
     } mem_access_t;
 
     mem_access_t state, next_state;
+
+    control_mem_s iv_control_signal;
+    logic [31:0] iv_data_in, iv_memory_data;
     
     always_ff @(posedge clk or posedge reset) begin
         
@@ -47,19 +50,26 @@ module cpu_memory_unit(
             state <= STANDBY;
         end else begin
             state <= next_state;
+
+            if (o_pipeline_enable) begin
+                iv_control_signal <= i_control_sig;
+                iv_data_in <= i_data_in;
+                iv_memory_data <= i_memory_data;
+            end
+
         end // reset end
 
     end
 
     always_comb begin
 
-        if (i_control_sig.mem) begin
+        if (iv_control_signal.mem) begin
             
             case (state)
 
                 STANDBY: begin
                     o_pipeline_enable = 0;
-                    mmu_address = i_data_in; // Set memory read/write address
+                    mmu_address = iv_data_in; // Set memory read/write address
                     mmu_output_data = 0;
                     mmu_we = 0;
                     o_rd = 0;
@@ -71,21 +81,21 @@ module cpu_memory_unit(
                     // Regardless of operation type, we move on to the next instruction.
                     next_state = STANDBY;
                     o_pipeline_enable = 1;
-                    mmu_address = i_data_in;
-                    mmu_we = i_control_sig.iop;
-                    if (i_control_sig.iop) begin : store_operation
+                    mmu_address = iv_data_in;
+                    mmu_we = iv_control_signal.iop;
+                    if (iv_control_signal.iop) begin : store_operation
                         o_rd = 0;
                         o_rd_output = 0;
-                        case (i_control_sig.fcs_opcode)
-                            3'b000 /* SB */: mmu_output_data = (mmu_input_data & 32'hFFFFFF00) | i_memory_data;
-                            3'b001 /* SH */: mmu_output_data = (mmu_input_data & 32'hFFFF0000) | i_memory_data;
-                            3'b010 /* SW */: mmu_output_data = i_memory_data;
+                        case (iv_control_signal.fcs_opcode)
+                            3'b000 /* SB */: mmu_output_data = (mmu_input_data & 32'hFFFFFF00) | iv_memory_data;
+                            3'b001 /* SH */: mmu_output_data = (mmu_input_data & 32'hFFFF0000) | iv_memory_data;
+                            3'b010 /* SW */: mmu_output_data = iv_memory_data;
                             default: mmu_output_data = 0;
                         endcase
                     end else begin : load_operation
                         mmu_output_data = 0;
 
-                        case (i_control_sig.fcs_opcode)
+                        case (iv_control_signal.fcs_opcode)
                             3'b000 /* LB */ : o_rd_output = { {24{mmu_input_data[7]}}, mmu_input_data[7:0] };
                             3'b001 /* LH */ : o_rd_output = { {16{mmu_input_data[15]}}, mmu_input_data[15:0] };
                             3'b010 /* LW */ : o_rd_output = mmu_input_data;
@@ -93,7 +103,7 @@ module cpu_memory_unit(
                             3'b101 /* LHU */: o_rd_output = mmu_input_data[15:0];
                             default: o_rd_output = 0;
                         endcase
-                        o_rd = i_control_sig.rd;
+                        o_rd = iv_control_signal.rd;
                     end
                 end
 
@@ -102,8 +112,8 @@ module cpu_memory_unit(
         end else begin
             next_state = STANDBY;
             o_pipeline_enable = 1;
-            o_rd_output = i_data_in;
-            o_rd = i_control_sig.rd;
+            o_rd_output = iv_data_in;
+            o_rd = iv_control_signal.rd;
             mmu_we = 0;
             mmu_address = 0;
             mmu_output_data = 0;

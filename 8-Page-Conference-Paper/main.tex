@@ -11,7 +11,7 @@
 \usepackage{anyfontsize}
 \usepackage{setspace}
 
-\setmainfont{Times New Roman}
+\setmainfont{TeX Gyre Termes}
 
 \linespread{1.0} % Keeps base line spacing
 \setstretch{1.2} % 10pt font × 1.2 = exactly 12pt line spacing
@@ -57,6 +57,20 @@
   \addtolength{\belowdisplayskip}{-6pt}
 }
 
+% --- Figure Formatting ---
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{mwe} % for example-image
+
+% IEEE-style figure captions
+\captionsetup[figure]{
+  font=footnotesize,           % 9pt Times (footnotesize ≈ 9pt)
+  justification=justified,     % fully justified
+  singlelinecheck=false,       % don't center short captions
+  labelsep=period,             % "Fig. 1." instead of colon
+  skip=10pt                    % spacing above caption
+}
 
 % --- Document Style ---
 \pagestyle{empty} % Remove page numbers
@@ -97,6 +111,24 @@
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel lorem nec nisi luctus lobortis. Quisque ullamcorper finibus congue. Aliquam id quam neque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis laoreet porttitor libero, eget vestibulum sem hendrerit vitae. Nulla pretium ipsum vitae nisl varius, consectetur auctor ante varius. Donec vel purus nec diam tristique blandit sit amet in neque. Vestibulum dapibus, ipsum in varius blandit, diam arcu cursus erat, eu luctus enim mi bibendum mi. Nunc porta tellus viverra laoreet commodo. Mauris mattis lacus vitae lorem eleifend tincidunt. Donec in tellus interdum, auctor risus fermentum, laoreet mi. Curabitur id enim metus. Sed convallis vulputate purus vel faucibus.
 
 Suspendisse faucibus rhoncus orci, vel dictum nulla fermentum ut. Praesent ligula velit, malesuada eu quam quis, ornare bibendum sem. Quisque posuere dapibus urna, at eleifend odio venenatis sit amet. Aenean eleifend blandit eleifend. Nulla tincidunt orci est, quis aliquet lorem gravida nec. Duis consectetur vehicula nulla aliquet mollis. Vivamus a finibus massa. Quisque vel lacus cursus, dignissim dui eget, sagittis erat. Proin in viverra tellus. Sed vel rutrum mi, id lobortis libero. Aliquam quis pharetra nulla. Etiam sed purus lacus. Nullam elementum aliquet purus, a luctus justo ultrices eu. Sed consectetur maximus odio et facilisis. Nam viverra, purus ut facilisis dignissim, risus ante laoreet odio, ac sagittis nisl diam consectetur nulla. Integer ultrices risus mauris, eget vehicula dolor varius ut.
+
+\vspace{12pt}
+
+\noindent
+\includegraphics[width=\linewidth]{img.png}
+
+% Create a reference anchor here
+\phantomsection
+\label{fig:author-time}
+
+\vspace{3pt}
+
+{\fontsize{9pt}{10pt}\selectfont
+\noindent\textbf{Fig. 1.} \hspace{0.5in} Estimated relationship between the time an author spends reading these instructions and the quality of the author's digest article.
+}
+
+\vspace{12pt}
+
 
 Sed viverra consequat dignissim. Suspendisse maximus, arcu et porttitor efficitur, nunc leo tempor ante, sed fringilla ante enim quis nulla. Etiam sodales purus tellus, in ullamcorper massa vehicula ut. Aliquam consectetur leo et lectus bibendum sagittis. Morbi non sollicitudin est. Suspendisse iaculis nunc eget enim scelerisque, sed iaculis eros scelerisque. Aliquam erat volutpat. Nulla congue urna nisl, hendrerit porta mauris egestas ut. Integer libero diam, maximus in orci a, pharetra tempus magna.
 

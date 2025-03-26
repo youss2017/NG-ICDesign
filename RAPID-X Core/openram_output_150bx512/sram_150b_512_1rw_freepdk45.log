@@ -1,0 +1,243 @@
+[2025-02-20 11:13:20.903228] [openram.globals/read_config]: Output saved in /home/prodriguez/openram/openram_output_150bx512/
+[2025-02-20 11:13:20.903359] [openram.globals/install_conda]: Creating conda setup...
+[2025-02-20 11:13:20.907556] [openram.globals/import_tech]: Tech directory found in /home/prodriguez/openram/OpenRAM-1.2.48/technology:/home/prodriguez/openram/miniconda/lib/python3.8/site-packages/openram/technology
+[2025-02-20 11:13:20.907748] [openram.globals/import_tech]: Adding technology path: /home/prodriguez/openram/OpenRAM-1.2.48/technology
+[2025-02-20 11:13:20.907868] [openram.globals/import_tech]: Adding technology path: /home/prodriguez/openram/miniconda/lib/python3.8/site-packages/openram/technology
+[2025-02-20 11:13:20.909770] [openram.globals/purge_temp]: Purging temp directory: /run/user/1000/openram_tmp/
+[2025-02-20 11:13:20.981475] [openram.globals/setup_bitcell]: Using bitcell: bitcell_1port
+[2025-02-20 11:13:21.339442] [openram.characterizer/<module>]: Initializing characterizer...
+[2025-02-20 11:13:21.347915] [openram.characterizer/<module>]: Analytical model enabled.
+[2025-02-20 11:13:21.356994] [openram.verify/<module>]: Initializing verify...
+[2025-02-20 11:13:21.365472] [openram.verify/<module>]: LVS/DRC/PEX disabled.
+[2025-02-20 11:13:21.365802] [openram.globals/setup_bitcell]: Using bitcell: bitcell_1port
+[2025-02-20 11:13:21.365851] |==============================================================================|
+[2025-02-20 11:13:21.365893] |=========                      OpenRAM v1.2.48                       =========|
+[2025-02-20 11:13:21.365921] |=========                                                            =========|
+[2025-02-20 11:13:21.365956] |=========               VLSI Design and Automation Lab               =========|
+[2025-02-20 11:13:21.365983] |=========        Computer Science and Engineering Department         =========|
+[2025-02-20 11:13:21.366007] |=========            University of California Santa Cruz             =========|
+[2025-02-20 11:13:21.366027] |=========                                                            =========|
+[2025-02-20 11:13:21.366050] |=========          Usage help: openram-user-group@ucsc.edu           =========|
+[2025-02-20 11:13:21.366077] |=========        Development help: openram-dev-group@ucsc.edu        =========|
+[2025-02-20 11:13:21.366106] |=========                See LICENSE for license info                =========|
+[2025-02-20 11:13:21.366130] |==============================================================================|
+[2025-02-20 11:13:21.366161] ** Start: 02/20/2025 11:13:21
+[2025-02-20 11:13:21.366189] Technology: freepdk45
+[2025-02-20 11:13:21.366213] Total size: 76800 bits
+[2025-02-20 11:13:21.366236] Word size: 150
+Words: 512
+Banks: 1
+[2025-02-20 11:13:21.366263] RW ports: 1
+R-only ports: 0
+W-only ports: 0
+[2025-02-20 11:13:21.366289] DRC/LVS/PEX is only run on the top-level design to save run-time (inline_lvsdrc=True to do inline checking).
+[2025-02-20 11:13:21.366309] DRC/LVS/PEX is disabled (check_lvsdrc=True to enable).
+[2025-02-20 11:13:21.366334] Characterization is disabled (using analytical delay models) (analytical_delay=False to simulate).
+[2025-02-20 11:13:21.366361] Words per row: None
+[2025-02-20 11:13:21.366387] Output files are: 
+[2025-02-20 11:13:21.366415] /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.lvs
+[2025-02-20 11:13:21.366437] /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.sp
+[2025-02-20 11:13:21.366461] /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.v
+[2025-02-20 11:13:21.366480] /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.lib
+[2025-02-20 11:13:21.366503] /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.py
+[2025-02-20 11:13:21.366524] /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.html
+[2025-02-20 11:13:21.366547] /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.log
+[2025-02-20 11:13:21.366568] /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.lef
+[2025-02-20 11:13:21.366599] /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.gds
+[2025-02-20 11:13:21.378052] [openram.sram_config/recompute_sizes]: Recomputing with words per row: 2
+[2025-02-20 11:13:21.378210] [openram.sram_config/recompute_sizes]: Rows: 256 Cols: 300
+[2025-02-20 11:13:21.378355] [openram.sram_config/recompute_sizes]: Row addr size: 8 Col addr size: 1 Bank addr size: 9
+[2025-02-20 11:13:21.378478] [openram.sram_config/compute_sizes]: Set SRAM Words Per Row=2
+[2025-02-20 11:13:21.392318] [openram.modules.bitcell_base_array/__init__]: Creating sram_150b_512_1rw_freepdk45_capped_replica_bitcell_array 256 x 300
+[2025-02-20 11:13:21.392565] [openram.modules.capped_replica_bitcell_array/__init__]: Creating sram_150b_512_1rw_freepdk45_capped_replica_bitcell_array 256 x 300 rbls: [1, 0] left_rbl: [0] right_rbl: []
+[2025-02-20 11:13:21.393044] [openram.modules.bitcell_base_array/__init__]: Creating sram_150b_512_1rw_freepdk45_replica_bitcell_array 256 x 300
+[2025-02-20 11:13:21.393343] [openram.modules.replica_bitcell_array/__init__]: Creating sram_150b_512_1rw_freepdk45_replica_bitcell_array 256 x 300 rbls: [1, 0] left_rbl: [0] right_rbl: []
+[2025-02-20 11:13:21.393811] [openram.modules.bitcell_base_array/__init__]: Creating sram_150b_512_1rw_freepdk45_bitcell_array 256 x 300
+[2025-02-20 11:13:21.394167] [openram.modules.bitcell_array/__init__]: Creating sram_150b_512_1rw_freepdk45_bitcell_array 256 x 300
+[2025-02-20 11:54:25.696759] [openram.modules.bitcell_base_array/__init__]: Creating sram_150b_512_1rw_freepdk45_replica_column 257 x 1
+[2025-02-20 11:54:25.836825] [openram.modules.bitcell_base_array/__init__]: Creating sram_150b_512_1rw_freepdk45_dummy_array 1 x 300
+[2025-02-20 11:54:30.527973] [openram.modules.bitcell_base_array/__init__]: Creating sram_150b_512_1rw_freepdk45_dummy_array_0 1 x 301
+[2025-02-20 11:54:30.698953] [openram.modules.bitcell_base_array/__init__]: Creating sram_150b_512_1rw_freepdk45_dummy_array_1 1 x 301
+[2025-02-20 11:54:30.869937] [openram.modules.bitcell_base_array/__init__]: Creating sram_150b_512_1rw_freepdk45_dummy_array_2 259 x 1
+[2025-02-20 11:54:30.994783] [openram.modules.bitcell_base_array/__init__]: Creating sram_150b_512_1rw_freepdk45_dummy_array_3 259 x 1
+[2025-02-20 11:54:31.891294] [openram.modules.and2_dec/__init__]: Creating and2_dec and2_dec
+[2025-02-20 11:54:31.906921] [openram.modules.and3_dec/__init__]: Creating and3_dec and3_dec
+[2025-02-20 11:54:31.927125] [openram.modules.and4_dec/__init__]: Creating and4_dec and4_dec
+[2025-02-20 11:54:32.242334] [openram.modules.wordline_driver_array/__init__]: Creating sram_150b_512_1rw_freepdk45_wordline_driver_array
+[2025-02-20 11:54:32.242791] [openram.modules.wordline_driver/__init__]: Creating wordline_driver wordline_driver
+[2025-02-20 11:54:32.453302] [openram.modules.and2_dec/__init__]: Creating and2_dec and2_dec_0
+[2025-02-20 11:54:32.548761] [openram.modules.precharge_array/__init__]: Creating sram_150b_512_1rw_freepdk45_precharge_array
+[2025-02-20 11:54:33.289451] [openram.modules.sense_amp_array/__init__]: Creating sram_150b_512_1rw_freepdk45_sense_amp_array
+[2025-02-20 11:54:33.385410] [openram.modules.column_mux_array/__init__]: Creating sram_150b_512_1rw_freepdk45_column_mux_array
+[2025-02-20 11:54:33.677139] [openram.modules.write_driver_array/__init__]: Creating sram_150b_512_1rw_freepdk45_write_driver_array
+[2025-02-20 11:54:34.134973] [openram.modules.pinvbuf/__init__]: creating pinvbuf pinvbuf
+[2025-02-20 11:54:34.366438] [openram.modules.dff_array/__init__]: Creating sram_150b_512_1rw_freepdk45_row_addr_dff rows=8 cols=1
+[2025-02-20 11:54:34.370889] [openram.modules.dff_array/__init__]: Creating sram_150b_512_1rw_freepdk45_col_addr_dff rows=1 cols=1
+[2025-02-20 11:54:34.371950] [openram.modules.dff_array/__init__]: Creating sram_150b_512_1rw_freepdk45_data_dff rows=1 cols=150
+[2025-02-20 11:54:34.438373] [openram.modules.control_logic_base/__init__]: Creating control_logic_rw
+[2025-02-20 11:54:34.438800] [openram.modules.dff_buf/__init__]: Creating sram_150b_512_1rw_freepdk45_dff_buf
+[2025-02-20 11:54:34.440499] [openram.modules.dff_buf_array/__init__]: Creating sram_150b_512_1rw_freepdk45_dff_buf_array
+[2025-02-20 11:54:34.440872] [openram.modules.dff_buf/__init__]: Creating sram_150b_512_1rw_freepdk45_dff_buf_0
+[2025-02-20 11:54:34.444590] [openram.modules.pand2/__init__]: Creating pand2 pand2
+[2025-02-20 11:54:34.446992] [openram.modules.pdriver/__init__]: creating pdriver pdriver
+[2025-02-20 11:54:34.451893] [openram.modules.pbuf/__init__]: creating pbuf with size of 300
+[2025-02-20 11:54:34.492393] [openram.modules.pdriver/__init__]: creating pdriver pdriver_0
+[2025-02-20 11:54:34.546319] [openram.modules.pdriver/__init__]: creating pdriver pdriver_1
+[2025-02-20 11:54:34.562699] [openram.modules.pand3/__init__]: Creating pand3 pand3
+[2025-02-20 11:54:34.565734] [openram.modules.pdriver/__init__]: creating pdriver pdriver_2
+[2025-02-20 11:54:34.584371] [openram.modules.pand3/__init__]: Creating pand3 pand3_0
+[2025-02-20 11:54:34.584761] [openram.modules.pdriver/__init__]: creating pdriver pdriver_3
+[2025-02-20 11:54:34.602645] [openram.modules.pdriver/__init__]: creating pdriver pdriver_4
+[2025-02-20 11:54:34.629494] [openram.modules.delay_chain/__init__]: creating delay chain [4, 4, 4, 4, 4, 4, 4, 4, 4]
+[2025-02-20 11:54:34.664352] ** Submodules: 2473.3 seconds
+[2025-02-20 11:54:34.940730] ** Placement: 0.3 seconds
+[2025-02-20 12:04:47.023428] [openram.base.hierarchy_layout/get_bbox]: Size: 479.815 x 392.21500000000003 with perimeter margin 0
+[2025-02-20 12:04:47.247237] [openram.router.router_tech/__init__]: Minimum track width: 0.280
+[2025-02-20 12:04:47.247475] [openram.router.router_tech/__init__]: Minimum track space: 0.140
+[2025-02-20 12:04:47.247656] [openram.router.router_tech/__init__]: Minimum track wire width: 0.140
+[2025-02-20 12:04:47.247851] [openram.router.signal_escape_router/route]: Running signal escape router...
+[2025-02-20 12:21:41.394989] [openram.router.router_tech/__init__]: Minimum track width: 0.280
+[2025-02-20 12:21:41.395228] [openram.router.router_tech/__init__]: Minimum track space: 0.140
+[2025-02-20 12:21:41.395413] [openram.router.router_tech/__init__]: Minimum track wire width: 0.140
+[2025-02-20 12:21:41.395607] [openram.router.supply_router/route]: Running router for vdd and gnd...
+[2025-02-20 18:43:54.941767] ** Routing: 24560.0 seconds
+[2025-02-20 18:43:54.961416] ** Verification: 0.0 seconds
+[2025-02-20 18:43:54.961529] ** SRAM creation: 27033.6 seconds
+[2025-02-20 18:43:54.961571] SP: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.sp
+[2025-02-20 18:43:55.757571] [openram.characterizer.functional/__init__]: Random seed for functional simulation: 1740095035757277255
+[2025-02-20 18:43:55.901494] ** Spice writing: 0.9 seconds
+[2025-02-20 18:43:55.901581] DELAY: Writing stimulus...
+[2025-02-20 18:44:02.766930] [openram.characterizer.delay/create_sen_and_bitline_path_measures]: self.bl_name = xsram_150b_512_1rw_freepdk45.xbank0.bl_0_299
+[2025-02-20 18:44:02.773613] ** DELAY: 6.9 seconds
+[2025-02-20 18:44:03.582375] GDS: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.gds
+[2025-02-20 18:44:05.404801] ** GDS: 1.8 seconds
+[2025-02-20 18:44:05.404909] LEF: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.lef
+[2025-02-20 18:44:05.541697] ** LEF: 0.1 seconds
+[2025-02-20 18:44:05.541752] LVS: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.lvs.sp
+[2025-02-20 18:44:06.335935] ** LVS writing: 0.8 seconds
+[2025-02-20 18:44:06.336033] LIB: Characterizing... 
+[2025-02-20 18:44:06.336638] [openram.characterizer.lib/prepare_tables]: Slews: [0.00125 0.005   0.04   ]
+[2025-02-20 18:44:06.336949] [openram.characterizer.lib/prepare_tables]: Loads: [0.052275 0.2091   0.8364  ]
+[2025-02-20 18:44:06.337122] [openram.characterizer.lib/prepare_tables]: self.load_slews : [(0.052275, 0.00125), (0.2091, 0.00125), (0.8364, 0.00125), (0.052275, 0.005), (0.2091, 0.005), (0.8364, 0.005), (0.052275, 0.04), (0.2091, 0.04), (0.8364, 0.04)]
+[2025-02-20 18:44:06.337317] [openram.characterizer.lib/characterize_corners]: Characterizing corners: [('TT', 1.0, 25), ('TT', 1.1, 25), ('TT', 1.0, 100), ('TT', 1.0, 0), ('FF', 1.0, 25), ('SS', 1.0, 25), ('TT', 0.9, 25)]
+[2025-02-20 18:44:06.337465] [openram.characterizer.lib/characterize_corners]: Corner: ('TT', 1.0, 25)
+[2025-02-20 18:44:06.337630] [openram.characterizer.lib/characterize_corners]: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45_TT_1p0V_25C.lib
+[2025-02-20 18:44:11.261179] [openram.characterizer.elmore/analytical_power]: Dynamic Power: 10.89333099013263 mW
+[2025-02-20 18:44:11.261417] [openram.characterizer.elmore/analytical_power]: Leakage Power: 0.078119 mW
+[2025-02-20 18:44:11.261584] [openram.characterizer.elmore/get_lib_values]: Slew, Load, Delay(ns), Slew(ns)
+[2025-02-20 18:44:11.262188] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.052275, 0.458790182189823, 0.000716101171875
+[2025-02-20 18:44:11.262667] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.2091, 0.459010717346073, 0.0007381546875
+[2025-02-20 18:44:11.263089] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.8364, 0.459892857971073, 0.00082636875
+[2025-02-20 18:44:11.263506] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.052275, 0.458790182189823, 0.000716101171875
+[2025-02-20 18:44:11.263912] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.2091, 0.459010717346073, 0.0007381546875
+[2025-02-20 18:44:11.264328] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.8364, 0.459892857971073, 0.00082636875
+[2025-02-20 18:44:11.264737] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.052275, 0.458790182189823, 0.000716101171875
+[2025-02-20 18:44:11.265149] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.2091, 0.459010717346073, 0.0007381546875
+[2025-02-20 18:44:11.265558] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.8364, 0.459892857971073, 0.00082636875
+[2025-02-20 18:44:11.325322] WARNING: file lib.py: line 778: Failed to retrieve git id
+
+[2025-02-20 18:44:11.328327] [openram.characterizer.lib/characterize_corners]: Corner: ('TT', 1.1, 25)
+[2025-02-20 18:44:11.328934] [openram.characterizer.lib/characterize_corners]: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45_TT_1p1V_25C.lib
+[2025-02-20 18:44:17.220972] [openram.characterizer.elmore/analytical_power]: Dynamic Power: 13.180930498060455 mW
+[2025-02-20 18:44:17.221253] [openram.characterizer.elmore/analytical_power]: Leakage Power: 0.078119 mW
+[2025-02-20 18:44:17.221422] [openram.characterizer.elmore/get_lib_values]: Slew, Load, Delay(ns), Slew(ns)
+[2025-02-20 18:44:17.222034] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.052275, 0.41708198380892997, 0.000651001065340909
+[2025-02-20 18:44:17.222522] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.2091, 0.4172824703146118, 0.0006710497159090909
+[2025-02-20 18:44:17.222948] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.8364, 0.41808441633733906, 0.0007512443181818181
+[2025-02-20 18:44:17.223370] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.052275, 0.41708198380892997, 0.000651001065340909
+[2025-02-20 18:44:17.223778] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.2091, 0.4172824703146118, 0.0006710497159090909
+[2025-02-20 18:44:17.224195] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.8364, 0.41808441633733906, 0.0007512443181818181
+[2025-02-20 18:44:17.224609] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.052275, 0.41708198380892997, 0.000651001065340909
+[2025-02-20 18:44:17.225022] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.2091, 0.4172824703146118, 0.0006710497159090909
+[2025-02-20 18:44:17.225435] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.8364, 0.41808441633733906, 0.0007512443181818181
+[2025-02-20 18:44:17.290313] WARNING: file lib.py: line 778: Failed to retrieve git id
+
+[2025-02-20 18:44:17.292640] [openram.characterizer.lib/characterize_corners]: Corner: ('TT', 1.0, 100)
+[2025-02-20 18:44:17.293135] [openram.characterizer.lib/characterize_corners]: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45_TT_1p0V_100C.lib
+[2025-02-20 18:44:23.171492] [openram.characterizer.elmore/analytical_power]: Dynamic Power: -12.595413957340876 mW
+[2025-02-20 18:44:23.171761] [openram.characterizer.elmore/analytical_power]: Leakage Power: 0.078119 mW
+[2025-02-20 18:44:23.171929] [openram.characterizer.elmore/get_lib_values]: Slew, Load, Delay(ns), Slew(ns)
+[2025-02-20 18:44:23.172547] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.052275, -0.3967915089209279, -0.0006193307432432431
+[2025-02-20 18:44:23.173023] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.2091, -0.396982242029036, -0.000638404054054054
+[2025-02-20 18:44:23.173442] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.8364, -0.3977451744614684, -0.0007146972972972972
+[2025-02-20 18:44:23.173848] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.052275, -0.3967915089209279, -0.0006193307432432431
+[2025-02-20 18:44:23.174264] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.2091, -0.396982242029036, -0.000638404054054054
+[2025-02-20 18:44:23.174678] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.8364, -0.3977451744614684, -0.0007146972972972972
+[2025-02-20 18:44:23.175090] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.052275, -0.3967915089209279, -0.0006193307432432431
+[2025-02-20 18:44:23.175501] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.2091, -0.396982242029036, -0.000638404054054054
+[2025-02-20 18:44:23.175909] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.8364, -0.3977451744614684, -0.0007146972972972972
+[2025-02-20 18:44:23.238907] WARNING: file lib.py: line 778: Failed to retrieve git id
+
+[2025-02-20 18:44:23.240146] [openram.characterizer.lib/characterize_corners]: Corner: ('TT', 1.0, 0)
+[2025-02-20 18:44:23.240391] [openram.characterizer.lib/characterize_corners]: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45_TT_1p0V_0C.lib
+[2025-02-20 18:44:28.255444] [openram.characterizer.elmore/analytical_power]: Dynamic Power: 18.72291263929049 mW
+[2025-02-20 18:44:28.255713] [openram.characterizer.elmore/analytical_power]: Leakage Power: 0.078119 mW
+[2025-02-20 18:44:28.255880] [openram.characterizer.elmore/get_lib_values]: Slew, Load, Delay(ns), Slew(ns)
+[2025-02-20 18:44:28.256483] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.052275, 0.2669324696377152, 0.0004166406818181818
+[2025-02-20 18:44:28.257327] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.2091, 0.26706078100135155, 0.0004294718181818182
+[2025-02-20 18:44:28.257756] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.8364, 0.267574026455897, 0.00048079636363636356
+[2025-02-20 18:44:28.258174] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.052275, 0.2669324696377152, 0.0004166406818181818
+[2025-02-20 18:44:28.258585] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.2091, 0.26706078100135155, 0.0004294718181818182
+[2025-02-20 18:44:28.258997] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.8364, 0.267574026455897, 0.00048079636363636356
+[2025-02-20 18:44:28.259407] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.052275, 0.2669324696377152, 0.0004166406818181818
+[2025-02-20 18:44:28.259825] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.2091, 0.26706078100135155, 0.0004294718181818182
+[2025-02-20 18:44:28.260251] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.8364, 0.267574026455897, 0.00048079636363636356
+[2025-02-20 18:44:28.326358] WARNING: file lib.py: line 778: Failed to retrieve git id
+
+[2025-02-20 18:44:28.328454] [openram.characterizer.lib/characterize_corners]: Corner: ('FF', 1.0, 25)
+[2025-02-20 18:44:28.328876] [openram.characterizer.lib/characterize_corners]: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45_FF_1p0V_25C.lib
+[2025-02-20 18:44:34.192007] [openram.characterizer.elmore/analytical_power]: Dynamic Power: 12.103701100147306 mW
+[2025-02-20 18:44:34.192280] [openram.characterizer.elmore/analytical_power]: Leakage Power: 0.078119 mW
+[2025-02-20 18:44:34.192451] [openram.characterizer.elmore/get_lib_values]: Slew, Load, Delay(ns), Slew(ns)
+[2025-02-20 18:44:34.193048] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.052275, 0.4129111639708407, 0.0006444910546875
+[2025-02-20 18:44:34.193518] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.2091, 0.41310964561146574, 0.00066433921875
+[2025-02-20 18:44:34.193935] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.8364, 0.4139035721739657, 0.000743731875
+[2025-02-20 18:44:34.194354] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.052275, 0.4129111639708407, 0.0006444910546875
+[2025-02-20 18:44:34.194764] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.2091, 0.41310964561146574, 0.00066433921875
+[2025-02-20 18:44:34.195179] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.8364, 0.4139035721739657, 0.000743731875
+[2025-02-20 18:44:34.195592] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.052275, 0.4129111639708407, 0.0006444910546875
+[2025-02-20 18:44:34.196007] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.2091, 0.41310964561146574, 0.00066433921875
+[2025-02-20 18:44:34.196418] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.8364, 0.4139035721739657, 0.000743731875
+[2025-02-20 18:44:34.259502] WARNING: file lib.py: line 778: Failed to retrieve git id
+
+[2025-02-20 18:44:34.260737] [openram.characterizer.lib/characterize_corners]: Corner: ('SS', 1.0, 25)
+[2025-02-20 18:44:34.260990] [openram.characterizer.lib/characterize_corners]: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45_SS_1p0V_25C.lib
+[2025-02-20 18:44:40.117169] [openram.characterizer.elmore/analytical_power]: Dynamic Power: 9.903028172847849 mW
+[2025-02-20 18:44:40.117441] [openram.characterizer.elmore/analytical_power]: Leakage Power: 0.078119 mW
+[2025-02-20 18:44:40.117609] [openram.characterizer.elmore/get_lib_values]: Slew, Load, Delay(ns), Slew(ns)
+[2025-02-20 18:44:40.118219] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.052275, 0.5046692004088054, 0.0007877112890625
+[2025-02-20 18:44:40.118694] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.2091, 0.5049117890806804, 0.00081197015625
+[2025-02-20 18:44:40.119119] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.8364, 0.5058821437681803, 0.000909005625
+[2025-02-20 18:44:40.119532] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.052275, 0.5046692004088054, 0.0007877112890625
+[2025-02-20 18:44:40.119948] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.2091, 0.5049117890806804, 0.00081197015625
+[2025-02-20 18:44:40.120358] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.8364, 0.5058821437681803, 0.000909005625
+[2025-02-20 18:44:40.120772] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.052275, 0.5046692004088054, 0.0007877112890625
+[2025-02-20 18:44:40.121188] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.2091, 0.5049117890806804, 0.00081197015625
+[2025-02-20 18:44:40.121596] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.8364, 0.5058821437681803, 0.000909005625
+[2025-02-20 18:44:40.184505] WARNING: file lib.py: line 778: Failed to retrieve git id
+
+[2025-02-20 18:44:40.186120] [openram.characterizer.lib/characterize_corners]: Corner: ('TT', 0.9, 25)
+[2025-02-20 18:44:40.186444] [openram.characterizer.lib/characterize_corners]: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45_TT_0p9V_25C.lib
+[2025-02-20 18:44:45.216891] [openram.characterizer.elmore/analytical_power]: Dynamic Power: 8.823598102007416 mW
+[2025-02-20 18:44:45.217173] [openram.characterizer.elmore/analytical_power]: Leakage Power: 0.078119 mW
+[2025-02-20 18:44:45.217344] [openram.characterizer.elmore/get_lib_values]: Slew, Load, Delay(ns), Slew(ns)
+[2025-02-20 18:44:45.217953] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.052275, 0.5097668690998034, 0.00079566796875
+[2025-02-20 18:44:45.218453] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.2091, 0.5100119081623035, 0.000820171875
+[2025-02-20 18:44:45.218875] [openram.characterizer.elmore/get_lib_values]: 0.00125, 0.8364, 0.5109920644123034, 0.0009181875000000001
+[2025-02-20 18:44:45.219293] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.052275, 0.5097668690998034, 0.00079566796875
+[2025-02-20 18:44:45.219703] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.2091, 0.5100119081623035, 0.000820171875
+[2025-02-20 18:44:45.220118] [openram.characterizer.elmore/get_lib_values]: 0.005, 0.8364, 0.5109920644123034, 0.0009181875000000001
+[2025-02-20 18:44:45.220527] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.052275, 0.5097668690998034, 0.00079566796875
+[2025-02-20 18:44:45.220929] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.2091, 0.5100119081623035, 0.000820171875
+[2025-02-20 18:44:45.221347] [openram.characterizer.elmore/get_lib_values]: 0.04, 0.8364, 0.5109920644123034, 0.0009181875000000001
+[2025-02-20 18:44:45.284834] WARNING: file lib.py: line 778: Failed to retrieve git id
+
+[2025-02-20 18:44:45.286263] ** Characterization: 39.0 seconds
+[2025-02-20 18:44:45.286497] Config: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.py
+[2025-02-20 18:44:45.286561] ** Config: 0.0 seconds
+[2025-02-20 18:44:45.287782] Datasheet: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.html
+[2025-02-20 18:44:45.290423] ** Datasheet: 0.0 seconds
+[2025-02-20 18:44:45.290497] Verilog: Writing to /home/prodriguez/openram/openram_output_150bx512/sram_150b_512_1rw_freepdk45.v
+[2025-02-20 18:44:45.290678] ** Verilog: 0.0 seconds
+[2025-02-20 18:44:45.292538] [openram.globals/purge_temp]: Purging temp directory: /run/user/1000/openram_tmp/
+[2025-02-20 18:44:45.297284] ** End: 27083.9 seconds

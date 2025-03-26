@@ -26,10 +26,7 @@ module soc_tb();
     
     rapid_soc soc(
         .i_clk(clk),
-        .i_reset(reset),
-        
-        .clk_source('b0),
-        .clk_button('b0)
+        .i_reset(reset)
     );
     
     

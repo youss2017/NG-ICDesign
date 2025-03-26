@@ -23,7 +23,7 @@
 module segment_driver(
         input wire i_clk,
         input wire [3:0] i_digit,
-        output logic [7:0] o_signal
+        output reg [7:0] o_signal
     );
     
     always_ff @(posedge i_clk) begin

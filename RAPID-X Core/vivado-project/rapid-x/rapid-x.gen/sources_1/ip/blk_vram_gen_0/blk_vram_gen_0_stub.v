@@ -2,10 +2,10 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-// Date        : Sat Mar  8 20:16:15 2025
+// Date        : Sat Mar  8 20:16:14 2025
 // Host        : DESKTOP-T92VI6B running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub {c:/Users/youssef/Documents/NG-ICDesign/RAPID-X
-//               Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0_stub.v}
+// Command     : write_verilog -force -mode synth_stub -rename_top blk_vram_gen_0 -prefix
+//               blk_vram_gen_0_ blk_vram_gen_0_stub.v
 // Design      : blk_vram_gen_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a35tcpg236-1

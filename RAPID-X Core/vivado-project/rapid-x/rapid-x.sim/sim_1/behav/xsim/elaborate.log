@@ -1,0 +1,18 @@
+Vivado Simulator v2024.2.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2024.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot decoder_tb_behav xil_defaultlib.decoder_tb xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 1 for port 'i_pipeline_enable' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sim_1/new/decoder_tb.sv:113]
+WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 1 for port 'i_pc_load' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sim_1/new/decoder_tb.sv:114]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package xil_defaultlib.rapid_pkg
+Compiling module xil_defaultlib.decoder_module
+Compiling module xil_defaultlib.decoder_tb
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot decoder_tb_behav

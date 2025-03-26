@@ -8,7 +8,7 @@
   **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
   **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
   **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-  **** Start of session at: Wed Mar 12 15:10:37 2025
+  **** Start of session at: Sun Mar 16 14:09:57 2025
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
@@ -25,9 +25,9 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 41520
+INFO: [Synth 8-7075] Helper process launched with PID 14052
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1012.684 ; gain = 467.465
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1013.758 ; gain = 468.379
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-11067] parameter 'XLEN' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_pkg.sv:5]
 WARNING: [Synth 8-11067] parameter 'RESET_VECTOR' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_pkg.sv:10]
@@ -58,12 +58,13 @@ WARNING: [Synth 8-10388] /* is inside a comment [C:/Users/youssef/Documents/NG-I
 WARNING: [Synth 8-10388] /* is inside a comment [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:191]
 WARNING: [Synth 8-10388] /* is inside a comment [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:192]
 INFO: [Synth 8-11241] undeclared symbol 'cpu_clk', assumed default net type 'wire' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:49]
-WARNING: [Synth 8-11121] redeclaration of ANSI port 'mmu_we' is not allowed [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:53]
-WARNING: [Synth 8-8984] 'mmu_we' was previously declared without a range [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:53]
+INFO: [Synth 8-11241] undeclared symbol 'ram_enable', assumed default net type 'wire' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:73]
+INFO: [Synth 8-11241] undeclared symbol 'lcd_enable', assumed default net type 'wire' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:74]
+INFO: [Synth 8-11241] undeclared symbol 'display_enable', assumed default net type 'wire' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:75]
 INFO: [Synth 8-6157] synthesizing module 'rapid_soc' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:23]
-WARNING: [Synth 8-11581] system task call 'monitor' not supported [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:59]
+WARNING: [Synth 8-11581] system task call 'monitor' not supported [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:56]
 INFO: [Synth 8-6157] synthesizing module 'clock_divider' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/clock_divider.sv:24]
-	Parameter TARGET_VALUE bound to: 16 - type: integer 
+	Parameter TARGET_VALUE bound to: 1 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'clock_divider' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/clock_divider.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'rapid_x_cpu' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:10]
 INFO: [Synth 8-6157] synthesizing module 'cpu_ifetch_unit' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/cpu_ifetch_unit.sv:20]
@@ -71,8 +72,8 @@ INFO: [Synth 8-6155] done synthesizing module 'cpu_ifetch_unit' (0#1) [C:/Users/
 INFO: [Synth 8-6157] synthesizing module 'register_file' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/register_file.sv:24]
 INFO: [Synth 8-6155] done synthesizing module 'register_file' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/register_file.sv:24]
 WARNING: [Synth 8-689] width (32) of port connection 'i_rd' does not match port width (5) of module 'register_file' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:116]
-INFO: [Synth 8-6157] synthesizing module 'decoder_module' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/decoder_module.sv:59]
-INFO: [Synth 8-6155] done synthesizing module 'decoder_module' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/decoder_module.sv:59]
+INFO: [Synth 8-6157] synthesizing module 'decoder_module' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/decoder_module.sv:61]
+INFO: [Synth 8-6155] done synthesizing module 'decoder_module' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/decoder_module.sv:61]
 WARNING: [Synth 8-689] width (1) of port connection 'o_pc' does not match port width (32) of module 'decoder_module' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:133]
 INFO: [Synth 8-6157] synthesizing module 'execute_stage' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/execute_stage.sv:30]
 INFO: [Synth 8-6155] done synthesizing module 'execute_stage' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/execute_stage.sv:30]
@@ -80,14 +81,22 @@ INFO: [Synth 8-6157] synthesizing module 'cpu_memory_unit' [C:/Users/youssef/Doc
 INFO: [Synth 8-6155] done synthesizing module 'cpu_memory_unit' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/cpu_memory_unit.sv:12]
 WARNING: [Synth 8-689] width (4) of port connection 'o_rd' does not match port width (5) of module 'cpu_memory_unit' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:213]
 INFO: [Synth 8-6155] done synthesizing module 'rapid_x_cpu' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:10]
+WARNING: [Synth 8-689] width (32) of port connection 'mmu_we' does not match port width (1) of module 'rapid_x_cpu' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:68]
 INFO: [Synth 8-6157] synthesizing module 'memory_managment_unit' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/memory_managment_unit.sv:3]
 INFO: [Synth 8-6155] done synthesizing module 'memory_managment_unit' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/memory_managment_unit.sv:3]
-INFO: [Synth 8-6157] synthesizing module 'blk_cpu_mem' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-30000-DESKTOP-T92VI6B/realtime/blk_cpu_mem_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'blk_cpu_mem' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-30000-DESKTOP-T92VI6B/realtime/blk_cpu_mem_stub.v:6]
-WARNING: [Synth 8-689] width (32) of port connection 'addrb' does not match port width (11) of module 'blk_cpu_mem' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:92]
-INFO: [Synth 8-6157] synthesizing module 'lcd_display' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'blk_cpu_mem' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-30212-DESKTOP-T92VI6B/realtime/blk_cpu_mem_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_cpu_mem' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-30212-DESKTOP-T92VI6B/realtime/blk_cpu_mem_stub.v:6]
+WARNING: [Synth 8-689] width (32) of port connection 'web' does not match port width (1) of module 'blk_cpu_mem' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:88]
+WARNING: [Synth 8-689] width (32) of port connection 'addrb' does not match port width (11) of module 'blk_cpu_mem' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:89]
+INFO: [Synth 8-6157] synthesizing module 'lcd_display' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'lcd_dsp' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:66]
+INFO: [Synth 8-6155] done synthesizing module 'lcd_dsp' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:66]
 INFO: [Synth 8-6157] synthesizing module 'segment_driver' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/segment_driver.sv:23]
 INFO: [Synth 8-6155] done synthesizing module 'segment_driver' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/segment_driver.sv:23]
+WARNING: [Synth 8-689] width (8) of port connection 'i_digit' does not match port width (4) of module 'segment_driver' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:31]
+WARNING: [Synth 8-689] width (8) of port connection 'i_digit' does not match port width (4) of module 'segment_driver' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:37]
+WARNING: [Synth 8-689] width (8) of port connection 'i_digit' does not match port width (4) of module 'segment_driver' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:43]
+WARNING: [Synth 8-689] width (8) of port connection 'i_digit' does not match port width (4) of module 'segment_driver' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:49]
 INFO: [Synth 8-6157] synthesizing module 'anode_mux' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/anode_mux.v:23]
 INFO: [Synth 8-6157] synthesizing module 'bounded_counter' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/bounded_counter.sv:23]
 	Parameter WIDTH bound to: 2 - type: integer 
@@ -97,10 +106,11 @@ INFO: [Synth 8-6157] synthesizing module 'clock_divider__parameterized0' [C:/Use
 	Parameter TARGET_VALUE bound to: 65104 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'clock_divider__parameterized0' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/clock_divider.sv:24]
 INFO: [Synth 8-6155] done synthesizing module 'anode_mux' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/anode_mux.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'lcd_display' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'lcd_display' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:2]
+WARNING: [Synth 8-689] width (32) of port connection 'load' does not match port width (1) of module 'lcd_display' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:97]
 INFO: [Synth 8-6157] synthesizing module 'display_engine' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv:23]
-INFO: [Synth 8-6157] synthesizing module 'blk_vram_gen_0' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-30000-DESKTOP-T92VI6B/realtime/blk_vram_gen_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'blk_vram_gen_0' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-30000-DESKTOP-T92VI6B/realtime/blk_vram_gen_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_vram_gen_0' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-30212-DESKTOP-T92VI6B/realtime/blk_vram_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_vram_gen_0' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-30212-DESKTOP-T92VI6B/realtime/blk_vram_gen_0_stub.v:6]
 WARNING: [Synth 8-689] width (32) of port connection 'addrb' does not match port width (19) of module 'blk_vram_gen_0' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv:55]
 INFO: [Synth 8-6157] synthesizing module 'vga_driver' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/vga_driver.sv:15]
 INFO: [Synth 8-6157] synthesizing module 'clock_divider__parameterized1' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/clock_divider.sv:24]
@@ -110,8 +120,8 @@ INFO: [Synth 8-6155] done synthesizing module 'vga_driver' (0#1) [C:/Users/youss
 WARNING: [Synth 8-7071] port 'inRenderRegion' of module 'vga_driver' is unconnected for instance 'display_driver' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv:59]
 WARNING: [Synth 8-7023] instance 'display_driver' of module 'vga_driver' has 6 connections declared, but only 5 given [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv:59]
 INFO: [Synth 8-6155] done synthesizing module 'display_engine' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv:23]
-WARNING: [Synth 8-689] width (32) of port connection 'framebuffer_address' does not match port width (19) of module 'display_engine' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:110]
-WARNING: [Synth 8-689] width (32) of port connection 'framebuffer_data' does not match port width (8) of module 'display_engine' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:111]
+WARNING: [Synth 8-689] width (32) of port connection 'framebuffer_address' does not match port width (19) of module 'display_engine' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:107]
+WARNING: [Synth 8-689] width (32) of port connection 'framebuffer_data' does not match port width (8) of module 'display_engine' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:108]
 INFO: [Synth 8-6155] done synthesizing module 'rapid_soc' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:23]
 WARNING: [Synth 8-6014] Unused sequential element iv_control_signal_reg[rs1_out] was removed.  [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/execute_stage.sv:58]
 WARNING: [Synth 8-6014] Unused sequential element iv_control_signal_reg[rs2_out] was removed.  [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/execute_stage.sv:58]
@@ -134,61 +144,83 @@ WARNING: [Synth 8-7129] Port framebuffer_data[1] in module display_engine is eit
 WARNING: [Synth 8-7129] Port i_control_signal[rs1_out] in module execute_stage is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_control_signal[rs2_out] in module execute_stage is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1129.461 ; gain = 584.242
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1130.113 ; gain = 584.734
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1129.461 ; gain = 584.242
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 1130.113 ; gain = 584.734
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1129.461 ; gain = 584.242
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 1130.113 ; gain = 584.734
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.051 . Memory (MB): peak = 1129.461 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.046 . Memory (MB): peak = 1130.113 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_cpu_mem/blk_cpu_mem/blk_cpu_mem_in_context.xdc] for cell 'cpu_ram'
-Finished Parsing XDC File [c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_cpu_mem/blk_cpu_mem/blk_cpu_mem_in_context.xdc] for cell 'cpu_ram'
 Parsing XDC File [c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0/blk_vram_gen_0_in_context.xdc] for cell 'graphics_engine/vram_framebuffer'
 Finished Parsing XDC File [c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0/blk_vram_gen_0_in_context.xdc] for cell 'graphics_engine/vram_framebuffer'
+Parsing XDC File [c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_cpu_mem/blk_cpu_mem/blk_cpu_mem_in_context.xdc] for cell 'cpu_ram'
+Finished Parsing XDC File [c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_cpu_mem/blk_cpu_mem/blk_cpu_mem_in_context.xdc] for cell 'cpu_ram'
 Parsing XDC File [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc]
+WARNING: [Vivado 12-584] No ports matched 'mmu_we'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:36]
+WARNING: [Vivado 12-584] No ports matched 'mmu_we'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:37]
+WARNING: [Vivado 12-584] No ports matched 'ram_enable'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:38]
+WARNING: [Vivado 12-584] No ports matched 'ram_enable'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:39]
+WARNING: [Vivado 12-584] No ports matched 'lcd_enable'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:40]
+WARNING: [Vivado 12-584] No ports matched 'lcd_enable'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:41]
+WARNING: [Vivado 12-584] No ports matched 'display_enable'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:42]
+WARNING: [Vivado 12-584] No ports matched 'display_enable'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:43]
+WARNING: [Vivado 12-584] No ports matched 'clk_source'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:45]
+WARNING: [Vivado 12-584] No ports matched 'clk_source'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:46]
+WARNING: [Vivado 12-584] No ports matched 'clk_button'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:47]
+WARNING: [Vivado 12-584] No ports matched 'clk_button'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:48]
+WARNING: [Vivado 12-584] No ports matched 'rst_indicator'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:51]
+WARNING: [Vivado 12-584] No ports matched 'rst_indicator'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:52]
+WARNING: [Vivado 12-584] No ports matched 'clk_indicator'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:53]
+WARNING: [Vivado 12-584] No ports matched 'clk_indicator'. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:54]
+WARNING: [Constraints 18-401] set_false_path: 'i_reset' is not a valid endpoint. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:91]
+Resolution: A valid end point is a data pin of a sequential cell or a primary output or inout port. Please validate that all the objects returned by your query belong to this list.
+CRITICAL WARNING: [Constraints 18-512] set_false_path: list of objects specified for '-to' option contains no valid endpoints. Please check to make sure at least one valid endpoint is specified. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc:91]
 Finished Parsing XDC File [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/rapid_soc_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/rapid_soc_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/rapid_soc_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1219.750 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1220.188 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1219.750 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1220.188 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'cpu_ram' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'graphics_engine/vram_framebuffer' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1220.535 ; gain = 675.316
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1220.234 ; gain = 674.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1220.535 ; gain = 675.316
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1220.234 ; gain = 674.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for cpu_ram. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for graphics_engine/vram_framebuffer. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for cpu_ram. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1220.535 ; gain = 675.316
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1220.234 ; gain = 674.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1220.535 ; gain = 675.316
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1220.234 ; gain = 674.855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -199,31 +231,32 @@ Detailed RTL Component Info :
 	   3 Input   32 Bit       Adders := 1     
 	   2 Input   16 Bit       Adders := 1     
 	   2 Input   11 Bit       Adders := 2     
-	   2 Input    5 Bit       Adders := 1     
 	   2 Input    2 Bit       Adders := 1     
+	   2 Input    1 Bit       Adders := 1     
 +---XORs : 
 	   2 Input     32 Bit         XORs := 1     
 +---Registers : 
-	               32 Bit    Registers := 42    
+	               32 Bit    Registers := 40    
 	               29 Bit    Registers := 2     
+	               16 Bit    Registers := 1     
 	               11 Bit    Registers := 2     
 	                8 Bit    Registers := 5     
 	                5 Bit    Registers := 4     
-	                4 Bit    Registers := 2     
+	                4 Bit    Registers := 6     
 	                3 Bit    Registers := 2     
 	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 13    
 +---Muxes : 
-	   2 Input   32 Bit        Muxes := 29    
+	   2 Input   32 Bit        Muxes := 34    
 	   4 Input   32 Bit        Muxes := 1     
 	   6 Input   32 Bit        Muxes := 1     
 	   2 Input   16 Bit        Muxes := 1     
 	   4 Input    8 Bit        Muxes := 1     
-	   2 Input    5 Bit        Muxes := 7     
+	   2 Input    5 Bit        Muxes := 6     
 	   2 Input    4 Bit        Muxes := 1     
 	   4 Input    4 Bit        Muxes := 1     
 	   2 Input    3 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 37    
+	   2 Input    1 Bit        Muxes := 50    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -240,27 +273,34 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-DSP Report: Generating DSP graphics_engine/addrb0, operation Mode is: C'+A2*(B:0x320).
-DSP Report: register graphics_engine/display_driver/yCoord_reg is absorbed into DSP graphics_engine/addrb0.
-DSP Report: register graphics_engine/display_driver/xCoord_reg is absorbed into DSP graphics_engine/addrb0.
-DSP Report: operator graphics_engine/addrb0 is absorbed into DSP graphics_engine/addrb0.
-DSP Report: operator graphics_engine/addrb1 is absorbed into DSP graphics_engine/addrb0.
+DSP Report: Generating DSP addrb0, operation Mode is: C'+A2*(B:0x320).
+DSP Report: register display_driver/yCoord_reg is absorbed into DSP addrb0.
+DSP Report: register display_driver/xCoord_reg is absorbed into DSP addrb0.
+DSP Report: operator addrb0 is absorbed into DSP addrb0.
+DSP Report: operator addrb1 is absorbed into DSP addrb0.
+WARNING: [Synth 8-7129] Port framebuffer_data[7] in module display_engine is either unconnected or has no load
+WARNING: [Synth 8-7129] Port framebuffer_data[6] in module display_engine is either unconnected or has no load
+WARNING: [Synth 8-7129] Port framebuffer_data[5] in module display_engine is either unconnected or has no load
+WARNING: [Synth 8-7129] Port framebuffer_data[4] in module display_engine is either unconnected or has no load
+WARNING: [Synth 8-7129] Port framebuffer_data[3] in module display_engine is either unconnected or has no load
+WARNING: [Synth 8-7129] Port framebuffer_data[2] in module display_engine is either unconnected or has no load
+WARNING: [Synth 8-7129] Port framebuffer_data[1] in module display_engine is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_control_signal[rs1_out] in module execute_stage is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_control_signal[rs2_out] in module execute_stage is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 1413.367 ; gain = 868.148
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:33 . Memory (MB): peak = 1321.180 ; gain = 775.801
 ---------------------------------------------------------------------------------
- Sort Area is  graphics_engine/addrb0_0 : 0 0 : 221 221 : Used 1 time 0
+ Sort Area is  addrb0_0 : 0 0 : 221 221 : Used 1 time 0
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
-+------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name | DSP Mapping     | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|rapid_soc   | C'+A2*(B:0x320) | 11     | 10     | 11     | -      | 19     | 1    | 0    | 1    | -    | -     | 0    | 0    | 
-+------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++---------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name    | DSP Mapping     | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++---------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|display_engine | C'+A2*(B:0x320) | 11     | 10     | 11     | -      | 19     | 1    | 0    | 1    | -    | -     | 0    | 0    | 
++---------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
 ---------------------------------------------------------------------------------
@@ -270,19 +310,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1413.367 ; gain = 868.148
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1363.105 ; gain = 817.727
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:00 ; elapsed = 00:01:02 . Memory (MB): peak = 1774.480 ; gain = 1229.262
+Finished Timing Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:00:43 . Memory (MB): peak = 1402.898 ; gain = 857.520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:01 ; elapsed = 00:01:03 . Memory (MB): peak = 1779.992 ; gain = 1234.773
+Finished Technology Mapping : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 1437.457 ; gain = 892.078
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -300,48 +340,48 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:05 ; elapsed = 00:01:07 . Memory (MB): peak = 1827.102 ; gain = 1281.883
+Finished IO Insertion : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1606.203 ; gain = 1060.824
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:05 ; elapsed = 00:01:07 . Memory (MB): peak = 1827.102 ; gain = 1281.883
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1606.203 ; gain = 1060.824
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:05 ; elapsed = 00:01:07 . Memory (MB): peak = 1827.102 ; gain = 1281.883
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1606.203 ; gain = 1060.824
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:05 ; elapsed = 00:01:07 . Memory (MB): peak = 1827.102 ; gain = 1281.883
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1606.203 ; gain = 1060.824
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:05 ; elapsed = 00:01:07 . Memory (MB): peak = 1827.102 ; gain = 1281.883
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:48 ; elapsed = 00:00:48 . Memory (MB): peak = 1606.203 ; gain = 1060.824
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:05 ; elapsed = 00:01:07 . Memory (MB): peak = 1827.102 ; gain = 1281.883
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:48 ; elapsed = 00:00:48 . Memory (MB): peak = 1606.203 ; gain = 1060.824
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
 
 DSP Final Report (the ' indicates corresponding REG is set)
-+------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|rapid_soc   | C'+A'*B     | 11     | 10     | 11     | -      | 19     | 1    | 0    | 1    | -    | -     | 0    | 0    | 
-+------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++---------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name    | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++---------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|display_engine | C'+A'*B     | 11     | 10     | 11     | -      | 19     | 1    | 0    | 1    | -    | -     | 0    | 0    | 
++---------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 
 Report BlackBoxes: 
@@ -358,45 +398,46 @@ Report Cell Usage:
 +------+-------------+------+
 |1     |blk_cpu_mem  |     1|
 |2     |blk_vram_gen |     1|
-|3     |BUFG         |     3|
-|4     |CARRY4       |   113|
+|3     |BUFG         |     2|
+|4     |CARRY4       |    70|
 |5     |DSP48E1      |     1|
-|6     |LUT1         |    25|
-|7     |LUT2         |   208|
-|8     |LUT3         |   401|
-|9     |LUT4         |   187|
-|10    |LUT5         |   331|
-|11    |LUT6         |   825|
+|6     |LUT1         |     7|
+|7     |LUT2         |   105|
+|8     |LUT3         |   211|
+|9     |LUT4         |   277|
+|10    |LUT5         |   246|
+|11    |LUT6         |   765|
 |12    |MUXF7        |   128|
-|13    |FDCE         |   695|
-|14    |FDPE         |    15|
-|15    |FDRE         |   165|
-|16    |IBUF         |     4|
-|17    |OBUF         |    32|
+|13    |FDCE         |   636|
+|14    |FDPE         |    24|
+|15    |FDRE         |   178|
+|16    |IBUF         |     2|
+|17    |OBUF         |    26|
 +------+-------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:05 ; elapsed = 00:01:07 . Memory (MB): peak = 1827.102 ; gain = 1281.883
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:48 ; elapsed = 00:00:48 . Memory (MB): peak = 1606.203 ; gain = 1060.824
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:57 ; elapsed = 00:01:05 . Memory (MB): peak = 1827.102 ; gain = 1190.809
-Synthesis Optimization Complete : Time (s): cpu = 00:01:06 ; elapsed = 00:01:07 . Memory (MB): peak = 1827.102 ; gain = 1281.883
+Synthesis finished with 0 errors, 0 critical warnings and 10 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:38 ; elapsed = 00:00:46 . Memory (MB): peak = 1606.203 ; gain = 970.703
+Synthesis Optimization Complete : Time (s): cpu = 00:00:48 ; elapsed = 00:00:48 . Memory (MB): peak = 1606.203 ; gain = 1060.824
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.043 . Memory (MB): peak = 1836.281 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 242 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 1613.539 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 199 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1839.996 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1613.805 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: c0a40f
+Synth Design complete | Checksum: 49c8a29e
 INFO: [Common 17-83] Releasing license: Synthesis
-61 Infos, 64 Warnings, 0 Critical Warnings and 0 Errors encountered.
+66 Infos, 94 Warnings, 1 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
 INFO: [Common 17-600] The following parameters have non-default value.
 tcl.statsThreshold
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1839.996 ; gain = 0.000
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1613.805 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/rapid_soc.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file rapid_soc_utilization_synth.rpt -pb rapid_soc_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Mar 12 15:11:56 2025...
+INFO: [Common 17-206] Exiting Vivado at Sun Mar 16 14:10:56 2025...

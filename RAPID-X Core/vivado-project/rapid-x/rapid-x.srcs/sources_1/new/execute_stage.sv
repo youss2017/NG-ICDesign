@@ -140,7 +140,7 @@ import rapid_pkg::*;
                 OR_: o_rd_output = forward_rs1 | port2;               // ORI
                 AND_: o_rd_output = forward_rs1 & port2;              // ANDI
                 SLL: o_rd_output = forward_rs1 << port2[4:0];          // SLLI
-                SRL_or_SRA: begin 
+                default:/*SRL_or_SRA:*/ begin 
                     if (!iv_control_signal.iop) o_rd_output = forward_rs1 >> port2[4:0]; // SRLI
                     else o_rd_output = forward_rs1 >>> port2[4:0];                    // SRAI
                 end 

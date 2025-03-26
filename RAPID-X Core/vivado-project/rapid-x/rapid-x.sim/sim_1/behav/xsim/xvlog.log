@@ -1,45 +1,5 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_vram_gen_0/sim/blk_vram_gen_0.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module blk_vram_gen_0
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_cpu_mem/sim/blk_cpu_mem.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module blk_cpu_mem
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/anode_mux.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module anode_mux
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/bounded_counter.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module bounded_counter
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/clock_divider.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module clock_divider
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_pkg.sv" into library xil_defaultlib
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/cpu_ifetch_unit.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module cpu_ifetch_unit
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/cpu_memory_unit.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module cpu_memory_unit
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/decoder_module.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module decoder_module
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module display_engine
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/execute_stage.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module execute_stage
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module lcd_display
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/memory_managment_unit.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module memory_managment_unit
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module rapid_soc
-WARNING: [VRFC 10-9336] redeclaration of ANSI port 'mmu_we' is not allowed [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:53]
-WARNING: [VRFC 10-3029] 'mmu_we' was previously declared without a range [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:53]
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module rapid_x_cpu
-WARNING: [VRFC 10-8658] /* is inside a comment [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:187]
-WARNING: [VRFC 10-8658] /* is inside a comment [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:188]
-WARNING: [VRFC 10-8658] /* is inside a comment [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:189]
-WARNING: [VRFC 10-8658] /* is inside a comment [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:190]
-WARNING: [VRFC 10-8658] /* is inside a comment [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:191]
-WARNING: [VRFC 10-8658] /* is inside a comment [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:192]
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/register_file.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module register_file
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/segment_driver.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module segment_driver
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/vga_driver.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module vga_driver
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sim_1/new/soc_tb.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module soc_tb
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sim_1/new/decoder_tb.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decoder_tb

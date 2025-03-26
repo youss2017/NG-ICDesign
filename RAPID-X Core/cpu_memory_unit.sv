@@ -69,7 +69,7 @@ module cpu_memory_unit(
 
                 STANDBY: begin
                     o_pipeline_enable = 0;
-                    mmu_address = iv_data_in; // Set memory read/write address
+                    mmu_address = i_data_in; // Set memory read/write address
                     mmu_output_data = 0;
                     mmu_we = 0;
                     o_rd = 0;

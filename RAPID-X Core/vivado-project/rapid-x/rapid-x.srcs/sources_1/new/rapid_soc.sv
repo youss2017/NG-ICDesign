@@ -31,9 +31,9 @@ module rapid_soc(
     output vSync,
     output [3:0] red,
     output [3:0] green,
-    output [3:0] blue,
+    output [3:0] blue
     
-    input clk_source,
+    /*input clk_source,
     input clk_button,
     
     // MMU signals    
@@ -43,17 +43,14 @@ module rapid_soc(
     output logic display_enable,
     
     output logic rst_indicator,
-    output logic clk_indicator
+    output logic clk_indicator*/
 );
    
-    clock_divider #(.TARGET_VALUE(16)) cpu_clk_div(.clk(i_clk), .reset(0), .out_clk(cpu_clk));
+    clock_divider #(.TARGET_VALUE(1)) cpu_clk_div(.clk(i_clk), .reset(0), .out_clk(cpu_clk));
 
     // CPU signals
     logic [31:0] instruction_fetch_address, instruction_fetch_data;
     logic [31:0] mmu_address, mmu_input_data, mmu_output_data, mmu_we;
-    
-    assign rst_indicator = i_reset;
-    assign clk_indicator = clk_source;
     
     initial begin
         $monitor("MMU: ADDRS(%d), DATA(%d), WE(%d), RAM_EN(%d), LCD_EN(%d), DISP_EN(%d)\n", 
@@ -61,7 +58,7 @@ module rapid_soc(
     end
 
     rapid_x_cpu cpu(
-        .clk(clk_source ? clk_button : cpu_clk),
+        .clk(cpu_clk),
         .reset(i_reset),
         .instruction_fetch_address(instruction_fetch_address),
         .instruction_fetch_data(instruction_fetch_data),
@@ -98,7 +95,7 @@ module rapid_soc(
         .clk(i_clk),
         .reset(i_reset),
         .load(lcd_enable & mmu_we),
-        .value(mmu_output_data),
+        .value(mmu_output_data[15:0]),
         .o_signal(segement),
         .o_anode_select(anode)
     );

@@ -1491,7 +1491,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 12 19:09:41 UTC 2025</spirit:value>
+            <spirit:value>Sun Mar 16 18:02:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -1509,7 +1509,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 12 19:09:41 UTC 2025</spirit:value>
+            <spirit:value>Sun Mar 16 18:02:27 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -1527,11 +1527,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 12 19:10:34 UTC 2025</spirit:value>
+            <spirit:value>Sun Mar 16 18:02:29 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:77687a3e</spirit:value>
+            <spirit:value>9:891a141f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1545,7 +1545,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 12 19:09:41 UTC 2025</spirit:value>
+            <spirit:value>Sun Mar 16 18:02:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -1575,7 +1575,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 12 19:09:41 UTC 2025</spirit:value>
+            <spirit:value>Sun Mar 16 18:02:27 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -1595,7 +1595,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 12 19:09:41 UTC 2025</spirit:value>
+            <spirit:value>Sun Mar 16 18:02:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -1613,7 +1613,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 12 19:09:42 UTC 2025</spirit:value>
+            <spirit:value>Sun Mar 16 18:02:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -1633,7 +1633,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 12 19:09:41 UTC 2025</spirit:value>
+            <spirit:value>Sun Mar 16 18:02:27 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -1653,7 +1653,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Mar 12 19:09:41 UTC 2025</spirit:value>
+            <spirit:value>Sun Mar 16 18:02:27 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -4561,6 +4561,7 @@
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI_SLAVE_S_AXI.RUSER_WIDTH" xilinx:valueSource="constant"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AXI_SLAVE_S_AXI.WUSER_WIDTH" xilinx:valueSource="constant"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Additional_Inputs_for_Power_Estimation" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Algorithm" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Assume_Synchronous_Clk" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Coe_File" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Enable_A" xilinx:valueSource="user"/>
@@ -4568,7 +4569,9 @@
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Load_Init_File" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Memory_Type" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Operating_Mode_A" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Register_PortA_Output_of_Memory_Core" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Register_PortA_Output_of_Memory_Primitives" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Register_PortB_Output_of_Memory_Core" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Register_PortB_Output_of_Memory_Primitives" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Remaining_Memory_Locations" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.Write_Depth_A" xilinx:valueSource="user"/>

@@ -16,7 +16,7 @@ set_property PACKAGE_PIN W5 [get_ports i_clk]
 set_property IOSTANDARD LVCMOS33 [get_ports i_clk]
 
 # define ext pll clock as 100 MHz for timing check
-create_clock -period 10.000 -name ext_pll_in [get_ports i_clk]
+create_clock -period 10.000 -name ext_100mhz [get_ports i_clk]
 
 set_property PACKAGE_PIN N19 [get_ports {red[3]}]
 set_property PACKAGE_PIN J19 [get_ports {red[2]}]
@@ -81,6 +81,12 @@ set_property PACKAGE_PIN V5 [get_ports {segement[2]}]
 set_property PACKAGE_PIN V7 [get_ports {segement[0]}]
 set_property PACKAGE_PIN U7 [get_ports {segement[1]}]
 
-create_generated_clock -name cpu_clk_div/cpu_clk -source [get_ports i_clk] -divide_by 16 [get_pins cpu_clk_div/out_clk_reg/Q]
-create_generated_clock -name graphics_engine/display_driver/pixelClockDivider/out_clk_reg_0 -source [get_ports i_clk] -divide_by 2 [get_pins graphics_engine/display_driver/pixelClockDivider/out_clk_reg/Q]
-create_generated_clock -name lcd/mux/selectClockDivider/out_clk -source [get_ports i_clk] -divide_by 1000 [get_pins lcd/mux/selectClockDivider/out_clk_reg/Q]
+set_false_path -to [get_ports {red[*]}]
+set_false_path -to [get_ports {green[*]}]
+set_false_path -to [get_ports {blue[*]}]
+set_false_path -to [get_ports {anode[*]}]
+set_false_path -to [get_ports {segement[*]}]
+set_false_path -to [get_ports vSync]
+set_false_path -to [get_ports hSync]
+set_false_path -to [get_ports i_reset]
+

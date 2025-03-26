@@ -44,15 +44,17 @@
 // FIXME/TODO: The ALU does not set the overflow bit in status register
 //             if an overflow happens. fix this bro
 
-localparam upper_family = 7'b0010111; // LUI and AUPIC
-localparam upper_family2 = 7'b0110111; // LUI and AUPIC
-localparam uncond_branch_jal = 7'b1101111; // JAL
-localparam uncond_branch_jalr = 7'b1100111; // JALR
-localparam cond_branch_family = 7'b1100011; // BEQ, BNE, BLT, BGE, BLTU, BGEU
-localparam mem_load_family = 7'b0000011; // LB, LH, LW, LBU, LHU
-localparam mem_store_family = 7'b0100011; // SB ,SH ,SW
-localparam imm_family = 7'b0010011; // ADDI, SLTI, SLTIU, XORI, ORI, ANDI, SLLI, SRLI, SRAI
-localparam reg_family = 7'b0110011; // ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND
+localparam uncond_branch_jal  = 7'b1101111; // JAL                                                  | (no rs1/rs2)
+localparam uncond_branch_jalr = 7'b1100111; // JALR                                                 | (no rs2)
+localparam cond_branch_family = 7'b1100011; // BEQ, BNE, BLT, BGE, BLTU, BGEU                       | (no rd)
+
+localparam mem_load_family    = 7'b0000011; // LB, LH, LW, LBU, LHU                                 | (no rs2)
+localparam imm_family         = 7'b0010011; // ADDI, SLTI, SLTIU, XORI, ORI, ANDI, SLLI, SRLI, SRAI | (no rs2)
+localparam upper_family       = 7'b0010111; // AUPIC                                                | (no rs1/rs2)
+
+localparam mem_store_family   = 7'b0100011; // SB, SH, SW                                           | (no rd)
+localparam reg_family         = 7'b0110011; // ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND
+localparam upper_family2      = 7'b0110111; // LUI                                                  | (no rs1/rs2)
 
 import rapid_pkg::*;
 
@@ -88,10 +90,62 @@ module decoder_module
     end
 
     always_comb begin
+    
+        o_control_signal .fcs_opcode = iv_instruction[14:12]; 
+        o_control_signal.rs1 = iv_instruction[19:15];
+        o_control_signal.rs2 = iv_instruction[24:20];
+        o_control_signal .rd = iv_instruction[11:7];
         
-            case(iv_instruction[6:0])
+        if (iv_instruction[6:5] == 2'b11) begin
+        
+                                o_control_signal .uncond_branch = iv_instruction[2];
+                                o_control_signal .cond_branch = ~iv_instruction[2];
+                                o_control_signal .iop = ~iv_instruction[3];
+                                o_imm = iv_instruction[2] ? 
+                                            (iv_instruction[3] ? $signed({iv_instruction[31:20]}) : { {13{iv_instruction[31:31]}}, iv_instruction[19:12], iv_instruction[30:21], 1'b0}) :
+                                            $signed({iv_instruction[31:31], iv_instruction[7:7], iv_instruction[30:25], iv_instruction[11:8], 1'b0}); 
+                                o_control_signal .rs1_out = iv_instruction[3];
+                                o_control_signal.load_upper_imm = 0;
+                                o_control_signal.mem = 0;
+                                o_control_signal.alu_imm = 0;
+                                o_control_signal.alu_reg = 0;
+                                o_control_signal.rs2_out = ~iv_instruction[2];
+
+                
+        end else begin
+            
+            if (iv_instruction[4:2] != 3'b100) begin 
+                                o_control_signal .load_upper_imm = iv_instruction[2];
+                                o_control_signal.mem = ~iv_instruction[2];
+                                o_control_signal .iop = iv_instruction[5:5];
+                                o_imm = iv_instruction[2] ? $signed({iv_instruction[31:12], 12'b0}) : $signed({iv_instruction[31:25], iv_instruction[11:7]}); 
+                                o_control_signal.uncond_branch = 0;
+                                o_control_signal.cond_branch = 0;
+                                o_control_signal.alu_imm = 0;
+                                o_control_signal.alu_reg = 0;
+                                o_control_signal.rs1_out = ~iv_instruction[2];
+                                o_control_signal.rs2_out = iv_instruction[5:5] & ~iv_instruction[2];
+                        end
+                else begin
+                                o_control_signal.alu_imm = ~iv_instruction[5];
+                                o_control_signal .alu_reg = iv_instruction[5];
+                                o_control_signal .iop = iv_instruction[5] ? (iv_instruction[30:30]) : ((iv_instruction[30:30]) && (iv_instruction[14:12] == 3'b101)); // Only SRAI has an IOP signal
+                                o_control_signal .rs1_out = 1;
+                                o_control_signal .rs2_out = iv_instruction[5];
+                                
+                                o_imm = $signed({iv_instruction[31:20]});
+                                o_control_signal.load_upper_imm = 0;
+                                o_control_signal.uncond_branch = 0;
+                                o_control_signal.cond_branch = 0;
+                                o_control_signal.mem = 0;
+                        
+                end
+            
+        end
+        
+            //case(iv_instruction[6:0])
     
-            upper_family:               
+            /*upper_family:               
                         begin 
                                 o_control_signal .load_upper_imm = 1;
                                 o_control_signal .iop = iv_instruction[5:5];
@@ -106,9 +160,9 @@ module decoder_module
                                 o_control_signal.rs2_out = 0;
                                 o_control_signal.rs1 = 0;
                                 o_control_signal.rs2 = 0;
-                        end
+                        end*/
                             
-            upper_family2:               
+            /*upper_family2:               
                         begin 
                                 o_control_signal .load_upper_imm = 1;
                                 o_control_signal .iop = iv_instruction[5:5];
@@ -123,9 +177,9 @@ module decoder_module
                                 o_control_signal.rs2_out = 0;
                                 o_control_signal.rs1 = 0;
                                 o_control_signal.rs2 = 0;
-                        end
+                        end*/
     
-            uncond_branch_jal:       
+            /*uncond_branch_jal:       
                         begin 
                                 o_control_signal .uncond_branch = 1;
                                 o_control_signal .iop = 1'b0;
@@ -175,9 +229,9 @@ module decoder_module
                                 o_control_signal.alu_reg = 0;
                                 o_control_signal.iop = 0;
                                 o_control_signal.rd = 0;
-                        end
+                        end*/
     
-            mem_load_family:            
+            /*mem_load_family:            
                         begin 
                                 o_control_signal .mem = 1;
                                 // IOP is 0 relative to Store instructions
@@ -193,9 +247,9 @@ module decoder_module
                                 o_control_signal.iop = 0;
                                 o_control_signal.rs2_out = 0;
                                 o_control_signal.rs2 = 0;
-                        end
+                        end*/
     
-            mem_store_family:           
+            /*mem_store_family:           
                         begin 
                                 o_control_signal .mem = 1;
                                 o_control_signal .iop = iv_instruction[5:5];
@@ -210,9 +264,9 @@ module decoder_module
                                 o_control_signal.alu_imm = 0;
                                 o_control_signal.alu_reg = 0;
                                 o_control_signal.rd = 0;
-                        end
+                        end*/
     
-            imm_family:                 
+            /*imm_family:                 
                         begin 
                                 o_control_signal .alu_imm = 1;
                                 o_control_signal .iop =  ((iv_instruction[30:30]) && (iv_instruction[14:12] == 3'b101)); // Only SRAI has an IOP signal
@@ -227,9 +281,9 @@ module decoder_module
                                 o_control_signal.alu_reg = 0;
                                 o_control_signal.rs2_out = 0;
                                 o_control_signal.rs2 = 0;
-                        end
+                        end*/
     
-            reg_family:                 
+            /*reg_family:                 
                         begin 
                                 o_control_signal .alu_reg = 1;
                                 o_control_signal .iop = (iv_instruction[30:30]);
@@ -262,9 +316,8 @@ module decoder_module
                         o_control_signal.rd = 0;
             end
                 
-            endcase
+            endcase*/
 
-            o_control_signal .fcs_opcode = iv_instruction[14:12]; 
     end
 
 

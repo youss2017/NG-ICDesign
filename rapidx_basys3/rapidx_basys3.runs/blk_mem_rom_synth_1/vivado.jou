@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Wed Mar 26 05:07:48 2025
+# Process ID: 2232
+# Current directory: D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.runs/blk_mem_rom_synth_1
+# Command line: vivado.exe -log blk_mem_rom.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source blk_mem_rom.tcl
+# Log file: D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.runs/blk_mem_rom_synth_1/blk_mem_rom.vds
+# Journal file: D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.runs/blk_mem_rom_synth_1\vivado.jou
+# Running On        :ZephyrusG14
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :22631
+# Processor Detail  :AMD Ryzen 9 4900HS with Radeon Graphics         
+# CPU Frequency     :2994 MHz
+# CPU Physical cores:8
+# CPU Logical cores :16
+# Host memory       :16556 MB
+# Swap memory       :8652 MB
+# Total Virtual     :25208 MB
+# Available Virtual :4152 MB
+#-----------------------------------------------------------
+source blk_mem_rom.tcl -notrace

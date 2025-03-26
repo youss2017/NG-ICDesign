@@ -1,0 +1,11 @@
+Time resolution is 1 ps
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module basys3_testbench.uut.ibus.rom.inst.native_mem_module.blk_mem_gen_v8_4_8_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+Block Memory Generator module basys3_testbench.uut.dbus.ram.inst.native_mem_module.blk_mem_gen_v8_4_8_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/new/basys3_memory_unit.sv:92
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/new/basys3_memory_unit.sv:104
+WARNING: 0ns : none of the conditions were true for unique case from File:D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/new/basys3_memory_unit.sv:119
+WARNING: 15ns : none of the conditions were true for unique case from File:D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/new/basys3_memory_unit.sv:92
+WARNING: 15ns : none of the conditions were true for unique case from File:D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/new/basys3_memory_unit.sv:104
+WARNING: 15ns : none of the conditions were true for unique case from File:D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/new/basys3_memory_unit.sv:119

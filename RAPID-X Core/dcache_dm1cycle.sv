@@ -245,13 +245,12 @@ import memory_controller_interface::*; (
 			// cache hit
 			if(addr[TAG_MSB:TAG_LSB] == line_read.meta.tag && line_read.meta.valid) begin
 				// hit on write
-				if(rw && !line_read.meta.dirty) begin
+				if(rw) begin
 					// issue write to sram cache
 					line_req.cs = '1;
 					line_req.we = '1;
 
-					// no change in tag or data but mark as dirty
-					line_write.data = line_read.data;
+					// no change in tag but mark as dirty
 					line_write.meta.tag = line_read.meta.tag;
 					line_write.meta.valid = '1;
 					line_write.meta.dirty = '1;
@@ -292,7 +291,7 @@ import memory_controller_interface::*; (
 				// shortcut to IDLE - don't set iface.rvalid yet because
 				// data won't be in line_read until next clock edge!
 				line_read_nxt = line_write;
-				state_nxt = IDLE;
+				state_nxt = rw ? COMPARE : IDLE;
 			end
 		
 		WRITE_BACK: begin

@@ -75,6 +75,9 @@
 % --- Document Style ---
 \pagestyle{empty} % Remove page numbers
 
+% --- Bibliography Formatting ---
+
+
 % --- Document Start ---
 \begin{document}
 
@@ -108,7 +111,7 @@
 
 % --- INTODUCTION ---
 \section{INTRODUCTION}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel lorem nec nisi luctus lobortis. Quisque ullamcorper finibus congue. Aliquam id quam neque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis laoreet porttitor libero, eget vestibulum sem hendrerit vitae. Nulla pretium ipsum vitae nisl varius, consectetur auctor ante varius. Donec vel purus nec diam tristique blandit sit amet in neque. Vestibulum dapibus, ipsum in varius blandit, diam arcu cursus erat, eu luctus enim mi bibendum mi. Nunc porta tellus viverra laoreet commodo. Mauris mattis lacus vitae lorem eleifend tincidunt. Donec in tellus interdum, auctor risus fermentum, laoreet mi. Curabitur id enim metus. Sed convallis vulputate purus vel faucibus.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel lorem nec nisi luctus lobortis. Quisque ullamcorper finibus congue. Aliquam id quam neque. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis laoreet porttitor libero, eget vestibulum sem hendrerit vitae. Nulla pretium ipsum vitae nisl varius, consectetur auctor ante varius. Donec vel purus nec diam tristique blandit sit amet in neque. Vestibulum dapibus, ipsum in varius blandit, diam arcu cursus erat, eu luctus enim mi bibendum mi. Nunc porta tellus viverra laoreet commodo. Mauris mattis lacus vitae lorem eleifend tincidunt. Donec in tellus interdum, auctor risus fermentum, laoreet mi. Curabitur id enim metus. Sed convallis vulputate purus vel faucibus.\cite{cantrell2000}
 
 Suspendisse faucibus rhoncus orci, vel dictum nulla fermentum ut. Praesent ligula velit, malesuada eu quam quis, ornare bibendum sem. Quisque posuere dapibus urna, at eleifend odio venenatis sit amet. Aenean eleifend blandit eleifend. Nulla tincidunt orci est, quis aliquet lorem gravida nec. Duis consectetur vehicula nulla aliquet mollis. Vivamus a finibus massa. Quisque vel lacus cursus, dignissim dui eget, sagittis erat. Proin in viverra tellus. Sed vel rutrum mi, id lobortis libero. Aliquam quis pharetra nulla. Etiam sed purus lacus. Nullam elementum aliquet purus, a luctus justo ultrices eu. Sed consectetur maximus odio et facilisis. Nam viverra, purus ut facilisis dignissim, risus ante laoreet odio, ac sagittis nisl diam consectetur nulla. Integer ultrices risus mauris, eget vehicula dolor varius ut.
 
@@ -140,6 +143,21 @@ E = mc^2
 \end{equation}
 
 Vivamus non sem a leo facilisis tempor sed in quam. Curabitur eget molestie ipsum, id posuere eros. Morbi vestibulum non massa et lobortis. In auctor sapien erat, sed efficitur erat blandit ut. Pellentesque vel rhoncus ex. Nulla vitae rutrum purus. Nulla lacinia eros non iaculis maximus. Aenean laoreet fermentum bibendum. Aliquam sit amet mauris volutpat, pretium lectus quis, venenatis dolor. Vestibulum quis tellus venenatis lectus consequat iaculis vitae fringilla quam. Proin risus nisl, pharetra eu velit non, molestie eleifend turpis.
+
+Phasellus in dictum neque. Aliquam erat volutpat. Nullam bibendum est vitae tellus mattis, sit amet fringilla lectus efficitur. Etiam semper laoreet interdum. Nam placerat massa lacus, in egestas est rhoncus id. Vivamus pulvinar sapien sit amet hendrerit pellentesque. Integer enim lacus, varius vitae neque nec, tristique luctus dolor. Ut non neque justo.
+
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla ut purus nec augue aliquet varius. Morbi cursus erat at arcu rutrum, vel tristique ligula finibus. Integer euismod ligula vel molestie sodales. In ex tellus, finibus sit amet erat sed, consectetur iaculis nisi. Quisque gravida sagittis quam, ac lobortis ipsum blandit id. Donec egestas pulvinar eleifend.
+
+Aliquam non maximus odio. Proin id aliquam lacus. Maecenas quis enim vitae orci euismod rhoncus sit amet vel justo. Vestibulum nibh nunc, suscipit at ante nec, feugiat tristique tortor. Sed vitae est nisi. Donec et ligula urna. Morbi ultrices sem eget mauris dictum mollis. In risus felis, lacinia sed tellus sit amet, lobortis consequat leo. Suspendisse tincidunt eros in scelerisque mollis.
+
+% --- REFERENCES ---
+\renewcommand{\refname}{} % Suppress default "References" title
+\vspace{12pt}
+{\centering\fontsize{10pt}{12pt}\selectfont\scshape REFERENCES\par}
+\vspace{-32pt} % Negative space to reduce the gap (This dosen't feel right but i cant get it to work anyway else)
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
 
 \end{multicols}
 

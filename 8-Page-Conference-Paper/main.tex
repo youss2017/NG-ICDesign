@@ -1,31 +1,54 @@
-\documentclass[12pt]{article}
+\documentclass[10pt]{article}
 
 % Margins and font
-\usepackage[letterpaper, top=1.13in, bottom=1.13in, left=0.85in, right=0.85in]{geometry}
-\usepackage{times}
+\usepackage[letterpaper, top=1.125in, bottom=1.125in, left=0.85in, right=0.85in]{geometry}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
 \usepackage{multicol}
 \usepackage{parskip}
 \usepackage{anyfontsize}
 \usepackage{setspace}
 
-% Set the space between col to match the example doc
-\setlength{\columnsep}{0.25in}
+% Format section titles like IEEE (e.g., I. INTRODUCTION)
+\usepackage{titlesec}
 
-\begin{document}
+\titleformat{\section}
+  {\centering\normalfont\fontsize{10pt}{12pt}} % 10pt bold, centered
+  {\thesection.}{0.5em}{\MakeUppercase}
+
+\titlespacing*{\section}
+  {0pt}    % left indent
+  {6pt}    % space before
+  {3pt}    % space after
+
 
 % Remove page numbers to match example doc
 \pagestyle{empty}
 
+% Converts section numbers from regular numbers to roman numerials
+\renewcommand{\thesection}{\Roman{section}}
+
+% Set the space between cols
+\setlength{\columnsep}{0.25in}
+\setlength{\hsize}{3.275in}
+
+\begin{document}
+
+\linespread{1.0} % Keeps base line spacing
+\setstretch{1.2} % 10pt font × 1.2 = exactly 12pt line spacing
+
 % Start two-column layout
 \begin{multicols}{2}
-\setlength{\columnsep}{0.5cm}
 
 % Title, authors, and department
 \begin{center}
     {\fontsize{18pt}{22pt}\selectfont RAPID-X Digital ASIC Tapeout\par}
 
+    \vspace{1em}
+    
+    \fontsize{12pt}{10pt}{\selectfont Davi Dantas, Evan Kasky, Youssef Samwel, Pablo Rodriguez, Timothy Ogg, Nicolas Sayed\par}
 
-    {\selectfont Davi Dantas, Evan Kasky, Youssef Samwel, Pablo Rodriguez, Timothy Ogg, Nicolas Sayed\par}
+    \vspace{1em}
     
     {\selectfont Dept. of Electrical Engineering and Computer Science, University of Central Florida, Orlando, Florida, 32816-2450\par}
     

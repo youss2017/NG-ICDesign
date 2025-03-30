@@ -34,6 +34,8 @@ module basys3_testbench();
     logic btnL;
     logic btnR;
     logic btnD;
+    logic RsRx;
+    logic RsTx;
      
     basys3_top_level uut(
         .clk(clk),
@@ -43,7 +45,9 @@ module basys3_testbench();
         .btnU(btnU),
         .btnL(btnL),
         .btnR(btnR),
-        .btnD(btnD)
+        .btnD(btnD),
+        .RsRx(RsRx),
+        .RsTx(RsTx)
     );
     
     initial begin
@@ -53,6 +57,7 @@ module basys3_testbench();
         btnR = '0;
         btnD = '0;
         sw = '0;
+        RsRx = '0;
         
         @(negedge clk) btnC <= '1; //reset signal
         @(negedge clk) btnC <= '0;

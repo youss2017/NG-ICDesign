@@ -134,7 +134,7 @@ module basys3_memory_unit(
 		// connect the rest of cache signals to the bus
 		dbus_wena = ir_control_sig.mem && ir_control_sig.iop;
 		// all data bus requests must be word-aligned
-		dbus_addr = {addr[31:2], 2'b00};
+		dbus_addr = ir_control_sig.mem ? {addr[31:2], 2'b00} : '0;
 
 		// passthrough certain control signals by default
 		o_rd = ir_control_sig.rd;
@@ -148,7 +148,6 @@ module basys3_memory_unit(
 			ir_data_in <= '0;
 			ir_rs2 <= '0;
 		end else begin
-
             ir_control_sig <= i_control_sig;
             ir_data_in <= i_data_in;
             ir_rs2 <= i_rs2;

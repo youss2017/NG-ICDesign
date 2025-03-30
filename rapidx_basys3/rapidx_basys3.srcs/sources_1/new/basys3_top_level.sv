@@ -28,7 +28,9 @@ module basys3_top_level(
     input logic btnU,
     input logic btnL,
     input logic btnR,
-    input logic btnD
+    input logic btnD,
+    input logic RsRx,
+    output logic RsTx
 
     );
     
@@ -52,10 +54,16 @@ module basys3_top_level(
     logic [31:0] dbus_readword;
     logic [31:0] dbus_writeword;    
     
-    logic [3:0]  gpio_addr;   
+    logic [1:0]  gpio_addr;   
     logic [31:0] gpio_data_out;   
     logic [31:0] gpio_data_in;
-    logic [31:0] gpio_write_enable;
+    logic        gpio_write_enable;
+    
+    logic [1:0]  uart_addr;   
+    logic [31:0] uart_data_out;   
+    logic [31:0] uart_data_in;
+    logic        uart_write_enable;
+    logic        uart_enable;
     
     basys3_rapidx_cpu cpu(
         .i_clk(slow_clock[1]),
@@ -85,7 +93,12 @@ module basys3_top_level(
         .gpio_addr(gpio_addr),
         .gpio_data_out(gpio_data_out),
         .gpio_data_in(gpio_data_in),
-        .gpio_write_enable(gpio_write_enable)
+        .gpio_write_enable(gpio_write_enable),
+        .uart_addr(uart_addr),
+        .uart_data_out(uart_data_out),
+        .uart_data_in(uart_data_in),
+        .uart_write_enable(uart_write_enable),
+        .uart_enable(uart_enable)
     );
     
     basys3_gpio_peripheral gpio(
@@ -102,6 +115,18 @@ module basys3_top_level(
         .btnL(btnL),
         .btnR(btnR),
         .btnD(btnD)
+    );
+    
+    basys3_uart_peripheral uart(
+        .i_clock(clk),
+        .i_reset(reset),
+        .addr(uart_addr),
+        .data_out(uart_data_out),
+        .data_in(uart_data_in),
+        .write_enable(uart_write_enable),
+        .enable(uart_enable),
+        .RsRx(RsRx),
+        .RsTx(RsTx)
     );
     
 endmodule

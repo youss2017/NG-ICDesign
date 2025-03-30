@@ -56,8 +56,6 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 4
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -83,12 +81,17 @@ read_verilog -library xil_defaultlib -sv {
   D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/new/basys3_inst_bus.sv
   D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/new/basys3_memory_unit.sv
   D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/new/basys3_rapidx_cpu.sv
+  D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/imports/rtl/if/uart_if.sv
+  D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/new/basys3_uart_peripheral.sv
   D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/imports/senior_design_current/decoder_logic.sv
   D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/imports/senior_design_current/decoder_state.sv
   D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/imports/senior_design_current/execute_logic.sv
   D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/imports/senior_design_current/execute_state.sv
   D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/imports/senior_design_current/forwarding_unit.sv
   D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/imports/senior_design_current/register_file.sv
+  D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/imports/rtl/uart.sv
+  D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/imports/rtl/uart_rx.sv
+  D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/imports/rtl/uart_tx.sv
   D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/new/basys3_top_level.sv
 }
 read_ip -quiet D:/Dev/projects/xilinx/rapidx_basys3/rapidx_basys3.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci

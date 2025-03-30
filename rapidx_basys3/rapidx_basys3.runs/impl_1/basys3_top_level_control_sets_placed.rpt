@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Wed Mar 26 05:13:00 2025
+| Date         : Wed Mar 26 23:11:31 2025
 | Host         : ZephyrusG14 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file basys3_top_level_control_sets_placed.rpt
 | Design       : basys3_top_level
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    37 |
-|    Minimum number of control sets                        |    37 |
+| Total control sets                                       |    45 |
+|    Minimum number of control sets                        |    45 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    13 |
+| Unused register locations in slices containing registers |    31 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,12 +39,12 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    37 |
-| >= 0 to < 4        |     1 |
-| >= 4 to < 6        |     0 |
+| Total control sets |    45 |
+| >= 0 to < 4        |     2 |
+| >= 4 to < 6        |     2 |
 | >= 6 to < 8        |     0 |
-| >= 8 to < 10       |     0 |
-| >= 10 to < 12      |     1 |
+| >= 8 to < 10       |     4 |
+| >= 10 to < 12      |     2 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
 | >= 16              |    35 |
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              42 |           16 |
-| No           | No                    | Yes                    |             336 |          105 |
-| No           | Yes                   | No                     |               1 |            1 |
+| No           | No                    | No                     |              40 |           19 |
+| No           | No                    | Yes                    |             336 |          111 |
+| No           | Yes                   | No                     |              17 |            7 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |            1008 |          548 |
-| Yes          | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |            1008 |          496 |
+| Yes          | Yes                   | No                     |              56 |           18 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -73,43 +73,51 @@ Table of Contents
 +----------------------------------------------------+------------------------------------------------+-----------------------------------------------+------------------+----------------+--------------+
 |                    Clock Signal                    |                  Enable Signal                 |                Set/Reset Signal               | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------------------------------------------+------------------------------------------------+-----------------------------------------------+------------------+----------------+--------------+
-|  cpu/ex_state/iv_control_signal_reg[cond_branch]_0 |                                                | cpu/ex_state/iv_control_signal_reg[alu_imm]_0 |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                                     |                                                |                                               |                3 |             10 |         3.33 |
-|  clk_IBUF_BUFG                                     |                                                | btnC_IBUF                                     |                7 |             16 |         2.29 |
-|  clk_IBUF_BUFG                                     | cpu/memory_unit/E[0]                           | btnC_IBUF                                     |                6 |             16 |         2.67 |
-|  n_0_1961_BUFG                                     |                                                |                                               |               13 |             32 |         2.46 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_2[0] | btnC_IBUF                                     |               20 |             32 |         1.60 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][3]_0[0] | btnC_IBUF                                     |               25 |             32 |         1.28 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][3]_1[0] | btnC_IBUF                                     |               14 |             32 |         2.29 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_2[0] | btnC_IBUF                                     |               26 |             32 |         1.23 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_3[0] | btnC_IBUF                                     |               29 |             32 |         1.10 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_6[0] | btnC_IBUF                                     |               11 |             32 |         2.91 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_7[0] | btnC_IBUF                                     |               16 |             32 |         2.00 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_0[0] | btnC_IBUF                                     |               15 |             32 |         2.13 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_9[0] | btnC_IBUF                                     |               22 |             32 |         1.45 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_4[0] | btnC_IBUF                                     |               20 |             32 |         1.60 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_1[0] | btnC_IBUF                                     |               17 |             32 |         1.88 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_7[0] | btnC_IBUF                                     |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG                                     | uart/uart/uart_tx_inst/sig_r                   | btnC_IBUF                                     |                1 |              1 |         1.00 |
+|  cpu/ex_state/iv_control_signal_reg[cond_branch]_0 |                                                | cpu/ex_state/iv_control_signal_reg[alu_imm]_0 |                1 |              2 |         2.00 |
+|  clk_IBUF_BUFG                                     | uart/uart/uart_rx_inst/data_cnt[3]_i_1_n_1     | btnC_IBUF                                     |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG                                     | uart/uart/uart_rx_inst/sig_q[4]_i_1_n_1        | btnC_IBUF                                     |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG                                     |                                                |                                               |                5 |              8 |         1.60 |
+|  clk_IBUF_BUFG                                     | uart/uart/uart_rx_inst/data_tmp_r_0            | btnC_IBUF                                     |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG                                     | uart/uart/uart_rx_inst/E[0]                    | btnC_IBUF                                     |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG                                     | uart/uart/uart_tx_inst/data_r_1                | btnC_IBUF                                     |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG                                     | uart/uart/uart_rx_inst/clk_cnt                 | btnC_IBUF                                     |                4 |             11 |         2.75 |
+|  clk_IBUF_BUFG                                     | uart/uart/uart_tx_inst/clk_cnt_0               | btnC_IBUF                                     |                5 |             11 |         2.20 |
+|  clk_IBUF_BUFG                                     | cpu/memory_unit/E[0]                           | btnC_IBUF                                     |                7 |             16 |         2.29 |
+|  clk_IBUF_BUFG                                     |                                                | btnC_IBUF                                     |               13 |             31 |         2.38 |
+|  n_0_2029_BUFG                                     |                                                |                                               |               14 |             32 |         2.29 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][3]_3[0] | btnC_IBUF                                     |               19 |             32 |         1.68 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_2[0] | btnC_IBUF                                     |               19 |             32 |         1.68 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_3[0] | btnC_IBUF                                     |               25 |             32 |         1.28 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_4[0] | btnC_IBUF                                     |               14 |             32 |         2.29 |
 |  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_6[0] | btnC_IBUF                                     |               12 |             32 |         2.67 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_8[0] | btnC_IBUF                                     |               12 |             32 |         2.67 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_1[0] | btnC_IBUF                                     |               20 |             32 |         1.60 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_5[0] | btnC_IBUF                                     |               14 |             32 |         2.29 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_0[0] | btnC_IBUF                                     |               19 |             32 |         1.68 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_3[0] | btnC_IBUF                                     |               18 |             32 |         1.78 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_4[0] | btnC_IBUF                                     |               15 |             32 |         2.13 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_5[0] | btnC_IBUF                                     |               19 |             32 |         1.68 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_8[0] | btnC_IBUF                                     |               19 |             32 |         1.68 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_9[0] | btnC_IBUF                                     |               28 |             32 |         1.14 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_5[0] | btnC_IBUF                                     |               13 |             32 |         2.46 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_0[0] | btnC_IBUF                                     |               16 |             32 |         2.00 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_7[0] | btnC_IBUF                                     |               16 |             32 |         2.00 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_1[0] | btnC_IBUF                                     |               19 |             32 |         1.68 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_8[0] | btnC_IBUF                                     |               22 |             32 |         1.45 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_0[0] | btnC_IBUF                                     |                8 |             32 |         4.00 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_7[0] | btnC_IBUF                                     |               28 |             32 |         1.14 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_6[0] | btnC_IBUF                                     |                9 |             32 |         3.56 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_1[0] | btnC_IBUF                                     |               12 |             32 |         2.67 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_2[0] | btnC_IBUF                                     |                7 |             32 |         4.57 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_5[0] | btnC_IBUF                                     |               18 |             32 |         1.78 |
 |  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][3]_2[0] | btnC_IBUF                                     |               15 |             32 |         2.13 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][3]_3[0] | btnC_IBUF                                     |               14 |             32 |         2.29 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_4[0] | btnC_IBUF                                     |               11 |             32 |         2.91 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_3[0] | btnC_IBUF                                     |               14 |             32 |         2.29 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_5[0] | btnC_IBUF                                     |               19 |             32 |         1.68 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_1[0] | btnC_IBUF                                     |               10 |             32 |         3.20 |
 |  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_6[0] | btnC_IBUF                                     |               18 |             32 |         1.78 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_7[0] | btnC_IBUF                                     |               23 |             32 |         1.39 |
-|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_2[0] | btnC_IBUF                                     |               14 |             32 |         2.29 |
-|  slow_clock_BUFG[1]                                |                                                | btnC_IBUF                                     |               98 |            320 |         3.27 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][3]_1[0] | btnC_IBUF                                     |               16 |             32 |         2.00 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_4[0] | btnC_IBUF                                     |               10 |             32 |         3.20 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_5[0] | btnC_IBUF                                     |                8 |             32 |         4.00 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_4[0] | btnC_IBUF                                     |                6 |             32 |         5.33 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_9[0] | btnC_IBUF                                     |               24 |             32 |         1.33 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_9[0] | btnC_IBUF                                     |               18 |             32 |         1.78 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_3[0] | btnC_IBUF                                     |               18 |             32 |         1.78 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][1]_8[0] | btnC_IBUF                                     |               14 |             32 |         2.29 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][4]_3[0] | btnC_IBUF                                     |               14 |             32 |         2.29 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][3]_0[0] | btnC_IBUF                                     |               24 |             32 |         1.33 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_1[0] | btnC_IBUF                                     |               10 |             32 |         3.20 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_7[0] | btnC_IBUF                                     |               17 |             32 |         1.88 |
+|  slow_clock_BUFG[1]                                | cpu/memory_unit/ir_control_sig_reg[rd][2]_2[0] | btnC_IBUF                                     |               20 |             32 |         1.60 |
+|  slow_clock_BUFG[1]                                |                                                | btnC_IBUF                                     |              104 |            320 |         3.08 |
 +----------------------------------------------------+------------------------------------------------+-----------------------------------------------+------------------+----------------+--------------+
 
 

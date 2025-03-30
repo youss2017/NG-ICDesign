@@ -34,8 +34,8 @@ module basys3_gpio_peripheral(
     input logic btnD,
     
     // signals from data bus
-    input  logic [3:0]  addr,
-    input  logic [31:0] write_enable,
+    input  logic [1:0]  addr,
+    input  logic        write_enable,
     output logic [31:0] data_in,
     input  logic [31:0] data_out
     );
@@ -46,7 +46,7 @@ module basys3_gpio_peripheral(
             data_in <= '0;
         end else begin
             
-            // 16 memory-mapped registers/ports, only some used for now:
+            // 4 memory-mapped registers/ports, only three used for now:
             // Port0: BASE + 0 = LEDs output
             // Port1: BASE + 4 = Switches input
             // Port2: BASE + 8 = Buttons input

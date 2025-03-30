@@ -88,23 +88,23 @@ Section (3.2) - REMOTE SOURCES
 List of referenced 'remote' design files that were 'imported' into the archived project:-
 
 <blk_mem_rom>
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/doc/blk_mem_gen_v8_4_changelog.txt
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom.vho
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom.veo
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/summary.log
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/misc/blk_mem_gen_v8_4.vhd
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom_ooc.xdc
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom.mif
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/simulation/blk_mem_gen_v8_4.v
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/sim/blk_mem_rom.v
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom.dcp
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom_stub.v
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom_stub.vhdl
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom_sim_netlist.v
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom_sim_netlist.vhdl
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/synth/blk_mem_rom.vhd
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom.xml
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/doc/blk_mem_gen_v8_4_changelog.txt
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom.vho
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom.veo
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/summary.log
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/misc/blk_mem_gen_v8_4.vhd
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom_ooc.xdc
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom.mif
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/simulation/blk_mem_gen_v8_4.v
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/sim/blk_mem_rom.v
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom.dcp
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom_stub.v
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom_stub.vhdl
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom_sim_netlist.v
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom_sim_netlist.vhdl
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/synth/blk_mem_rom.vhd
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom.xml
 
 <constrs_1>
 None
@@ -113,17 +113,22 @@ None
 D:/Dev/projects/xilinx/rapidx_basys3/basys3_testbench_behav.wcfg
 
 <sources_1>
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/simulation/blk_mem_gen_v8_4.v
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/sim/blk_mem_ram.v
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram.dcp
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram_sim_netlist.v
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram_sim_netlist.vhdl
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram_stub.v
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram_stub.vhdl
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram_ooc.xdc
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/synth/blk_mem_ram.vhd
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram.xml
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/doc/blk_mem_gen_v8_4_changelog.txt
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram.vho
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram.veo
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/summary.log
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/misc/blk_mem_gen_v8_4.vhd
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/simulation/blk_mem_gen_v8_4.v
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/sim/blk_mem_ram.v
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram.dcp
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram_sim_netlist.v
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram_sim_netlist.vhdl
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram_stub.v
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram_stub.vhdl
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram_ooc.xdc
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/synth/blk_mem_ram.vhd
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram.xml
 
 <utils_1>
 None
@@ -134,6 +139,11 @@ List of all the source files present in the archived project:-
 
 <sources_1>
 ./rapidx_basys3.srcs/sources_1/ip/blk_mem_ram/blk_mem_ram.xci
+./rapidx_basys3.gen/sources_1/ip/blk_mem_ram/doc/blk_mem_gen_v8_4_changelog.txt
+./rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram.vho
+./rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram.veo
+./rapidx_basys3.gen/sources_1/ip/blk_mem_ram/summary.log
+./rapidx_basys3.gen/sources_1/ip/blk_mem_ram/misc/blk_mem_gen_v8_4.vhd
 ./rapidx_basys3.gen/sources_1/ip/blk_mem_ram/simulation/blk_mem_gen_v8_4.v
 ./rapidx_basys3.gen/sources_1/ip/blk_mem_ram/sim/blk_mem_ram.v
 ./rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram.dcp
@@ -152,12 +162,17 @@ List of all the source files present in the archived project:-
 ./rapidx_basys3.srcs/sources_1/new/basys3_inst_bus.sv
 ./rapidx_basys3.srcs/sources_1/new/basys3_memory_unit.sv
 ./rapidx_basys3.srcs/sources_1/new/basys3_rapidx_cpu.sv
+./rapidx_basys3.srcs/sources_1/imports/rtl/if/uart_if.sv
+./rapidx_basys3.srcs/sources_1/new/basys3_uart_peripheral.sv
 ./rapidx_basys3.srcs/sources_1/imports/senior_design_current/decoder_logic.sv
 ./rapidx_basys3.srcs/sources_1/imports/senior_design_current/decoder_state.sv
 ./rapidx_basys3.srcs/sources_1/imports/senior_design_current/execute_logic.sv
 ./rapidx_basys3.srcs/sources_1/imports/senior_design_current/execute_state.sv
 ./rapidx_basys3.srcs/sources_1/imports/senior_design_current/forwarding_unit.sv
 ./rapidx_basys3.srcs/sources_1/imports/senior_design_current/register_file.sv
+./rapidx_basys3.srcs/sources_1/imports/rtl/uart.sv
+./rapidx_basys3.srcs/sources_1/imports/rtl/uart_rx.sv
+./rapidx_basys3.srcs/sources_1/imports/rtl/uart_tx.sv
 ./rapidx_basys3.srcs/sources_1/new/basys3_top_level.sv
 ./rapidx_basys3.srcs/sources_1/ip/blk_mem_rom/blk_mem_rom_init.coe
 

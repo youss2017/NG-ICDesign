@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1742980211">
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1743044925">
   <File Type="ROUTE-PWR" Name="basys3_top_level_power_routed.rpt"/>
   <File Type="PA-TCL" Name="basys3_top_level.tcl"/>
   <File Type="ROUTE-PWR-SUM" Name="basys3_top_level_power_summary_routed.pb"/>
@@ -130,6 +130,22 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/imports/rtl/if/uart_if.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/SystemVerilog-UART-master/rtl/if/uart_if.sv"/>
+        <Attr Name="ImportTime" Val="1560278342"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/basys3_uart_peripheral.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/imports/senior_design_current/decoder_logic.sv">
       <FileInfo>
         <Attr Name="ImportPath" Val="D:/Dev/projects/systemverilog/senior_design_current/decoder_logic.sv"/>
@@ -179,6 +195,33 @@
       <FileInfo>
         <Attr Name="ImportPath" Val="D:/Dev/projects/systemverilog/senior_design_current/register_file.sv"/>
         <Attr Name="ImportTime" Val="1740007685"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/rtl/uart.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/SystemVerilog-UART-master/rtl/uart.sv"/>
+        <Attr Name="ImportTime" Val="1560278342"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/rtl/uart_rx.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/SystemVerilog-UART-master/rtl/uart_rx.sv"/>
+        <Attr Name="ImportTime" Val="1560278342"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/rtl/uart_tx.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/SystemVerilog-UART-master/rtl/uart_tx.sv"/>
+        <Attr Name="ImportTime" Val="1560278342"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>

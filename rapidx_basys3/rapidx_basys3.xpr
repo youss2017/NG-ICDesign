@@ -4,12 +4,12 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.                   -->
 <!-- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.   -->
 
-<Project Product="Vivado" Version="7" Minor="67" Path="C:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.xpr">
+<Project Product="Vivado" Version="7" Minor="67" Path="C:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="325260b9ab2a4b8e8213ef24f43df5ee"/>
+    <Option Name="Id" Val="0cba7b22431440ecb7a6178088311edf"/>
     <Option Name="Part" Val="xc7a35tcpg236-1"/>
-    <Option Name="CompiledLibDir" Val="C:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-22060-ZephyrusG14/PrjAr/_X_/rapidx_basys3.cache/compile_simlib"/>
+    <Option Name="CompiledLibDir" Val="C:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-20352-ZephyrusG14/PrjAr/_X_/rapidx_basys3.cache/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
     <Option Name="CompiledLibDirModelSim" Val="$PCACHEDIR/compile_simlib/modelsim"/>
     <Option Name="CompiledLibDirQuesta" Val="$PCACHEDIR/compile_simlib/questa"/>
@@ -58,20 +58,20 @@
     <Option Name="IPUserFilesDir" Val="$PIPUSERFILESDIR"/>
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
-    <Option Name="WTXSimLaunchSim" Val="38"/>
+    <Option Name="WTXSimLaunchSim" Val="52"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="11"/>
-    <Option Name="WTModelSimExportSim" Val="11"/>
-    <Option Name="WTQuestaExportSim" Val="11"/>
+    <Option Name="WTXSimExportSim" Val="21"/>
+    <Option Name="WTModelSimExportSim" Val="21"/>
+    <Option Name="WTQuestaExportSim" Val="21"/>
     <Option Name="WTIesExportSim" Val="0"/>
-    <Option Name="WTVcsExportSim" Val="11"/>
-    <Option Name="WTRivieraExportSim" Val="11"/>
-    <Option Name="WTActivehdlExportSim" Val="11"/>
+    <Option Name="WTVcsExportSim" Val="21"/>
+    <Option Name="WTRivieraExportSim" Val="21"/>
+    <Option Name="WTActivehdlExportSim" Val="21"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -149,6 +149,22 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/if/uart_if.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="D:/Files/Desktop/SystemVerilog-UART-master/rtl/if/uart_if.sv"/>
+          <Attr Name="ImportTime" Val="1560278342"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/basys3_uart_peripheral.sv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/imports/senior_design_current/decoder_logic.sv">
         <FileInfo>
           <Attr Name="ImportPath" Val="D:/Dev/projects/systemverilog/senior_design_current/decoder_logic.sv"/>
@@ -198,6 +214,33 @@
         <FileInfo>
           <Attr Name="ImportPath" Val="D:/Dev/projects/systemverilog/senior_design_current/register_file.sv"/>
           <Attr Name="ImportTime" Val="1740007685"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/uart.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="D:/Files/Desktop/SystemVerilog-UART-master/rtl/uart.sv"/>
+          <Attr Name="ImportTime" Val="1560278342"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/uart_rx.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="D:/Files/Desktop/SystemVerilog-UART-master/rtl/uart_rx.sv"/>
+          <Attr Name="ImportTime" Val="1560278342"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/uart_tx.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="D:/Files/Desktop/SystemVerilog-UART-master/rtl/uart_tx.sv"/>
+          <Attr Name="ImportTime" Val="1560278342"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -278,7 +321,7 @@
       <File Path="$PSRCDIR/sim_1/imports/rapidx_basys3/basys3_testbench_behav.wcfg">
         <FileInfo>
           <Attr Name="ImportPath" Val="D:/Dev/projects/xilinx/rapidx_basys3/basys3_testbench_behav.wcfg"/>
-          <Attr Name="ImportTime" Val="1742977940"/>
+          <Attr Name="ImportTime" Val="1743039070"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>

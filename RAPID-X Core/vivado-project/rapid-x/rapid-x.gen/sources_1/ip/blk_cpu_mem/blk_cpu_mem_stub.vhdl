@@ -2,10 +2,10 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
--- Date        : Wed Mar 12 15:10:33 2025
+-- Date        : Mon Mar 31 01:23:42 2025
 -- Host        : DESKTOP-T92VI6B running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub -rename_top blk_cpu_mem -prefix
---               blk_cpu_mem_ blk_cpu_mem_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub {c:/Users/youssef/Documents/NG-ICDesign/RAPID-X
+--               Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_cpu_mem/blk_cpu_mem_stub.vhdl}
 -- Design      : blk_cpu_mem
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a35tcpg236-1

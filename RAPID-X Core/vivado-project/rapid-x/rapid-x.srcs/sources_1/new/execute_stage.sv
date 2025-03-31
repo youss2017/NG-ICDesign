@@ -44,13 +44,18 @@ import rapid_pkg::*;
     output logic                         o_pc_load,
     output logic        [XLEN-1:0]       o_pc_ext,
     output logic        [XLEN-1:0]       o_memory_data,
-    output logic        [XLEN-1:0]       o_rd_output
+    output logic        [XLEN-1:0]       o_rd_output,
+    output logic        [XLEN-1:0]       o_ex_rs1,
+    output logic        [XLEN-1:0]       o_ex_rs2
 );
 
     // internal value
     control_ex_s iv_control_signal;
     logic signed [XLEN-1:0] iv_rs1, iv_rs2, iv_imm, iv_pc;
     logic signed [XLEN-1:0] forward_rs1, forward_rs2;
+    
+    assign o_ex_rs1 = iv_rs1;
+    assign o_ex_rs2 = iv_rs2;
 
     always_ff @(posedge i_clk, posedge i_reset) begin
 
@@ -171,7 +176,7 @@ import rapid_pkg::*;
                                default: o_pc_load = 0;
                 endcase
                 
-                o_pc_ext = (iv_pc + iv_imm) & ~32'h00000001;
+                o_pc_ext = (iv_pc + (iv_imm >>> 2));
                 o_rd_output = 0;
             end
 
@@ -183,10 +188,10 @@ import rapid_pkg::*;
             o_rd_output = iv_pc + 4; // This is rd value
             if (iv_control_signal.iop)
                 // JALR
-                o_pc_ext = (forward_rs1 /* JALR */ + iv_imm) & ~32'h00000001; // This is new pc value
+                o_pc_ext = (forward_rs1 /* JALR */ + (iv_imm >>> 2)); // This is new pc value
             else
                 // JAL
-                o_pc_ext = (iv_pc /* JAL */ + iv_imm) & ~32'h00000001; // This is new pc value
+                o_pc_ext = (iv_pc /* JAL */ + (iv_imm >>> 2)); // This is new pc value
             o_pc_load = 1;
         end
 

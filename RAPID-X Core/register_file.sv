@@ -24,8 +24,6 @@ import rapid_pkg::*;
 module register_file (
     input  logic            i_clk,
     input  logic            i_reset,
-    input  logic            i_rs1_out,
-    input  logic            i_rs2_out,
     input  logic [4:0]      i_rs1,
     input  logic [4:0]      i_rs2, 
     input  logic [4:0]      i_rd,
@@ -37,21 +35,16 @@ module register_file (
 
     always_comb begin
         
-        if (i_rs1_out) 
            if (i_rd > 0 && i_rd == i_rs1)
                o_rs1_data = i_rd_data;
            else
                o_rs1_data = regs[i_rs1];
-        else 
-            o_rs1_data = 'bz;
             
-        if (i_rs2_out) 
            if (i_rd > 0 && i_rd == i_rs2)
                o_rs2_data = i_rd_data;
            else
                o_rs2_data = regs[i_rs2];
-        else 
-            o_rs2_data = 'bz;
+
                 
     end
 

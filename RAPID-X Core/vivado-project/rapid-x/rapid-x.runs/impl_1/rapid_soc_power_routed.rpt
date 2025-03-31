@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date             : Sun Mar 16 14:13:04 2025
+| Date             : Mon Mar 31 01:26:54 2025
 | Host             : DESKTOP-T92VI6B running 64-bit major release  (build 9200)
 | Command          : report_power -file rapid_soc_power_routed.rpt -pb rapid_soc_power_summary_routed.pb -rpx rapid_soc_power_routed.rpx
 | Design           : rapid_soc
@@ -30,11 +30,11 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.130        |
+| Total On-Chip Power (W)  | 0.118        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.057        |
-| Device Static (W)        | 0.073        |
+| Dynamic (W)              | 0.046        |
+| Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.4         |
 | Junction Temperature (C) | 25.6         |
@@ -53,19 +53,19 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        3 |       --- |             --- |
-| Slice Logic    |     0.009 |     2799 |       --- |             --- |
-|   LUT as Logic |     0.008 |     1454 |     20800 |            6.99 |
-|   CARRY4       |    <0.001 |       70 |      8150 |            0.86 |
-|   Register     |    <0.001 |      864 |     41600 |            2.08 |
-|   F7/F8 Muxes  |    <0.001 |      128 |     32600 |            0.39 |
-|   BUFG         |    <0.001 |        1 |        32 |            3.13 |
-|   Others       |     0.000 |       68 |       --- |             --- |
-| Signals        |     0.015 |     2158 |       --- |             --- |
-| Block RAM      |     0.010 |       17 |        50 |           34.00 |
+| Slice Logic    |     0.009 |     3200 |       --- |             --- |
+|   LUT as Logic |     0.008 |     1594 |     20800 |            7.66 |
+|   CARRY4       |    <0.001 |      103 |      8150 |            1.26 |
+|   Register     |    <0.001 |      980 |     41600 |            2.36 |
+|   BUFG         |    <0.001 |        3 |        32 |            9.38 |
+|   F7/F8 Muxes  |    <0.001 |      193 |     32600 |            0.59 |
+|   Others       |     0.000 |       64 |       --- |             --- |
+| Signals        |     0.012 |     2339 |       --- |             --- |
+| Block RAM      |     0.010 |     11.5 |        50 |           23.00 |
 | DSPs           |    <0.001 |        1 |        90 |            1.11 |
-| I/O            |     0.021 |       28 |       106 |           26.42 |
-| Static Power   |     0.073 |          |           |                 |
-| Total          |     0.130 |          |           |                 |
+| I/O            |     0.013 |       28 |       106 |           26.42 |
+| Static Power   |     0.072 |          |           |                 |
+| Total          |     0.118 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,16 +75,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.045 |       0.035 |      0.010 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.013 |       0.001 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.007 |       0.006 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.042 |       0.032 |      0.010 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.005 |       0.004 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.001 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.001 |       0.001 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -144,19 +144,18 @@ Table of Contents
 +------------------------+-----------+
 | Name                   | Power (W) |
 +------------------------+-----------+
-| rapid_soc              |     0.057 |
-|   cpu                  |     0.022 |
-|     de_stage           |     0.004 |
-|     ex_stage           |     0.007 |
-|     memory_unit        |     0.010 |
-|     reg_file           |     0.002 |
-|   cpu_ram              |     0.006 |
-|     U0                 |     0.006 |
-|       inst_blk_mem_gen |     0.006 |
-|   graphics_engine      |     0.005 |
-|     vram_framebuffer   |     0.004 |
-|       U0               |     0.004 |
-|   lcd                  |     0.002 |
+| rapid_soc              |     0.046 |
+|   cpu                  |     0.020 |
+|     de_stage           |     0.003 |
+|     ex_stage           |     0.009 |
+|     memory_unit        |     0.007 |
+|   cpu_ram              |     0.009 |
+|     U0                 |     0.009 |
+|       inst_blk_mem_gen |     0.009 |
+|   graphics_engine      |     0.003 |
+|     vram_framebuffer   |     0.002 |
+|       U0               |     0.002 |
+|   lcd                  |     0.001 |
 +------------------------+-----------+
 
 

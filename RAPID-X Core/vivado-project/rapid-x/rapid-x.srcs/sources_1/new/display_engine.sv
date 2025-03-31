@@ -22,7 +22,7 @@
 
 module display_engine(
     input clk,
-    
+        
     input enable,
     input [18:0] framebuffer_address,
     input [7:0] framebuffer_data,
@@ -35,8 +35,8 @@ module display_engine(
 );
 
     wire pixelData;
-    wire [10:0] xCoord;
-    wire [10:0] yCoord;
+    wire [9:0] xCoord;
+    wire [9:0] yCoord;
     
     always @(negedge clk) begin
         red <= { 4{pixelData} };
@@ -50,9 +50,10 @@ module display_engine(
         .wea(enable),
         .addra(framebuffer_address),
         .dina(framebuffer_data[0]),
+        
         .clkb(clk),
         .enb(1),
-        .addrb((yCoord * 800) + xCoord),
+        .addrb((yCoord * 640) + xCoord),
         .doutb(pixelData)
     );
     

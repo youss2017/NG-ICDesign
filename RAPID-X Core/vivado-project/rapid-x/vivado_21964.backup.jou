@@ -1,0 +1,106 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Sat Mar  8 20:07:50 2025
+# Process ID         : 21964
+# Current directory  : C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent25120 C:\Users\youssef\Documents\NG-ICDesign\RAPID-X Core\vivado-project\rapid-x\rapid-x.xpr
+# Log file           : C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/vivado.log
+# Journal file       : C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x\vivado.jou
+# Running On         : DESKTOP-T92VI6B
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 19045
+# Processor Detail   : AMD Ryzen 7 5700X3D 8-Core Processor           
+# CPU Frequency      : 3000 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 42895 MB
+# Swap memory        : 9126 MB
+# Total Virtual      : 52021 MB
+# Available Virtual  : 13229 MB
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.xpr}
+update_compile_order -fileset sources_1
+create_ip -name blk_mem_gen -vendor xilinx.com -library ip -version 8.4 -module_name blk_vram_gen_0
+set_property -dict [list \
+  CONFIG.Assume_Synchronous_Clk {false} \
+  CONFIG.Memory_Type {Simple_Dual_Port_RAM} \
+  CONFIG.Register_PortB_Output_of_Memory_Core {false} \
+  CONFIG.Register_PortB_Output_of_Memory_Primitives {true} \
+  CONFIG.Use_REGCEB_Pin {false} \
+  CONFIG.Use_RSTB_Pin {false} \
+  CONFIG.Write_Depth_A {480000} \
+  CONFIG.Write_Width_A {1} \
+] [get_ips blk_vram_gen_0]
+generate_target {instantiation_template} [get_files {{c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0.xci}}]
+generate_target all [get_files  {{c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0.xci}}]
+catch { config_ip_cache -export [get_ips -all blk_vram_gen_0] }
+export_ip_user_files -of_objects [get_files {{c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0.xci}}] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] {{c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0.xci}}]
+launch_runs blk_vram_gen_0_synth_1 -jobs 8
+wait_on_run blk_vram_gen_0_synth_1
+export_simulation -lib_map_path [list {modelsim=C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.cache/compile_simlib/modelsim} {questa=C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.cache/compile_simlib/questa} {riviera=C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.cache/compile_simlib/riviera} {activehdl=C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.cache/compile_simlib/activehdl}] -of_objects [get_files {{c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0.xci}}] -directory {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.ip_user_files/sim_scripts} -ip_user_files_dir {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.ip_user_files} -ipstatic_source_dir {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.ip_user_files/ipstatic} -use_ip_compiled_libs -force -quiet
+close [ open {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/vga_driver.sv} w ]
+add_files {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/vga_driver.sv}}
+update_compile_order -fileset sources_1
+close [ open {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv} w ]
+add_files {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv}}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+reset_run blk_cpu_mem_synth_1
+launch_runs blk_cpu_mem_synth_1 -jobs 8
+wait_on_run blk_cpu_mem_synth_1
+wait_on_run blk_cpu_mem_synth_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+reset_run synth_1
+launch_runs impl_1 -jobs 16
+wait_on_run impl_1
+close_design
+open_run impl_1
+close [ open {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/decoder_module.sv} w ]
+add_files {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/decoder_module.sv}}
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/decoder_state.sv}}] -no_script -reset -force -quiet
+remove_files  {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/decoder_state.sv}}
+export_ip_user_files -of_objects  [get_files {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/decoder_logic.sv}}] -no_script -reset -force -quiet
+remove_files  {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/decoder_logic.sv}}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+add_files -norecurse {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/decoder_module.sv}}
+update_compile_order -fileset sources_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+current_design impl_1
+current_design rtl_1
+export_ip_user_files -of_objects  [get_files {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/execute_state.sv}}] -no_script -reset -force -quiet
+remove_files  {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/execute_state.sv}}
+export_ip_user_files -of_objects  [get_files {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/execute_logic.sv}}] -no_script -reset -force -quiet
+remove_files  {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/execute_logic.sv}}
+close [ open {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/execute_stage.sv} w ]
+add_files {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/execute_stage.sv}}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+refresh_design
+reset_run synth_1
+launch_runs impl_1 -jobs 16
+wait_on_run impl_1
+current_design impl_1
+refresh_design
+current_design rtl_1
+create_waiver -of_objects [get_drc_violations -name rapid_soc_drc_routed.rpx {LUTLP-1#1}] -user youssef -description 12
+current_design impl_1
+open_run synth_1 -name synth_1
+current_design impl_1
+reset_run synth_1
+launch_runs impl_1 -jobs 16
+wait_on_run impl_1
+refresh_design
+reset_run synth_1
+launch_runs impl_1 -jobs 16
+wait_on_run impl_1
+refresh_design
+launch_runs impl_1 -to_step write_bitstream -jobs 16
+wait_on_run impl_1

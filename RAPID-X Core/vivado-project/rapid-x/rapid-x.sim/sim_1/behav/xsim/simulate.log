@@ -1,70 +1,106 @@
 Time resolution is 1 ps
-MISMATCH! For instruction f6a10193
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=0, alu_imm=1, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=000, rs1=02, rs2=00, rd=03
-Actual(          1): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=0, alu_imm=1, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=000, rs1=02, rs2=10, rd=03
-MISMATCH! For instruction ed417193
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=0, alu_imm=1, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=111, rs1=02, rs2=00, rd=03
-Actual(          3): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=0, alu_imm=1, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=111, rs1=02, rs2=20, rd=03
-MISMATCH! For instruction 00064197
-Expected  : load_upper_imm=1, uncond_branch=0, cond_branch=0, mem=0, alu_imm=0, alu_reg=0, iop=0, rs1_out=0, rs2_out=0, fcs_opcode=000, rs1=00, rs2=00, rd=03
-Actual(          4): load_upper_imm=1, uncond_branch=0, cond_branch=0, mem=0, alu_imm=0, alu_reg=0, iop=0, rs1_out=0, rs2_out=0, fcs_opcode=100, rs1=12, rs2=00, rd=03
-MISMATCH! For instruction 06218263
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=1, mem=0, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=1, fcs_opcode=000, rs1=03, rs2=02, rd=00
-Actual(          5): load_upper_imm=0, uncond_branch=0, cond_branch=1, mem=0, alu_imm=0, alu_reg=0, iop=1, rs1_out=0, rs2_out=1, fcs_opcode=000, rs1=03, rs2=02, rd=04
-MISMATCH! For instruction f821dee3
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=1, mem=0, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=1, fcs_opcode=101, rs1=03, rs2=02, rd=00
-Actual(          6): load_upper_imm=0, uncond_branch=0, cond_branch=1, mem=0, alu_imm=0, alu_reg=0, iop=1, rs1_out=0, rs2_out=1, fcs_opcode=101, rs1=03, rs2=02, rd=29
-MISMATCH! For instruction 0221f963
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=1, mem=0, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=1, fcs_opcode=111, rs1=03, rs2=02, rd=00
-Actual(          7): load_upper_imm=0, uncond_branch=0, cond_branch=1, mem=0, alu_imm=0, alu_reg=0, iop=1, rs1_out=0, rs2_out=1, fcs_opcode=111, rs1=03, rs2=02, rd=18
-MISMATCH! For instruction 0621c263
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=1, mem=0, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=1, fcs_opcode=100, rs1=03, rs2=02, rd=00
-Actual(          8): load_upper_imm=0, uncond_branch=0, cond_branch=1, mem=0, alu_imm=0, alu_reg=0, iop=1, rs1_out=0, rs2_out=1, fcs_opcode=100, rs1=03, rs2=02, rd=04
-MISMATCH! For instruction 06219263
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=1, mem=0, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=1, fcs_opcode=001, rs1=03, rs2=02, rd=00
-Actual(          9): load_upper_imm=0, uncond_branch=0, cond_branch=1, mem=0, alu_imm=0, alu_reg=0, iop=1, rs1_out=0, rs2_out=1, fcs_opcode=001, rs1=03, rs2=02, rd=04
-MISMATCH! For instruction 064001ef
-Expected  : load_upper_imm=0, uncond_branch=1, cond_branch=0, mem=0, alu_imm=0, alu_reg=0, iop=0, rs1_out=0, rs2_out=0, fcs_opcode=000, rs1=00, rs2=00, rd=03
-Actual(         10): load_upper_imm=0, uncond_branch=1, cond_branch=0, mem=0, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=000, rs1=00, rs2=04, rd=03
-MISMATCH! For instruction 014101e7
-Expected  : load_upper_imm=0, uncond_branch=1, cond_branch=0, mem=0, alu_imm=0, alu_reg=0, iop=1, rs1_out=1, rs2_out=0, fcs_opcode=000, rs1=02, rs2=00, rd=03
-Actual(         11): load_upper_imm=0, uncond_branch=1, cond_branch=0, mem=0, alu_imm=0, alu_reg=0, iop=1, rs1_out=0, rs2_out=0, fcs_opcode=000, rs1=02, rs2=20, rd=03
-MISMATCH! For instruction 01410183
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=1, fcs_opcode=000, rs1=02, rs2=01, rd=03
-Actual(         12): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=000, rs1=02, rs2=20, rd=03
-MISMATCH! For instruction 01414183
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=1, fcs_opcode=100, rs1=02, rs2=01, rd=03
-Actual(         13): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=100, rs1=02, rs2=20, rd=03
-MISMATCH! For instruction 01411183
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=1, fcs_opcode=001, rs1=02, rs2=01, rd=03
-Actual(         14): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=001, rs1=02, rs2=20, rd=03
-MISMATCH! For instruction 01415183
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=1, fcs_opcode=101, rs1=02, rs2=01, rd=03
-Actual(         15): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=101, rs1=02, rs2=20, rd=03
-MISMATCH! For instruction 01412183
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=1, fcs_opcode=010, rs1=02, rs2=01, rd=03
-Actual(         16): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=010, rs1=02, rs2=20, rd=03
-MISMATCH! For instruction 0000a1b7
-Expected  : load_upper_imm=1, uncond_branch=0, cond_branch=0, mem=0, alu_imm=0, alu_reg=0, iop=1, rs1_out=0, rs2_out=0, fcs_opcode=000, rs1=00, rs2=00, rd=03
-Actual(         17): load_upper_imm=1, uncond_branch=0, cond_branch=0, mem=0, alu_imm=0, alu_reg=0, iop=1, rs1_out=0, rs2_out=0, fcs_opcode=010, rs1=01, rs2=00, rd=03
-MISMATCH! For instruction 06416193
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=0, alu_imm=1, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=110, rs1=02, rs2=00, rd=03
-Actual(         19): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=0, alu_imm=1, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=110, rs1=02, rs2=04, rd=03
-MISMATCH! For instruction 00310a23
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=1, rs1_out=1, rs2_out=1, fcs_opcode=000, rs1=02, rs2=01, rd=00
-Actual(         20): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=1, rs1_out=1, rs2_out=1, fcs_opcode=000, rs1=02, rs2=03, rd=20
-MISMATCH! For instruction 00311a23
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=1, rs1_out=1, rs2_out=1, fcs_opcode=001, rs1=02, rs2=01, rd=00
-Actual(         21): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=1, rs1_out=1, rs2_out=1, fcs_opcode=001, rs1=02, rs2=03, rd=20
-MISMATCH! For instruction 00312a23
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=1, rs1_out=1, rs2_out=1, fcs_opcode=010, rs1=02, rs2=01, rd=00
-Actual(         22): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=1, alu_imm=0, alu_reg=0, iop=1, rs1_out=1, rs2_out=1, fcs_opcode=010, rs1=02, rs2=03, rd=20
-MISMATCH! For instruction 00411193
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=0, alu_imm=1, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=001, rs1=02, rs2=00, rd=03
-Actual(         24): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=0, alu_imm=1, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=001, rs1=02, rs2=04, rd=03
-MISMATCH! For instruction 00a12193
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=0, alu_imm=1, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=010, rs1=02, rs2=00, rd=03
-Actual(         26): load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=0, alu_imm=1, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=010, rs1=02, rs2=10, rd=03
-MISMATCH! For instruction 00a13193
-Expected  : load_upper_imm=0, uncond_branch=0, cond_branch=0, mem=0, alu_imm=1, alu_reg=0, iop=0, rs1_out=1, rs2_out=0, fcs_opcode=011, rs1=02, rs2=00, rd=03
-Actual(         27): load_upper_imm=0, uncond_branch=0,
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module soc_tb.soc.cpu_ram.inst.native_mem_module.blk_mem_gen_v8_4_9_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module soc_tb.soc.graphics_engine.vram_framebuffer.inst.native_mem_module.blk_mem_gen_v8_4_9_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         9), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2041), DATA(        10), WE(         1), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+Stopped at time : 125 ns : File "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/execute_stage.sv" Line 179
+Stopped at time : 125 ns : File "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/execute_stage.sv" Line 180
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2049), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         8), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2048), DATA(         9), WE(         1), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2050), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         7), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2049), DATA(         8), WE(         1), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2051), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         6), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2050), DATA(         7), WE(         1), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2052), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         5), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2051), DATA(         6), WE(         1), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2053), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         4), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2052), DATA(         5), WE(         1), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2054), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         3), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2053), DATA(         4), WE(         1), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2055), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         2), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2054), DATA(         3), WE(         1), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2056), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         1), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2055), DATA(         2), WE(         1), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2057), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(      2056), DATA(         1), WE(         1), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+MMU: ADDRS(         0), DATA(         0), WE(         0), RAM_EN(1), LCD_EN(0), DISP_EN(0)
+
+$finish called at time : 1002 ns : File "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sim_1/new/soc_tb.sv" Line 40

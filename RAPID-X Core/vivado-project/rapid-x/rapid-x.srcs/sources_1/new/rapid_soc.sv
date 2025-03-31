@@ -46,11 +46,11 @@ module rapid_soc(
     output logic clk_indicator*/
 );
    
-    clock_divider #(.TARGET_VALUE(1)) cpu_clk_div(.clk(i_clk), .reset(0), .out_clk(cpu_clk));
+    clock_divider #(.TARGET_VALUE(2)) cpu_clk_div(.clk(i_clk), .reset(0), .out_clk(cpu_clk));
 
     // CPU signals
     logic [31:0] instruction_fetch_address, instruction_fetch_data;
-    logic [31:0] mmu_address, mmu_input_data, mmu_output_data, mmu_we;
+    logic [31:0] mmu_address, mmu_input_data, mmu_output_data, mmu_we, translated_address;
     
     initial begin
         $monitor("MMU: ADDRS(%d), DATA(%d), WE(%d), RAM_EN(%d), LCD_EN(%d), DISP_EN(%d)\n", 
@@ -72,7 +72,8 @@ module rapid_soc(
         .mmu_address(mmu_address),
         .ram_enable(ram_enable),
         .lcd_enable(lcd_enable),
-        .display_enable(display_enable)
+        .display_enable(display_enable),
+        .translated_address(translated_address)
     );
 
     blk_cpu_mem cpu_ram(
@@ -86,7 +87,7 @@ module rapid_soc(
         .clkb(i_clk),
         .enb(ram_enable),
         .web(mmu_we),
-        .addrb(mmu_address),
+        .addrb(translated_address),
         .dinb(mmu_output_data),
         .doutb(mmu_input_data)
     );
@@ -94,7 +95,7 @@ module rapid_soc(
     lcd_display lcd(
         .clk(i_clk),
         .reset(i_reset),
-        .load(lcd_enable & mmu_we),
+        .load(lcd_enable && mmu_we),
         .value(mmu_output_data[15:0]),
         .o_signal(segement),
         .o_anode_select(anode)
@@ -104,7 +105,7 @@ module rapid_soc(
         .clk(i_clk),
         
         .enable(display_enable),
-        .framebuffer_address(mmu_address),
+        .framebuffer_address(translated_address),
         .framebuffer_data(mmu_output_data),
         
         .hSync(hSync),

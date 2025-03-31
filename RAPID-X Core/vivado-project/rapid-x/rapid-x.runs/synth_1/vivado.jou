@@ -3,8 +3,8 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Sun Mar 16 14:09:57 2025
-# Process ID         : 30212
+# Start of session at: Mon Mar 31 01:23:46 2025
+# Process ID         : 9836
 # Current directory  : C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1
 # Command line       : vivado.exe -log rapid_soc.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source rapid_soc.tcl
 # Log file           : C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/rapid_soc.vds
@@ -17,8 +17,8 @@
 # CPU Physical cores : 8
 # CPU Logical cores  : 16
 # Host memory        : 42895 MB
-# Swap memory        : 6979 MB
-# Total Virtual      : 49874 MB
-# Available Virtual  : 16331 MB
+# Swap memory        : 20559 MB
+# Total Virtual      : 63454 MB
+# Available Virtual  : 9589 MB
 #-----------------------------------------------------------
 source rapid_soc.tcl -notrace

@@ -48,6 +48,7 @@ module rapid_x_cpu(
     // immediate value from the instruction. This
     // is computed in the decoder_logic
     logic [XLEN-1:0] de_imm_data;
+    logic [XLEN-1:0] de_pc;
 
     // The following are connections from the
     // execute_state to execute_logic
@@ -109,8 +110,6 @@ module rapid_x_cpu(
     register_file reg_file(
         .i_clk(clk),
         .i_reset(reset),
-        .i_rs1_out(de_control_signal.rs1_out),
-        .i_rs2_out(de_control_signal.rs2_out),
         .i_rs1(de_control_signal.rs1),
         .i_rs2(de_control_signal.rs2),
         .i_rd(mem_ready ? mem_rd : 0),
@@ -129,7 +128,7 @@ module rapid_x_cpu(
         .i_pipeline_enable(mem_ready),
         .i_pc_load(ex_pc_load),
         .i_instruction(if_instruction),
-        .i_pc(if_pc),
+        .i_pc(instruction_fetch_address),
         .o_pc(de_pc),
         .o_control_signal(de_control_signal),
         .o_imm(de_imm_data)
@@ -150,7 +149,9 @@ module rapid_x_cpu(
         .o_pc_load(ex_pc_load),
         .o_pc_ext(ex_pc_ext),
         .o_memory_data(ex_memory_data),
-        .o_rd_output(ex_rd_output)
+        .o_rd_output(ex_rd_output),
+        .o_ex_rs1(ex_rs1),
+        .o_ex_rs2(ex_rs2)
     );
     
     /*execute_state ex_state(
@@ -181,18 +182,18 @@ module rapid_x_cpu(
         .o_pc_ext(ex_pc_ext),
         .o_memory_data(ex_memory_data),
         .o_rd_output(ex_rd_output)
-    );
+    );*/
 
     forward_unit funit(
-        .i_ex_rs1(ex_control_signal.rs1), /* index from execute stage * /
-        .i_ex_rs2(ex_control_signal.rs2), /* index from execute stage * /
-        .i_mem_rd(mem_ready ? mem_rd : 0), /* index from memory stage * /
-        .i_mem_rd_data(mem_rd_output), /* data from memory stage * /
-        .i_ex_rs1_data(ex_rs1), /* data from execute stage * /
-        .i_ex_rs2_data(ex_rs2), /* data from execute stage * /
+        .i_ex_rs1(ex_control_signal.rs1), /* index from execute stage */
+        .i_ex_rs2(ex_control_signal.rs2), /* index from execute stage */
+        .i_mem_rd(mem_ready ? mem_rd : 0), /* index from memory stage */
+        .i_mem_rd_data(mem_rd_output), /* data from memory stage */
+        .i_ex_rs1_data(ex_rs1), /* data from execute stage */
+        .i_ex_rs2_data(ex_rs2), /* data from execute stage */
         .o_forward_rs1(forwarded_rs1), // forwarded data
         .o_forward_rs2(forwarded_rs2)  // forwarded data
-    );*/
+    );
 
     cpu_memory_unit memory_unit(
         .clk(clk),

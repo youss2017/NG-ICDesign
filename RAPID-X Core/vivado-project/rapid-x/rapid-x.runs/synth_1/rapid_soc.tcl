@@ -58,9 +58,7 @@ if {$::dispatch::connected} {
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param tcl.statsThreshold 360
 set_param chipscope.maxJobs 4
-set_param checkpoint.writeSynthRtdsInDcp 1
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -87,6 +85,7 @@ read_verilog -library xil_defaultlib -sv {
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/decoder_module.sv}
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv}
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/execute_stage.sv}
+  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/forwarding_unit.sv}
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv}
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/memory_managment_unit.sv}
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv}
@@ -96,11 +95,11 @@ read_verilog -library xil_defaultlib -sv {
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv}
 }
 read_verilog -library xil_defaultlib {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/anode_mux.v}}
-read_ip -quiet {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0.xci}}
-set_property used_in_implementation false [get_files -all {{c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0_ooc.xdc}}]
-
 read_ip -quiet {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_cpu_mem/blk_cpu_mem.xci}}
 set_property used_in_implementation false [get_files -all {{c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_cpu_mem/blk_cpu_mem_ooc.xdc}}]
+
+read_ip -quiet {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0.xci}}
+set_property used_in_implementation false [get_files -all {{c:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.gen/sources_1/ip/blk_vram_gen_0/blk_vram_gen_0_ooc.xdc}}]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -114,8 +113,6 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc}}
 set_property used_in_implementation false [get_files {{C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/constrs_1/new/constraints.xdc}}]
 
-read_xdc dont_touch.xdc
-set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 
 read_checkpoint -auto_incremental -incremental {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/utils_1/imports/synth_1/rapid_x_cpu.dcp}

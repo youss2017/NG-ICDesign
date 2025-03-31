@@ -4,24 +4,17 @@ module memory_managment_unit(
         input logic [31:0] mmu_address,
         output logic ram_enable,
         output logic lcd_enable,
-        output logic display_enable
+        output logic display_enable,
+        output logic [31:0] translated_address
 );
 
-    always_comb begin
-        if (mmu_address < 4095) begin
-            ram_enable = 1;
-            lcd_enable = 0;
-            display_enable = 0;
-        end else if (mmu_address < 484095) begin
-            ram_enable = 0;
-            lcd_enable = 0;
-            display_enable = 1;
-        end else begin
-            ram_enable = 0;
-            lcd_enable = 1;
-            display_enable = 0;
-        end
-        
-    end
+    logic is_ram, is_lcd, is_display;
+    assign ram_enable = mmu_address < 4095;
+    assign lcd_enable = mmu_address >= 311295;
+    assign display_enable = mmu_address >= 4095 && mmu_address < 311295;
+    
+    assign translated_address = is_ram ? mmu_address :
+                                is_display ? (mmu_address - 4095) :
+                                'bx;
 
 endmodule

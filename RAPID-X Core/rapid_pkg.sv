@@ -8,7 +8,7 @@ package rapid_pkg;
     typedef bit [XLEN-1:0] word_t;
 
     parameter bit [XLEN-1:0] RESET_VECTOR = 0;
-    parameter bit [XLEN-1:0] RESET_STACK_POINTER = 1024;
+    parameter bit [XLEN-1:0] RESET_STACK_POINTER = 1000;
     parameter bit [XLEN-1:0] WORD_WIDTH = 4;
     parameter bit [XLEN-1:0] NOP_INSTRUCTION = 32'h00000033; // add x0, x0, x0
     parameter bit [XLEN-1:0] NOOP_INSTRUCTION = 32'h00000033; // add x0, x0, x0
@@ -40,8 +40,6 @@ package rapid_pkg;
         logic alu_imm;
         logic alu_reg;
         logic iop;
-        logic rs1_out;
-        logic rs2_out;
         logic [2:0] fcs_opcode;
         logic [4:0] rs1;
         logic [4:0] rs2;
@@ -67,8 +65,6 @@ package rapid_pkg;
             alu_imm: '0,
             alu_reg: '0,
             iop: '0,
-            rs1_out: '0,
-            rs2_out: '0,
             fcs_opcode: '0,
             rs1: '0,
             rs2: '0,

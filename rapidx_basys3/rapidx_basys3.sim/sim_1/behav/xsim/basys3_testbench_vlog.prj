@@ -4,15 +4,14 @@ verilog xil_defaultlib  \
 "../../../../rapidx_basys3.gen/sources_1/ip/blk_mem_rom/sim/blk_mem_rom.v" \
 
 sv xil_defaultlib  \
-"../../../../rapidx_basys3.srcs/sources_1/new/basys3_data_bus.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/new/basys3_gpio_peripheral.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/imports/senior_design_current/rapid_pkg.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/new/basys3_ifetch_unit.sv" \
-"../../../../rapidx_basys3.srcs/sources_1/new/basys3_inst_bus.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/new/basys3_memory_unit.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/new/basys3_rapidx_cpu.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/new/basys3_top_level.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/new/basys3_uart_peripheral.sv" \
+"../../../../rapidx_basys3.srcs/sources_1/new/basys3_unified_bus.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/imports/senior_design_current/decoder_logic.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/imports/senior_design_current/decoder_state.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/imports/senior_design_current/execute_logic.sv" \

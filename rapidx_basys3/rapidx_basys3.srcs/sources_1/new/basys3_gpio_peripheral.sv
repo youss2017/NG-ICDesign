@@ -60,6 +60,7 @@ module basys3_gpio_peripheral(
             
             // inputs
             case(addr)
+                'h0: data_in <= { 16'b0, led[15:0] }; // also allow to read last-set LED value
                 'h1: data_in <= { 16'b0, sw };
                 'h2: data_in <= { 27'b0, btnC, btnU, btnL, btnR, btnD };
                 default: data_in <= 'b0;

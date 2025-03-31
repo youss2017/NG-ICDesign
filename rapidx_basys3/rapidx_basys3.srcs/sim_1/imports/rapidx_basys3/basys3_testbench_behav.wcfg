@@ -5,7 +5,7 @@
    <db_ref_list>
       <db_ref path="basys3_testbench_behav.wdb" id="1">
          <top_modules>
-            <top_module name="\$unit_basys3_data_bus_sv_1388764076 " />
+            <top_module name="\$unit_basys3_gpio_peripheral_sv_375374930 " />
             <top_module name="basys3_testbench" />
             <top_module name="glbl" />
             <top_module name="rapid_pkg" />
@@ -13,15 +13,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="82.101 ns"></ZoomEndTime>
-      <Cursor1Time time="50.900 ns"></Cursor1Time>
+      <ZoomStartTime time="55,001.893 ns"></ZoomStartTime>
+      <ZoomEndTime time="55,168.494 ns"></ZoomEndTime>
+      <Cursor1Time time="55,091.493 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="152"></NameColumnWidth>
+      <NameColumnWidth column_width="140"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="17" />
    <wvobject fp_name="/basys3_testbench/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -65,7 +65,6 @@
    <wvobject fp_name="group61" type="group">
       <obj_property name="label">UART</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/basys3_testbench/uut/uart/i_clock" type="logic">
          <obj_property name="ElementShortName">i_clock</obj_property>
          <obj_property name="ObjectShortName">i_clock</obj_property>
@@ -141,7 +140,6 @@
       <wvobject fp_name="group327" type="group">
          <obj_property name="label">RX</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/basys3_testbench/uut/uart/uart/uart_rx_inst/clk" type="logic">
             <obj_property name="ElementShortName">clk</obj_property>
             <obj_property name="ObjectShortName">clk</obj_property>
@@ -189,29 +187,14 @@
          <obj_property name="ObjectShortName">dbus_writeword[31:0]</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject fp_name="group71" type="group">
-      <obj_property name="label">DBUS</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-      <wvobject fp_name="/basys3_testbench/uut/dbus/dbus_addr" type="array">
-         <obj_property name="ElementShortName">dbus_addr[31:0]</obj_property>
-         <obj_property name="ObjectShortName">dbus_addr[31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/basys3_testbench/uut/dbus/is_ram" type="logic">
-         <obj_property name="ElementShortName">is_ram</obj_property>
-         <obj_property name="ObjectShortName">is_ram</obj_property>
-      </wvobject>
-      <wvobject fp_name="/basys3_testbench/uut/dbus/is_gpio" type="logic">
-         <obj_property name="ElementShortName">is_gpio</obj_property>
-         <obj_property name="ObjectShortName">is_gpio</obj_property>
-      </wvobject>
-      <wvobject fp_name="/basys3_testbench/uut/dbus/is_uart" type="logic">
-         <obj_property name="ElementShortName">is_uart</obj_property>
-         <obj_property name="ObjectShortName">is_uart</obj_property>
-      </wvobject>
-   </wvobject>
    <wvobject fp_name="group51" type="group">
       <obj_property name="label">IFETCH</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/instruction_fetch_unit/i_ext_pc" type="array">
+         <obj_property name="ElementShortName">i_ext_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_ext_pc[31:0]</obj_property>
+      </wvobject>
       <wvobject fp_name="/basys3_testbench/uut/cpu/instruction_fetch_unit/o_pc" type="array">
          <obj_property name="ElementShortName">o_pc[31:0]</obj_property>
          <obj_property name="ObjectShortName">o_pc[31:0]</obj_property>
@@ -224,38 +207,194 @@
          <obj_property name="ElementShortName">ibus_addr[31:0]</obj_property>
          <obj_property name="ObjectShortName">ibus_addr[31:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/basys3_testbench/uut/cpu/instruction_fetch_unit/ibus_word" type="array">
-         <obj_property name="ElementShortName">ibus_word[31:0]</obj_property>
-         <obj_property name="ObjectShortName">ibus_word[31:0]</obj_property>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/instruction_fetch_unit/i_pc_load" type="logic">
+         <obj_property name="ElementShortName">i_pc_load</obj_property>
+         <obj_property name="ObjectShortName">i_pc_load</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject fp_name="group52" type="group">
-      <obj_property name="label">IBUS</obj_property>
+   <wvobject fp_name="group92" type="group">
+      <obj_property name="label">BUS</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject fp_name="/basys3_testbench/uut/ibus/i_clk" type="logic">
-         <obj_property name="ElementShortName">i_clk</obj_property>
-         <obj_property name="ObjectShortName">i_clk</obj_property>
+      <wvobject fp_name="/basys3_testbench/uut/bus/inst_from_rom" type="logic">
+         <obj_property name="ElementShortName">inst_from_rom</obj_property>
+         <obj_property name="ObjectShortName">inst_from_rom</obj_property>
       </wvobject>
-      <wvobject fp_name="/basys3_testbench/uut/ibus/rom/clka" type="logic">
-         <obj_property name="ElementShortName">clka</obj_property>
-         <obj_property name="ObjectShortName">clka</obj_property>
+      <wvobject fp_name="/basys3_testbench/uut/bus/inst_from_ram" type="logic">
+         <obj_property name="ElementShortName">inst_from_ram</obj_property>
+         <obj_property name="ObjectShortName">inst_from_ram</obj_property>
       </wvobject>
-      <wvobject fp_name="/basys3_testbench/uut/ibus/rom/ena" type="logic">
-         <obj_property name="ElementShortName">ena</obj_property>
-         <obj_property name="ObjectShortName">ena</obj_property>
-      </wvobject>
-      <wvobject fp_name="/basys3_testbench/uut/ibus/rom/addra" type="array">
-         <obj_property name="ElementShortName">addra[13:0]</obj_property>
-         <obj_property name="ObjectShortName">addra[13:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/basys3_testbench/uut/ibus/ibus_addr" type="array">
+      <wvobject fp_name="/basys3_testbench/uut/bus/ibus_addr" type="array">
          <obj_property name="ElementShortName">ibus_addr[31:0]</obj_property>
          <obj_property name="ObjectShortName">ibus_addr[31:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/basys3_testbench/uut/ibus/ibus_word" type="array">
+      <wvobject fp_name="/basys3_testbench/uut/bus/ibus_word" type="array">
          <obj_property name="ElementShortName">ibus_word[31:0]</obj_property>
          <obj_property name="ObjectShortName">ibus_word[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/bus/dbus_wena" type="logic">
+         <obj_property name="ElementShortName">dbus_wena</obj_property>
+         <obj_property name="ObjectShortName">dbus_wena</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/bus/dbus_bena" type="array">
+         <obj_property name="ElementShortName">dbus_bena[3:0]</obj_property>
+         <obj_property name="ObjectShortName">dbus_bena[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/bus/dbus_addr" type="array">
+         <obj_property name="ElementShortName">dbus_addr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dbus_addr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/bus/dbus_readword" type="array">
+         <obj_property name="ElementShortName">dbus_readword[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dbus_readword[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/bus/dbus_writeword" type="array">
+         <obj_property name="ElementShortName">dbus_writeword[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dbus_writeword[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/bus/is_ram" type="logic">
+         <obj_property name="ElementShortName">is_ram</obj_property>
+         <obj_property name="ObjectShortName">is_ram</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/bus/is_gpio" type="logic">
+         <obj_property name="ElementShortName">is_gpio</obj_property>
+         <obj_property name="ObjectShortName">is_gpio</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/bus/is_uart" type="logic">
+         <obj_property name="ElementShortName">is_uart</obj_property>
+         <obj_property name="ObjectShortName">is_uart</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group335" type="group">
+      <obj_property name="label">EXLOG</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_logic/i_pc" type="array">
+         <obj_property name="ElementShortName">i_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_pc[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_logic/i_control_signal" type="array">
+         <obj_property name="ElementShortName">i_control_signal</obj_property>
+         <obj_property name="ObjectShortName">i_control_signal</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_logic/i_rs1" type="array">
+         <obj_property name="ElementShortName">i_rs1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_rs1[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_logic/i_rs2" type="array">
+         <obj_property name="ElementShortName">i_rs2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_rs2[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_logic/i_imm" type="array">
+         <obj_property name="ElementShortName">i_imm[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_imm[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_logic/o_control_signal" type="array">
+         <obj_property name="ElementShortName">o_control_signal</obj_property>
+         <obj_property name="ObjectShortName">o_control_signal</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_logic/o_pc_load" type="logic">
+         <obj_property name="ElementShortName">o_pc_load</obj_property>
+         <obj_property name="ObjectShortName">o_pc_load</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_logic/o_pc_ext" type="array">
+         <obj_property name="ElementShortName">o_pc_ext[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_pc_ext[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_logic/o_memory_data" type="array">
+         <obj_property name="ElementShortName">o_memory_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_memory_data[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_logic/o_rd_output" type="array">
+         <obj_property name="ElementShortName">o_rd_output[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_rd_output[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group392" type="group">
+      <obj_property name="label">EXST</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/i_pc_load" type="logic">
+         <obj_property name="ElementShortName">i_pc_load</obj_property>
+         <obj_property name="ObjectShortName">i_pc_load</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/i_pc" type="array">
+         <obj_property name="ElementShortName">i_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_pc[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/i_control_signal" type="array">
+         <obj_property name="ElementShortName">i_control_signal</obj_property>
+         <obj_property name="ObjectShortName">i_control_signal</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/i_rs1" type="array">
+         <obj_property name="ElementShortName">i_rs1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_rs1[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/i_rs2" type="array">
+         <obj_property name="ElementShortName">i_rs2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_rs2[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/i_imm" type="array">
+         <obj_property name="ElementShortName">i_imm[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_imm[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/o_pc" type="array">
+         <obj_property name="ElementShortName">o_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_pc[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/o_control_signal" type="array">
+         <obj_property name="ElementShortName">o_control_signal</obj_property>
+         <obj_property name="ObjectShortName">o_control_signal</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/o_rs1" type="array">
+         <obj_property name="ElementShortName">o_rs1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_rs1[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/o_rs2" type="array">
+         <obj_property name="ElementShortName">o_rs2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_rs2[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/o_imm" type="array">
+         <obj_property name="ElementShortName">o_imm[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_imm[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/iv_control_signal" type="array">
+         <obj_property name="ElementShortName">iv_control_signal</obj_property>
+         <obj_property name="ObjectShortName">iv_control_signal</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/iv_rs1" type="array">
+         <obj_property name="ElementShortName">iv_rs1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">iv_rs1[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/iv_rs2" type="array">
+         <obj_property name="ElementShortName">iv_rs2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">iv_rs2[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/iv_imm" type="array">
+         <obj_property name="ElementShortName">iv_imm[31:0]</obj_property>
+         <obj_property name="ObjectShortName">iv_imm[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/ex_state/iv_pc" type="array">
+         <obj_property name="ElementShortName">iv_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">iv_pc[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group140" type="group">
+      <obj_property name="label">DELOG</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/de_logic/i_instruction" type="array">
+         <obj_property name="ElementShortName">i_instruction[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_instruction[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/de_logic/o_control_signal" type="array">
+         <obj_property name="ElementShortName">o_control_signal</obj_property>
+         <obj_property name="ObjectShortName">o_control_signal</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+      <wvobject fp_name="/basys3_testbench/uut/cpu/de_logic/o_imm" type="array">
+         <obj_property name="ElementShortName">o_imm[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_imm[31:0]</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>

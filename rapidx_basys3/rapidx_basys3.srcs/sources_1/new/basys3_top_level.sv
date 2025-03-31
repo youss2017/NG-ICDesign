@@ -77,14 +77,10 @@ module basys3_top_level(
         .dbus_writeword(dbus_writeword)
     );
     
-    basys3_inst_bus ibus(
+    basys3_unified_bus bus(
         .i_clk(clk),
         .ibus_addr(ibus_addr),
-        .ibus_word(ibus_word)
-    );
-    
-    basys3_data_bus dbus(
-        .i_clk(clk),
+        .ibus_word(ibus_word),
         .dbus_wena(dbus_wena),
         .dbus_bena(dbus_bena),
         .dbus_addr(dbus_addr),

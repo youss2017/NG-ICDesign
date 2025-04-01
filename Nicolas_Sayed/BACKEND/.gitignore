@@ -1,0 +1,19 @@
+# Temp Files
+*tmp*
+*.log*
+*~
+
+# Extra
+*.cmd*
+*.shm
+*.history
+*.log
+*.d
+*.simvision
+*.key
+
+work/*
+!work/*.tcl
+!work/*.sh
+
+NanGate45-Synopsys-Enablement/

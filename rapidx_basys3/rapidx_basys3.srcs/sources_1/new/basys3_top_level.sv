@@ -34,6 +34,16 @@ module basys3_top_level(
 
     );
     
+    // map of the cpu memory space
+    localparam ROM_BEGIN  = 32'h00000000;
+    localparam ROM_END    = 32'h000003FF;
+    localparam RAM_BEGIN  = 32'h00010000;
+    localparam RAM_END    = 32'h0001FFFF;
+    localparam GPIO_BEGIN = 32'h00020000;
+    localparam GPIO_END   = 32'h0002000F;
+    localparam UART_BEGIN = 32'h00020010;
+    localparam UART_END   = 32'h0002001F;
+    
     logic reset;
     assign reset = btnC;
     // 1/4 and 1/2 the frequency of clk
@@ -54,16 +64,19 @@ module basys3_top_level(
     logic [31:0] dbus_readword;
     logic [31:0] dbus_writeword;    
     
-    logic [1:0]  gpio_addr;   
-    logic [31:0] gpio_data_out;   
-    logic [31:0] gpio_data_in;
-    logic        gpio_write_enable;
+    logic        inst_ram_enable;
+    logic [31:0] inst_ram_word;
+    logic        inst_rom_enable;
+    logic [31:0] inst_rom_word;
     
-    logic [1:0]  uart_addr;   
-    logic [31:0] uart_data_out;   
-    logic [31:0] uart_data_in;
-    logic        uart_write_enable;
+    logic        ram_enable;
+    logic [31:0] ram_word;
+    logic        rom_enable;
+    logic [31:0] rom_word;
+    logic        gpio_enable;
+    logic [31:0] gpio_word;
     logic        uart_enable;
+    logic [31:0] uart_word;
     
     basys3_rapidx_cpu cpu(
         .i_clk(slow_clock[1]),
@@ -77,33 +90,63 @@ module basys3_top_level(
         .dbus_writeword(dbus_writeword)
     );
     
-    basys3_unified_bus bus(
-        .i_clk(clk),
-        .ibus_addr(ibus_addr),
-        .ibus_word(ibus_word),
-        .dbus_wena(dbus_wena),
-        .dbus_bena(dbus_bena),
-        .dbus_addr(dbus_addr),
-        .dbus_readword(dbus_readword),
-        .dbus_writeword(dbus_writeword),
-        .gpio_addr(gpio_addr),
-        .gpio_data_out(gpio_data_out),
-        .gpio_data_in(gpio_data_in),
-        .gpio_write_enable(gpio_write_enable),
-        .uart_addr(uart_addr),
-        .uart_data_out(uart_data_out),
-        .uart_data_in(uart_data_in),
-        .uart_write_enable(uart_write_enable),
-        .uart_enable(uart_enable)
+    memory_management_unit #(
+        .CHANNELS(4)
+    ) data_mmu(
+        .startaddr_bus ('{ROM_BEGIN,  RAM_BEGIN,  GPIO_BEGIN,  UART_BEGIN}),
+        .endaddr_bus   ('{ROM_END,    RAM_END,    GPIO_END,    UART_END}),
+        .readword_bus  ('{rom_word,   ram_word,   gpio_word,   uart_word}),
+        .mmu_enable_bus('{rom_enable, ram_enable, gpio_enable, uart_enable}),
+        .mmu_address(dbus_addr),
+        .mmu_readword(dbus_readword)
+    );
+    
+    memory_management_unit #(
+        .CHANNELS(2)
+    ) inst_mmu(
+        .startaddr_bus ('{ROM_BEGIN,       RAM_BEGIN}),
+        .endaddr_bus   ('{ROM_END,         RAM_END}),
+        .readword_bus  ('{inst_rom_word,   inst_ram_word}),
+        .mmu_enable_bus('{inst_rom_enable, inst_ram_enable}),
+        .mmu_address(ibus_addr),
+        .mmu_readword(ibus_word)
+    );
+    
+    blk_mem_rom rom(
+        .clka(clk),
+        .ena('1),
+        .addra(dbus_addr[9:2]), // 256 words = 1 KiloByte. Address line is word-aligned.
+        .douta(rom_word),
+        
+        .clkb(clk),
+        .enb('1),
+        .addrb(ibus_addr[9:2]),
+        .doutb(inst_rom_word)
+    );
+    
+    blk_mem_ram ram(
+        .clka(clk),
+        .ena('1),
+        .addra(dbus_addr[15:2]), // 16 KiloWords = 64 KiloBytes. Address line is word-aligned.
+        .wea(ram_enable && dbus_wena ? dbus_bena : 4'b0000),
+        .dina(dbus_writeword),
+        .douta(ram_word),
+        
+        .clkb(clk),
+        .enb('1),
+        .addrb(ibus_addr[15:2]),
+        .web(4'b0000),
+        .dinb('0),
+        .doutb(inst_ram_word)       
     );
     
     basys3_gpio_peripheral gpio(
         .i_clock(clk),
         .i_reset(reset),
-        .addr(gpio_addr),
-        .data_out(gpio_data_out),
-        .data_in(gpio_data_in),
-        .write_enable(gpio_write_enable),
+        .addr(dbus_addr[3:2]),
+        .data_out(dbus_writeword),
+        .data_in(gpio_word),
+        .write_enable(gpio_enable && dbus_wena),
         .led(led),
         .sw(sw),
         .btnC(btnC),
@@ -116,10 +159,10 @@ module basys3_top_level(
     basys3_uart_peripheral uart(
         .i_clock(clk),
         .i_reset(reset),
-        .addr(uart_addr),
-        .data_out(uart_data_out),
-        .data_in(uart_data_in),
-        .write_enable(uart_write_enable),
+        .addr(dbus_addr[3:2]),
+        .data_out(dbus_writeword),
+        .data_in(uart_word),
+        .write_enable(dbus_wena),
         .enable(uart_enable),
         .RsRx(RsRx),
         .RsTx(RsTx)

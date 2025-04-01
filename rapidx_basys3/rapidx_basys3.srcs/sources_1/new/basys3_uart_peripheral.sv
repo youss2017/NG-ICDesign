@@ -72,7 +72,7 @@ module basys3_uart_peripheral(
         end
         
         // TX port - transmits immediately after processor write
-        if(write_enable && addr == 4'h1 && uart_tx.ready) begin
+        if(enable && write_enable && addr == 4'h1 && uart_tx.ready) begin
             uart_tx.valid = '1;
         end
         

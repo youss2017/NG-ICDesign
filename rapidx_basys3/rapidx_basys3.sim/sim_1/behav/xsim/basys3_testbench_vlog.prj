@@ -11,12 +11,12 @@ sv xil_defaultlib  \
 "../../../../rapidx_basys3.srcs/sources_1/new/basys3_rapidx_cpu.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/new/basys3_top_level.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/new/basys3_uart_peripheral.sv" \
-"../../../../rapidx_basys3.srcs/sources_1/new/basys3_unified_bus.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/imports/senior_design_current/decoder_logic.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/imports/senior_design_current/decoder_state.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/imports/senior_design_current/execute_logic.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/imports/senior_design_current/execute_state.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/imports/senior_design_current/forwarding_unit.sv" \
+"../../../../rapidx_basys3.srcs/sources_1/new/memory_management_unit.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/imports/senior_design_current/register_file.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/imports/rtl/uart.sv" \
 "../../../../rapidx_basys3.srcs/sources_1/imports/rtl/if/uart_if.sv" \

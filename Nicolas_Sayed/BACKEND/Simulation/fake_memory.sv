@@ -8,7 +8,7 @@ import memory_controller_interface::*; #(
     parameter WORD_LENGTH = 32,  // 32-bits = 4 bytes = 1 word
     // Memory initialization data -- entries in this file should be
     // hexadecimal values of WORD_LENGTH bits long, and separated by newlines. 
-    parameter INIT_FILENAME = "../Simulation/fake_memory_init.bin"
+    parameter INIT_FILENAME = "../Simulation/fib.bin"
 ) (
 	input i_clk,
     input mci_request_t mem_req,

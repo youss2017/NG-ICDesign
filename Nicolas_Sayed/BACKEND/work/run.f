@@ -1,0 +1,15 @@
+../Simulation/core_src/rapid_pkg.sv
+../Simulation/core_src/memory_controller_interface.sv
+../Simulation/core_src/sram_150b_512_1rw_freepdk45.v
+../Simulation/core_src/dcache_dm1cycle.sv
+../Simulation/core_src/cpu_memory_unit.sv
+../Simulation/core_src/register_file.sv
+../Simulation/core_src/cpu_ifetch_unit.sv
+../Simulation/core_src/decoder_logic.sv
+../Simulation/core_src/decoder_state.sv
+../Simulation/core_src/execute_logic.sv
+../Simulation/core_src/execute_state.sv
+../Simulation/core_src/forwarding_unit.sv
+../Simulation/core_src/rapid_x_cpu.sv
+../Simulation/fake_memory.sv
+../Simulation/rapid_x_testbench.sv

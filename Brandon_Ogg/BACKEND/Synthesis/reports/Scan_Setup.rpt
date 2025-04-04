@@ -1,0 +1,71 @@
+
+Design Name
+===========
+    rapid_x_cpu
+
+Scan Style
+==========
+    muxed_scan
+Design has a valid DFT rule check status
+
+Global Constraints
+==================
+    Minimum number of scan chains: no_value
+    Maximum length of scan chains: no_value
+    Lock-up element type: preferred_level_sensitive
+    Mix clock edges in scan chain: false
+    Prefix for unnamed scan objects: dft_
+
+Test signal objects
+===================
+    shift_enable: 
+          object name: SE 
+          pin name: SE 
+          hookup_pin: SE 
+          hookup_polarity: non_inverted 
+          function: shift_enable 
+          active: high 
+          ideal: false 
+          user defined: true
+
+    test_mode: 
+          object name: i_reset 
+          pin name: i_reset 
+          hookup_pin: i_reset 
+          hookup_polarity: non_inverted 
+          function: async_set_reset 
+          active: low 
+          ideal: false 
+          user defined: false
+
+
+Test clock objects
+==================
+    test_clock:
+          object name: i_clk 
+          test_clock_domain: i_clk 
+          user defined: false 
+          source: i_clk  
+          root source: i_clk  
+          root source polarity: non_inverting
+          hookup_pin: i_clk 
+          period: 50000.0
+
+
+DFT controllable objects
+========================
+
+DFT don't scan objects
+======================
+
+DFT abstract don't scan objects
+===============================
+
+DFT scan segment constraints
+============================
+
+DFT scan chain constraints
+==========================
+
+DFT actual scan chains
+======================

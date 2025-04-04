@@ -1,0 +1,46 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2023 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[06:32:31.053113] Configured Lic search path (21.01-s002): 5280@license.cs.ucf.edu
+
+Version: 21.18-s082_1, built Tue Jul 18 10:08:41 PDT 2023
+Options: 
+Date:    Fri Apr 04 06:32:31 2025
+Host:    net1580 (x86_64 w/Linux 4.18.0-553.22.1.el8_10.x86_64) (10cores*40cpus*2physical cpus*Intel(R) Xeon(R) CPU E5-2640 v4 @ 2.40GHz 25600KB) (48929100KB)
+PID:     1727545
+OS:      Rocky Linux release 8.10 (Green Obsidian)
+
+
+[06:32:31.426794] Periodic Lic check successful
+[06:32:31.426810] Feature usage summary:
+[06:32:31.426810] Genus_Synthesis
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+Finished loading tool scripts (9 seconds elapsed).
+
+WARNING: This version of the tool is 625 days old.
+@genus:root: 1> report_ports
+invalid command name "report_ports"
+@genus:root: 2> check_ports
+invalid command name "check_ports"
+@genus:root: 3> get_ports
+Error   : No designs are available. A design must first be read in and elaborated. [TUI-10] [get_ports]
+        : There is no design here.
+        : A design must first be read in with 'read_hdl' command and elaborated with 'elaborate' command.
+Failed on find_unique_design
+@genus:root: 4> exit
+
+Lic Summary:
+[06:39:45.219266] Cdslmd servers: license
+[06:39:45.219280] Feature usage summary:
+[06:39:45.219281] Genus_Synthesis
+

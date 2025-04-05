@@ -1,4 +1,4 @@
-#define RAM_BASE 0x10000
+#define RAM_BASE ( (char *)&_rapidx_ram_base )
 
 #define GPIO_BASE 0x20000
 #define GPIO_LED ( *(volatile int *)(GPIO_BASE + 0) )

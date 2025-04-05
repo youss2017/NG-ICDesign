@@ -1,7 +1,7 @@
 CC      = riscv-none-elf-gcc
 OBJCOPY = riscv-none-elf-objcopy
-CFLAGS  = -Wall -march=rv32i -Os
-LDFLAGS = -nostartfiles -Tlinker-bootloader.lds
+CFLAGS  = -Wall -ffreestanding -march=rv32i -Os
+LDFLAGS = -nostdlib -Tlinker-bootloader.lds
  
 all: bootloader.bin bootloader.hex
 

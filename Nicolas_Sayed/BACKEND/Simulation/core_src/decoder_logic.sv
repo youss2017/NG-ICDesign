@@ -100,6 +100,7 @@ module decoder_logic
                                 o_imm = $signed({i_instruction[31:20]});
                                 o_control_signal .rd = i_instruction[11:7];
                                 o_control_signal .rs1 = i_instruction[19:15];
+                                o_control_signal .rs1_out = 1;
                         end
     
             cond_branch_family:         
@@ -172,4 +173,5 @@ module decoder_logic
 
 
 endmodule
+
 

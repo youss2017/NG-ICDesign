@@ -17,7 +17,7 @@ module sram_150b_512_1rw_freepdk45(
   // FIXME: This delay is arbitrary.
   parameter DELAY = 0 ;
   parameter VERBOSE = 0 ; //Set to 0 to only display warnings
-  parameter T_HOLD = 1 ; //Delay to hold dout value after posedge. Value is arbitrary
+  parameter T_HOLD = 2 ; //Delay to hold dout value after posedge. Value is arbitrary
 
 `ifdef USE_POWER_PINS
     inout vdd;

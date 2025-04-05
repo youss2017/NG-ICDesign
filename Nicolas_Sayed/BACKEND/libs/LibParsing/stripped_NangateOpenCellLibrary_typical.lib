@@ -1,0 +1,5976 @@
+// Stripped Liberty file containing cell descriptions, types, pin info, and power properties
+
+/* 
+* ******************************************************************************
+* *                                                                            *
+* *                   Copyright (C) 2004-2011, Nangate Inc.                    *
+* *                           All rights reserved.                             *
+* *                                                                            *
+* * Nangate and the Nangate logo are trademarks of Nangate Inc.                *
+* *                                                                            *
+* * All trademarks, logos, software marks, and trade names (collectively the   *
+* * "Marks") in this program are proprietary to Nangate or other respective    *
+* * owners that have granted Nangate the right and license to use such Marks.  *
+* * You are not permitted to use the Marks without the prior written consent   *
+* * of Nangate or such third party that may own the Marks.                     *
+* *                                                                            *
+* * This file has been provided pursuant to a License Agreement containing     *
+* * restrictions on its use. This file contains valuable trade secrets and     *
+* * proprietary information of Nangate Inc., and is protected by U.S. and      *
+* * international laws and/or treaties.                                        *
+* *                                                                            *
+* * The copyright notice(s) in this file does not indicate actual or intended  *
+* * publication of this file.                                                  *
+* *                                                                            *
+* *   NGLibraryCharacterizer, v2011.01-HR04-2011-01-19 - build 201102050200    *
+* *                                                                            *
+* ******************************************************************************
+*
+* Spice engine            : Nanspice v2011.01-HR04-2011-01-19-1102050200
+* Liberty export type     : conditional
+*
+* Characterization Corner : typical
+* Process                 : TypTyp
+* Temperature             : 25C
+* Voltage                 : 1.1V
+*
+****************************************************************************/
+
+library (NangateOpenCellLibrary) {
+
+  /* Documentation Attributes */
+  date                    		: "Thu 10 Feb 2011, 18:11:20";
+  revision                		: "revision 1.0";
+  comment                 		: "Copyright (c) 2004-2011 Nangate Inc. All Rights Reserved.";
+
+  /* General Attributes */
+  technology              		  (cmos);
+  delay_model             		: table_lookup;
+  in_place_swap_mode      		: match_footprint;
+  library_features        		  (report_delay_calculation,report_power_calculation);
+
+  /* Units Attributes */
+  time_unit               		: "1ns";
+  leakage_power_unit      		: "1nW";
+  voltage_unit            		: "1V";
+  current_unit            		: "1mA";
+  pulling_resistance_unit 		: "1kohm";
+  capacitive_load_unit    		  (1,ff);
+
+  /* Operation Conditions */
+  nom_process             		: 1.00;
+  nom_temperature         		: 25.00;
+  nom_voltage             		: 1.10;
+
+  voltage_map (VDD,1.10);
+  voltage_map (VSS,0.00);
+
+  define(process_corner, operating_conditions, string);
+  operating_conditions (typical) {
+    process_corner	: "TypTyp";
+    process       	: 1.00;
+    voltage       	: 1.10;
+    temperature   	: 25.00;
+    tree_type     	: balanced_tree;
+  }
+  default_operating_conditions : typical;
+
+  /* Threshold Definitions */
+  slew_lower_threshold_pct_fall 	: 30.00 ;
+  slew_lower_threshold_pct_rise 	: 30.00 ;
+  slew_upper_threshold_pct_fall 	: 70.00 ;
+  slew_upper_threshold_pct_rise 	: 70.00 ;
+  slew_derate_from_library      	: 1.00 ;
+  input_threshold_pct_fall      	: 50.00 ;
+  input_threshold_pct_rise      	: 50.00 ;
+  output_threshold_pct_fall     	: 50.00 ;
+  output_threshold_pct_rise     	: 50.00 ;
+  default_leakage_power_density 	: 0.00 ;
+  default_cell_leakage_power    	: 0.00 ;
+
+  /* Default Pin Attributes */
+  default_inout_pin_cap       		: 1.000000;
+  default_input_pin_cap       		: 1.000000;
+  default_output_pin_cap      		: 0.000000;
+  default_fanout_load         		: 1.000000;
+  default_max_transition      		: 0.198535;
+
+  define(drive_strength, cell, float);
+
+  /* Wire load tables */
+
+  wire_load("1K_hvratio_1_4") {
+    capacitance : 1.774000e-01;
+    resistance : 3.571429e-03;
+    slope : 5.000000;
+    fanout_length( 1, 1.3207 );
+    fanout_length( 2, 2.9813 );
+    fanout_length( 3, 5.1135 );
+    fanout_length( 4, 7.6639 );
+    fanout_length( 5, 10.0334 );
+    fanout_length( 6, 12.2296 );
+    fanout_length( 8, 19.3185 );
+  }
+
+  wire_load("1K_hvratio_1_2") {
+    capacitance : 1.774000e-01;
+    resistance : 3.571429e-03;
+    slope : 5.000000;
+    fanout_length( 1, 1.3216 );
+    fanout_length( 2, 2.8855 );
+    fanout_length( 3, 4.6810 );
+    fanout_length( 4, 6.7976 );
+    fanout_length( 5, 9.4037 );
+    fanout_length( 6, 13.0170 );
+    fanout_length( 8, 24.1720 );
+  }
+
+  wire_load("1K_hvratio_1_1") {
+    capacitance : 1.774000e-01;
+    resistance : 3.571429e-03;
+    slope : 6.283688;
+    fanout_length( 1, 1.3446 );
+    fanout_length( 2, 2.8263 );
+    fanout_length( 3, 4.7581 );
+    fanout_length( 4, 7.4080 );
+    fanout_length( 5, 10.9381 );
+    fanout_length( 6, 15.7314 );
+    fanout_length( 8, 29.7891 );
+  }
+
+  wire_load("3K_hvratio_1_4") {
+    capacitance : 1.774000e-01;
+    resistance : 3.571429e-03;
+    slope : 5.000000;
+    fanout_length( 1, 1.8234 );
+    fanout_length( 2, 4.5256 );
+    fanout_length( 3, 7.5342 );
+    fanout_length( 4, 10.6237 );
+    fanout_length( 5, 13.5401 );
+    fanout_length( 6, 16.3750 );
+    fanout_length( 7, 18.6686 );
+    fanout_length( 8, 19.4348 );
+    fanout_length( 10, 20.9672 );
+  }
+
+  wire_load("3K_hvratio_1_2") {
+    capacitance : 1.774000e-01;
+    resistance : 3.571429e-03;
+    slope : 5.000000;
+    fanout_length( 1, 1.6615 );
+    fanout_length( 2, 3.9827 );
+    fanout_length( 3, 6.6386 );
+    fanout_length( 4, 9.6287 );
+    fanout_length( 5, 12.8485 );
+    fanout_length( 6, 16.4145 );
+    fanout_length( 7, 20.0747 );
+    fanout_length( 8, 22.6325 );
+    fanout_length( 10, 21.7173 );
+  }
+
+  wire_load("3K_hvratio_1_1") {
+    capacitance : 1.774000e-01;
+    resistance : 3.571429e-03;
+    slope : 5.000000;
+    fanout_length( 1, 1.5771 );
+    fanout_length( 2, 3.9330 );
+    fanout_length( 3, 6.6217 );
+    fanout_length( 4, 9.7638 );
+    fanout_length( 5, 13.5526 );
+    fanout_length( 6, 18.1322 );
+    fanout_length( 7, 22.5871 );
+    fanout_length( 8, 25.1074 );
+    fanout_length( 10, 30.1480 );
+  }
+
+  wire_load("5K_hvratio_1_4") {
+    capacitance : 1.774000e-01;
+    resistance : 3.571429e-03;
+    slope : 5.000000;
+    fanout_length( 1, 2.0449 );
+    fanout_length( 2, 4.4094 );
+    fanout_length( 3, 7.2134 );
+    fanout_length( 4, 10.4927 );
+    fanout_length( 5, 13.9420 );
+    fanout_length( 6, 18.0039 );
+    fanout_length( 7, 23.9278 );
+    fanout_length( 8, 30.8475 );
+    fanout_length( 9, 34.9441 );
+    fanout_length( 11, 43.1373 );
+  }
+
+  wire_load("5K_hvratio_1_2") {
+    capacitance : 1.774000e-01;
+    resistance : 3.571429e-03;
+    slope : 5.000000;
+    fanout_length( 1, 1.6706 );
+    fanout_length( 2, 3.7951 );
+    fanout_length( 3, 6.2856 );
+    fanout_length( 4, 9.1309 );
+    fanout_length( 5, 12.1420 );
+    fanout_length( 6, 15.6918 );
+    fanout_length( 7, 20.1043 );
+    fanout_length( 8, 24.2827 );
+    fanout_length( 9, 27.3445 );
+    fanout_length( 11, 35.3421 );
+  }
+
+  wire_load("5K_hvratio_1_1") {
+    capacitance : 1.774000e-01;
+    resistance : 3.571429e-03;
+    slope : 5.000000;
+    fanout_length( 1, 1.7460 );
+    fanout_length( 2, 3.9394 );
+    fanout_length( 3, 6.4626 );
+    fanout_length( 4, 9.2201 );
+    fanout_length( 5, 11.9123 );
+    fanout_length( 6, 14.8358 );
+    fanout_length( 7, 18.6155 );
+    fanout_length( 8, 22.6727 );
+    fanout_length( 9, 25.4842 );
+    fanout_length( 11, 27.0320 );
+  }
+
+  default_wire_load : "5K_hvratio_1_1" ;
+
+
+  power_lut_template (Hidden_power_7) {
+	variable_1 : input_transition_time;
+	index_1 ("0.0010,0.0020,0.0030,0.0040,0.0050,0.0060,0.0070");
+  }
+
+
+  lu_table_template (Hold_3_3) {
+	variable_1 : constrained_pin_transition;
+	variable_2 : related_pin_transition;
+	index_1 ("0.0010,0.0020,0.0030");
+	index_2 ("0.0010,0.0020,0.0030");
+  }
+
+
+  power_lut_template (Power_7_7) {
+	variable_1 : input_transition_time;
+	variable_2 : total_output_net_capacitance;
+	index_1 ("0.0010,0.0020,0.0030,0.0040,0.0050,0.0060,0.0070");
+	index_2 ("0.0010,0.0020,0.0030,0.0040,0.0050,0.0060,0.0070");
+  }
+
+
+  lu_table_template (Pulse_width_3) {
+	variable_1 : related_pin_transition;
+	index_1 ("0.0010,0.0020,0.0030");
+  }
+
+
+  lu_table_template (Recovery_3_3) {
+	variable_1 : constrained_pin_transition;
+	variable_2 : related_pin_transition;
+	index_1 ("0.0010,0.0020,0.0030");
+	index_2 ("0.0010,0.0020,0.0030");
+  }
+
+
+  lu_table_template (Removal_3_3) {
+	variable_1 : constrained_pin_transition;
+	variable_2 : related_pin_transition;
+	index_1 ("0.0010,0.0020,0.0030");
+	index_2 ("0.0010,0.0020,0.0030");
+  }
+
+
+  lu_table_template (Setup_3_3) {
+	variable_1 : constrained_pin_transition;
+	variable_2 : related_pin_transition;
+	index_1 ("0.0010,0.0020,0.0030");
+	index_2 ("0.0010,0.0020,0.0030");
+  }
+
+
+  lu_table_template (Timing_7_7) {
+	variable_1 : input_net_transition;
+	variable_2 : total_output_net_capacitance;
+	index_1 ("0.0010,0.0020,0.0030,0.0040,0.0050,0.0060,0.0070");
+	index_2 ("0.0010,0.0020,0.0030,0.0040,0.0050,0.0060,0.0070");
+  }
+
+
+  lu_table_template (Tristate_disable_7) {
+	variable_1 : input_net_transition;
+	index_1 ("0.0010,0.0020,0.0030,0.0040,0.0050,0.0060,0.0070");
+  }
+
+
+  /******************************************************************************************
+   Module          	: AND2_X1
+   Cell Description	: Combinational cell (AND2_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( AND2_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.064000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "(A1 & A2)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AND2_X2
+   Cell Description	: Combinational cell (AND2_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( AND2_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "(A1 & A2)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AND2_X4
+   Cell Description	: Combinational cell (AND2_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( AND2_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "(A1 & A2)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AND3_X1
+   Cell Description	: Combinational cell (AND3_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( AND3_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "((A1 & A2) & A3)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AND3_X2
+   Cell Description	: Combinational cell (AND3_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( AND3_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.596000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "((A1 & A2) & A3)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AND3_X4
+   Cell Description	: Combinational cell (AND3_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( AND3_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 2.926000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "((A1 & A2) & A3)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AND4_X1
+   Cell Description	: Combinational cell (AND4_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( AND4_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.596000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A4 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "(((A1 & A2) & A3) & A4)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AND4_X2
+   Cell Description	: Combinational cell (AND4_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( AND4_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.862000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A4 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "(((A1 & A2) & A3) & A4)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AND4_X4
+   Cell Description	: Combinational cell (AND4_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( AND4_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 3.458000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A4 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "(((A1 & A2) & A3) & A4)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: ANTENNA_X1
+   Cell Description	: Physical cell (ANTENNA_X1)
+  *******************************************************************************************/
+cell ( ANTENNA_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 0.266000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI21_X1
+   Cell Description	: Combinational cell (AOI21_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( AOI21_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.064000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A | (B1 & B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI21_X2
+   Cell Description	: Combinational cell (AOI21_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( AOI21_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.862000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A | (B1 & B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI21_X4
+   Cell Description	: Combinational cell (AOI21_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( AOI21_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 3.458000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A | (B1 & B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI22_X1
+   Cell Description	: Combinational cell (AOI22_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( AOI22_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!((A1 & A2) | (B1 & B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI22_X2
+   Cell Description	: Combinational cell (AOI22_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( AOI22_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!((A1 & A2) | (B1 & B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI22_X4
+   Cell Description	: Combinational cell (AOI22_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( AOI22_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 4.522000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!((A1 & A2) | (B1 & B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI211_X1
+   Cell Description	: Combinational cell (AOI211_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( AOI211_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((C1 & C2) | B) | A)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI211_X2
+   Cell Description	: Combinational cell (AOI211_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( AOI211_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((C1 & C2) | B) | A)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI211_X4
+   Cell Description	: Combinational cell (AOI211_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( AOI211_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 2.926000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(!(!(((C1 & C2) | B) | A)))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI221_X1
+   Cell Description	: Combinational cell (AOI221_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( AOI221_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.596000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((C1 & C2) | A) | (B1 & B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI221_X2
+   Cell Description	: Combinational cell (AOI221_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( AOI221_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.926000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((C1 & C2) | A) | (B1 & B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI221_X4
+   Cell Description	: Combinational cell (AOI221_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( AOI221_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 3.458000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(!(!(((C1 & C2) | A) | (B1 & B2))))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI222_X1
+   Cell Description	: Combinational cell (AOI222_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( AOI222_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 2.128000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((A1 & A2) | (B1 & B2)) | (C1 & C2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI222_X2
+   Cell Description	: Combinational cell (AOI222_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( AOI222_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 3.724000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((A1 & A2) | (B1 & B2)) | (C1 & C2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: AOI222_X4
+   Cell Description	: Combinational cell (AOI222_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( AOI222_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 3.724000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(!(!(((A1 & A2) | (B1 & B2)) | (C1 & C2))))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: BUF_X1
+   Cell Description	: Combinational cell (BUF_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( BUF_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 0.798000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: BUF_X2
+   Cell Description	: Combinational cell (BUF_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( BUF_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.064000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: BUF_X4
+   Cell Description	: Combinational cell (BUF_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( BUF_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 1.862000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: BUF_X8
+   Cell Description	: Combinational cell (BUF_X8) with drive strength X8
+  *******************************************************************************************/
+cell ( BUF_X8 ) {
+  // Cell type: combinational
+  drive_strength      : 8;
+  area                : 3.458000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: BUF_X16
+   Cell Description	: Combinational cell (BUF_X16) with drive strength X16
+  *******************************************************************************************/
+cell ( BUF_X16 ) {
+  // Cell type: combinational
+  drive_strength      : 16;
+  area                : 6.650000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: BUF_X32
+   Cell Description	: Combinational cell (BUF_X32) with drive strength X32
+  *******************************************************************************************/
+cell ( BUF_X32 ) {
+  // Cell type: combinational
+  drive_strength      : 32;
+  area                : 13.034000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: CLKBUF_X1
+   Cell Description	: Combinational cell (CLKBUF_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( CLKBUF_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 0.798000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: CLKBUF_X2
+   Cell Description	: Combinational cell (CLKBUF_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( CLKBUF_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.064000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: CLKBUF_X3
+   Cell Description	: Combinational cell (CLKBUF_X3) with drive strength X3
+  *******************************************************************************************/
+cell ( CLKBUF_X3 ) {
+  // Cell type: combinational
+  drive_strength      : 3;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: CLKGATETST_X1
+   Cell Description	: Pos.edge clock gating cell with pre scan,  drive strength X1
+  *******************************************************************************************/
+cell ( CLKGATETST_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 3.990000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( IQ ) {
+    direction : internal;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( E ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( GCK ) {
+    direction : output;
+    function : "(IQ & CK)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: CLKGATETST_X2
+   Cell Description	: Pos.edge clock gating cell with pre scan,  drive strength X2
+  *******************************************************************************************/
+cell ( CLKGATETST_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 4.256000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( IQ ) {
+    direction : internal;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( E ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( GCK ) {
+    direction : output;
+    function : "(IQ & CK)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: CLKGATETST_X4
+   Cell Description	: Pos.edge clock gating cell with pre scan,  drive strength X4
+  *******************************************************************************************/
+cell ( CLKGATETST_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 5.320000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( IQ ) {
+    direction : internal;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( E ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( GCK ) {
+    direction : output;
+    function : "(IQ & CK)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: CLKGATETST_X8
+   Cell Description	: Pos.edge clock gating cell with pre scan,  drive strength X8
+  *******************************************************************************************/
+cell ( CLKGATETST_X8 ) {
+  // Cell type: combinational
+  drive_strength      : 8;
+  area                : 7.714000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( IQ ) {
+    direction : internal;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( E ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( GCK ) {
+    direction : output;
+    function : "(IQ & CK)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: CLKGATE_X1
+   Cell Description	: Pos.edge clock gating cell with drive strength X1
+  *******************************************************************************************/
+cell ( CLKGATE_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 3.458000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( IQ ) {
+    direction : internal;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( E ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( GCK ) {
+    direction : output;
+    function : "(CK & IQ)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: CLKGATE_X2
+   Cell Description	: Pos.edge clock gating cell with drive strength X2
+  *******************************************************************************************/
+cell ( CLKGATE_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 3.724000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( IQ ) {
+    direction : internal;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( E ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( GCK ) {
+    direction : output;
+    function : "(CK & IQ)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: CLKGATE_X4
+   Cell Description	: Pos.edge clock gating cell with drive strength X4
+  *******************************************************************************************/
+cell ( CLKGATE_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 4.522000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( IQ ) {
+    direction : internal;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( E ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( GCK ) {
+    direction : output;
+    function : "(CK & IQ)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: CLKGATE_X8
+   Cell Description	: Pos.edge clock gating cell with drive strength X8
+  *******************************************************************************************/
+cell ( CLKGATE_X8 ) {
+  // Cell type: combinational
+  drive_strength      : 8;
+  area                : 6.916000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( IQ ) {
+    direction : internal;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( E ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( GCK ) {
+    direction : output;
+    function : "(CK & IQ)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: DFFRS_X1
+   Cell Description	: Pos.edge D-Flip-Flop with active low reset, and active low set, and drive strength X1
+  *******************************************************************************************/
+cell ( DFFRS_X1 ) {
+  // Cell type: flip flop
+  drive_strength      : 1;
+  area                : 6.384000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( RN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: DFFRS_X2
+   Cell Description	: Pos.edge D-Flip-Flop with active low reset, and active low set, and drive strength X2
+  *******************************************************************************************/
+cell ( DFFRS_X2 ) {
+  // Cell type: flip flop
+  drive_strength      : 2;
+  area                : 6.916000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( RN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: DFFR_X1
+   Cell Description	: Pos.edge D-Flip-Flop with active low reset, and drive strength X1
+  *******************************************************************************************/
+cell ( DFFR_X1 ) {
+  // Cell type: flip flop
+  drive_strength      : 1;
+  area                : 5.320000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( RN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: DFFR_X2
+   Cell Description	: Pos.edge D-Flip-Flop with active low reset, and drive strength X2
+  *******************************************************************************************/
+cell ( DFFR_X2 ) {
+  // Cell type: flip flop
+  drive_strength      : 2;
+  area                : 5.852000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( RN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: DFFS_X1
+   Cell Description	: Pos.edge D-Flip-Flop with active low set, and drive strength X1
+  *******************************************************************************************/
+cell ( DFFS_X1 ) {
+  // Cell type: flip flop
+  drive_strength      : 1;
+  area                : 5.320000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: DFFS_X2
+   Cell Description	: Pos.edge D-Flip-Flop with active low set, and drive strength X2
+  *******************************************************************************************/
+cell ( DFFS_X2 ) {
+  // Cell type: flip flop
+  drive_strength      : 2;
+  area                : 5.586000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: DFF_X1
+   Cell Description	: Pos.edge D-Flip-Flop with drive strength X1
+  *******************************************************************************************/
+cell ( DFF_X1 ) {
+  // Cell type: flip flop
+  drive_strength      : 1;
+  area                : 4.522000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: DFF_X2
+   Cell Description	: Pos.edge D-Flip-Flop with drive strength X2
+  *******************************************************************************************/
+cell ( DFF_X2 ) {
+  // Cell type: flip flop
+  drive_strength      : 2;
+  area                : 5.054000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: DLH_X1
+   Cell Description	: High enable Latch with drive strength X1
+  *******************************************************************************************/
+cell ( DLH_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 2.660000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( G ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+}
+
+/******************************************************************************************
+   Module          	: DLH_X2
+   Cell Description	: High enable Latch with drive strength X2
+  *******************************************************************************************/
+cell ( DLH_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.926000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( G ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+}
+
+/******************************************************************************************
+   Module          	: DLL_X1
+   Cell Description	: Low enable Latch with drive strength X1
+  *******************************************************************************************/
+cell ( DLL_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 2.660000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( GN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+}
+
+/******************************************************************************************
+   Module          	: DLL_X2
+   Cell Description	: Low enable Latch with drive strength X2
+  *******************************************************************************************/
+cell ( DLL_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.926000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( GN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+}
+
+/******************************************************************************************
+   Module          	: FA_X1
+   Cell Description	: Combinational cell (FA_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( FA_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 4.256000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CI ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CO ) {
+    direction : output;
+    function : "((A & B) | (CI & (A | B)))";
+  }
+  pin ( S ) {
+    direction : output;
+    function : "(CI ^ (A ^ B))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: FILLCELL_X1
+   Cell Description	: Physical cell (FILLCELL_X1)
+  *******************************************************************************************/
+cell ( FILLCELL_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 0.266000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: TAPCELL_X1
+   Cell Description	: Physical cell (TAPCELL_X1)
+  *******************************************************************************************/
+cell ( TAPCELL_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 0.266000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: FILLCELL_X2
+   Cell Description	: Physical cell (FILLCELL_X2)
+  *******************************************************************************************/
+cell ( FILLCELL_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 0.266000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: FILLCELL_X4
+   Cell Description	: Physical cell (FILLCELL_X4)
+  *******************************************************************************************/
+cell ( FILLCELL_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 1.064000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: FILLCELL_X8
+   Cell Description	: Physical cell (FILLCELL_X8)
+  *******************************************************************************************/
+cell ( FILLCELL_X8 ) {
+  // Cell type: combinational
+  drive_strength      : 8;
+  area                : 2.128000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: FILLCELL_X16
+   Cell Description	: Physical cell (FILLCELL_X16)
+  *******************************************************************************************/
+cell ( FILLCELL_X16 ) {
+  // Cell type: combinational
+  drive_strength      : 16;
+  area                : 4.256000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: FILLCELL_X32
+   Cell Description	: Physical cell (FILLCELL_X32)
+  *******************************************************************************************/
+cell ( FILLCELL_X32 ) {
+  // Cell type: combinational
+  drive_strength      : 32;
+  area                : 8.512000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: HA_X1
+   Cell Description	: Combinational cell (HA_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( HA_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 2.660000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CO ) {
+    direction : output;
+    function : "(A & B)";
+  }
+  pin ( S ) {
+    direction : output;
+    function : "(A ^ B)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: INV_X1
+   Cell Description	: Combinational cell (INV_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( INV_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 0.532000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: INV_X2
+   Cell Description	: Combinational cell (INV_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( INV_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 0.798000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: INV_X4
+   Cell Description	: Combinational cell (INV_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( INV_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: INV_X8
+   Cell Description	: Combinational cell (INV_X8) with drive strength X8
+  *******************************************************************************************/
+cell ( INV_X8 ) {
+  // Cell type: combinational
+  drive_strength      : 8;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: INV_X16
+   Cell Description	: Combinational cell (INV_X16) with drive strength X16
+  *******************************************************************************************/
+cell ( INV_X16 ) {
+  // Cell type: combinational
+  drive_strength      : 16;
+  area                : 4.522000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: INV_X32
+   Cell Description	: Combinational cell (INV_X32) with drive strength X32
+  *******************************************************************************************/
+cell ( INV_X32 ) {
+  // Cell type: combinational
+  drive_strength      : 32;
+  area                : 8.778000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: LOGIC0_X1
+   Cell Description	: Physical cell (LOGIC0_X1)
+  *******************************************************************************************/
+cell ( LOGIC0_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 0.532000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( Y ) {
+    direction : output;
+    function : "0";
+  }
+}
+
+/******************************************************************************************
+   Module          	: LOGIC1_X1
+   Cell Description	: Physical cell (LOGIC1_X1)
+  *******************************************************************************************/
+cell ( LOGIC1_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 0.532000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( Y ) {
+    direction : output;
+    function : "1";
+  }
+}
+
+/******************************************************************************************
+   Module          	: MUX2_X1
+   Cell Description	: Combinational cell (MUX2_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( MUX2_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.862000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( S ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "((S & B) | (A & !S))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: MUX2_X2
+   Cell Description	: Combinational cell (MUX2_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( MUX2_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( S ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "((S & B) | (A & !S))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NAND2_X1
+   Cell Description	: Combinational cell (NAND2_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( NAND2_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 0.798000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A1 & A2)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NAND2_X2
+   Cell Description	: Combinational cell (NAND2_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( NAND2_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A1 & A2)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NAND2_X4
+   Cell Description	: Combinational cell (NAND2_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( NAND2_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A1 & A2)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NAND3_X1
+   Cell Description	: Combinational cell (NAND3_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( NAND3_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.064000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!((A1 & A2) & A3)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NAND3_X2
+   Cell Description	: Combinational cell (NAND3_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( NAND3_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.862000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!((A1 & A2) & A3)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NAND3_X4
+   Cell Description	: Combinational cell (NAND3_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( NAND3_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 3.458000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!((A1 & A2) & A3)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NAND4_X1
+   Cell Description	: Combinational cell (NAND4_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( NAND4_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A4 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((A1 & A2) & A3) & A4)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NAND4_X2
+   Cell Description	: Combinational cell (NAND4_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( NAND4_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A4 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((A1 & A2) & A3) & A4)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NAND4_X4
+   Cell Description	: Combinational cell (NAND4_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( NAND4_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 4.788000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A4 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((A1 & A2) & A3) & A4)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NOR2_X1
+   Cell Description	: Combinational cell (NOR2_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( NOR2_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 0.798000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A1 | A2)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NOR2_X2
+   Cell Description	: Combinational cell (NOR2_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( NOR2_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A1 | A2)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NOR2_X4
+   Cell Description	: Combinational cell (NOR2_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( NOR2_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A1 | A2)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NOR3_X1
+   Cell Description	: Combinational cell (NOR3_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( NOR3_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.064000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!((A1 | A2) | A3)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NOR3_X2
+   Cell Description	: Combinational cell (NOR3_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( NOR3_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.862000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!((A1 | A2) | A3)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NOR3_X4
+   Cell Description	: Combinational cell (NOR3_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( NOR3_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 3.724000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!((A1 | A2) | A3)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NOR4_X1
+   Cell Description	: Combinational cell (NOR4_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( NOR4_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A4 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((A1 | A2) | A3) | A4)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NOR4_X2
+   Cell Description	: Combinational cell (NOR4_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( NOR4_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A4 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((A1 | A2) | A3) | A4)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: NOR4_X4
+   Cell Description	: Combinational cell (NOR4_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( NOR4_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 4.788000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A4 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((A1 | A2) | A3) | A4)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI21_X1
+   Cell Description	: Combinational cell (OAI21_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( OAI21_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.064000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A & (B1 | B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI21_X2
+   Cell Description	: Combinational cell (OAI21_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( OAI21_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.862000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A & (B1 | B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI21_X4
+   Cell Description	: Combinational cell (OAI21_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( OAI21_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 3.458000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A & (B1 | B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI22_X1
+   Cell Description	: Combinational cell (OAI22_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( OAI22_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!((A1 | A2) & (B1 | B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI22_X2
+   Cell Description	: Combinational cell (OAI22_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( OAI22_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!((A1 | A2) & (B1 | B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI22_X4
+   Cell Description	: Combinational cell (OAI22_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( OAI22_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 4.522000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!((A1 | A2) & (B1 | B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI33_X1
+   Cell Description	: Combinational cell (OAI33_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( OAI33_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.862000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((A1 | A2) | A3) & ((B1 | B2) | B3))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI211_X1
+   Cell Description	: Combinational cell (OAI211_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( OAI211_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((C1 | C2) & A) & B)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI211_X2
+   Cell Description	: Combinational cell (OAI211_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( OAI211_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((C1 | C2) & A) & B)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI211_X4
+   Cell Description	: Combinational cell (OAI211_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( OAI211_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 4.522000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((C1 | C2) & A) & B)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI221_X1
+   Cell Description	: Combinational cell (OAI221_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( OAI221_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.596000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((C1 | C2) & A) & (B1 | B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI221_X2
+   Cell Description	: Combinational cell (OAI221_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( OAI221_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.926000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((C1 | C2) & A) & (B1 | B2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI221_X4
+   Cell Description	: Combinational cell (OAI221_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( OAI221_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 3.458000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(!(!(((C1 | C2) & A) & (B1 | B2))))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI222_X1
+   Cell Description	: Combinational cell (OAI222_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( OAI222_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 2.128000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((A1 | A2) & (B1 | B2)) & (C1 | C2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI222_X2
+   Cell Description	: Combinational cell (OAI222_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( OAI222_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 3.724000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(((A1 | A2) & (B1 | B2)) & (C1 | C2))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OAI222_X4
+   Cell Description	: Combinational cell (OAI222_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( OAI222_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 3.724000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( C2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(!(!(((A1 | A2) & (B1 | B2)) & (C1 | C2))))";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OR2_X1
+   Cell Description	: Combinational cell (OR2_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( OR2_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.064000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "(A1 | A2)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OR2_X2
+   Cell Description	: Combinational cell (OR2_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( OR2_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "(A1 | A2)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OR2_X4
+   Cell Description	: Combinational cell (OR2_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( OR2_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "(A1 | A2)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OR3_X1
+   Cell Description	: Combinational cell (OR3_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( OR3_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.330000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "((A1 | A2) | A3)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OR3_X2
+   Cell Description	: Combinational cell (OR3_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( OR3_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.596000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "((A1 | A2) | A3)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OR3_X4
+   Cell Description	: Combinational cell (OR3_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( OR3_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 2.926000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "((A1 | A2) | A3)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OR4_X1
+   Cell Description	: Combinational cell (OR4_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( OR4_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.596000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A4 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "(((A1 | A2) | A3) | A4)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OR4_X2
+   Cell Description	: Combinational cell (OR4_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( OR4_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 1.862000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A4 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "(((A1 | A2) | A3) | A4)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: OR4_X4
+   Cell Description	: Combinational cell (OR4_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( OR4_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 3.458000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A1 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A2 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A3 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( A4 ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "(((A1 | A2) | A3) | A4)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: SDFFRS_X1
+   Cell Description	: Pos.edge D-Flip-Flop with active low reset, and active high scan, and active low set, and drive strength X1
+  *******************************************************************************************/
+cell ( SDFFRS_X1 ) {
+  // Cell type: flip flop
+  drive_strength      : 1;
+  area                : 7.714000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( RN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SI ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: SDFFRS_X2
+   Cell Description	: Pos.edge D-Flip-Flop with active low reset, and active high scan, and active low set, and drive strength X2
+  *******************************************************************************************/
+cell ( SDFFRS_X2 ) {
+  // Cell type: flip flop
+  drive_strength      : 2;
+  area                : 8.246000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( RN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SI ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: SDFFR_X1
+   Cell Description	: Pos.edge D-Flip-Flop with active low reset, and active high scan, and drive strength X1
+  *******************************************************************************************/
+cell ( SDFFR_X1 ) {
+  // Cell type: flip flop
+  drive_strength      : 1;
+  area                : 6.650000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( RN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SI ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: SDFFR_X2
+   Cell Description	: Pos.edge D-Flip-Flop with active low reset, and active high scan, and drive strength X2
+  *******************************************************************************************/
+cell ( SDFFR_X2 ) {
+  // Cell type: flip flop
+  drive_strength      : 2;
+  area                : 6.916000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( RN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SI ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: SDFFS_X1
+   Cell Description	: Pos.edge D-Flip-Flop with active high scan, and active low set, and drive strength X1
+  *******************************************************************************************/
+cell ( SDFFS_X1 ) {
+  // Cell type: flip flop
+  drive_strength      : 1;
+  area                : 6.650000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SI ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: SDFFS_X2
+   Cell Description	: Pos.edge D-Flip-Flop with active high scan, and active low set, and drive strength X2
+  *******************************************************************************************/
+cell ( SDFFS_X2 ) {
+  // Cell type: flip flop
+  drive_strength      : 2;
+  area                : 7.182000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SI ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: SDFF_X1
+   Cell Description	: Pos.edge D-Flip-Flop with active high scan, and drive strength X1
+  *******************************************************************************************/
+cell ( SDFF_X1 ) {
+  // Cell type: flip flop
+  drive_strength      : 1;
+  area                : 6.118000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SI ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: SDFF_X2
+   Cell Description	: Pos.edge D-Flip-Flop with active high scan, and drive strength X2
+  *******************************************************************************************/
+cell ( SDFF_X2 ) {
+  // Cell type: flip flop
+  drive_strength      : 2;
+  area                : 6.384000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SI ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}
+
+/******************************************************************************************
+   Module          	: TBUF_X1
+   Cell Description	: Combinational tri-state cell (TBUF_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( TBUF_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 2.128000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( EN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: TBUF_X2
+   Cell Description	: Combinational tri-state cell (TBUF_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( TBUF_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( EN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: TBUF_X4
+   Cell Description	: Combinational tri-state cell (TBUF_X4) with drive strength X4
+  *******************************************************************************************/
+cell ( TBUF_X4 ) {
+  // Cell type: combinational
+  drive_strength      : 4;
+  area                : 2.926000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( EN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: TBUF_X8
+   Cell Description	: Combinational tri-state cell (TBUF_X8) with drive strength X8
+  *******************************************************************************************/
+cell ( TBUF_X8 ) {
+  // Cell type: combinational
+  drive_strength      : 8;
+  area                : 4.788000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( EN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: TBUF_X16
+   Cell Description	: Combinational tri-state cell (TBUF_X16) with drive strength X16
+  *******************************************************************************************/
+cell ( TBUF_X16 ) {
+  // Cell type: combinational
+  drive_strength      : 16;
+  area                : 6.916000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( EN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "A";
+  }
+}
+
+/******************************************************************************************
+   Module          	: TINV_X1
+   Cell Description	: Combinational tri-state cell (TINV_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( TINV_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.064000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( EN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( I ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!I";
+  }
+}
+
+/******************************************************************************************
+   Module          	: TLAT_X1
+   Cell Description	: High enable Latch with drive strength X1
+  *******************************************************************************************/
+cell ( TLAT_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 3.458000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( G ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( OE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+}
+
+/******************************************************************************************
+   Module          	: XNOR2_X1
+   Cell Description	: Combinational cell (XNOR2_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( XNOR2_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.596000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A ^ B)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: XNOR2_X2
+   Cell Description	: Combinational cell (XNOR2_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( XNOR2_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.660000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( ZN ) {
+    direction : output;
+    function : "!(A ^ B)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: XOR2_X1
+   Cell Description	: Combinational cell (XOR2_X1) with drive strength X1
+  *******************************************************************************************/
+cell ( XOR2_X1 ) {
+  // Cell type: combinational
+  drive_strength      : 1;
+  area                : 1.596000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "(A ^ B)";
+  }
+}
+
+/******************************************************************************************
+   Module          	: XOR2_X2
+   Cell Description	: Combinational cell (XOR2_X2) with drive strength X2
+  *******************************************************************************************/
+cell ( XOR2_X2 ) {
+  // Cell type: combinational
+  drive_strength      : 2;
+  area                : 2.394000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( A ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( B ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Z ) {
+    direction : output;
+    function : "(A ^ B)";
+  }
+}
+

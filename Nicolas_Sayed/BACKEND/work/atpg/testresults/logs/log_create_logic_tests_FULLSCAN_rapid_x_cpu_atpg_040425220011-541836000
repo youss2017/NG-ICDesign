@@ -1,0 +1,123 @@
+Starting Command: create_logic_tests 
+
+INFO (TDA-005): Command Line Invocation: 
+            create_logic_tests -testmode FULLSCAN -experiment rapid_x_cpu_atpg -workdir /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg -stdout summary  [end TDA_005]
+
+INFO (TDA-014): Cadence(R) Modus(TM) DFT Software Solution, Version 23.12-s005_1, built Aug 15 2024 (linux26_64) [end TDA_014]
+
+INFO (TDA-015): Log File: /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg/testresults/logs/log_create_logic_tests_FULLSCAN_rapid_x_cpu_atpg_040425220011-541836000 [end TDA_015]
+
+INFO (TDA-007): Job Information:
+            Date Started: Friday Apr 04 22:00:11 2025  EDT
+            Host machine is net1580, x86_64 running Linux 4.18.0-553.22.1.el8_10.x86_64.
+            This job is process number 2116763.
+[end TDA_007]
+
+INFO (TDA-009): Options/Values information.
+            (options marked with '*' have program generated values,
+             options marked with '+' were specified to default.)
+
+            -WORKDIR /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg
+            -TESTMODE FULLSCAN
+            -EXPERIMENT rapid_x_cpu_atpg
+
+            -LOGFILE /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg/testresults/logs/log_create_logic_tests_FULLSCAN_rapid_x_cpu_atpg_040425220011-541836000
+            -STDOUT summary
+[end TDA_009]
+
+
+WARNING (TTC-018): verify_test_structures issued Warning messages related to Stored Pattern tests.  Poor test coverage may result.  [end TTC_018] 
+INFO (TTC-107): There are no scan chains in this circuit, therefore no scan chain tests will be generated.  [end TTC_107] 
+INFO (TFW-117): Modus checked out a modus_atpg license.  [end TFW_117] 
+****************************************************************************************************
+Coverage Definitions:
+ #Faults  : Number of Active Faults (observable).
+ #Tested  : Number of Active Faults marked tested.
+ #Possibly: Number of Active Faults marked possibly tested
+            (good value is 0 or 1; fault value is X).
+ #Redund  : Number of Active Faults untestable due to redundancy.
+ #Untested: Number of Active Faults untested.
+ %TCov  (%Test Coverage)                      : #Tested / #Faults
+ %ATCov (%Adjusted TCov)                      : #Tested / (#Faults-#Redund)
+****************************************************************************************************
+****************************************************************************************************
+                           Testmode Statistics: FULLSCAN
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                  1346            0            0            0         1346   0.00   0.00
+
+                            Global Statistics
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                101942            0            0            0       101942   0.00   0.00
+****************************************************************************************************
+
+*************************************************************************************************************
+INFO (TTC-110): Starting Static Logic Test generation                                           [end TTC_110] 
+
+INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -  [end TDA_220] 
+INFO (TDA-220):    Sim.    Eff.  Detected    Tmode    Global     Untested                       [end TDA_220] 
+INFO (TDA-220):      1       1          6     0.45%    0.01%         1340           00:00.18    [end TDA_220] 
+INFO (TDA-221):      1       1          0     0.45%    0.01%         1340           00:00.18    [end TDA_221] 
+INFO (TTC-110): Ending Static Logic Test generation                                             [end TTC_110] 
+*************************************************************************************************************
+
+****************************************************************************************************
+                           Testmode Statistics: FULLSCAN
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                  1346            6            0            0         1340   0.45   0.45
+
+                            Global Statistics
+
+                           #Faults      #Tested    #Possibly      #Redund    #Untested  %TCov %ATCov
+Total Static                101942            6            0            0       101936   0.01   0.01
+****************************************************************************************************
+
+
+              ----Final Pattern Statistics----
+
+ Test Section Type                       # Test Sequences
+----------------------------------------------------------
+ Logic                                          1
+----------------------------------------------------------
+ Total                                          1
+
+(I) File(s) generated (bytes and name):
+
+          77824 /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg/tbdata/faultStatus.FULLSCAN.rapid_x_cpu_atpg
+           4629 /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg/tbdata/TBDbin.FULLSCAN.rapid_x_cpu_atpg
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =           18,400,800  bytes
+
+                      CPU Time =    0:00:00.13
+                  Elapsed Time =    0:00:00.25                    [end TDA_001]
+
+     Date Ended:  Friday Apr 04 22:00:11 2025  EDT
+
+INFO (TFW-119): Modus checked in a modus_atpg license.  [end TFW_119] 
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      3 INFO (TDA-220):   --- Tests ---   Faults     ---- ATCov ----   -- Faults --   - Elapsed Time -   
+      1 INFO (TDA-221):      1       1          0     0.45%    0.01%         1340           00:00.18     
+      1 INFO (TFW-117): Modus checked out a modus_atpg license.   
+      1 INFO (TFW-119): Modus checked in a modus_atpg license.   
+      1 INFO (TTC-107): There are no scan chains in this circuit, therefore no scan chain tests will be generated.   
+      2 INFO (TTC-110): Starting Static Logic Test generation                                            
+
+  WARNING Messages...
+      1 WARNING (TTC-018): verify_test_structures issued Warning messages related to Stored Pattern tests.  Poor test coverage may result.   
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------

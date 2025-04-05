@@ -52,12 +52,15 @@ module register_file (
 	   if (ex_mem_signal.debug_instruction != 51) begin
 			clockCycle = clockCycle + 1;
 			$fwrite(hFile, "%04d (%X): ", clockCycle, ex_mem_signal.debug_instruction);
+			$write("%04d (%X): ", clockCycle, ex_mem_signal.debug_instruction);
 			for (int i = 0; i < 32; i++) begin
 			     $fwrite(hFile, "%X ", regs[i]);
+			     //$write( "%X ", regs[i]);
 			end
 			$fwrite(hFile, "\n");
+			$write("\n");
 			$fflush(hFile);
-			if (clockCycle == 262144) $finish;
+			if (clockCycle >= 1024*1024) $finish;
 		end
 	end
 

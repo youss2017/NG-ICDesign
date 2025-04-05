@@ -1,0 +1,58 @@
+Starting Command: write_toggle_gram 
+
+INFO (TDA-005): Command Line Invocation: 
+            write_toggle_gram -experiment rapid_x_cpu_atpg -testmode FULLSCAN -workdir /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg -stdout summary  [end TDA_005]
+
+INFO (TDA-014): Cadence(R) Modus(TM) DFT Software Solution, Version 23.12-s005_1, built Aug 15 2024 (linux26_64) [end TDA_014]
+
+INFO (TDA-015): Log File: /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg/testresults/logs/log_write_toggle_gram_FULLSCAN_rapid_x_cpu_atpg_040425220012-919941000 [end TDA_015]
+
+INFO (TDA-007): Job Information:
+            Date Started: Friday Apr 04 22:00:12 2025  EDT
+            Host machine is net1580, x86_64 running Linux 4.18.0-553.22.1.el8_10.x86_64.
+            This job is process number 2116784.
+[end TDA_007]
+
+INFO (TDA-009): Options/Values information.
+            (options marked with '*' have program generated values,
+             options marked with '+' were specified to default.)
+
+            -WORKDIR /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg
+            -TESTMODE FULLSCAN
+            -EXPERIMENT rapid_x_cpu_atpg
+
+            -LOGFILE /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg/testresults/logs/log_write_toggle_gram_FULLSCAN_rapid_x_cpu_atpg_040425220012-919941000
+            -STDOUT summary
+[end TDA_009]
+INFO (TFW-117): Modus checked out a modus_atpg license.  [end TFW_117] 
+ERROR (TBM-095): No scan chains found that are both observable and controllable in the current test mode[end TBM_095] 
+INFO (TFW-119): Modus checked in a modus_atpg license.  [end TFW_119] 
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =           13,203,072  bytes
+
+                      CPU Time =    0:00:00.01
+                  Elapsed Time =    0:00:00.06                    [end TDA_001]
+
+     Date Ended:  Friday Apr 04 22:00:13 2025  EDT
+
+
+
+
+-------------------------------------------------------------------------------
+*                      Message Summary                                        *
+-------------------------------------------------------------------------------
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TFW-117): Modus checked out a modus_atpg license.   
+      1 INFO (TFW-119): Modus checked in a modus_atpg license.   
+
+  ERROR Messages...
+      1 ERROR (TBM-095): No scan chains found that are both observable and controllable in the current test mode 
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+-------------------------------------------------------------------------------

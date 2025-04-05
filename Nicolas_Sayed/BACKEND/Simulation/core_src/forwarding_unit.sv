@@ -52,5 +52,6 @@ module forward_unit
         else
             o_forward_rs2 = i_ex_rs2_data;        
     end
+    
 
 endmodule

@@ -1,0 +1,118 @@
+
+INFO (TDA-005): Command Line Invocation: 
+            build_testmode -modedef FULLSCAN -assignfile /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg/rapid_x_cpu.FULLSCAN.pinassign -testmode FULLSCAN -workdir /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg -stdout summary  [end TDA_005]
+
+INFO (TDA-014): Cadence(R) Modus(TM) DFT Software Solution, Version 23.12-s005_1, built Aug 15 2024 (linux26_64) [end TDA_014]
+
+INFO (TDA-015): Log File: /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg/testresults/logs/log_build_testmode_FULLSCAN_040425220006-137994000 [end TDA_015]
+
+INFO (TDA-007): Job Information:
+            Date Started: Friday Apr 04 22:00:06 2025  EDT
+            Host machine is net1580, x86_64 running Linux 4.18.0-553.22.1.el8_10.x86_64.
+            This job is process number 2116649.
+[end TDA_007]
+
+INFO (TDA-009): Options/Values information.
+            (options marked with '*' have program generated values,
+             options marked with '+' were specified to default.)
+
+            -WORKDIR /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg
+            -TESTMODE FULLSCAN
+
+            -ASSIGNFILE /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg/rapid_x_cpu.FULLSCAN.pinassign
+          * update_assign_file=
+            -LOGFILE /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg/testresults/logs/log_build_testmode_FULLSCAN_040425220006-137994000
+            -MODEDEF FULLSCAN
+            -STDOUT summary
+[end TDA_009]
+MODEDEFPATH set to:  /home/net/cadence/installs/MODUS231/tools.lnx86/tb/defaults/rules/modedef 
+TDRPATH set to: /home/net/cadence/installs/MODUS231/tools.lnx86/tb/defaults/rules/tdr 
+
+Modus Build Test Mode(s) beginning...
+
+   TDR NAME      =  dummy.tdr 
+
+   SCAN_TYPE     =  GSD 
+   BOUNDARY      =  NONE 
+   IN            =  PI 
+   OUT           =  PO 
+
+INFO (TFW-117): Modus checked out a modus_atpg license.  [end TFW_117] 
+INFO (TTM-391): A default modeinit sequence will be generated.   [end TTM_391] 
+INFO (TTM-387): A default scanop sequence will be generated.   [end TTM_387] 
+INFO (THM-814): Testmode contains  3.11% active logic, 96.89% inactive logic and  0.00% constraint logic.   [end THM_814] 
+WARNING (TTM-347): There is less than 96 percent active logic in this test mode.  Global fault
+           coverage is impacted when too little of the logic is visible.   [end TTM_347] 
+INFO (TTM-359): There are 8 scan chains which are only observable.  [end TTM_359] 
+INFO (TFW-119): Modus checked in a modus_atpg license.  [end TFW_119] 
+
+There are no PPIs for Test Mode:  FULLSCAN
+
+Information for Test Mode:  FULLSCAN
+-------------------------
+
+         Scan Type = GSD
+
+
+ Latch Summary for Test Mode:  FULLSCAN
+ Latch Type                #Active   #Inactive       Total
+ ---------------------   ---------   ---------   ---------
+ Test Constraint (TC)            0           0           0 
+ Scan Enable     (SE)            0           0           0 
+ Fixed Value     (FV)            0           0           0 
+ Floating                        0           0           0 
+ Finite State    (FSM)           0           0           0 
+
+WARNING (TTM-809): Test mode FULLSCAN has been created, WARNINGs have been generated -
+           see preceding message(s) for details. [end TTM_809] 
+
+Test Function Pin Information for Test Mode:  FULLSCAN
+-------------------------------------------
+
+          2  SC    (System  Clock)             Pins
+          0  PC    (P Shift Clock)             Pins
+          1  EC    (E Shift Clock)             Pins
+
+          0  OSC   (Oscillator)                Pins
+
+          0  TI    (Test Inhibit)              Pins
+          1  SE    (Scan Enable)               Pins
+          0  CI    (Clock Isolation)           Pins
+          0  OI    (Output Inhibit)            Pins
+
+          8  SI    (Scan Input)                Pins
+          8  SO    (Scan Output)               Pins
+
+  Pin Index    Type Test Function                         Pin Name / Net Name
+  ---------    ---- ----------------------------------    -------------------
+        267      PI  -SC                                  i_reset / i_reset
+        266      PI  -EC  -SC                             i_clk / i_clk
+          0      PI  +SE                                  SE / SE
+        268      PI   SI                                  scan_in / scan_in
+        259      PI   SI1                                 dft_sdi_1 / dft_sdi_1
+        260      PI   SI2                                 dft_sdi_2 / dft_sdi_2
+        261      PI   SI3                                 dft_sdi_3 / dft_sdi_3
+        262      PI   SI4                                 dft_sdi_4 / dft_sdi_4
+        263      PI   SI5                                 dft_sdi_5 / dft_sdi_5
+        264      PI   SI6                                 dft_sdi_6 / dft_sdi_6
+        265      PI   SI7                                 dft_sdi_7 / dft_sdi_7
+        600      PO   SO                                  scan_out / scan_out
+        593      PO   SO1                                 dft_sdo_1 / dft_sdo_1
+        594      PO   SO2                                 dft_sdo_2 / dft_sdo_2
+        595      PO   SO3                                 dft_sdo_3 / dft_sdo_3
+        596      PO   SO4                                 dft_sdo_4 / dft_sdo_4
+        597      PO   SO5                                 dft_sdo_5 / dft_sdo_5
+        598      PO   SO6                                 dft_sdo_6 / dft_sdo_6
+        599      PO   SO7                                 dft_sdo_7 / dft_sdo_7
+
+
+
+Modus Build Test Mode(s) completed. Highest severity is (WARNING).
+
+               Total Memory =           34,606,192  bytes
+
+            Cumulative Time in hours:minutes:seconds:
+                   CPU Time =   0:00:00.19
+               Elapsed Time =   0:00:00.30
+
+

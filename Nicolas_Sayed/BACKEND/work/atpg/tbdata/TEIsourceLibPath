@@ -1,0 +1,3 @@
+SOURCE=/home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/atpg/rapid_x_cpu.test_netlist.v
+TECHLIB=../libs/LibParsing/NangateOpenCellLibrary_typical.lib,../OpenRam/openram_150/sram_150b_512_1rw_freepdk45.v
+RUNDIR=/home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/

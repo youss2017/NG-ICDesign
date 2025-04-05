@@ -1,0 +1,91 @@
+/******************************************************************************************
+   Module          	: SDFFRS_X1
+   Cell Description	: Pos.edge D-Flip-Flop with active low reset, and active high scan, and active low set, and drive strength X1
+  *******************************************************************************************/
+cell ( SDFFRS_X1 ) {
+  // Cell type: flip flop
+  drive_strength      : 1;
+  area                : 7.714000;
+  pg_pin(VDD) {
+    voltage_name : VDD;
+    pg_type      : primary_power;
+  }
+  pg_pin(VSS) {
+    voltage_name : VSS;
+    pg_type      : primary_ground;
+  }
+  test_cell () {
+      ff ("IQ" , "IQN") {
+         next_state          : "D";
+         clocked_on          : "CK";
+         clear               : "!RN";
+         preset              : "!SN";
+      }
+      pin (D) {
+         direction           : input;
+      }
+      pin (RN) {
+         direction           : input;
+      }
+      pin (SE) {
+         direction           : input;
+         signal_type         : test_scan_enable;
+      }
+      pin (SI) {
+         direction           : input;
+         signal_type         : test_scan_in;
+      }
+      pin (SN) {
+         direction           : input;
+      }
+      pin (CK) {
+         direction           : input;
+      }
+      pin (Q) {
+         direction           : output;
+         function            : "IQ";
+         signal_type         : test_scan_out;
+      }
+  }
+
+  pin ( VDD ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( VSS ) {
+    direction : N/A;
+    function : "N/A";
+  }
+  pin ( D ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( RN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SE ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SI ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( SN ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( CK ) {
+    direction : input;
+    function : "N/A";
+  }
+  pin ( Q ) {
+    direction : output;
+    function : "IQ";
+  }
+  pin ( QN ) {
+    direction : output;
+    function : "IQN";
+  }
+}

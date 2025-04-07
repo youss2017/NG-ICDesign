@@ -1,6 +1,6 @@
 # Set libs and rtl path
 set_db init_lib_search_path ../libs/
-set_db init_hdl_search_path ../rtl/
+set_db init_hdl_search_path ../Simulation_upgrades/
 
 # Read libs
 read_libs ./CCS/NangateOpenCellLibrary_worst_low_ccs.lib
@@ -8,7 +8,7 @@ read_libs ./CCS/NangateOpenCellLibrary_worst_low_ccs.lib
 # Read the design files
 read_hdl -sv core_src/rapid_pkg.sv
 read_hdl -sv core_src/memory_controller_interface.sv
-read_hdl -sv core_src/sram_150b_512_1rw_freepdk45.v
+read_hdl -sv core_src/sram_150b_512_1rw_freepdk45_bb.v
 read_hdl -sv core_src/dcache_dm1cycle.sv
 read_hdl -sv core_src/cpu_memory_unit.sv
 read_hdl -sv core_src/register_file.sv

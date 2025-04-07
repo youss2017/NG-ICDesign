@@ -12,7 +12,7 @@
     reg [15:0] lcd_value;
     
     always_ff @(posedge clk or posedge reset) 
-        if (reset) lcd_value <= 'hbeef;
+        if (reset) lcd_value <= 'h9876;
         else       lcd_value <= load ? value : lcd_value;
 
     // Updated to use 8-bit words for each segment.

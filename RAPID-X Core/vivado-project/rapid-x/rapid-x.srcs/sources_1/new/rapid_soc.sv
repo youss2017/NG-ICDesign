@@ -24,6 +24,9 @@ module rapid_soc(
     input wire i_clk,
     input wire i_reset,
     
+//    input  wire uart_rx,
+//    output wire uart_tx,
+    
     output [7:0] segement,
     output [3:0] anode,
     
@@ -46,15 +49,16 @@ module rapid_soc(
     output logic clk_indicator*/
 );
    
-    clock_divider #(.TARGET_VALUE(2)) cpu_clk_div(.clk(i_clk), .reset(0), .out_clk(cpu_clk));
+    clock_divider #(.TARGET_VALUE(1)) cpu_clk_div(.clk(i_clk), .reset(0), .out_clk(cpu_clk));
 
     // CPU signals
-    logic [31:0] instruction_fetch_address, instruction_fetch_data;
-    logic [31:0] mmu_address, mmu_input_data, mmu_output_data, mmu_we, translated_address;
+    logic signed [31:0] instruction_fetch_address, instruction_fetch_data;
+    logic [31:0] mmu_address, mmu_input_data, mmu_output_data, translated_address;
+    logic [3:0] mmu_we;
     
     initial begin
-        $monitor("MMU: ADDRS(%d), DATA(%d), WE(%d), RAM_EN(%d), LCD_EN(%d), DISP_EN(%d)\n", 
-        mmu_address, mmu_output_data, mmu_we, ram_enable, lcd_enable, display_enable);
+        //$monitor("MMU: ADDRS(%d), DATA(%d), WE(%d), RAM_EN(%d), LCD_EN(%d), DISP_EN(%d)\n", 
+        //mmu_address, mmu_output_data, mmu_we, ram_enable, lcd_enable, display_enable);
     end
 
     rapid_x_cpu cpu(
@@ -69,7 +73,7 @@ module rapid_soc(
     );
 
     memory_managment_unit mmu(
-        .mmu_address(mmu_address),
+        .mmu_address({ {2'b00}, {mmu_address[31:2]} }),
         .ram_enable(ram_enable),
         .lcd_enable(lcd_enable),
         .display_enable(display_enable),
@@ -80,7 +84,7 @@ module rapid_soc(
         .clka(i_clk),
         .ena(1),
         .wea(0),
-        .addra(instruction_fetch_address[10:0]),
+        .addra({ {2'b00}, { instruction_fetch_address[10:2]} }),
         .dina(0),
         .douta(instruction_fetch_data),
         
@@ -91,6 +95,24 @@ module rapid_soc(
         .dinb(mmu_output_data),
         .doutb(mmu_input_data)
     );
+/*
+ENTITY blk_cpu_mem IS
+  PORT (
+    clka : IN STD_LOGIC;
+    ena : IN STD_LOGIC;
+    wea : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    addra : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+    dina : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    douta : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    clkb : IN STD_LOGIC;
+    enb : IN STD_LOGIC;
+    web : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    addrb : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+    dinb : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    doutb : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+  );
+END blk_cpu_mem;
+*/
     
     lcd_display lcd(
         .clk(i_clk),

@@ -32,7 +32,6 @@ import rapid_pkg::*;
 (
     input logic                          i_clk,
     input logic                          i_reset,
-    input logic                          i_pipeline_enable,
     input logic         [XLEN-1:0]       i_pc,
     input control_ex_s                   i_control_signal,
     input logic signed  [XLEN-1:0]       i_rs1,
@@ -44,18 +43,13 @@ import rapid_pkg::*;
     output logic                         o_pc_load,
     output logic        [XLEN-1:0]       o_pc_ext,
     output logic        [XLEN-1:0]       o_memory_data,
-    output logic        [XLEN-1:0]       o_rd_output,
-    output logic        [XLEN-1:0]       o_ex_rs1,
-    output logic        [XLEN-1:0]       o_ex_rs2
+    output logic        [XLEN-1:0]       o_rd_output
 );
 
     // internal value
     control_ex_s iv_control_signal;
     logic signed [XLEN-1:0] iv_rs1, iv_rs2, iv_imm, iv_pc;
     logic signed [XLEN-1:0] forward_rs1, forward_rs2;
-    
-    assign o_ex_rs1 = iv_rs1;
-    assign o_ex_rs2 = iv_rs2;
 
     always_ff @(posedge i_clk, posedge i_reset) begin
 
@@ -65,7 +59,7 @@ import rapid_pkg::*;
             iv_rs2            <= 0;
             iv_imm            <= 0;
             iv_pc             <= 0;
-        end else if(i_pipeline_enable) begin
+        end else begin
             // Load data from inputs ports to local state
             iv_pc               <= o_pc_load ?  0                       : i_pc;
             iv_control_signal   <= o_pc_load ?  control_ex_s_default()  : i_control_signal;
@@ -76,7 +70,7 @@ import rapid_pkg::*;
 
     end
 
-        /*
+    /*
     if (rs1(ex) == rd(ex)) then 
         forward_rs1_data = mem_rd_data
     else
@@ -151,48 +145,15 @@ import rapid_pkg::*;
                 end 
             endcase
 
-            o_pc_ext = 'b0;
-            o_pc_load = 'b0;
         end
             
-            // BEQ/BNE/BLT/BGE/BLTU/BEGU
-            else if (iv_control_signal.cond_branch) begin
-
-                // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
-                // BEQ	         11000	 010 (COND.BRANCH)	         000	            0	      100-000-0
-                // BNE	         11000	 010 (COND.BRANCH)	         001	            0	      100-001-0
-                // BLT	         11000	 010 (COND.BRANCH)	         100	            0	      100-100-0
-                // BGE	         11000	 010 (COND.BRANCH)	         101	            0	      100-101-0
-                // BLTU	         11000	 010 (COND.BRANCH)	         110	            0	      100-110-0
-                // BGEU	         11000	 010 (COND.BRANCH)	         111	            0	      100-111-0
-
-                case (iv_control_signal.fcs_opcode)
-                    /* BEQ */  3'b000: o_pc_load = forward_rs1 == forward_rs2;
-                    /* BNE */  3'b001: o_pc_load = forward_rs1 != forward_rs2;
-                    /* BLT */  3'b100: o_pc_load = forward_rs1 < forward_rs2;
-                    /* BGE */  3'b101: o_pc_load = forward_rs1 >= forward_rs2;
-                    /* BLTU */ 3'b110: o_pc_load = $unsigned(forward_rs1) < $unsigned(forward_rs2);
-                    /* BGEU */ 3'b111: o_pc_load = $unsigned(forward_rs1) >= $unsigned(forward_rs2);
-                               default: o_pc_load = 0;
-                endcase
-                
-                o_pc_ext = (iv_pc + (iv_imm >>> 2));
-                o_rd_output = 0;
-            end
-
         // JAL/JALR
         else if (iv_control_signal.uncond_branch) begin
             // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
             // JAL	         11011	 001 (UNCOND.BRANCH)	     000	            0	      000-000-0
             // JALR	         11001	 001 (UNCOND.BRANCH)	     000	            1	      000-000-1
             o_rd_output = iv_pc + 4; // This is rd value
-            if (iv_control_signal.iop)
-                // JALR
-                o_pc_ext = (forward_rs1 /* JALR */ + (iv_imm >>> 2)); // This is new pc value
-            else
-                // JAL
-                o_pc_ext = (iv_pc /* JAL */ + (iv_imm >>> 2)); // This is new pc value
-            o_pc_load = 1;
+
         end
 
         // LUI and AUIPC
@@ -206,30 +167,40 @@ import rapid_pkg::*;
             else 
                 // AUPIC
                 o_rd_output = iv_pc + iv_imm;
-            o_pc_ext = 0;
-            o_pc_load = 0;
         end
-
         // Memory Operations
         else if(iv_control_signal.mem) begin
-                // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
-                // LB	         00000	 011 (MEM LOAD/STORE)	     000	            0         011-000-0
-                // LH	         00000	 011 (MEM LOAD/STORE)	     001	            0         011-001-0
-                // LW	         00000	 011 (MEM LOAD/STORE)	     010	            0         011-010-0
-                // LBU	         00000	 011 (MEM LOAD/STORE)	     100	            0         011-100-0
-                // LHU	         00000	 011 (MEM LOAD/STORE)	     101	            0         011-101-0
-                // SB	         01000	 011 (MEM LOAD/STORE)	     000	            1	      011-000-1
-                // SH	         01000	 011 (MEM LOAD/STORE)	     001	            1	      011-001-1
-                // SW	         01000	 011 (MEM LOAD/STORE)	     010	            1	      011-010-1
-                o_rd_output = forward_rs1 + iv_imm;
-                o_pc_ext = 0;
-                o_pc_load = 0;
+            o_rd_output = forward_rs1 + iv_imm;
         end else begin
-            o_pc_ext = 0;
-            o_pc_load = 0;
             o_rd_output = 0;
         end
 
+    end
+    
+    always_comb begin : branching_logic
+                // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
+                // BEQ	         11000	 010 (COND.BRANCH)	         000	            0	      100-000-0
+                // BNE	         11000	 010 (COND.BRANCH)	         001	            0	      100-001-0
+                // BLT	         11000	 010 (COND.BRANCH)	         100	            0	      100-100-0
+                // BGE	         11000	 010 (COND.BRANCH)	         101	            0	      100-101-0
+                // BLTU	         11000	 010 (COND.BRANCH)	         110	            0	      100-110-0
+                // BGEU	         11000	 010 (COND.BRANCH)	         111	            0	      100-111-0
+
+            if (iv_control_signal.cond_branch) begin
+                case (iv_control_signal.fcs_opcode)
+                    /* BEQ */  3'b000: o_pc_load = forward_rs1 == forward_rs2;
+                    /* BNE */  3'b001: o_pc_load = forward_rs1 != forward_rs2;
+                    /* BLT */  3'b100: o_pc_load = forward_rs1 < forward_rs2;
+                    /* BGE */  3'b101: o_pc_load = forward_rs1 >= forward_rs2;
+                    /* BLTU */ 3'b110: o_pc_load = $unsigned(forward_rs1) < $unsigned(forward_rs2);
+                    /* BGEU */ 3'b111: o_pc_load = $unsigned(forward_rs1) >= $unsigned(forward_rs2);
+                               default: o_pc_load = 0;
+                endcase
+            end else o_pc_load = 0;
+            
+            o_pc_ext = iv_control_signal.cond_branch ? (iv_pc + iv_imm) :
+                           (iv_control_signal.uncond_branch && iv_control_signal.iop) ? (forward_rs1 /* JALR */ + iv_imm) : // This is new pc value
+                           (iv_pc /* JAL */ + iv_imm);
     end
 
 

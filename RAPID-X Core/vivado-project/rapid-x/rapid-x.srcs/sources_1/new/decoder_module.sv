@@ -62,7 +62,6 @@ module decoder_module
 (
     input  logic                        i_clk,
     input  logic                        i_reset,
-    input  logic                        i_pipeline_enable,
     input  logic                        i_pc_load,
     input  logic         [XLEN-1:0]     i_instruction,
     input  logic         [XLEN-1:0]     i_pc,
@@ -81,7 +80,7 @@ module decoder_module
         if (i_reset) begin
             iv_pc          <= 0;
             iv_instruction <= 0;
-        end else if(i_pipeline_enable) begin
+        end else begin
             // Store data from input ports
             iv_pc          <= i_pc_load ? 0 : i_pc;
             iv_instruction <= i_pc_load ? 0 : i_instruction;
@@ -89,101 +88,62 @@ module decoder_module
 
     end
     
-    always_comb begin
-        o_control_signal = control_ex_s_default();
-        
-            case(iv_instruction[6:2])
+    logic is_lui, is_aupic, is_jal, is_jalr, is_cond, is_load, is_store, is_imm, is_reg;
     
-            upper_family:               
-                        begin 
-                                o_control_signal .load_upper_imm = 1;
-                                o_control_signal .iop = iv_instruction[5:5];
-                                o_imm = $signed({iv_instruction[31:12], 12'b0}); 
-                                o_control_signal .rd = iv_instruction[11:7];
-                        end
-                            
-            upper_family2:               
-                        begin 
-                                o_control_signal .load_upper_imm = 1;
-                                o_control_signal .iop = iv_instruction[5:5];
-                                o_imm = $signed({iv_instruction[31:12], 12'b0}); 
-                                o_control_signal .rd = iv_instruction[11:7];
-                        end
+    assign is_valid = iv_instruction[1:0] == 2'b11; // All instructions start with 11 (on the right end of bitfield)
+    assign is_lui   = is_valid && iv_instruction[6:2] == upper_family2;
+    assign is_aupic = is_valid && iv_instruction[6:2] == upper_family;
+    assign is_jal   = is_valid && iv_instruction[6:2] == uncond_branch_jal;
+    assign is_jalr  = is_valid && iv_instruction[6:2] == uncond_branch_jalr;
+    assign is_cond  = is_valid && iv_instruction[6:2] == cond_branch_family;
+    assign is_load  = is_valid && iv_instruction[6:2] == mem_load_family;
+    assign is_store = is_valid && iv_instruction[6:2] == mem_store_family;
+    assign is_imm   = is_valid && iv_instruction[6:2] == imm_family;
+    assign is_reg   = is_valid && iv_instruction[6:2] == reg_family;
     
-            uncond_branch_jal:       
-                        begin 
-                                o_control_signal .uncond_branch = 1;
-                                o_control_signal .iop = 1'b0;
-                                o_imm = $signed({iv_instruction[31:31], iv_instruction[19:12], iv_instruction[30:21], 1'b0}); 
-                                o_control_signal .rd = iv_instruction[11:7];
-                        end
-                        
-            uncond_branch_jalr:       
-                        begin 
-                                o_control_signal .uncond_branch = 1;
-                                o_control_signal .iop = 1'b1;
-                                o_imm = $signed({iv_instruction[31:20]});
-                                o_control_signal .rd = iv_instruction[11:7];
-                                o_control_signal .rs1 = iv_instruction[19:15];
-                        end
-    
-            cond_branch_family:         
-                        begin 
-                                o_control_signal .cond_branch = 1;
-                                // No IOP
-                                o_imm = $signed({iv_instruction[31:31], iv_instruction[7:7], iv_instruction[30:25], iv_instruction[11:8], 1'b0}); 
-                                o_control_signal .rs1 = iv_instruction[19:15];
-                                o_control_signal.rs2 = iv_instruction[24:20];
-                        end
-    
-            mem_load_family:            
-                        begin 
-                                o_control_signal .mem = 1;
-                                // IOP is 0 relative to Store instructions
-                                o_imm = $signed({iv_instruction[31:20]}); 
-                                o_control_signal .rs1 = iv_instruction[19:15]; // ALU uses *rd = (imm + *rs1) as store location
-                                o_control_signal .rd = iv_instruction[11:7];
-                        end
-    
-            mem_store_family:           
-                        begin 
-                                o_control_signal .mem = 1;
-                                o_control_signal .iop = iv_instruction[5:5];
-                                o_imm = $signed({iv_instruction[31:25], iv_instruction[11:7]}); 
-                                o_control_signal .rs1 = iv_instruction[19:15];
-                                o_control_signal .rs2 = iv_instruction[24:20];
-                        end
-    
-            imm_family:                 
-                        begin 
-                                o_control_signal .alu_imm = 1;
-                                o_control_signal .iop =  ((iv_instruction[30:30]) && (iv_instruction[14:12] == 3'b101)); // Only SRAI has an IOP signal
-                                o_imm = $signed({iv_instruction[31:20]}); 
-                                o_control_signal .rs1 = iv_instruction[19:15];
-                                o_control_signal .rd = iv_instruction[11:7];
-                        end
-    
-            reg_family:                 
-                        begin 
-                            o_control_signal .alu_reg = 1;
-                            o_control_signal .iop = (iv_instruction[30:30]);
-                            o_control_signal .rs1 = iv_instruction[19:15]; 
-                            o_control_signal .rs2 = iv_instruction[24:20]; 
-                            o_control_signal .rd = iv_instruction[11:7];
-                        end
-                        
-            default: begin
-                            o_control_signal .alu_reg = 1;
-                            o_control_signal .iop = 0;
-                            o_control_signal .rs1 = 0;
-                            o_control_signal .rs2 = 0; 
-                            o_control_signal .rd = 0;
-            end
-                
-            endcase
-
-            o_control_signal .fcs_opcode = iv_instruction[14:12]; 
+    always_comb begin : family_decoding
+        o_control_signal.load_upper_imm = is_lui || is_aupic;
+        o_control_signal.uncond_branch  = is_jal || is_jalr;
+        o_control_signal.cond_branch    = is_cond;
+        o_control_signal.mem            = is_load || is_store;
+        o_control_signal.alu_imm        = is_imm; 
+        o_control_signal.alu_reg        = is_reg; 
     end
+    
+    always_comb begin : glue_logic
+        o_control_signal.rd = iv_instruction[11:7];
+        o_control_signal.rs1 = iv_instruction[19:15];
+        o_control_signal.rs2 = iv_instruction[24:20];
+        o_control_signal.fcs_opcode = iv_instruction[14:12]; 
+    end
+    
+    logic is_sra, is_add;
+    assign is_sra = iv_instruction[14:12] == 3'b101;
+    assign is_add = iv_instruction[14:12] == 3'b000;
+    
+    always_comb begin : iop_decoding
+        o_control_signal.iop = is_lui || is_store || is_jalr ||
+                               (is_reg && iv_instruction[30]) ||
+                               (is_imm && iv_instruction[30] && iv_instruction[14:12] == 3'b101);
+    end
+    
+    logic [31:0] i_type, j_type, u_type, b_type, s_type;
+    
+    // immediate value decoding
+    assign i_type = $signed({iv_instruction[31:20]});
+    assign j_type = $signed({iv_instruction[31:31], iv_instruction[19:12], iv_instruction[30:21], 1'b0});
+    assign u_type = $signed({iv_instruction[31:12], 12'b0});
+    assign b_type = $signed({iv_instruction[31:31], iv_instruction[7:7], iv_instruction[30:25], iv_instruction[11:8], 1'b0});
+    assign s_type = $signed({iv_instruction[31:25], iv_instruction[11:7]});
+    
+    always_comb begin : immediate_value_selection
+        o_imm = (is_imm || is_load || is_jalr) ? i_type :
+                (is_lui || is_aupic)           ? u_type :
+                (is_jal)                       ? j_type :
+                (is_store)                     ? s_type :
+                                                 b_type;
+    end    
+    
 /*
     always_comb begin
     
@@ -200,12 +160,10 @@ module decoder_module
                                 o_imm = iv_instruction[2] ? 
                                             (iv_instruction[3] ? $signed({iv_instruction[31:20]}) : { {13{iv_instruction[31:31]}}, iv_instruction[19:12], iv_instruction[30:21], 1'b0}) :
                                             $signed({iv_instruction[31:31], iv_instruction[7:7], iv_instruction[30:25], iv_instruction[11:8], 1'b0}); 
-                                o_control_signal .rs1_out = iv_instruction[3];
                                 o_control_signal.load_upper_imm = 0;
                                 o_control_signal.mem = 0;
                                 o_control_signal.alu_imm = 0;
                                 o_control_signal.alu_reg = 0;
-                                o_control_signal.rs2_out = ~iv_instruction[2];
 
                 
         end else begin
@@ -219,15 +177,11 @@ module decoder_module
                                 o_control_signal.cond_branch = 0;
                                 o_control_signal.alu_imm = 0;
                                 o_control_signal.alu_reg = 0;
-                                o_control_signal.rs1_out = ~iv_instruction[2];
-                                o_control_signal.rs2_out = iv_instruction[5:5] & ~iv_instruction[2];
                         end
                 else begin
                                 o_control_signal.alu_imm = ~iv_instruction[5];
                                 o_control_signal .alu_reg = iv_instruction[5];
                                 o_control_signal .iop = iv_instruction[5] ? (iv_instruction[30:30]) : ((iv_instruction[30:30]) && (iv_instruction[14:12] == 3'b101)); // Only SRAI has an IOP signal
-                                o_control_signal .rs1_out = 1;
-                                o_control_signal .rs2_out = iv_instruction[5];
                                 
                                 o_imm = $signed({iv_instruction[31:20]});
                                 o_control_signal.load_upper_imm = 0;

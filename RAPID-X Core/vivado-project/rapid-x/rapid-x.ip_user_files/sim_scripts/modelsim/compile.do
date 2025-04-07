@@ -32,7 +32,6 @@ vlog -work xil_defaultlib  -incr -mfcu  -sv \
 "../../../rapid-x.srcs/sources_1/new/decoder_module.sv" \
 "../../../rapid-x.srcs/sources_1/new/display_engine.sv" \
 "../../../rapid-x.srcs/sources_1/new/execute_stage.sv" \
-"../../../../../forwarding_unit.sv" \
 "../../../rapid-x.srcs/sources_1/new/lcd_display.sv" \
 "../../../rapid-x.srcs/sources_1/new/memory_managment_unit.sv" \
 "../../../rapid-x.srcs/sources_1/new/rapid_soc.sv" \

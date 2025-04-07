@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date             : Mon Mar 31 01:26:54 2025
+| Date             : Sun Apr  6 23:11:23 2025
 | Host             : DESKTOP-T92VI6B running 64-bit major release  (build 9200)
 | Command          : report_power -file rapid_soc_power_routed.rpt -pb rapid_soc_power_summary_routed.pb -rpx rapid_soc_power_routed.rpx
 | Design           : rapid_soc
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.118        |
+| Total On-Chip Power (W)  | 0.117        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.046        |
+| Dynamic (W)              | 0.045        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.4         |
@@ -53,19 +53,19 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        3 |       --- |             --- |
-| Slice Logic    |     0.009 |     3200 |       --- |             --- |
-|   LUT as Logic |     0.008 |     1594 |     20800 |            7.66 |
-|   CARRY4       |    <0.001 |      103 |      8150 |            1.26 |
-|   Register     |    <0.001 |      980 |     41600 |            2.36 |
-|   BUFG         |    <0.001 |        3 |        32 |            9.38 |
-|   F7/F8 Muxes  |    <0.001 |      193 |     32600 |            0.59 |
+| Slice Logic    |     0.010 |     3978 |       --- |             --- |
+|   LUT as Logic |     0.009 |     1643 |     20800 |            7.90 |
+|   CARRY4       |    <0.001 |       87 |      8150 |            1.07 |
+|   Register     |    <0.001 |     1466 |     41600 |            3.52 |
+|   F7/F8 Muxes  |    <0.001 |      385 |     32600 |            1.18 |
+|   BUFG         |    <0.001 |        2 |        32 |            6.25 |
 |   Others       |     0.000 |       64 |       --- |             --- |
-| Signals        |     0.012 |     2339 |       --- |             --- |
-| Block RAM      |     0.010 |     11.5 |        50 |           23.00 |
+| Signals        |     0.012 |     2738 |       --- |             --- |
+| Block RAM      |     0.009 |     11.5 |        50 |           23.00 |
 | DSPs           |    <0.001 |        1 |        90 |            1.11 |
 | I/O            |     0.013 |       28 |       106 |           26.42 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.118 |          |           |                 |
+| Total          |     0.117 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,7 +75,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.042 |       0.032 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.041 |       0.031 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.005 |       0.004 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -144,18 +144,19 @@ Table of Contents
 +------------------------+-----------+
 | Name                   | Power (W) |
 +------------------------+-----------+
-| rapid_soc              |     0.046 |
+| rapid_soc              |     0.045 |
 |   cpu                  |     0.020 |
-|     de_stage           |     0.003 |
-|     ex_stage           |     0.009 |
-|     memory_unit        |     0.007 |
-|   cpu_ram              |     0.009 |
-|     U0                 |     0.009 |
-|       inst_blk_mem_gen |     0.009 |
+|     de_stage           |     0.005 |
+|     ex_stage           |     0.005 |
+|     memory_unit        |     0.006 |
+|     reg_file           |     0.003 |
+|   cpu_ram              |     0.007 |
+|     U0                 |     0.007 |
+|       inst_blk_mem_gen |     0.007 |
 |   graphics_engine      |     0.003 |
 |     vram_framebuffer   |     0.002 |
 |       U0               |     0.002 |
-|   lcd                  |     0.001 |
+|   lcd                  |     0.002 |
 +------------------------+-----------+
 
 

@@ -85,9 +85,9 @@ module execute_logic
                 SLT: o_rd_output = $signed(i_rs1) < $signed(port2);// SLTI
                 SLTU: o_rd_output = $unsigned(i_rs1) < $unsigned(port2) ; // SLTIU
                 XOR_: o_rd_output = i_rs1 ^ port2;          // XORI
-                OR_: o_rd_output = i_rs1 | port2;               // ORI
-                AND_: o_rd_output = i_rs1 & port2;              // ANDI
-                SLL: o_rd_output = i_rs1 << port2[4:0];          // SLLI
+                OR_: o_rd_output = i_rs1 | port2;           // ORI
+                AND_: o_rd_output = i_rs1 & port2;          // ANDI
+                SLL: o_rd_output = i_rs1 << port2[4:0];     // SLLI
                 SRL_or_SRA: begin 
                     if (!i_control_signal.iop) o_rd_output = i_rs1 >> port2[4:0]; // SRLI
                     else o_rd_output = i_rs1 >>> port2[4:0];                    // SRAI

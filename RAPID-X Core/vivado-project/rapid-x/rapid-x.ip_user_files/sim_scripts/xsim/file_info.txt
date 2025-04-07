@@ -12,7 +12,6 @@ cpu_memory_unit.sv,systemverilog,xil_defaultlib,../../../../../cpu_memory_unit.s
 decoder_module.sv,systemverilog,xil_defaultlib,../../../rapid-x.srcs/sources_1/new/decoder_module.sv,
 display_engine.sv,systemverilog,xil_defaultlib,../../../rapid-x.srcs/sources_1/new/display_engine.sv,
 execute_stage.sv,systemverilog,xil_defaultlib,../../../rapid-x.srcs/sources_1/new/execute_stage.sv,
-forwarding_unit.sv,systemverilog,xil_defaultlib,../../../../../forwarding_unit.sv,
 lcd_display.sv,systemverilog,xil_defaultlib,../../../rapid-x.srcs/sources_1/new/lcd_display.sv,
 memory_managment_unit.sv,systemverilog,xil_defaultlib,../../../rapid-x.srcs/sources_1/new/memory_managment_unit.sv,
 rapid_soc.sv,systemverilog,xil_defaultlib,../../../rapid-x.srcs/sources_1/new/rapid_soc.sv,

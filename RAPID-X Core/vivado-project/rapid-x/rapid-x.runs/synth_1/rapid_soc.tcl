@@ -57,8 +57,10 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param tcl.statsThreshold 360
-set_param chipscope.maxJobs 4
-set_param xicom.use_bs_reader 1
+set_param synth.incrementalSynthesisCache C:/Users/youssef/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-9004-DESKTOP-T92VI6B/incrSyn
+set_param checkpoint.writeSynthRtdsInDcp 1
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -85,7 +87,6 @@ read_verilog -library xil_defaultlib -sv {
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/decoder_module.sv}
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv}
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/execute_stage.sv}
-  {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/forwarding_unit.sv}
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv}
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/memory_managment_unit.sv}
   {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv}

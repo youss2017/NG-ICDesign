@@ -17,7 +17,7 @@ module rapid_x_cpu(
     output logic [31:0] mmu_address,
     input logic [31:0] mmu_input_data,
     output logic [31:0] mmu_output_data,
-    output logic mmu_we
+    output logic [3:0] mmu_we
 );
 
     // These signals come from the execute state
@@ -61,7 +61,7 @@ module rapid_x_cpu(
     // The following are connections from
     // the cpu_memory_unit
     logic [XLEN-1:0] mem_rd_output;
-    logic [3:0] mem_rd;
+    logic [4:0] mem_rd;
 
     // forwarding wires for execute_logic
     // redirects data inputs from decoder_logic
@@ -91,7 +91,6 @@ module rapid_x_cpu(
     cpu_ifetch_unit instruction_fetch_unit(
          .i_clk(clk),
          .i_reset(reset),
-         .i_pipeline_ready(mem_ready),
          .i_ext_pc(ex_pc_ext),
          .i_pc_load(ex_pc_load),
          .i_ram_input(instruction_fetch_data),
@@ -99,7 +98,7 @@ module rapid_x_cpu(
          .o_instruction(if_instruction)
     );
 
-    assign instruction_fetch_address = if_pc + 1; // We read the next instruction in the current instruction.
+    assign instruction_fetch_address = if_pc; // We read the next instruction in the current instruction.
 
     // The register file will set all register to 0
     // when the reset signal is high (it also uses
@@ -112,7 +111,7 @@ module rapid_x_cpu(
         .i_reset(reset),
         .i_rs1(de_control_signal.rs1),
         .i_rs2(de_control_signal.rs2),
-        .i_rd(mem_ready ? mem_rd : 0),
+        .i_rd(mem_rd),
         .i_rd_data(mem_rd_output),
         .o_rs1_data(reg_rs1_data),
         .o_rs2_data(reg_rs2_data)
@@ -125,7 +124,6 @@ module rapid_x_cpu(
     decoder_module de_stage(
         .i_clk(clk),
         .i_reset(reset),
-        .i_pipeline_enable(mem_ready),
         .i_pc_load(ex_pc_load),
         .i_instruction(if_instruction),
         .i_pc(instruction_fetch_address),
@@ -137,7 +135,6 @@ module rapid_x_cpu(
     execute_stage ex_stage(
         .i_clk(clk),
         .i_reset(reset),
-        .i_pipeline_enable(mem_ready),
         .i_pc(de_pc),
         .i_control_signal(de_control_signal),
         .i_rs1(reg_rs1_data),
@@ -149,50 +146,7 @@ module rapid_x_cpu(
         .o_pc_load(ex_pc_load),
         .o_pc_ext(ex_pc_ext),
         .o_memory_data(ex_memory_data),
-        .o_rd_output(ex_rd_output),
-        .o_ex_rs1(ex_rs1),
-        .o_ex_rs2(ex_rs2)
-    );
-    
-    /*execute_state ex_state(
-        .i_clk(clk),
-        .i_reset(reset),
-        .i_pipeline_enable(mem_ready),
-        .i_pc_load(ex_pc_load),
-        .i_pc(de_pc),
-        .i_control_signal(de_control_signal),
-        .i_rs1(reg_rs1_data),
-        .i_rs2(reg_rs2_data),
-        .i_imm(de_imm_data),
-        .o_pc(ex_pc),
-        .o_control_signal(ex_control_signal),
-        .o_rs1(ex_rs1),
-        .o_rs2(ex_rs2),
-        .o_imm(ex_imm)
-    );
-
-    execute_logic ex_logic(
-        .i_pc(ex_pc),
-        .i_control_signal(ex_control_signal),
-        .i_rs1(forwarded_rs1),
-        .i_rs2(forwarded_rs2),
-        .i_imm(ex_imm),
-        .o_control_signal(ex_mem_signal),
-        .o_pc_load(ex_pc_load),
-        .o_pc_ext(ex_pc_ext),
-        .o_memory_data(ex_memory_data),
         .o_rd_output(ex_rd_output)
-    );*/
-
-    forward_unit funit(
-        .i_ex_rs1(ex_control_signal.rs1), /* index from execute stage */
-        .i_ex_rs2(ex_control_signal.rs2), /* index from execute stage */
-        .i_mem_rd(mem_ready ? mem_rd : 0), /* index from memory stage */
-        .i_mem_rd_data(mem_rd_output), /* data from memory stage */
-        .i_ex_rs1_data(ex_rs1), /* data from execute stage */
-        .i_ex_rs2_data(ex_rs2), /* data from execute stage */
-        .o_forward_rs1(forwarded_rs1), // forwarded data
-        .o_forward_rs2(forwarded_rs2)  // forwarded data
     );
 
     cpu_memory_unit memory_unit(
@@ -211,9 +165,7 @@ module rapid_x_cpu(
         .i_memory_data(ex_memory_data),       // the value to store in memory
         .o_rd_output(mem_rd_output), // we connect this value to the register file
                                     // instead of the WB stage.
-        .o_rd(mem_rd),
-
-        .o_pipeline_enable(mem_ready)
+        .o_rd(mem_rd)
     );
 
 

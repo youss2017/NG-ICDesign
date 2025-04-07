@@ -30,13 +30,13 @@ module soc_tb();
     );
     
     
-    initial forever #1 clk = ~clk;
+    initial forever #5 clk = ~clk;
     
     initial begin
-        #1 reset = 1;
-        #1 reset = 0;
+        reset = 1;
+        #5 reset = 0;
         
-        #1000;
+        #5000;
         $finish;
     end
 

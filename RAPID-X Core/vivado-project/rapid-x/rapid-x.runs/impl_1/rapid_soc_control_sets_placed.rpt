@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Sun Apr  6 23:10:51 2025
+| Date         : Mon Apr  7 01:56:03 2025
 | Host         : DESKTOP-T92VI6B running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file rapid_soc_control_sets_placed.rpt
 | Design       : rapid_soc
@@ -27,7 +27,7 @@ Table of Contents
 |    Minimum number of control sets                        |    40 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    30 |
+| Unused register locations in slices containing registers |    28 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -58,11 +58,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             183 |           72 |
-| No           | No                    | Yes                    |             253 |           63 |
-| No           | Yes                   | No                     |              11 |            4 |
+| No           | No                    | No                     |             183 |           75 |
+| No           | No                    | Yes                    |             255 |           64 |
+| No           | Yes                   | No                     |              11 |            3 |
 | Yes          | No                    | No                     |              11 |            4 |
-| Yes          | No                    | Yes                    |            1008 |          544 |
+| Yes          | No                    | Yes                    |            1008 |          556 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -74,45 +74,45 @@ Table of Contents
 |                           Clock Signal                          |                   Enable Signal                   |           Set/Reset Signal          | Slice Load Count | Bel Load Count | Bels / Slice |
 +-----------------------------------------------------------------+---------------------------------------------------+-------------------------------------+------------------+----------------+--------------+
 |  lcd/mux/selectClockDivider/out_clk                             |                                                   |                                     |                1 |              2 |         2.00 |
-|  graphics_engine/display_driver/pixelClockDivider/out_clk_reg_0 |                                                   | graphics_engine/display_driver/E[0] |                4 |             11 |         2.75 |
 |  graphics_engine/display_driver/pixelClockDivider/out_clk_reg_0 | graphics_engine/display_driver/E[0]               |                                     |                4 |             11 |         2.75 |
+|  graphics_engine/display_driver/pixelClockDivider/out_clk_reg_0 |                                                   | graphics_engine/display_driver/E[0] |                3 |             11 |         3.67 |
 | ~i_clk_IBUF_BUFG                                                |                                                   |                                     |                3 |             12 |         4.00 |
-|  i_clk_IBUF_BUFG                                                | cpu/memory_unit/iv_control_signal_reg[iop]_3[0]   | i_reset_IBUF                        |                5 |             16 |         3.20 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_4[0] | i_reset_IBUF                        |               10 |             32 |         3.20 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_7[0] | i_reset_IBUF                        |               23 |             32 |         1.39 |
-| ~n_0_2129_BUFG                                                  |                                                   | i_reset_IBUF                        |                9 |             32 |         3.56 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/E[0]                              | i_reset_IBUF                        |               14 |             32 |         2.29 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_8[0] | i_reset_IBUF                        |               27 |             32 |         1.19 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_8[0] | i_reset_IBUF                        |               19 |             32 |         1.68 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_1[0] | i_reset_IBUF                        |               18 |             32 |         1.78 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_5[0] | i_reset_IBUF                        |               20 |             32 |         1.60 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_9[0] | i_reset_IBUF                        |               15 |             32 |         2.13 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_6[0] | i_reset_IBUF                        |               14 |             32 |         2.29 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_1[0] | i_reset_IBUF                        |               15 |             32 |         2.13 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_6[0] | i_reset_IBUF                        |               18 |             32 |         1.78 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][3]_2[0] | i_reset_IBUF                        |               15 |             32 |         2.13 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][3]_3[0] | i_reset_IBUF                        |               15 |             32 |         2.13 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_3[0] | i_reset_IBUF                        |               14 |             32 |         2.29 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_4[0] | i_reset_IBUF                        |               13 |             32 |         2.46 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_6[0] | i_reset_IBUF                        |               25 |             32 |         1.28 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_2[0] | i_reset_IBUF                        |               21 |             32 |         1.52 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_3[0] | i_reset_IBUF                        |               19 |             32 |         1.68 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_2[0] | i_reset_IBUF                        |               17 |             32 |         1.88 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_0[0] | i_reset_IBUF                        |               22 |             32 |         1.45 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_3[0] | i_reset_IBUF                        |               18 |             32 |         1.78 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][3]_1[0] | i_reset_IBUF                        |               16 |             32 |         2.00 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_7[0] | i_reset_IBUF                        |               19 |             32 |         1.68 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][3]_0[0] | i_reset_IBUF                        |               23 |             32 |         1.39 |
+|  i_clk_IBUF_BUFG                                                | cpu/memory_unit/E[0]                              | i_reset_IBUF                        |                5 |             16 |         3.20 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_6[0] | i_reset_IBUF                        |               27 |             32 |         1.19 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_1[0] | i_reset_IBUF                        |               12 |             32 |         2.67 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_0[0] | i_reset_IBUF                        |               17 |             32 |         1.88 |
 |  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_0[0] | i_reset_IBUF                        |               17 |             32 |         1.88 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_1[0] | i_reset_IBUF                        |               11 |             32 |         2.91 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_7[0] | i_reset_IBUF                        |               14 |             32 |         2.29 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_9[0] | i_reset_IBUF                        |               24 |             32 |         1.33 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_1[0] | i_reset_IBUF                        |               21 |             32 |         1.52 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_8[0] | i_reset_IBUF                        |               13 |             32 |         2.46 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_2[0] | i_reset_IBUF                        |               12 |             32 |         2.67 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][3]_0[0] | i_reset_IBUF                        |               25 |             32 |         1.28 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_8[0] | i_reset_IBUF                        |               26 |             32 |         1.23 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_3[0] | i_reset_IBUF                        |               15 |             32 |         2.13 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_2[0] | i_reset_IBUF                        |               17 |             32 |         1.88 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_4[0] | i_reset_IBUF                        |               18 |             32 |         1.78 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_4[0] | i_reset_IBUF                        |               18 |             32 |         1.78 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_6[0] | i_reset_IBUF                        |                9 |             32 |         3.56 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_5[0] | i_reset_IBUF                        |               17 |             32 |         1.88 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_2[0] | i_reset_IBUF                        |               25 |             32 |         1.28 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_3[0] | i_reset_IBUF                        |               23 |             32 |         1.39 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_9[0] | i_reset_IBUF                        |               21 |             32 |         1.52 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_5[0] | i_reset_IBUF                        |               17 |             32 |         1.88 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_1[0] | i_reset_IBUF                        |               18 |             32 |         1.78 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][3]_1[0] | i_reset_IBUF                        |               18 |             32 |         1.78 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][3]_3[0] | i_reset_IBUF                        |               15 |             32 |         2.13 |
 |  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_0[0] | i_reset_IBUF                        |               13 |             32 |         2.46 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][4]_5[0] | i_reset_IBUF                        |               15 |             32 |         2.13 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_2[0] | i_reset_IBUF                        |               22 |             32 |         1.45 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_5[0] | i_reset_IBUF                        |               18 |             32 |         1.78 |
-|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_4[0] | i_reset_IBUF                        |               13 |             32 |         2.46 |
-|  cpu_clk_BUFG                                                   |                                                   |                                     |               44 |             74 |         1.68 |
-|  i_clk_IBUF_BUFG                                                |                                                   |                                     |               24 |             95 |         3.96 |
-|  cpu_clk_BUFG                                                   |                                                   | i_reset_IBUF                        |               54 |            221 |         4.09 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_4[0] | i_reset_IBUF                        |               23 |             32 |         1.39 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_5[0] | i_reset_IBUF                        |               16 |             32 |         2.00 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_3[0] | i_reset_IBUF                        |               18 |             32 |         1.78 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][1]_7[0] | i_reset_IBUF                        |               10 |             32 |         3.20 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][2]_6[0] | i_reset_IBUF                        |               15 |             32 |         2.13 |
+|  cpu_clk_BUFG                                                   | cpu/memory_unit/iv_control_signal_reg[rd][3]_2[0] | i_reset_IBUF                        |               17 |             32 |         1.88 |
+| ~n_0_2069_BUFG                                                  |                                                   | i_reset_IBUF                        |                9 |             32 |         3.56 |
+|  cpu_clk_BUFG                                                   |                                                   |                                     |               46 |             74 |         1.61 |
+|  i_clk_IBUF_BUFG                                                |                                                   |                                     |               25 |             95 |         3.80 |
+|  cpu_clk_BUFG                                                   |                                                   | i_reset_IBUF                        |               55 |            223 |         4.05 |
 +-----------------------------------------------------------------+---------------------------------------------------+-------------------------------------+------------------+----------------+--------------+
 
 

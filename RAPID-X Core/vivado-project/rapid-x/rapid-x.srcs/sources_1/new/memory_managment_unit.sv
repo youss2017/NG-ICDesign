@@ -8,13 +8,10 @@ module memory_managment_unit(
         output logic [31:0] translated_address
 );
 
-    logic is_ram, is_lcd, is_display;
     assign ram_enable = mmu_address < 4095;
     assign lcd_enable = mmu_address >= 311295;
     assign display_enable = mmu_address >= 4095 && mmu_address < 311295;
     
-    assign translated_address = is_ram ? mmu_address :
-                                is_display ? (mmu_address - 4095) :
-                                'bx;
+    assign translated_address = ram_enable ? mmu_address : (mmu_address - 4095);
 
 endmodule

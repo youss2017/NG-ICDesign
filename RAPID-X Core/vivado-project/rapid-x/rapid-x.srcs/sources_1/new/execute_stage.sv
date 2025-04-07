@@ -147,15 +147,6 @@ import rapid_pkg::*;
 
         end
             
-        // JAL/JALR
-        else if (iv_control_signal.uncond_branch) begin
-            // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
-            // JAL	         11011	 001 (UNCOND.BRANCH)	     000	            0	      000-000-0
-            // JALR	         11001	 001 (UNCOND.BRANCH)	     000	            1	      000-000-1
-            o_rd_output = iv_pc + 4; // This is rd value
-
-        end
-
         // LUI and AUIPC
         else if (iv_control_signal.load_upper_imm) begin
             // Instruction	OpCode	Control Category	Finite Control Signals	Inverse Op	Control Signal
@@ -196,7 +187,7 @@ import rapid_pkg::*;
                     /* BGEU */ 3'b111: o_pc_load = $unsigned(forward_rs1) >= $unsigned(forward_rs2);
                                default: o_pc_load = 0;
                 endcase
-            end else o_pc_load = 0;
+            end else o_pc_load = iv_control_signal.uncond_branch;
             
             o_pc_ext = iv_control_signal.cond_branch ? (iv_pc + iv_imm) :
                            (iv_control_signal.uncond_branch && iv_control_signal.iop) ? (forward_rs1 /* JALR */ + iv_imm) : // This is new pc value

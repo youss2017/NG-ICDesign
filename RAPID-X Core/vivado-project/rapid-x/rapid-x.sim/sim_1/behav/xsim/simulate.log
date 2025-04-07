@@ -1,0 +1,8 @@
+Time resolution is 1 ps
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module soc_tb.soc.cpu_ram.inst.native_mem_module.blk_mem_gen_v8_4_9_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module soc_tb.soc.graphics_engine.vram_framebuffer.inst.native_mem_module.blk_mem_gen_v8_4_9_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+$finish called at time : 5005 ns : File "C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sim_1/new/soc_tb.sv" Line 40

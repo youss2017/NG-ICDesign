@@ -89,7 +89,7 @@ module rapid_soc(
         .douta(instruction_fetch_data),
         
         .clkb(i_clk),
-        .enb(ram_enable),
+        .enb(ram_enable || 1),
         .web(mmu_we),
         .addrb(translated_address),
         .dinb(mmu_output_data),

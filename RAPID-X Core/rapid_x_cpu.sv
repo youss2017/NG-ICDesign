@@ -126,7 +126,7 @@ module rapid_x_cpu(
         .i_reset(reset),
         .i_pc_load(ex_pc_load),
         .i_instruction(if_instruction),
-        .i_pc(instruction_fetch_address),
+        .i_pc(instruction_fetch_address - 4),
         .o_pc(de_pc),
         .o_control_signal(de_control_signal),
         .o_imm(de_imm_data)

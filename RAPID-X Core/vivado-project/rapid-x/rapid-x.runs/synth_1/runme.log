@@ -8,7 +8,7 @@
   **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
   **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
   **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-  **** Start of session at: Sun Apr  6 23:09:05 2025
+  **** Start of session at: Mon Apr  7 01:54:20 2025
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
@@ -25,9 +25,9 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 22152
+INFO: [Synth 8-7075] Helper process launched with PID 28864
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1011.863 ; gain = 468.184
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1013.551 ; gain = 467.129
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-11067] parameter 'XLEN' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_pkg.sv:5]
 WARNING: [Synth 8-11067] parameter 'RESET_VECTOR' declared inside package 'rapid_pkg' shall be treated as localparam [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_pkg.sv:10]
@@ -73,8 +73,8 @@ INFO: [Synth 8-6155] done synthesizing module 'cpu_memory_unit' (0#1) [C:/Users/
 INFO: [Synth 8-6155] done synthesizing module 'rapid_x_cpu' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/rapid_x_cpu.sv:10]
 INFO: [Synth 8-6157] synthesizing module 'memory_managment_unit' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/memory_managment_unit.sv:3]
 INFO: [Synth 8-6155] done synthesizing module 'memory_managment_unit' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/memory_managment_unit.sv:3]
-INFO: [Synth 8-6157] synthesizing module 'blk_cpu_mem' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-21276-DESKTOP-T92VI6B/realtime/blk_cpu_mem_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'blk_cpu_mem' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-21276-DESKTOP-T92VI6B/realtime/blk_cpu_mem_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_cpu_mem' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-32652-DESKTOP-T92VI6B/realtime/blk_cpu_mem_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_cpu_mem' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-32652-DESKTOP-T92VI6B/realtime/blk_cpu_mem_stub.v:6]
 WARNING: [Synth 8-689] width (32) of port connection 'addrb' does not match port width (11) of module 'blk_cpu_mem' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:94]
 INFO: [Synth 8-6157] synthesizing module 'lcd_display' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:2]
 INFO: [Synth 8-6157] synthesizing module 'lcd_dsp' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:66]
@@ -96,8 +96,8 @@ INFO: [Synth 8-6155] done synthesizing module 'clock_divider__parameterized0' (0
 INFO: [Synth 8-6155] done synthesizing module 'anode_mux' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/anode_mux.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'lcd_display' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv:2]
 INFO: [Synth 8-6157] synthesizing module 'display_engine' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv:23]
-INFO: [Synth 8-6157] synthesizing module 'blk_vram_gen_0' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-21276-DESKTOP-T92VI6B/realtime/blk_vram_gen_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'blk_vram_gen_0' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-21276-DESKTOP-T92VI6B/realtime/blk_vram_gen_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'blk_vram_gen_0' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-32652-DESKTOP-T92VI6B/realtime/blk_vram_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_vram_gen_0' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/.Xil/Vivado-32652-DESKTOP-T92VI6B/realtime/blk_vram_gen_0_stub.v:6]
 WARNING: [Synth 8-689] width (32) of port connection 'addrb' does not match port width (19) of module 'blk_vram_gen_0' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv:56]
 INFO: [Synth 8-6157] synthesizing module 'vga_driver' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/vga_driver.sv:15]
 INFO: [Synth 8-6155] done synthesizing module 'vga_driver' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/vga_driver.sv:15]
@@ -109,7 +109,6 @@ INFO: [Synth 8-6155] done synthesizing module 'display_engine' (0#1) [C:/Users/y
 WARNING: [Synth 8-689] width (32) of port connection 'framebuffer_address' does not match port width (19) of module 'display_engine' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:130]
 WARNING: [Synth 8-689] width (32) of port connection 'framebuffer_data' does not match port width (8) of module 'display_engine' [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:131]
 INFO: [Synth 8-6155] done synthesizing module 'rapid_soc' (0#1) [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/rapid_soc.sv:23]
-WARNING: [Synth 8-3848] Net is_ram in module/entity memory_managment_unit does not have driver. [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/memory_managment_unit.sv:11]
 WARNING: [Synth 8-6014] Unused sequential element green_reg was removed.  [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv:43]
 WARNING: [Synth 8-6014] Unused sequential element blue_reg was removed.  [C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv:44]
 WARNING: [Synth 8-7129] Port framebuffer_data[7] in module display_engine is either unconnected or has no load
@@ -121,18 +120,18 @@ WARNING: [Synth 8-7129] Port framebuffer_data[2] in module display_engine is eit
 WARNING: [Synth 8-7129] Port framebuffer_data[1] in module display_engine is either unconnected or has no load
 WARNING: [Synth 8-7129] Port reset in module cpu_memory_unit is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1127.660 ; gain = 583.980
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1129.391 ; gain = 582.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1127.660 ; gain = 583.980
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1129.391 ; gain = 582.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1127.660 ; gain = 583.980
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1129.391 ; gain = 582.969
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 1127.660 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 1129.391 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -167,24 +166,24 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/rapid_soc_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1214.324 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1218.422 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1214.324 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1218.422 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'cpu_ram' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'graphics_engine/vram_framebuffer' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1214.766 ; gain = 671.086
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1218.590 ; gain = 672.168
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1214.766 ; gain = 671.086
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1218.590 ; gain = 672.168
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -192,17 +191,17 @@ Start Applying 'set_property' XDC Constraints
 Applied set_property KEEP_HIERARCHY = SOFT for cpu_ram. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for graphics_engine/vram_framebuffer. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1214.766 ; gain = 671.086
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1218.590 ; gain = 672.168
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1214.766 ; gain = 671.086
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1218.590 ; gain = 672.168
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   32 Bit       Adders := 6     
+	   2 Input   32 Bit       Adders := 4     
 	   3 Input   32 Bit       Adders := 1     
 	   2 Input   16 Bit       Adders := 1     
 	   2 Input   11 Bit       Adders := 2     
@@ -211,7 +210,7 @@ Detailed RTL Component Info :
 +---XORs : 
 	   2 Input     32 Bit         XORs := 1     
 +---Registers : 
-	               32 Bit    Registers := 41    
+	               32 Bit    Registers := 40    
 	               29 Bit    Registers := 3     
 	               16 Bit    Registers := 1     
 	               11 Bit    Registers := 2     
@@ -222,17 +221,16 @@ Detailed RTL Component Info :
 	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 12    
 +---Muxes : 
-	   2 Input   32 Bit        Muxes := 26    
+	   2 Input   32 Bit        Muxes := 25    
 	   6 Input   32 Bit        Muxes := 1     
 	   2 Input   16 Bit        Muxes := 1     
-	   2 Input   13 Bit        Muxes := 1     
 	   4 Input    8 Bit        Muxes := 1     
-	   2 Input    5 Bit        Muxes := 5     
+	   2 Input    5 Bit        Muxes := 6     
 	   2 Input    4 Bit        Muxes := 1     
 	   5 Input    4 Bit        Muxes := 1     
 	   4 Input    4 Bit        Muxes := 1     
 	   2 Input    3 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 33    
+	   2 Input    1 Bit        Muxes := 34    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -262,7 +260,7 @@ WARNING: [Synth 8-7129] Port framebuffer_data[3] in module display_engine is eit
 WARNING: [Synth 8-7129] Port framebuffer_data[2] in module display_engine is either unconnected or has no load
 WARNING: [Synth 8-7129] Port framebuffer_data[1] in module display_engine is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1331.809 ; gain = 788.129
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1333.902 ; gain = 787.480
 ---------------------------------------------------------------------------------
  Sort Area is  addrb0_0 : 0 0 : 137 137 : Used 1 time 0
 ---------------------------------------------------------------------------------
@@ -284,19 +282,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 1365.117 ; gain = 821.438
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1362.102 ; gain = 815.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1399.113 ; gain = 855.434
+Finished Timing Optimization : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1400.020 ; gain = 853.598
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 1435.844 ; gain = 892.164
+Finished Technology Mapping : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 1435.602 ; gain = 889.180
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -314,37 +312,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:50 ; elapsed = 00:00:51 . Memory (MB): peak = 1600.957 ; gain = 1057.277
+Finished IO Insertion : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1601.512 ; gain = 1055.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:50 ; elapsed = 00:00:51 . Memory (MB): peak = 1600.957 ; gain = 1057.277
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1601.512 ; gain = 1055.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:50 ; elapsed = 00:00:51 . Memory (MB): peak = 1600.957 ; gain = 1057.277
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1601.512 ; gain = 1055.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:50 ; elapsed = 00:00:51 . Memory (MB): peak = 1600.957 ; gain = 1057.277
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1601.512 ; gain = 1055.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:50 ; elapsed = 00:00:51 . Memory (MB): peak = 1600.957 ; gain = 1057.277
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1601.512 ; gain = 1055.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:50 ; elapsed = 00:00:51 . Memory (MB): peak = 1600.957 ; gain = 1057.277
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1601.512 ; gain = 1055.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -373,46 +371,46 @@ Report Cell Usage:
 |1     |blk_cpu_mem  |     1|
 |2     |blk_vram_gen |     1|
 |3     |BUFG         |     3|
-|4     |CARRY4       |    87|
+|4     |CARRY4       |    79|
 |5     |DSP48E1      |     1|
-|6     |LUT1         |     9|
-|7     |LUT2         |   188|
-|8     |LUT3         |   269|
-|9     |LUT4         |   187|
-|10    |LUT5         |   305|
-|11    |LUT6         |   984|
+|6     |LUT1         |    41|
+|7     |LUT2         |   183|
+|8     |LUT3         |   275|
+|9     |LUT4         |   185|
+|10    |LUT5         |   253|
+|11    |LUT6         |   990|
 |12    |MUXF7        |   256|
 |13    |MUXF8        |   128|
-|14    |FDCE         |  1247|
+|14    |FDCE         |  1249|
 |15    |FDPE         |    14|
 |16    |FDRE         |   180|
 |17    |IBUF         |     2|
 |18    |OBUF         |    26|
 +------+-------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:50 ; elapsed = 00:00:51 . Memory (MB): peak = 1600.957 ; gain = 1057.277
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 1601.512 ; gain = 1055.090
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:41 ; elapsed = 00:00:49 . Memory (MB): peak = 1600.957 ; gain = 970.172
-Synthesis Optimization Complete : Time (s): cpu = 00:00:50 ; elapsed = 00:00:51 . Memory (MB): peak = 1600.957 ; gain = 1057.277
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:39 ; elapsed = 00:00:46 . Memory (MB): peak = 1601.512 ; gain = 965.891
+Synthesis Optimization Complete : Time (s): cpu = 00:00:48 ; elapsed = 00:00:49 . Memory (MB): peak = 1601.512 ; gain = 1055.090
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.052 . Memory (MB): peak = 1610.094 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 472 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.051 . Memory (MB): peak = 1610.660 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 464 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1613.836 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1614.316 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: f0a43b30
+Synth Design complete | Checksum: 8eb84c8c
 INFO: [Common 17-83] Releasing license: Synthesis
-64 Infos, 72 Warnings, 1 Critical Warnings and 0 Errors encountered.
+64 Infos, 71 Warnings, 1 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
 INFO: [Common 17-600] The following parameters have non-default value.
 tcl.statsThreshold
 INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1613.836 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1614.316 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.runs/synth_1/rapid_soc.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file rapid_soc_utilization_synth.rpt -pb rapid_soc_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Apr  6 23:10:07 2025...
+INFO: [Common 17-206] Exiting Vivado at Mon Apr  7 01:55:19 2025...

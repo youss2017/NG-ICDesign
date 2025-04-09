@@ -1,7 +1,7 @@
 CC      = riscv-none-elf-gcc
 OBJCOPY = riscv-none-elf-objcopy
-CFLAGS  = -march=rv32i -g
-LDFLAGS = -nostartfiles -Tlinker.lds
+CFLAGS  = -Wall -ffreestanding -march=rv32i -g
+LDFLAGS = -nostdlib -Tlinker.lds
  
 all: main.bin64k
 

@@ -11,6 +11,7 @@ SECTIONS
 {
     .text :
     {
+        PROVIDE ( _rapidx_ram_base = . );
         *(.text.rapidx.entry)
         *(.text)
     } > ram

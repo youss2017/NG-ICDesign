@@ -16,6 +16,7 @@ work/*
 !work/*.tcl
 !work/*.sh
 !work/*.f
+!work/*.fp
 !work/atpg/
 
 NanGate45-Synopsys-Enablement/

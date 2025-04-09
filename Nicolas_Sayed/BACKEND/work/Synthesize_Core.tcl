@@ -1,6 +1,6 @@
 # Set libs and rtl path
 set_db init_lib_search_path ../libs/
-set_db init_hdl_search_path ../Simulation_upgrades/
+set_db init_hdl_search_path ../Simulation/
 
 # Read libs
 read_libs ./CCS/NangateOpenCellLibrary_worst_low_ccs.lib
@@ -20,10 +20,13 @@ read_hdl -sv core_src/execute_state.sv
 read_hdl -sv core_src/forwarding_unit.sv
 read_hdl -sv core_src/rapid_x_cpu.sv
 
+
 # Elaborate top level
 elaborate rapid_x_cpu
 
-ungroup -all -flatten
+#set_dont_touch [get_cells *sram_150b_512_1rw_freepdk45*]
+
+#ungroup -all -flatten
 
 # Read constraints
 read_sdc ../constraints/constraints_top.sdc

@@ -36,33 +36,33 @@ module register_file (
 );
     reg [XLEN-1:0] regs [0:31];
 
-	int hFile;
-	int clockCycle;
+	// int hFile;
+	// int clockCycle;
 
-	// Open debug file
-	initial begin
-		hFile = $fopen("core.log", "w");
-		if (hFile == 0) begin
-			$error("Error: unable to open debug file");
-			$finish;
-		end
-	end
+	// // Open debug file
+	// initial begin
+	// 	hFile = $fopen("core.log", "w");
+	// 	if (hFile == 0) begin
+	// 		$error("Error: unable to open debug file");
+	// 		$finish;
+	// 	end
+	// end
 
-	always_ff @(negedge i_clk iff i_reset == 0) begin
-	   if (ex_mem_signal.debug_instruction != 51) begin
-			clockCycle = clockCycle + 1;
-			$fwrite(hFile, "%04d (%X): ", clockCycle, ex_mem_signal.debug_instruction);
-			$write("%04d (%X): ", clockCycle, ex_mem_signal.debug_instruction);
-			for (int i = 0; i < 32; i++) begin
-			     $fwrite(hFile, "%X ", regs[i]);
-			     //$write( "%X ", regs[i]);
-			end
-			$fwrite(hFile, "\n");
-			$write("\n");
-			$fflush(hFile);
-			if (clockCycle >= 1024*1024) $finish;
-		end
-	end
+	// always_ff @(negedge i_clk iff i_reset == 0) begin
+	//    if (ex_mem_signal.debug_instruction != 51) begin
+	// 		clockCycle = clockCycle + 1;
+	// 		$fwrite(hFile, "%04d (%X): ", clockCycle, ex_mem_signal.debug_instruction);
+	// 		$write("%04d (%X): ", clockCycle, ex_mem_signal.debug_instruction);
+	// 		for (int i = 0; i < 32; i++) begin
+	// 		     $fwrite(hFile, "%X ", regs[i]);
+	// 		     //$write( "%X ", regs[i]);
+	// 		end
+	// 		$fwrite(hFile, "\n");
+	// 		$write("\n");
+	// 		$fflush(hFile);
+	// 		if (clockCycle >= 1024*1024) $finish;
+	// 	end
+	// end
 
     always_comb begin
         

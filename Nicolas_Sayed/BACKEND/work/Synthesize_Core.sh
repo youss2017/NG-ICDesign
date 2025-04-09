@@ -1,3 +1,3 @@
 #!/bin/bash
-rm -f *.log* *.cmd*
+#rm -f *.log* *.cmd*
 genus -f Synthesize_Core.tcl

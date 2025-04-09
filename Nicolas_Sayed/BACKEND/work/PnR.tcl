@@ -3,18 +3,14 @@ set netlist_directory   "../Synthesis/outputs/"
 set lef_directory       "../lefs/"
 set qrc_directory       "../qrc/"
 set OpenRam_directory   "../OpenRam/openram_150/"
-set power_net           "VDD"
-set ground_net          "VSS"
 set mmmc_directory      "./"
 
-# (Optional: Flowkit-style DB settings)
 set_db init_netlist_files   $netlist_directory
-set_db init_lef_files       $lef_directory
-set_db init_lef_files       $OpenRam_directory
-set_db init_power_nets      $power_net
-set_db init_ground_nets     $ground_net
 set_db init_mmmc_files      $mmmc_directory
 
+# Power :D
+set_db init_power_nets VDD
+set_db init_ground_nets VSS
 # Load MMC configuration
 read_mmmc rapid_x_view.tcl
 
@@ -22,18 +18,27 @@ read_mmmc rapid_x_view.tcl
 read_physical -lefs [list \
     [file join $lef_directory "NangateOpenCellLibrary.tech.lef"] \
     [file join $lef_directory "NangateOpenCellLibrary.macro.mod.lef"] \
-    [file join $OpenRam_directory "sram_150b_512_1rw_freepdk45_vdd_vss.lef"]]
+    [file join $OpenRam_directory "sram_150b_512_1rw_freepdk45.lef"]]
+    #[file join $OpenRam_directory "sram_150b_512_1rw_freepdk45_vdd_vss.lef"]]
 
 # Read netlist
 read_netlist [file join $netlist_directory "Core_netlist.v"]
 
+set_units -capacitance fF
 # # Initialize the design
-# init_design
 
-# # Power Rings
-#create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -core_density_size 0.5 0.7 20 20 20 20
-create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -die_size 1200 800 20 20 20 20
+create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -die_size 1200 800 30 30 30 30
 gui_show
+
+# # Macro Placement
+# delete_relative_floorplan -all
+# create_relative_floorplan -ref_type core_boundary -horizontal_edge_separate {2  -10  2} -vertical_edge_separate {2  -10  2} -place memory_unit_dcache_sram -ref rapid_x_cpu
+# create_relative_floorplan -ref_type core_boundary -horizontal_edge_separate {2  -15  2} -vertical_edge_separate {2  -25  2} -place memory_unit_dcache_sram -ref rapid_x_cpu
+# create_relative_floorplan -ref_type core_boundary -horizontal_edge_separate {1  -15  1} -vertical_edge_separate {1  -  1} -place instruction_fetch_unit_cache_sram -ref rapid_x_cpu
+# create_relative_floorplan -ref_type core_boundary -horizontal_edge_separate {1  -15  1} -vertical_edge_separate {1  25  1} -place instruction_fetch_unit_cache_sram -ref rapid_x_cpu
+
+
+
 # set_db add_rings_target default 
 # set_db add_rings_extend_over_row 0 
 # set_db add_rings_ignore_rows 0 

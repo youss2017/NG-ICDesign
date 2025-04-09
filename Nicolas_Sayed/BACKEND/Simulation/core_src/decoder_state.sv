@@ -1,5 +1,6 @@
 `timescale 1ns / 100ps
 
+import rapid_pkg::*;
 module decoder_state
 (
     input  logic                        i_clk,

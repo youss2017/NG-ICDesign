@@ -1,6 +1,6 @@
 create_library_set -name fast_lib_0C \
     -timing {../libs/CCS/NangateOpenCellLibrary_typical_ccs.lib \
-             ../OpenRam/openram_150/sram_150b_512_1rw_freepdk45_TT_1p0V_100C_vdd_vss.lib}
+             ../OpenRam/openram_150/sram_150b_512_1rw_freepdk45_TT_1p0V_100C.lib}
 
 #../libs/CCS/NangateOpenCellLibrary_typical_ccs.lib
 #../libs/CCS/NangateOpenCellLibrary_fast_ccs.lib
@@ -9,7 +9,7 @@ create_library_set -name fast_lib_0C \
 
 create_library_set -name slow_lib_125C \
     -timing {../libs/CCS/NangateOpenCellLibrary_slow_ccs.lib \
-             ../OpenRam/openram_150/sram_150b_512_1rw_freepdk45_TT_1p1V_25C_vdd_vss.lib}
+             ../OpenRam/openram_150/sram_150b_512_1rw_freepdk45_TT_1p1V_25C.lib}
 
 #../OpenRam/openram_150/sram_150b_512_1rw_freepdk45_TT_1p0V_100C.lib
 #../OpenRam/openram_150/sram_150b_512_1rw_freepdk45_TT_1p1V_25C_vdd_vss.lib

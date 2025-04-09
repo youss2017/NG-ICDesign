@@ -1,19 +1,19 @@
-# set_db add_rings_target default 
-# set_db add_rings_extend_over_row 0 
-# set_db add_rings_ignore_rows 0 
-# set_db add_rings_avoid_short 0 
-# set_db add_rings_skip_shared_inner_ring none 
-# set_db add_rings_stacked_via_top_layer metal10 
-# set_db add_rings_stacked_via_bottom_layer metal1 
-# set_db add_rings_via_using_exact_crossover_size 1 
-# set_db add_rings_orthogonal_only true 
-# set_db add_rings_skip_via_on_pin {  standardcell } 
-# set_db add_rings_skip_via_on_wire_shape {  noshape }
+set ring_width 2
+set ring_spacing 2
+set ring_layer_upper "metal10"
+set ring_layer_lower "metal9"
 
-# set ring_width 2
-# set ring_spacing 2
-# set ring_layer_upper "metal10"
-# set ring_layer_lower "metal9"
+# Offset will be centered in channel
+add_rings -nets {VDD VSS} \
+          -around each_block \
+          -layer      [list top $ring_layer_lower bottom $ring_layer_lower left $ring_layer_upper right $ring_layer_upper] \
+          -width      [list top $ring_width bottom $ring_width left $ring_width right $ring_width] \
+          -spacing    [list top $ring_spacing bottom $ring_spacing left $ring_spacing right $ring_spacing] \
+          -offset     [list top 1.8 bottom 1.8 left 1.8 right 1.8] \
+          -center 1 \
+          -threshold 0 \
+          -jog_distance 0 \
+          -snap_wire_center_to_grid none
 
 # # Offset will be centered in channel
 # add_rings -nets {VDD VSS} \
@@ -27,7 +27,7 @@
 #           -threshold 0 \
 #           -jog_distance 0 \
 #           -snap_wire_center_to_grid none
-# gui_show
+
 
 #create_pg_pin -name VDD -net VDD -geometry metal10 0.123 115.04 13.1015 120.7685
 #create_pg_pin -name VSS -net VSS -geometry metal9 57.099 194.765 66.436 203.7615

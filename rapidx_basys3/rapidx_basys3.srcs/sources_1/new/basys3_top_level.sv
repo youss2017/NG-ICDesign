@@ -30,8 +30,16 @@ module basys3_top_level(
     input logic btnR,
     input logic btnD,
     input logic RsRx,
-    output logic RsTx
-
+    output logic RsTx,
+    output logic hSync,
+    output logic vSync,
+    output logic [3:0] red,
+    output logic [3:0] green,
+    output logic [3:0] blue,
+    output logic [7:0] segment,
+    output logic [3:0] anode,
+    input logic ps_clk,
+    input logic ps_data
     );
     
     // map of the cpu memory space
@@ -43,6 +51,12 @@ module basys3_top_level(
     localparam GPIO_END   = 32'h0002000F;
     localparam UART_BEGIN = 32'h00020010;
     localparam UART_END   = 32'h0002001F;
+    localparam LCD_BEGIN  = 32'h00020020;
+    localparam LCD_END    = 32'h0002002F;
+    localparam PS2_BEGIN  = 32'h00020030;
+    localparam PS2_END    = 32'h0002003F;
+    localparam FRAMEBUF_BEGIN = 32'hFFF00000;
+    localparam FRAMEBUF_END   = 32'hFFFFFFFF;
     
     logic reset;
     assign reset = btnC;
@@ -77,6 +91,12 @@ module basys3_top_level(
     logic [31:0] gpio_word;
     logic        uart_enable;
     logic [31:0] uart_word;
+    logic [31:0] framebuf_word; // unused
+    logic        framebuf_enable;
+    logic [31:0] lcd_word; // unused
+    logic        lcd_enable;
+    logic [31:0] ps2_word;
+    logic        ps2_enable;
     
     basys3_rapidx_cpu cpu(
         .i_clk(slow_clock[1]),
@@ -91,12 +111,12 @@ module basys3_top_level(
     );
     
     memory_management_unit #(
-        .CHANNELS(4)
+        .CHANNELS(7)
     ) data_mmu(
-        .startaddr_bus ('{ROM_BEGIN,  RAM_BEGIN,  GPIO_BEGIN,  UART_BEGIN}),
-        .endaddr_bus   ('{ROM_END,    RAM_END,    GPIO_END,    UART_END}),
-        .readword_bus  ('{rom_word,   ram_word,   gpio_word,   uart_word}),
-        .mmu_enable_bus('{rom_enable, ram_enable, gpio_enable, uart_enable}),
+        .startaddr_bus ('{ROM_BEGIN,  RAM_BEGIN,  GPIO_BEGIN,  UART_BEGIN,  FRAMEBUF_BEGIN,  LCD_BEGIN,  PS2_BEGIN}),
+        .endaddr_bus   ('{ROM_END,    RAM_END,    GPIO_END,    UART_END,    FRAMEBUF_END,    LCD_END,    PS2_END}),
+        .readword_bus  ('{rom_word,   ram_word,   gpio_word,   uart_word,   framebuf_word,   lcd_word,   ps2_word}),
+        .mmu_enable_bus('{rom_enable, ram_enable, gpio_enable, uart_enable, framebuf_enable, lcd_enable, ps2_enable}),
         .mmu_address(dbus_addr),
         .mmu_readword(dbus_readword)
     );
@@ -166,6 +186,54 @@ module basys3_top_level(
         .enable(uart_enable),
         .RsRx(RsRx),
         .RsTx(RsTx)
+    );
+    
+    logic [18:0] framebuf_addr;
+    assign framebuf_addr = { dbus_addr[18:2],
+        dbus_bena[1] ? 0'b01 :
+        dbus_bena[2] ? 0'b10 :
+        dbus_bena[3] ? 0'b11 :
+                       0'b00 
+    };
+    
+    logic [7:0] framebuf_data;
+    assign framebuf_data = dbus_bena[1] ? dbus_writeword[15:8] :
+                           dbus_bena[2] ? dbus_writeword[23:16] :
+                           dbus_bena[3] ? dbus_writeword[31:24] :
+                           dbus_writeword[7:0];
+        
+    display_engine display_engine_inst (
+        .clk(clk),
+        .enable(framebuf_enable),
+        .framebuffer_address(framebuf_addr),
+        .framebuffer_data(framebuf_data),
+        .hSync(hSync),
+        .vSync(vSync),
+        .red(red),
+        .green(green),
+        .blue(blue)
+    );
+    
+    lcd_display lcd_display_inst (
+        .clk(clk),
+        .reset(reset),
+        .load(lcd_enable),
+        .value(dbus_writeword[15:0]),
+        .o_signal(segment),
+        .o_anode_select(anode)
+    );
+    
+    logic [7:0] ps2_word_byte;
+    assign ps2_word = { 24'b0, ps2_word_byte };
+    
+    keyboard_controller keyboard_controller_inst (
+        .clk(clk),
+        .cpu_clk(slow_clock[1]),
+        .rst(reset),
+        .en(ps2_enable),
+        .ps_clk(ps_clk),
+        .ps_data(ps_data),
+        .scancode(ps2_word_byte)
     );
     
 endmodule

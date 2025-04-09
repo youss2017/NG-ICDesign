@@ -63,7 +63,7 @@ module decoder_logic
     output logic signed  [XLEN-1:0]     o_imm
 );
 
-    logic is_lui, is_aupic, is_jal, is_jalr, is_cond, is_load, is_store, is_imm, is_reg;
+logic is_lui, is_aupic, is_jal, is_jalr, is_cond, is_load, is_store, is_imm, is_reg;
     
     assign is_valid = i_instruction[1:0] == 2'b11; // All instructions start with 11 (on the right end of bitfield)
     assign is_lui   = is_valid && i_instruction[6:2] == upper_family2;
@@ -86,10 +86,10 @@ module decoder_logic
     end
     
     always_comb begin : glue_logic
+        o_control_signal.fcs_opcode = i_instruction[14:12]; 
         o_control_signal.rd  = (is_store || is_cond) ? 0 : i_instruction[11:7];
         o_control_signal.rs1 = i_instruction[19:15];
         o_control_signal.rs2 = i_instruction[24:20];
-        o_control_signal.fcs_opcode = i_instruction[14:12]; 
     end
     
     logic is_sra, is_add;
@@ -110,7 +110,7 @@ module decoder_logic
     assign u_type = $signed({i_instruction[31:12], 12'b0});
     assign b_type = $signed({i_instruction[31:31], i_instruction[7:7], i_instruction[30:25], i_instruction[11:8], 1'b0});
     assign s_type = $signed({i_instruction[31:25], i_instruction[11:7]});
-
+    
     always_comb begin : immediate_value_selection
         o_imm = (is_imm || is_load || is_jalr) ? i_type :
                 (is_lui || is_aupic)           ? u_type :

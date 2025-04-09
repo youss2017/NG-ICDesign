@@ -5,7 +5,7 @@
 #
 # You can restore this configuration with:
 #
-#      xrun -f run.f -incdir ../Simulation -incdir ../Simulation/core_src -64bit -access +rwc -coverage all -ALLOWREDEFINITION -input /home/net/ni581013/NG-ICDesign/Nicolas_Sayed/BACKEND/work/restore.tcl
+#      xrun -64bit -access +rwc -incdir ../Simulation_upgrades -incdir ../Simulation_upgrades/core_src -f run_upgrades.f -coverage all -ALLOWREDEFINITION -covoverwrite -input restore_upgrades.tcl
 #
 
 set tcl_prompt1 {puts -nonewline "xcelium> "}
@@ -52,7 +52,5 @@ set tcl_sigval_prefix {#}
 alias . run
 alias indago verisium
 alias quit exit
-database -open -shm -into waves.shm waves -default
-probe -create -database waves rapid_x_testbench.rapid_x.reg_file.clockCycle rapid_x_testbench.rapid_x.reg_file.ex_mem_signal rapid_x_testbench.rapid_x.reg_file.hFile rapid_x_testbench.rapid_x.reg_file.i_clk rapid_x_testbench.rapid_x.reg_file.i_rd rapid_x_testbench.rapid_x.reg_file.i_rd_data rapid_x_testbench.rapid_x.reg_file.i_reset rapid_x_testbench.rapid_x.reg_file.i_rs1 rapid_x_testbench.rapid_x.reg_file.i_rs1_out rapid_x_testbench.rapid_x.reg_file.i_rs2 rapid_x_testbench.rapid_x.reg_file.i_rs2_out rapid_x_testbench.rapid_x.reg_file.o_rs1_data rapid_x_testbench.rapid_x.reg_file.o_rs2_data rapid_x_testbench.rapid_x.reg_file.regs
 
-simvision -input restore.tcl.svcf
+simvision -input restore_upgrades.tcl.svcf

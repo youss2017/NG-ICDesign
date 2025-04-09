@@ -1,4 +1,5 @@
 ../Simulation_upgrades/core_src/rapid_pkg.sv
+../Simulation_upgrades/core_src/dcache_interface.sv
 ../Simulation_upgrades/core_src/memory_controller_interface.sv
 ../Simulation_upgrades/core_src/sram_150b_512_1rw_freepdk45.v
 ../Simulation_upgrades/core_src/dcache_dm1cycle.sv

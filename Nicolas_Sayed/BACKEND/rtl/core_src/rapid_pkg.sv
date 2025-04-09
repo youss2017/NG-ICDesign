@@ -40,6 +40,8 @@ package rapid_pkg;
         logic alu_imm;
         logic alu_reg;
         logic iop;
+        logic rs1_out;
+        logic rs2_out;
         logic [2:0] fcs_opcode;
         logic [4:0] rs1;
         logic [4:0] rs2;
@@ -67,6 +69,8 @@ package rapid_pkg;
             alu_imm: '0,
             alu_reg: '0,
             iop: '0,
+            rs1_out: '0,
+            rs2_out: '0,
             fcs_opcode: '0,
             rs1: '0,
             rs2: '0,

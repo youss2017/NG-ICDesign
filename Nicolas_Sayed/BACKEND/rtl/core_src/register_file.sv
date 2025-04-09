@@ -24,6 +24,8 @@ import rapid_pkg::*;
 module register_file (
     input  logic            i_clk,
     input  logic            i_reset,
+    input  logic            i_rs1_out,
+    input  logic            i_rs2_out,
     input  logic [4:0]      i_rs1,
     input  logic [4:0]      i_rs2, 
     input  logic [4:0]      i_rd,
@@ -34,8 +36,8 @@ module register_file (
 );
     reg [XLEN-1:0] regs [0:31];
 
-	//int hFile;
-	//int clockCycle;
+	// int hFile;
+	// int clockCycle;
 
 	// // Open debug file
 	// initial begin
@@ -50,30 +52,44 @@ module register_file (
 	//    if (ex_mem_signal.debug_instruction != 51) begin
 	// 		clockCycle = clockCycle + 1;
 	// 		$fwrite(hFile, "%04d (%X): ", clockCycle, ex_mem_signal.debug_instruction);
+	// 		$write("%04d (%X): ", clockCycle, ex_mem_signal.debug_instruction);
 	// 		for (int i = 0; i < 32; i++) begin
 	// 		     $fwrite(hFile, "%X ", regs[i]);
+	// 		     //$write( "%X ", regs[i]);
 	// 		end
 	// 		$fwrite(hFile, "\n");
+	// 		$write("\n");
 	// 		$fflush(hFile);
-	// 		if (clockCycle == 262144) $finish;
+	// 		if (clockCycle >= 1024*1024) $finish;
 	// 	end
 	// end
 
     always_comb begin
         
-        if (i_rd > 0 && i_rd == i_rs1)
-            o_rs1_data = i_rd_data;
-        else
-            o_rs1_data = regs[i_rs1];
-
-        if (i_rd > 0 && i_rd == i_rs2)
-            o_rs2_data = i_rd_data;
-        else
-            o_rs2_data = regs[i_rs2];                
+        if (i_rs1_out) 
+           if (i_rd > 0 && i_rd == i_rs1)
+               o_rs1_data = i_rd_data;
+           else
+               o_rs1_data = regs[i_rs1];
+        else 
+            o_rs1_data = 'bz;
+            
+        if (i_rs2_out) 
+           if (i_rd > 0 && i_rd == i_rs2)
+               o_rs2_data = i_rd_data;
+           else
+               o_rs2_data = regs[i_rs2];
+        else 
+            o_rs2_data = 'bz;
+                
     end
 
 	always_ff @(posedge i_clk, posedge i_reset) begin
 		if(i_reset) begin
+            for(int i = 0; i < 32; i++)
+                if(i == 2) continue;
+                else
+                    regs[i] <= 0;
             regs[2] <= RESET_STACK_POINTER;
 		end else begin
 			if (i_rd > 0) 

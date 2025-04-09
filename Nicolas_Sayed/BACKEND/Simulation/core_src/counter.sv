@@ -10,5 +10,5 @@ module counter_top (
     else
       count <= count + 8'd1;
   end
-
+s
 endmodule

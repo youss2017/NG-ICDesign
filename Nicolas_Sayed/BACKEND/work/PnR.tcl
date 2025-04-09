@@ -18,8 +18,8 @@ read_mmmc rapid_x_view.tcl
 read_physical -lefs [list \
     [file join $lef_directory "NangateOpenCellLibrary.tech.lef"] \
     [file join $lef_directory "NangateOpenCellLibrary.macro.mod.lef"] \
-    [file join $OpenRam_directory "sram_150b_512_1rw_freepdk45.lef"]]
-    #[file join $OpenRam_directory "sram_150b_512_1rw_freepdk45_vdd_vss.lef"]]
+    [file join $OpenRam_directory "sram_150b_512_1rw_freepdk45_vdd_vss.lef"]]
+#   [file join $OpenRam_directory "sram_150b_512_1rw_freepdk45.lef"]]
 
 # Read netlist
 read_netlist [file join $netlist_directory "Core_netlist.v"]
@@ -27,7 +27,8 @@ read_netlist [file join $netlist_directory "Core_netlist.v"]
 set_units -capacitance fF
 # # Initialize the design
 
-create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -die_size 1200 800 30 30 30 30
+#create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -die_size 1200 800 30 30 30 30
+create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -die_size 1100 650 20 20 20 20
 gui_show
 
 # # Macro Placement

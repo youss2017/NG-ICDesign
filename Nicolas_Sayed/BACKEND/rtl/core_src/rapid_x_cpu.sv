@@ -112,12 +112,15 @@ import memory_controller_interface::*;
     register_file reg_file(
         .i_clk(i_clk),
         .i_reset(i_reset),
+        .i_rs1_out(de_control_signal.rs1_out),
+        .i_rs2_out(de_control_signal.rs2_out),
         .i_rs1(de_control_signal.rs1),
         .i_rs2(de_control_signal.rs2),
         .i_rd(mem_ready ? mem_rd : 0),
         .i_rd_data(mem_rd_output),
         .o_rs1_data(reg_rs1_data),
-        .o_rs2_data(reg_rs2_data)
+        .o_rs2_data(reg_rs2_data),
+        .ex_mem_signal(ex_mem_signal)
     );
 
     // This module is responsible for storing the state

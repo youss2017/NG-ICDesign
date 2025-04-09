@@ -1,6 +1,6 @@
 # Set libs and rtl path
 set_db init_lib_search_path ../libs/
-set_db init_hdl_search_path ../Simulation/
+set_db init_hdl_search_path ../rtl/
 
 # Read libs
 read_libs ./CCS/NangateOpenCellLibrary_worst_low_ccs.lib

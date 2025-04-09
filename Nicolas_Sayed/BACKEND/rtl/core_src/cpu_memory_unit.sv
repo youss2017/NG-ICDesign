@@ -51,12 +51,7 @@ import rapid_pkg::*;
 /***********************************************************
  * Module core
  **********************************************************/
- 
-    logic [31:0] iv_data_in;
 
-    always_ff @(posedge i_clk) begin : latch_input_data
-        iv_data_in <= o_pipeline_ready ? i_data_in : iv_data_in;
-    end
 
  	// FSM states
 	typedef enum logic {
@@ -163,7 +158,7 @@ import rapid_pkg::*;
 		* sign-extend as per opcode before sending it to the write-back stage.
 		*/
 		// right shift
-		//removed for optimization :  cache_value = 'bx;
+		cache_value = 'bx;
 		unique case(addr[1:0])
 		2'b00: cache_value       = iface.rdata;
 		2'b01: cache_value[7:0]  = iface.rdata[15:8];  // only byte-access
@@ -230,7 +225,7 @@ import rapid_pkg::*;
             state <= state_nxt;
 			if(o_pipeline_ready) begin
 				ir_control_sig <= i_control_sig;
-				ir_data_in <= iv_data_in;
+				ir_data_in <= i_data_in;
 				ir_rs2 <= i_rs2;
 			end
         end

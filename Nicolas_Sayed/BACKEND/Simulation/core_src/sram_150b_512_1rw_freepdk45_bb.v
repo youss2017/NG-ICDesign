@@ -5,8 +5,8 @@
 // Blackbox for synthesis in Cadence Genus
 module sram_150b_512_1rw_freepdk45 (
 `ifdef USE_POWER_PINS
-    vdd,
-    gnd,
+    VDD,
+    VSS,
 `endif
     clk0,
     csb0,
@@ -20,8 +20,8 @@ module sram_150b_512_1rw_freepdk45 (
   parameter ADDR_WIDTH = 9;
 
 `ifdef USE_POWER_PINS
-    inout vdd;
-    inout gnd;
+    inout VDD;
+    inout VSS;
 `endif
 
   input clk0;

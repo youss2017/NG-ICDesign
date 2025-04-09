@@ -34,7 +34,7 @@
 
 `include "dcache_interface.sv"
 `include "memory_controller_interface.sv"
-`include "sram_150b_512_1rw_freepdk45_bb.v"
+`include "sram_150b_512_1rw_freepdk45.v"
 
 module dcache_dm1cycle
 import memory_controller_interface::*; (

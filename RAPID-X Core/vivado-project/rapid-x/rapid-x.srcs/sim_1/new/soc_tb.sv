@@ -22,15 +22,20 @@
 
 module soc_tb();
 
-    bit clk, reset;
+    bit clk, reset, ps_data;
     
     rapid_soc soc(
         .i_clk(clk),
-        .i_reset(reset)
+        .i_reset(reset),
+        
+        .ps_clk(clk),
+        .ps_data(ps_data)
     );
     
     
     initial forever #5 clk = ~clk;
+    
+    always @(posedge clk) ps_data <= $urandom_range(0, 1);
     
     initial begin
         reset = 1;

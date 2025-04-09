@@ -33,7 +33,7 @@ module cpu_ifetch_unit
     
     always_ff @(negedge i_clk iff i_reset == 0 or posedge i_reset)
         o_pc <= i_reset   ? 0            :
-                i_pc_load ? i_ext_pc     :
+                i_pc_load ? i_ext_pc - 4 :
                             o_pc + 4     ;
     
 endmodule

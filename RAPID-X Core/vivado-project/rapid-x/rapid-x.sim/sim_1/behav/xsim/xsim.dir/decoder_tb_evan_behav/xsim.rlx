@@ -1,0 +1,12 @@
+
+{ 
+    crc :  5453178846980818702  , 
+    ccp_crc :  0  , 
+    cmdline : " --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot decoder_tb_evan_behav xil_defaultlib.decoder_tb_evan xil_defaultlib.glbl" , 
+    buildDate : "Nov  8 2024" , 
+    buildTime : "22:36:57" , 
+    linkCmd : "C:\\Xilinx\\Vivado\\2024.2\\data\\..\\tps\\mingw\\6.2.0\\win64.o\\nt\\bin\\gcc.exe -Wa,-W  -O -Wl,--stack,104857600 -o \"xsim.dir/decoder_tb_evan_behav/xsimk.exe\"   \"xsim.dir/decoder_tb_evan_behav/obj/xsim_0.win64.obj\" \"xsim.dir/decoder_tb_evan_behav/obj/xsim_1.win64.obj\" -L\"C:\\Xilinx\\Vivado\\2024.2\\lib\\win64.o\" -lxv_simulator_kernel   -lxv_simbridge_kernel" , 
+    aggregate_nets : 
+    [ 
+    ] 
+} 

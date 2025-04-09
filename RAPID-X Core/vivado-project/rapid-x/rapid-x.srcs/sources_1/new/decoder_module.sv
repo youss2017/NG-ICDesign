@@ -111,10 +111,10 @@ module decoder_module
     end
     
     always_comb begin : glue_logic
+        o_control_signal.fcs_opcode = iv_instruction[14:12]; 
         o_control_signal.rd  = (is_store || is_cond) ? 0 : iv_instruction[11:7];
         o_control_signal.rs1 = iv_instruction[19:15];
         o_control_signal.rs2 = iv_instruction[24:20];
-        o_control_signal.fcs_opcode = iv_instruction[14:12]; 
     end
     
     logic is_sra, is_add;

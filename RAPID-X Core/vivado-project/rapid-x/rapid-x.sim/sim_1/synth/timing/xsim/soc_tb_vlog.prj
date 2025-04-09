@@ -1,0 +1,6 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  \
+"../../../../../rapid-x.srcs/sim_1/new/soc_tb.sv" \
+
+# Do not sort compile order
+nosort

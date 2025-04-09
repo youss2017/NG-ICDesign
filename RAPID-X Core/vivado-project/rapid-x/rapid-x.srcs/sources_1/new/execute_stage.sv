@@ -160,11 +160,9 @@ import rapid_pkg::*;
                 o_rd_output = iv_pc + iv_imm;
         end
         // Memory Operations
-        else if(iv_control_signal.mem) begin
-            o_rd_output = forward_rs1 + iv_imm;
-        end else begin
-            o_rd_output = 0;
-        end
+        else if(iv_control_signal.mem) o_rd_output = forward_rs1 + iv_imm;
+        else if(iv_control_signal.uncond_branch) o_rd_output = iv_pc + 4;
+        else o_rd_output = 0;
 
     end
     
@@ -187,11 +185,12 @@ import rapid_pkg::*;
                     /* BGEU */ 3'b111: o_pc_load = $unsigned(forward_rs1) >= $unsigned(forward_rs2);
                                default: o_pc_load = 0;
                 endcase
-            end else o_pc_load = iv_control_signal.uncond_branch;
+            end 
+            else o_pc_load = iv_control_signal.uncond_branch;
             
-            o_pc_ext = iv_control_signal.cond_branch ? (iv_pc + iv_imm) :
+            o_pc_ext = (iv_control_signal.cond_branch ? (iv_pc + iv_imm) :
                            (iv_control_signal.uncond_branch && iv_control_signal.iop) ? (forward_rs1 /* JALR */ + iv_imm) : // This is new pc value
-                           (iv_pc /* JAL */ + iv_imm);
+                           (iv_pc /* JAL */ + iv_imm)) & 32'hfffffffe;
     end
 
 

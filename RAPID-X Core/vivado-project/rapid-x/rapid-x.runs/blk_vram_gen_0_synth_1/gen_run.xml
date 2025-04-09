@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="blk_vram_gen_0_synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1743390619">
+<GenRun Id="blk_vram_gen_0_synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1744147232">
   <File Type="REPORTS-TCL" Name="blk_vram_gen_0_reports.tcl"/>
   <File Type="RDS-UTIL" Name="blk_vram_gen_0_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="blk_vram_gen_0_utilization_synth.pb"/>

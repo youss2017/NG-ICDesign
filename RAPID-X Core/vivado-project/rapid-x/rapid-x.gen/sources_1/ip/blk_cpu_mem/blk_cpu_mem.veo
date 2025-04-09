@@ -56,13 +56,11 @@
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 blk_cpu_mem your_instance_name (
   .clka(clka),    // input wire clka
-  .ena(ena),      // input wire ena
   .wea(wea),      // input wire [3 : 0] wea
   .addra(addra),  // input wire [10 : 0] addra
   .dina(dina),    // input wire [31 : 0] dina
   .douta(douta),  // output wire [31 : 0] douta
   .clkb(clkb),    // input wire clkb
-  .enb(enb),      // input wire enb
   .web(web),      // input wire [3 : 0] web
   .addrb(addrb),  // input wire [10 : 0] addrb
   .dinb(dinb),    // input wire [31 : 0] dinb

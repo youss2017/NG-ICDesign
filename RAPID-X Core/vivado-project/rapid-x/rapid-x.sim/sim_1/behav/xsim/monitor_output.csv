@@ -1,0 +1,21 @@
+addrs,data,we,ram_en,disp_en,
+         0,         0,0,1,0,remove
+       996,         0,0,1,0,remove
+       992,         0,f,1,0,remove
+         0,         0,f,1,0,remove
+         0,         0,0,1,0,remove
+       980,         0,0,1,0,remove
+       976,        28,f,1,0,remove
+         0,      1000,f,1,0,remove
+       948,         0,0,1,0,remove
+         0,    307200,f,1,0,remove
+       960,         0,0,1,0,remove
+       964,4293918720,f,1,0,remove
+         0,         0,f,1,0,remove
+         0,         0,0,1,0,remove
+       964,         0,0,1,0,remove
+       948,         0,0,1,0,remove
+         0,         0,0,1,0,remove
+       980,         0,0,1,0,remove
+       976,         0,0,1,0,remove
+         0,         0,0,1,0,remove

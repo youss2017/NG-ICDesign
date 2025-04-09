@@ -58,9 +58,9 @@ if {$::dispatch::connected} {
 OPTRACE "blk_vram_gen_0_synth_1" START { ROLLUP_AUTO }
 set_param tcl.statsThreshold 360
 set_param chipscope.maxJobs 4
-set_param synth.incrementalSynthesisCache {C:/Users/youssef/Documents/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/.Xil/Vivado-37800-DESKTOP-T92VI6B/incrSyn}
 set_param checkpoint.writeSynthRtdsInDcp 1
 set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 set_param project.vivado.isBlockSynthRun true

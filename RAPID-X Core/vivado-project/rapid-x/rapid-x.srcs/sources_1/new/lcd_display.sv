@@ -12,7 +12,7 @@
     reg [15:0] lcd_value;
     
     always_ff @(posedge clk or posedge reset) 
-        if (reset) lcd_value <= 'h9876;
+        if (reset) lcd_value <= 9876;
         else       lcd_value <= load ? value : lcd_value;
 
     // Updated to use 8-bit words for each segment.
@@ -69,11 +69,11 @@ module lcd_dsp (input clk,
 
     // Extract the lower 4 decimal digits from lcd_value.
     // Using modulo and division operations by constants.
-    always_ff @(posedge clk) begin
-        digits[0] <=  value         % 10; // Ones place
-        digits[1] <= (value >> 3)   % 10; // Tens place
-        digits[2] <= (value >> 7)  % 10; // Hundreds place
-        digits[3] <= (value >> 10) % 10; // Thousands place
+    always_comb begin
+        digits[0] = (value)        % 10; // Ones place
+        digits[1] = (value / 10)   % 10; // Tens place
+        digits[2] = (value / 100)  % 10; // Hundreds place
+        digits[3] = (value / 1000) % 10; // Thousands place
     end
                 
 endmodule

@@ -1,0 +1,7 @@
+Running: xsim.dir/decoder_tb_evan_behav/xsimk.exe -simmode gui -wdb decoder_tb_evan_behav.wdb -simrunnum 0 -socket 57124
+Design successfully loaded
+Design Loading Memory Usage: 26488 KB (Peak: 26488 KB)
+Design Loading CPU Usage: 1108 ms
+Simulation completed
+Simulation Memory Usage: 28740 KB (Peak: 28740 KB)
+Simulation CPU Usage: 1171 ms

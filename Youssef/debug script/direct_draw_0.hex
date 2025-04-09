@@ -1,0 +1,35 @@
+fe010113
+00112e23
+00812c23
+02010413
+fff007b7
+fef42423
+fe042623
+0240006f
+fec42783
+fe842703
+00f707b3
+00100713
+00e78023
+fec42783
+00178793
+fef42623
+fec42703
+0004b7b7
+fcf74ce3
+0000006f
+
+
+
+int main() {
+
+    unsigned char* vram = (unsigned char*)(0xFFF00000);
+
+    for(int i = 0; i < 640*480; i++) {
+        vram[i] = 1;
+    }
+
+    while (true) {}
+    
+} 
+

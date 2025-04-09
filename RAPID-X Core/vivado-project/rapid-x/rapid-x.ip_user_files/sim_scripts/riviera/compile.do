@@ -35,8 +35,10 @@ vlog -work xil_defaultlib  -incr -l xpm -l blk_mem_gen_v8_4_9 -l xil_defaultlib 
 "../../../rapid-x.srcs/sources_1/new/decoder_module.sv" \
 "../../../rapid-x.srcs/sources_1/new/display_engine.sv" \
 "../../../rapid-x.srcs/sources_1/new/execute_stage.sv" \
+"../../../rapid-x.srcs/sources_1/new/keyboard_controller.sv" \
 "../../../rapid-x.srcs/sources_1/new/lcd_display.sv" \
 "../../../rapid-x.srcs/sources_1/new/memory_managment_unit.sv" \
+"../../../rapid-x.srcs/sources_1/new/ps2_keyboard.sv" \
 "../../../rapid-x.srcs/sources_1/new/rapid_soc.sv" \
 "../../../../../rapid_x_cpu.sv" \
 "../../../../../register_file.sv" \

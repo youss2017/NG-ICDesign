@@ -33,25 +33,9 @@ set_property PACKAGE_PIN N18 [get_ports {blue[0]}]
 set_property PACKAGE_PIN P19 [get_ports hSync]
 set_property PACKAGE_PIN R19 [get_ports vSync]
 
-set_property IOSTANDARD LVCMOS33 [get_ports mmu_we]
-set_property PACKAGE_PIN V19 [get_ports mmu_we]
-set_property IOSTANDARD LVCMOS33 [get_ports ram_enable]
-set_property PACKAGE_PIN U19 [get_ports ram_enable]
-set_property IOSTANDARD LVCMOS33 [get_ports lcd_enable]
-set_property PACKAGE_PIN E19 [get_ports lcd_enable]
-set_property IOSTANDARD LVCMOS33 [get_ports display_enable]
-set_property PACKAGE_PIN U16 [get_ports display_enable]
-
-set_property IOSTANDARD LVCMOS33 [get_ports clk_source]
-set_property PACKAGE_PIN T1 [get_ports clk_source]
-set_property IOSTANDARD LVCMOS33 [get_ports clk_button]
-set_property PACKAGE_PIN U18 [get_ports clk_button]
 
 
-set_property IOSTANDARD LVCMOS33 [get_ports rst_indicator]
-set_property PACKAGE_PIN L1 [get_ports rst_indicator]
-set_property IOSTANDARD LVCMOS33 [get_ports clk_indicator]
-set_property PACKAGE_PIN P1 [get_ports clk_indicator]
+
 
 set_property PACKAGE_PIN R2 [get_ports i_reset]
 set_property IOSTANDARD LVCMOS33 [get_ports i_reset]
@@ -84,9 +68,9 @@ set_property PACKAGE_PIN U7 [get_ports {segement[1]}]
 set_false_path -to [get_ports {red[*]}]
 set_false_path -to [get_ports {green[*]}]
 set_false_path -to [get_ports {blue[*]}]
-set_false_path -to [get_ports {anode[*]}]
-set_false_path -to [get_ports {segement[*]}]
-set_false_path -to [get_ports vSync]
-set_false_path -to [get_ports hSync]
-set_false_path -to [get_ports i_reset]
+#
 
+set_property IOSTANDARD LVCMOS33 [get_ports ps_clk]
+set_property IOSTANDARD LVCMOS33 [get_ports ps_data]
+set_property PACKAGE_PIN C17 [get_ports ps_clk]
+set_property PACKAGE_PIN B17 [get_ports ps_data]

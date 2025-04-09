@@ -35,25 +35,33 @@ module display_engine(
 );
 
     wire pixelData;
-    wire [9:0] xCoord;
-    wire [9:0] yCoord;
+    wire inRenderRegion;
+    wire [10:0] xCoord;
+    wire [10:0] yCoord;
+    wire [18:0] address;
+    
+    assign address = inRenderRegion ? (yCoord * 640) + xCoord : 0;
     
     always @(negedge clk) begin
-        red <= { 4{pixelData} };
-        green <= { 4{pixelData} };
-        blue <= { 4{pixelData} };
+        if (inRenderRegion) begin
+            red <= { 4{pixelData} };
+            green <= { 4{pixelData} };
+            blue <= { 4{pixelData} };
+        end else begin
+            red <= 0;
+            green <= 0;
+            blue <= 0;
+        end
     end
 
     blk_vram_gen_0 vram_framebuffer(
         .clka(clk),
-        .ena(enable),
         .wea(enable),
         .addra(framebuffer_address),
         .dina(framebuffer_data[0]),
         
         .clkb(clk),
-        .enb(1),
-        .addrb((yCoord * 640) + xCoord),
+        .addrb(address),
         .doutb(pixelData)
     );
     
@@ -62,7 +70,8 @@ module display_engine(
         .xCoord(xCoord),
         .yCoord(yCoord),
         .hSync(hSync),
-        .vSync(vSync)
+        .vSync(vSync),
+        .inRenderRegion(inRenderRegion)
     );
 
 endmodule

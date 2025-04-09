@@ -5,13 +5,15 @@ module memory_managment_unit(
         output logic ram_enable,
         output logic lcd_enable,
         output logic display_enable,
+        output logic keyboard_enable,
         output logic [31:0] translated_address
 );
 
-    assign ram_enable = mmu_address < 4095;
-    assign lcd_enable = mmu_address >= 311295;
-    assign display_enable = mmu_address >= 4095 && mmu_address < 311295;
+    assign ram_enable = mmu_address < 32'hFFE00000;
+    assign lcd_enable = mmu_address == 32'hFFE00000;
+    assign keyboard_enable = mmu_address == 32'hFFC00000;
+    assign display_enable = mmu_address >= 32'hFFF00000;
     
-    assign translated_address = ram_enable ? mmu_address : (mmu_address - 4095);
+    assign translated_address = ram_enable ? mmu_address : (mmu_address - 32'hFFF00000);
 
 endmodule

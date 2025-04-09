@@ -9,6 +9,10 @@
 #define TXREADY 0x01
 #define RXREADY 0x02
 
+#define LCD_BASE 0x20020
+#define LCD_DEC ( *(volatile int *)(LCD_BASE + 0) )
+#define LCD_RAW ( *(volatile int *)(LCD_BASE + 4) )
+
 /* to aid in casting loaded program address */
 typedef void (*handover_function)(void) __attribute__ (( noreturn ));
 
@@ -41,7 +45,12 @@ void boot2(void) {
     discard = UART_RX;
     discard = UART_RX;
 
+    /* turn on some lights to show the board is alive */
     GPIO_LED = 0x5a5a;
+    LCD_RAW  = (0b00111110 << 24) | // b
+               (0b00111010 << 16) | // o
+               (0b00111010 << 8 ) | // o
+               (0b00011110      ) ; // t
     print_str("\r\n=== Rapid-X Bootloader ===\r\n");
     print_str("> Ready to receive program data from UART.\r\n");
 
@@ -53,6 +62,7 @@ void boot2(void) {
     }
 
     GPIO_LED = 0;
+    LCD_RAW = 0;
     print_str("> Transfer complete. Jumping to program code.\r\n");
     ( (handover_function)&_rapidx_load_target ) ();
 }

@@ -3,10 +3,25 @@
     input  wire        clk,
     input  wire        reset,
     input  wire        load,
-    input  wire [15:0] value,
+    input logic [31:0] writeword,
+    input logic [1:0]  addr,
     output logic [7:0] o_signal,
     output logic [3:0] o_anode_select
 );
+
+    logic [15:0] value;
+    assign value = writeword[15:0];
+    
+    logic [31:0] writeword_reg;
+    logic manual_select;
+    always_ff @(posedge clk or posedge reset)
+        if(reset) begin
+            writeword_reg <= '0;
+            manual_select <= '0;
+        end else if(load) begin
+            writeword_reg <= writeword;
+            manual_select <= (addr != '0);
+        end
 
     // Store the current value to be displayed.
     reg [15:0] lcd_value;
@@ -53,10 +68,10 @@
     // The anode_mux selects which digit to activate.
     anode_mux mux(
         .i_clk(clk),
-        .i_signal1(signals[0]),
-        .i_signal2(signals[1]),
-        .i_signal3(signals[2]),
-        .i_signal4(signals[3]),
+        .i_signal1(manual_select ? ~writeword_reg[7:0]   : signals[0]),
+        .i_signal2(manual_select ? ~writeword_reg[15:8]  : signals[1]),
+        .i_signal3(manual_select ? ~writeword_reg[23:16] : signals[2]),
+        .i_signal4(manual_select ? ~writeword_reg[31:24] : signals[3]),
         .o_signal(o_signal),
         .o_anode_select(o_anode_select)
     );

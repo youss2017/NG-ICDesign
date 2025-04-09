@@ -204,7 +204,7 @@ module basys3_top_level(
         
     display_engine display_engine_inst (
         .clk(clk),
-        .enable(framebuf_enable),
+        .enable(framebuf_enable && dbus_wena),
         .framebuffer_address(framebuf_addr),
         .framebuffer_data(framebuf_data),
         .hSync(hSync),
@@ -217,8 +217,9 @@ module basys3_top_level(
     lcd_display lcd_display_inst (
         .clk(clk),
         .reset(reset),
-        .load(lcd_enable),
-        .value(dbus_writeword[15:0]),
+        .load(lcd_enable && dbus_wena),
+        .writeword(dbus_writeword),
+        .addr(dbus_addr[3:2]),
         .o_signal(segment),
         .o_anode_select(anode)
     );

@@ -7,7 +7,7 @@
 <Project Product="Vivado" Version="7" Minor="67" Path="C:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-19516-ZephyrusG14/PrjAr/_X_/rapidx_basys3.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="4bea2ac21e8f49e4abc4806b78119d38"/>
+    <Option Name="Id" Val="22a08c41149d4d458e5f35ed996e8a1b"/>
     <Option Name="Part" Val="xc7a35tcpg236-1"/>
     <Option Name="CompiledLibDir" Val="C:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-19516-ZephyrusG14/PrjAr/_X_/rapidx_basys3.cache/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -65,13 +65,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="35"/>
-    <Option Name="WTModelSimExportSim" Val="35"/>
-    <Option Name="WTQuestaExportSim" Val="35"/>
+    <Option Name="WTXSimExportSim" Val="36"/>
+    <Option Name="WTModelSimExportSim" Val="36"/>
+    <Option Name="WTQuestaExportSim" Val="36"/>
     <Option Name="WTIesExportSim" Val="0"/>
-    <Option Name="WTVcsExportSim" Val="35"/>
-    <Option Name="WTRivieraExportSim" Val="35"/>
-    <Option Name="WTActivehdlExportSim" Val="35"/>
+    <Option Name="WTVcsExportSim" Val="36"/>
+    <Option Name="WTRivieraExportSim" Val="36"/>
+    <Option Name="WTActivehdlExportSim" Val="36"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>

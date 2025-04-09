@@ -18,7 +18,8 @@
 #define RXREADY 0x02
 
 #define LCD_BASE 0x20020
-#define LCD_REG ( *(volatile int *)(LCD_BASE + 0) )
+#define LCD_DEC ( *(volatile int *)(LCD_BASE + 0) )
+#define LCD_RAW ( *(volatile int *)(LCD_BASE + 4) )
 
 #define PS2_BASE 0x20030
 #define PS2_REG ( *(volatile char *)(PS2_BASE + 0) )

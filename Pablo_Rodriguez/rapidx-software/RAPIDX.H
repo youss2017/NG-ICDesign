@@ -1,5 +1,3 @@
-#define RAM_BASE ( (char *)&_rapidx_ram_base )
-
 #define GPIO_BASE 0x20000
 #define GPIO_LED ( *(volatile int *)(GPIO_BASE + 0) )
 #define GPIO_SW  ( *(volatile int *)(GPIO_BASE + 4) ) 
@@ -18,3 +16,12 @@
 
 #define TXREADY 0x01
 #define RXREADY 0x02
+
+#define LCD_BASE 0x20020
+#define LCD_REG ( *(volatile int *)(LCD_BASE + 0) )
+
+#define PS2_BASE 0x20030
+#define PS2_REG ( *(volatile char *)(PS2_BASE + 0) )
+
+#define VRAM_BASE 0xFFF00000;
+#define VRAM ( (volatile unsigned char *)(VRAM_BASE) )

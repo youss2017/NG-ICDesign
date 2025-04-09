@@ -83,12 +83,12 @@ cell (sram_150b_512_1rw_freepdk45){
     dont_touch : true;
     area : 193600.29062500002;
 
-    pg_pin(vdd) {
+    pg_pin(VDD) {
          voltage_name : VDD;
          pg_type : primary_power;
     }
 
-    pg_pin(vss) {
+    pg_pin(VSS) {
          voltage_name : VSS;
          pg_type : primary_ground;
     }

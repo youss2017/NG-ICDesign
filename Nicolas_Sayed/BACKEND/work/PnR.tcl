@@ -28,7 +28,7 @@ set_units -capacitance fF
 # # Initialize the design
 
 #create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -die_size 1200 800 30 30 30 30
-create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -die_size 1100 650 20 20 20 20
+create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -die_size 1150 600 20 20 20 20
 gui_show
 
 # # Macro Placement

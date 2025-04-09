@@ -1,6 +1,6 @@
 # Floorplan spacing variables
 # These are swapped lol
-set HORZ_SPACE 45
+set HORZ_SPACE 25
 set VERT_SPACE 25
 
 # Design reference

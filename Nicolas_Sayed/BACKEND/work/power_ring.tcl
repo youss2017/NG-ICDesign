@@ -1,3 +1,4 @@
+set_units -capacitance fF
 set ring_width 2
 set ring_spacing 2
 set ring_layer_upper "metal10"
@@ -15,7 +16,34 @@ add_rings -nets {VDD VSS} \
           -threshold 0 \
           -jog_distance 0 \
           -snap_wire_center_to_grid none
+add_rings -nets {VDD VSS} \
+          -type block_rings \
+          -around each_block \
+          -layer {top metal9 bottom metal9 left metal10 right metal10} \
+          -width {top 1.8 bottom 1.8 left 1.8 right 1.8} \
+          -spacing {top 1.8 bottom 1.8 left 1.8 right 1.8} \
+          -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} \
+          -center 0 \
+          -threshold 0 \
+          -jog_distance 0 \
+          -snap_wire_center_to_grid none
 
+add_stripes -nets {VDD VSS} \
+            -layer metal10 \
+            -direction vertical \
+            -width 1.8 \
+            -spacing 1.8 \
+            -number_of_sets 9 \
+            -start_from left \
+            -switch_layer_over_obs false \
+            -merge_stripes_value 10 \
+            -max_same_layer_jog_length 2 \
+            -pad_core_ring_top_layer_limit metal10 \
+            -pad_core_ring_bottom_layer_limit metal1 \
+            -block_ring_top_layer_limit metal10 \
+            -block_ring_bottom_layer_limit metal1 \
+            -use_wire_group 0 \
+            -snap_wire_center_to_grid none
 # @innovus 1513> set_db add_rings_target default ; set_db add_rings_extend_over_row 0 ; set_db add_rings_ignore_rows 0 ; set_db add_rings_avoid_short 0 ; set_db add_rings_skip_shared_inner_ring none ; set_db add_rings_stacked_via_top_layer metal10 ; set_db add_rings_stacked_via_bottom_layer metal1 ; set_db add_rings_via_using_exact_crossover_size 1 ; set_db add_rings_orthogonal_only true ; set_db add_rings_skip_via_on_pin {  standardcell } ; set_db add_rings_skip_via_on_wire_shape {  noshape }
 # The ring targets are set to core/block ring wires.
 # add_rings command will disallow rings to go over rows.

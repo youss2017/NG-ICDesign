@@ -18,5 +18,6 @@ work/*
 !work/*.f
 !work/*.fp
 !work/atpg/
+!work/*.io
 
 NanGate45-Synopsys-Enablement/

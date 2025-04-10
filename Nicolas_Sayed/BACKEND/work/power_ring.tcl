@@ -1,10 +1,17 @@
-set_units -capacitance fF
+# LOOK INTO SPLIT ROWS
+# set_units -capacitance fF
 set ring_width 2
 set ring_spacing 2
-set ring_layer_upper "metal10"
-set ring_layer_lower "metal9"
+set ring_layer_vert "metal6"
+set ring_layer_hori "metal7"
 
-# Offset will be centered in channel
+set stripe_width 2
+set stripe_spacing 2
+set stripe_layer_vert "metal6"
+set stripe_layer_hori "metal7"
+set stripe_sets 15
+
+# Offset will be centered in channel for rings
 add_rings -nets {VDD VSS} \
           -type core_rings \
           -follow core \
@@ -16,24 +23,25 @@ add_rings -nets {VDD VSS} \
           -threshold 0 \
           -jog_distance 0 \
           -snap_wire_center_to_grid none
+
 add_rings -nets {VDD VSS} \
           -type block_rings \
           -around each_block \
-          -layer {top metal9 bottom metal9 left metal10 right metal10} \
-          -width {top 1.8 bottom 1.8 left 1.8 right 1.8} \
-          -spacing {top 1.8 bottom 1.8 left 1.8 right 1.8} \
-          -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} \
+          -layer    [list top $ring_layer_lower bottom $ring_layer_lower left $ring_layer_upper right $ring_layer_upper] \
+          -width    [list top $ring_width bottom $ring_width left $ring_width right $ring_width] \
+          -spacing  [list top $ring_spacing bottom $ring_spacing left $ring_spacing right $ring_spacing] \
+          -offset   [list top 1.8 bottom 1.8 left 1.8 right 1.8] \
           -center 0 \
           -threshold 0 \
           -jog_distance 0 \
           -snap_wire_center_to_grid none
 
 add_stripes -nets {VDD VSS} \
-            -layer metal10 \
+            -layer $stripe_layer_upper \
             -direction vertical \
-            -width 1.8 \
-            -spacing 1.8 \
-            -number_of_sets 9 \
+            -width $stripe_width \
+            -spacing $stripe_spacing \
+            -number_of_sets $stripe_sets \
             -start_from left \
             -switch_layer_over_obs false \
             -merge_stripes_value 10 \
@@ -44,14 +52,21 @@ add_stripes -nets {VDD VSS} \
             -block_ring_bottom_layer_limit metal1 \
             -use_wire_group 0 \
             -snap_wire_center_to_grid none
-# @innovus 1513> set_db add_rings_target default ; set_db add_rings_extend_over_row 0 ; set_db add_rings_ignore_rows 0 ; set_db add_rings_avoid_short 0 ; set_db add_rings_skip_shared_inner_ring none ; set_db add_rings_stacked_via_top_layer metal10 ; set_db add_rings_stacked_via_bottom_layer metal1 ; set_db add_rings_via_using_exact_crossover_size 1 ; set_db add_rings_orthogonal_only true ; set_db add_rings_skip_via_on_pin {  standardcell } ; set_db add_rings_skip_via_on_wire_shape {  noshape }
-# The ring targets are set to core/block ring wires.
-# add_rings command will disallow rings to go over rows.
-# add_rings command will consider rows while creating rings.
-# add_rings command will ignore shorts while creating rings.
-# @innovus 1514> The ring targets are set to core/block ring wires.
-# add_rings command will consider rows while creating rings.
-# add_rings command will disallow rings to go over rows.
-# add_rings command will ignore shorts while creating rings.
-# add_rings -nets {VDD VSS} -type block_rings -around each_block -layer {top metal9 bottom metal9 left metal10 right metal10} -width {top 1 bottom 1 left 1 right 1} -spacing {top 1 bottom 1 left 1 right 1} -offset {top 1.5 bottom 1.5 left 1.5 right 1.5} -center 0 -threshold 0 -jog_distance 0 -snap_wire_center_to_grid none
-# #% Begin add_rings (date=04/09 04:39:48, mem=3663.2M)
+
+add_stripes -nets {VDD VSS} \
+            -layer $stripe_layer_lower \
+            -direction horizontal \
+            -width $stripe_width \
+            -spacing $stripe_spacing \
+            -number_of_sets $stripe_sets \
+            -start_from left \
+            -switch_layer_over_obs false \
+            -merge_stripes_value 10 \
+            -max_same_layer_jog_length 2 \
+            -pad_core_ring_top_layer_limit metal10 \
+            -pad_core_ring_bottom_layer_limit metal1 \
+            -block_ring_top_layer_limit metal10 \
+            -block_ring_bottom_layer_limit metal1 \
+            -use_wire_group 0 \
+            -snap_wire_center_to_grid none
+

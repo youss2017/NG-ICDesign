@@ -1,5 +1,4 @@
-set_units -time 1000ps
-
+set_units -time 1ns
 # Create a 100MHz clock on i_clk with a 10ns period (50% duty cycle)
 create_clock -name i_clk -period 10 -waveform {0 5} [get_ports i_clk]
 

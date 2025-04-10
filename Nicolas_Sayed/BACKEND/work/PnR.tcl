@@ -9,8 +9,13 @@ set_db init_netlist_files   $netlist_directory
 set_db init_mmmc_files      $mmmc_directory
 
 # Power :D
+
 set_db init_power_nets VDD
 set_db init_ground_nets VSS
+
+
+
+
 # Load MMC configuration
 read_mmmc rapid_x_view.tcl
 
@@ -28,7 +33,12 @@ set_units -capacitance fF
 # # Initialize the design
 
 #create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -die_size 1200 800 30 30 30 30
+init_design
 create_floorplan -site FreePDK45_38x28_10R_NP_162NW_34O -die_size 1150 600 20 20 20 20
+connect_global_net VDD -type pgpin -pin VDD -all
+connect_global_net VSS -type pgpin -pin VSS -all
+connect_global_net VDD -type tiehi
+connect_global_net VSS -type tielo
 gui_show
 
 # # Macro Placement

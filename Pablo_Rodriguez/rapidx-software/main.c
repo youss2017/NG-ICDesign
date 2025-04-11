@@ -58,9 +58,14 @@ void _rapidx_start(void) {
         } else {
             int v = sw >> 8;
             LCD_DEC = v;
-            uart_puts("Now showing 0x");
-            uart_puts(word2hex(v));
-            uart_puts(" in decimal.\r\n");
+            //uart_puts("Now showing 0x");
+           /// uart_puts(word2hex(v));
+            //uart_puts(" in decimal.\r\n");
         }
+
+        for (int i = 0; i < 640*480; i+=2) {
+            VRAM[i] = 0x0000016E;
+        }
+
     }
 }

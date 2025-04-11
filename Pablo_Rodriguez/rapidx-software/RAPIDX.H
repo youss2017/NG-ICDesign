@@ -24,5 +24,5 @@
 #define PS2_BASE 0x20030
 #define PS2_REG ( *(volatile char *)(PS2_BASE + 0) )
 
-#define VRAM_BASE 0xFFF00000;
-#define VRAM ( (volatile unsigned char *)(VRAM_BASE) )
+#define VRAM_BASE 0xFFF00000
+#define VRAM ( (volatile unsigned int *)(VRAM_BASE) )

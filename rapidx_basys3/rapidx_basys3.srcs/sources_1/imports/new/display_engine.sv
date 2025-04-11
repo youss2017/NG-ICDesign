@@ -22,10 +22,11 @@
 
 module display_engine(
     input clk,
-        
+    input reset,
+    
     input enable,
     input [18:0] framebuffer_address,
-    input [7:0] framebuffer_data,
+    input [11:0] framebuffer_data,
     
     output hSync,
     output vSync,
@@ -34,19 +35,19 @@ module display_engine(
     output logic [3:0] blue
 );
 
-    wire pixelData;
+    wire [11:0] pixelData;
     wire inRenderRegion;
     wire [10:0] xCoord;
     wire [10:0] yCoord;
     wire [18:0] address;
     
-    assign address = inRenderRegion ? (yCoord * 640) + xCoord : 0;
+    assign address = inRenderRegion ? ((yCoord >> 2) * 640) + (xCoord >> 2) : 0;
     
     always @(negedge clk) begin
         if (inRenderRegion) begin
-            red <= { 4{pixelData} };
-            green <= { 4{pixelData} };
-            blue <= { 4{pixelData} };
+            red <= pixelData[11:8];
+            green <= pixelData[7:4];
+            blue <= pixelData[3:0];
         end else begin
             red <= 0;
             green <= 0;
@@ -58,7 +59,7 @@ module display_engine(
         .clka(clk),
         .wea(enable),
         .addra(framebuffer_address),
-        .dina(framebuffer_data[0]),
+        .dina(framebuffer_data),
         
         .clkb(clk),
         .addrb(address),

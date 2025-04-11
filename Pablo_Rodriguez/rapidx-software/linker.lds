@@ -4,7 +4,7 @@
 
 MEMORY
 {
-    ram : ORIGIN = 0x10000, LENGTH = 0x10000 /* 64KB */
+    ram : ORIGIN = 0x00000, LENGTH = 0x10000 /* 64KB */
 }
 
 SECTIONS

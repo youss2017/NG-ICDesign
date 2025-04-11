@@ -146,6 +146,8 @@ module basys3_top_level(
     
     blk_mem_ram ram(
         .clka(clk),
+        .rsta(reset),
+        .rstb(reset),
         .ena('1),
         .addra(dbus_addr[15:2]), // 16 KiloWords = 64 KiloBytes. Address line is word-aligned.
         .wea(ram_enable && dbus_wena ? dbus_bena : 4'b0000),
@@ -190,23 +192,24 @@ module basys3_top_level(
     
     logic [18:0] framebuf_addr;
     assign framebuf_addr = { dbus_addr[18:2],
-        dbus_bena[1] ? 0'b01 :
-        dbus_bena[2] ? 0'b10 :
-        dbus_bena[3] ? 0'b11 :
-                       0'b00 
+        dbus_bena[1] ? 2'b01 :
+        dbus_bena[2] ? 2'b10 :
+        dbus_bena[3] ? 2'b11 :
+                       2'b00 
     };
     
-    logic [7:0] framebuf_data;
+    /*logic [7:0] framebuf_data;
     assign framebuf_data = dbus_bena[1] ? dbus_writeword[15:8] :
                            dbus_bena[2] ? dbus_writeword[23:16] :
                            dbus_bena[3] ? dbus_writeword[31:24] :
-                           dbus_writeword[7:0];
-        
-    display_engine display_engine_inst (
+                           dbus_writeword[7:0];*/      
+   
+   display_engine display_engine_inst (
         .clk(clk),
+        .reset(reset),
         .enable(framebuf_enable && dbus_wena),
-        .framebuffer_address(framebuf_addr),
-        .framebuffer_data(framebuf_data),
+        .framebuffer_address((dbus_addr - 32'hFFF00000) >> 2),
+        .framebuffer_data(dbus_writeword),
         .hSync(hSync),
         .vSync(vSync),
         .red(red),

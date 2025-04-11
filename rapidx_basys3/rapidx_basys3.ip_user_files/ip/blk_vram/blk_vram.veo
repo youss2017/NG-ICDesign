@@ -47,7 +47,7 @@
 // DO NOT MODIFY THIS FILE.
 
 // IP VLNV: xilinx.com:ip:blk_mem_gen:8.4
-// IP Revision: 8
+// IP Revision: 9
 
 // The following must be inserted into your Verilog file for this
 // core to be instantiated. Change the instance name and port connections
@@ -57,11 +57,11 @@
 blk_vram your_instance_name (
   .clka(clka),    // input wire clka
   .wea(wea),      // input wire [0 : 0] wea
-  .addra(addra),  // input wire [18 : 0] addra
-  .dina(dina),    // input wire [0 : 0] dina
+  .addra(addra),  // input wire [14 : 0] addra
+  .dina(dina),    // input wire [11 : 0] dina
   .clkb(clkb),    // input wire clkb
-  .addrb(addrb),  // input wire [18 : 0] addrb
-  .doutb(doutb)  // output wire [0 : 0] doutb
+  .addrb(addrb),  // input wire [14 : 0] addrb
+  .doutb(doutb)  // output wire [11 : 0] doutb
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

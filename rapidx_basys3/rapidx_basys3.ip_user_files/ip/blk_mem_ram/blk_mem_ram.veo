@@ -47,7 +47,7 @@
 // DO NOT MODIFY THIS FILE.
 
 // IP VLNV: xilinx.com:ip:blk_mem_gen:8.4
-// IP Revision: 8
+// IP Revision: 9
 
 // The following must be inserted into your Verilog file for this
 // core to be instantiated. Change the instance name and port connections
@@ -55,18 +55,22 @@
 
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 blk_mem_ram your_instance_name (
-  .clka(clka),    // input wire clka
-  .ena(ena),      // input wire ena
-  .wea(wea),      // input wire [3 : 0] wea
-  .addra(addra),  // input wire [13 : 0] addra
-  .dina(dina),    // input wire [31 : 0] dina
-  .douta(douta),  // output wire [31 : 0] douta
-  .clkb(clkb),    // input wire clkb
-  .enb(enb),      // input wire enb
-  .web(web),      // input wire [3 : 0] web
-  .addrb(addrb),  // input wire [13 : 0] addrb
-  .dinb(dinb),    // input wire [31 : 0] dinb
-  .doutb(doutb)  // output wire [31 : 0] doutb
+  .clka(clka),            // input wire clka
+  .rsta(rsta),            // input wire rsta
+  .ena(ena),              // input wire ena
+  .wea(wea),              // input wire [3 : 0] wea
+  .addra(addra),          // input wire [13 : 0] addra
+  .dina(dina),            // input wire [31 : 0] dina
+  .douta(douta),          // output wire [31 : 0] douta
+  .clkb(clkb),            // input wire clkb
+  .rstb(rstb),            // input wire rstb
+  .enb(enb),              // input wire enb
+  .web(web),              // input wire [3 : 0] web
+  .addrb(addrb),          // input wire [13 : 0] addrb
+  .dinb(dinb),            // input wire [31 : 0] dinb
+  .doutb(doutb),          // output wire [31 : 0] doutb
+  .rsta_busy(rsta_busy),  // output wire rsta_busy
+  .rstb_busy(rstb_busy)  // output wire rstb_busy
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

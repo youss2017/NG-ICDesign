@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1744344868">
+  <File Type="PA-TCL" Name="basys3_top_level.tcl"/>
+  <File Type="REPORTS-TCL" Name="basys3_top_level_reports.tcl"/>
+  <File Type="INIT-TIMING" Name="basys3_top_level_timing_summary_init.rpt"/>
+  <File Type="OPT-DCP" Name="basys3_top_level_opt.dcp"/>
+  <File Type="OPT-DRC" Name="basys3_top_level_drc_opted.rpt"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="basys3_top_level_methodology_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="basys3_top_level.hwdef"/>
+  <File Type="OPT-TIMING" Name="basys3_top_level_timing_summary_opted.rpt"/>
+  <File Type="OPT-RQA-PB" Name="basys3_top_level_rqa_opted.pb"/>
+  <File Type="PWROPT-DCP" Name="basys3_top_level_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="basys3_top_level_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="basys3_top_level_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="basys3_top_level_placed.dcp"/>
+  <File Type="PLACE-IO" Name="basys3_top_level_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="basys3_top_level_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="basys3_top_level_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="basys3_top_level_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="basys3_top_level_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="basys3_top_level_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="basys3_top_level_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="basys3_top_level_timing_summary_placed.rpt"/>
+  <File Type="PLACE-RQA-PB" Name="basys3_top_level_rqa_placed.pb"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="basys3_top_level_postplace_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="basys3_top_level_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="basys3_top_level_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="basys3_top_level_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-TIMING" Name="basys3_top_level_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="basys3_top_level_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="basys3_top_level_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="basys3_top_level_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="basys3_top_level_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="basys3_top_level_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="basys3_top_level_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="basys3_top_level_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="basys3_top_level_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="basys3_top_level_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="basys3_top_level_power_routed.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="basys3_top_level_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="basys3_top_level_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="basys3_top_level_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="basys3_top_level_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="basys3_top_level_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="basys3_top_level_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="basys3_top_level_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="basys3_top_level_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="basys3_top_level_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="basys3_top_level_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="basys3_top_level_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="basys3_top_level_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-RQS-PB" Name="basys3_top_level_rqs_routed.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="basys3_top_level_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="basys3_top_level_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="basys3_top_level_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="basys3_top_level_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="basys3_top_level_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="basys3_top_level_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="basys3_top_level_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="basys3_top_level_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BG-BIT" Name="basys3_top_level.bit"/>
+  <File Type="BG-BIN" Name="basys3_top_level.bin"/>
+  <File Type="BITSTR-MSK" Name="basys3_top_level.msk"/>
+  <File Type="BITSTR-RBT" Name="basys3_top_level.rbt"/>
+  <File Type="BITSTR-NKY" Name="basys3_top_level.nky"/>
+  <File Type="BITSTR-BMM" Name="basys3_top_level_bd.bmm"/>
+  <File Type="BITSTR-MMI" Name="basys3_top_level.mmi"/>
+  <File Type="PDI-FILE" Name="basys3_top_level.pdi"/>
+  <File Type="BOOT-PDI-FILE" Name="basys3_top_level_boot.pdi"/>
+  <File Type="PL-PDI-FILE" Name="basys3_top_level_pld.pdi"/>
+  <File Type="RCFI_FILE" Name="basys3_top_level.rcfi"/>
+  <File Type="CFI_FILE" Name="basys3_top_level.cfi"/>
+  <File Type="RNPI_FILE" Name="basys3_top_level.rnpi"/>
+  <File Type="NPI_FILE" Name="basys3_top_level.npi"/>
+  <File Type="RBD_FILE" Name="basys3_top_level.rbd"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="basys3_top_level.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="basys3_top_level.sysdef"/>
+  <File Type="BG-BGN" Name="basys3_top_level.bgn"/>
+  <File Type="BG-DRC" Name="basys3_top_level.drc"/>
+  <File Type="RDI-RDI" Name="basys3_top_level.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="ROUTE-RQS" Name="basys3_top_level_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="basys3_top_level_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/imports/new/anode_mux.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/anode_mux.v"/>
+        <Attr Name="ImportTime" Val="1744166079"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/basys3_gpio_peripheral.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/senior_design_current/rapid_pkg.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Dev/projects/systemverilog/senior_design_current/rapid_pkg.sv"/>
+        <Attr Name="ImportTime" Val="1738712909"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/basys3_ifetch_unit.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/basys3_memory_unit.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/basys3_rapidx_cpu.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/rtl/if/uart_if.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/SystemVerilog-UART-master/rtl/if/uart_if.sv"/>
+        <Attr Name="ImportTime" Val="1560278342"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/basys3_uart_peripheral.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/bounded_counter.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/bounded_counter.sv"/>
+        <Attr Name="ImportTime" Val="1744166079"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/clock_divider.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/clock_divider.sv"/>
+        <Attr Name="ImportTime" Val="1744166079"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/senior_design_current/decoder_logic.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Dev/projects/systemverilog/senior_design_current/decoder_logic.sv"/>
+        <Attr Name="ImportTime" Val="1740007685"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/senior_design_current/decoder_state.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Dev/projects/systemverilog/senior_design_current/decoder_state.sv"/>
+        <Attr Name="ImportTime" Val="1740068418"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/display_engine.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/display_engine.sv"/>
+        <Attr Name="ImportTime" Val="1744166079"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/senior_design_current/execute_logic.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Dev/projects/systemverilog/senior_design_current/execute_logic.sv"/>
+        <Attr Name="ImportTime" Val="1740007685"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/senior_design_current/execute_state.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Dev/projects/systemverilog/senior_design_current/execute_state.sv"/>
+        <Attr Name="ImportTime" Val="1740068418"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/senior_design_current/forwarding_unit.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Dev/projects/systemverilog/senior_design_current/forwarding_unit.sv"/>
+        <Attr Name="ImportTime" Val="1732150754"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/keyboard_controller.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/keyboard_controller.sv"/>
+        <Attr Name="ImportTime" Val="1744166079"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/lcd_display.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/lcd_display.sv"/>
+        <Attr Name="ImportTime" Val="1744166079"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/memory_management_unit.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/ps2_keyboard.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/ps2_keyboard.sv"/>
+        <Attr Name="ImportTime" Val="1744166079"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/senior_design_current/register_file.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Dev/projects/systemverilog/senior_design_current/register_file.sv"/>
+        <Attr Name="ImportTime" Val="1740007685"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/segment_driver.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/segment_driver.sv"/>
+        <Attr Name="ImportTime" Val="1744166079"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/rtl/uart.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/SystemVerilog-UART-master/rtl/uart.sv"/>
+        <Attr Name="ImportTime" Val="1560278342"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/rtl/uart_rx.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/SystemVerilog-UART-master/rtl/uart_rx.sv"/>
+        <Attr Name="ImportTime" Val="1560278342"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/rtl/uart_tx.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/SystemVerilog-UART-master/rtl/uart_tx.sv"/>
+        <Attr Name="ImportTime" Val="1560278342"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/new/vga_driver.sv">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/NG-ICDesign/RAPID-X Core/vivado-project/rapid-x/rapid-x.srcs/sources_1/new/vga_driver.sv"/>
+        <Attr Name="ImportTime" Val="1744166079"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/basys3_top_level.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/blk_mem_rom/blk_mem_rom_init.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/archive_project_summary.txt"/>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="basys3_top_level"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/imports/Desktop/Basys3_Master.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="D:/Files/Desktop/Basys3_Master.xdc"/>
+        <Attr Name="ImportTime" Val="1408383554"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/imports/Desktop/Basys3_Master.xdc"/>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/basys3_top_level.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="blk_vram"/>
+  <BlockFileSet Type="BlockSrcs" Name="blk_mem_ram"/>
+  <BlockFileSet Type="BlockSrcs" Name="blk_mem_rom"/>
+</GenRun>

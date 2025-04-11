@@ -55,6 +55,8 @@ module basys3_top_level(
     localparam LCD_END    = 32'h0002002F;
     localparam PS2_BEGIN  = 32'h00020030;
     localparam PS2_END    = 32'h0002003F;
+    localparam RTC_BEGIN  = 32'h00020040;
+    localparam RTC_END    = 32'h0002004F;
     localparam FRAMEBUF_BEGIN = 32'hFFF00000;
     localparam FRAMEBUF_END   = 32'hFFFFFFFF;
     
@@ -97,6 +99,8 @@ module basys3_top_level(
     logic        lcd_enable;
     logic [31:0] ps2_word;
     logic        ps2_enable;
+    logic [31:0] rtc_word;
+    logic        rtc_enable;
     
     basys3_rapidx_cpu cpu(
         .i_clk(slow_clock[1]),
@@ -111,12 +115,12 @@ module basys3_top_level(
     );
     
     memory_management_unit #(
-        .CHANNELS(7)
+        .CHANNELS(8)
     ) data_mmu(
-        .startaddr_bus ('{ROM_BEGIN,  RAM_BEGIN,  GPIO_BEGIN,  UART_BEGIN,  FRAMEBUF_BEGIN,  LCD_BEGIN,  PS2_BEGIN}),
-        .endaddr_bus   ('{ROM_END,    RAM_END,    GPIO_END,    UART_END,    FRAMEBUF_END,    LCD_END,    PS2_END}),
-        .readword_bus  ('{rom_word,   ram_word,   gpio_word,   uart_word,   framebuf_word,   lcd_word,   ps2_word}),
-        .mmu_enable_bus('{rom_enable, ram_enable, gpio_enable, uart_enable, framebuf_enable, lcd_enable, ps2_enable}),
+        .startaddr_bus ('{ROM_BEGIN,  RAM_BEGIN,  GPIO_BEGIN,  UART_BEGIN,  RTC_BEGIN,  FRAMEBUF_BEGIN,  LCD_BEGIN,  PS2_BEGIN}),
+        .endaddr_bus   ('{ROM_END,    RAM_END,    GPIO_END,    UART_END,    RTC_END,    FRAMEBUF_END,    LCD_END,    PS2_END}),
+        .readword_bus  ('{rom_word,   ram_word,   gpio_word,   uart_word,   rtc_word,   framebuf_word,   lcd_word,   ps2_word}),
+        .mmu_enable_bus('{rom_enable, ram_enable, gpio_enable, uart_enable, rtc_enable, framebuf_enable, lcd_enable, ps2_enable}),
         .mmu_address(dbus_addr),
         .mmu_readword(dbus_readword)
     );
@@ -188,6 +192,13 @@ module basys3_top_level(
         .enable(uart_enable),
         .RsRx(RsRx),
         .RsTx(RsTx)
+    );
+    
+    basys3_rtc_peripheral rtc(
+        .clock(clk),
+        .reset(reset),
+        .clear_counter(rtc_enable && dbus_wena),
+        .millicounter(rtc_word)
     );
     
     logic [18:0] framebuf_addr;

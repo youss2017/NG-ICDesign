@@ -4,8 +4,8 @@ CFLAGS  = -Wall -ffreestanding -march=rv32i -g
 LDFLAGS = -nostdlib -Tlinker.lds
 LDLIBS  = -lgcc
 
-# Each one will be compile into it's own program image.
-PROGRAMS = example.c draw_triangle.c
+# Each one will be compile into its own program image.
+PROGRAMS = example.c draw_triangle.c stopwatch.c
 
 BINFILES   = $(PROGRAMS:.c=.bin)
 BIN64FILES = $(PROGRAMS:.c=.bin64k)

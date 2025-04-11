@@ -32,12 +32,12 @@ module basys3_rtc_peripheral #(
 
     logic [$clog2(TICKS_PER_MS)-1:0] ticks;
     
-    always @(posedge clock or posedge reset) begin
+    always_ff @(posedge clock or posedge reset) begin
         if(reset || clear_counter) begin
             ticks <= 0;
             millicounter <= 0;
         end else begin
-            if(ticks == TICKS_PER_MS) begin
+            if(ticks >= TICKS_PER_MS) begin
                 ticks <= 0;
                 millicounter <= millicounter + 1;
             end else begin

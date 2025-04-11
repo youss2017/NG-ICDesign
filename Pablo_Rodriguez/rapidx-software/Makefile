@@ -3,22 +3,30 @@ OBJCOPY = riscv-none-elf-objcopy
 CFLAGS  = -Wall -ffreestanding -march=rv32i -g
 LDFLAGS = -nostdlib -Tlinker.lds
 LDLIBS  = -lgcc
- 
-all: main.bin64k
 
-main.bin: main.elf
+# Each one will be compile into it's own program image.
+PROGRAMS = example.c draw_triangle.c
+
+BINFILES   = $(PROGRAMS:.c=.bin)
+BIN64FILES = $(PROGRAMS:.c=.bin64k)
+HEXFILES   = $(PROGRAMS:.c=.hex)
+ELFFILES   = $(PROGRAMS:.c=.elf)
+
+all: $(PROGRAMS:.c=.bin64k)
+
+$(BINFILES) : %.bin : %.elf
 	$(OBJCOPY) -O binary $^ $@ 
 
-main.bin64k: main.bin
+$(BIN64FILES):  %.bin64k : %.bin
 	cp $^ $@
 	truncate -s64K $@
 
-main.hex: main.bin
+$(HEXFILES): %.hex : %.bin
 	hexdump -ve '/4 "%08x\n"' < $< > $@
 
-main.elf: main.c
+$(ELFFILES): %.elf : %.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
 .PHONY: clean
 clean:
-	rm -f main.elf main.hex main.bin main.bin64k
+	rm -f $(BINFILES) $(BIN64FILES) $(HEXFILES) $(ELFFILES)

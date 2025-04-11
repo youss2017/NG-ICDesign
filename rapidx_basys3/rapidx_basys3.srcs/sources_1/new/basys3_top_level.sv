@@ -197,12 +197,6 @@ module basys3_top_level(
         dbus_bena[3] ? 2'b11 :
                        2'b00 
     };
-    
-    /*logic [7:0] framebuf_data;
-    assign framebuf_data = dbus_bena[1] ? dbus_writeword[15:8] :
-                           dbus_bena[2] ? dbus_writeword[23:16] :
-                           dbus_bena[3] ? dbus_writeword[31:24] :
-                           dbus_writeword[7:0];*/      
    
    display_engine display_engine_inst (
         .clk(clk),

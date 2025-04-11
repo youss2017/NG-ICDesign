@@ -41,7 +41,7 @@ module display_engine(
     wire [10:0] yCoord;
     wire [18:0] address;
     
-    assign address = inRenderRegion ? ((yCoord >> 2) * 640) + (xCoord >> 2) : 0;
+    assign address = inRenderRegion ? ((yCoord >> 2) * 200) + (xCoord >> 2) : 0;
     
     always @(negedge clk) begin
         if (inRenderRegion) begin

@@ -42,7 +42,7 @@
 Section (1) - PROJECT INFORMATION
 ---------------------------------
 Name      = rapidx_basys3
-Directory = D:/Files/Desktop/NG-ICDesign/rapidx_basys3
+Directory = D:/Dev/projects/xilinx/rapidx_basys3
 
 WARNING: Please verify the compiled library directory path for the following property in the
          current project. The path may point to an invalid location after opening this project.
@@ -90,13 +90,12 @@ List of referenced 'remote' design files that were 'imported' into the archived 
 None
 
 <sim_1>
-None
+D:/Dev/projects/xilinx/rapidx_basys3/basys3_testbench_behav.wcfg
 
 <sources_1>
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-11052-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_vram/blk_vram.xml
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-11052-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram.xml
-c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-11052-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom.xml
-D:/Files/Desktop/NG-ICDesign/rapidx_basys3/archive_project_summary.txt
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-25404-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_vram/blk_vram.xml
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-25404-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_ram/blk_mem_ram.xml
+c:/Users/pablo_rodriguez/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-25404-ZephyrusG14/PrjAr/_X_/rapidx_basys3.gen/sources_1/ip/blk_mem_rom/blk_mem_rom.xml
 
 <utils_1>
 None
@@ -141,7 +140,6 @@ List of all the source files present in the archived project:-
 ./rapidx_basys3.srcs/sources_1/imports/new/vga_driver.sv
 ./rapidx_basys3.srcs/sources_1/new/basys3_top_level.sv
 ./rapidx_basys3.srcs/sources_1/ip/blk_mem_rom/blk_mem_rom_init.coe
-./rapidx_basys3.srcs/sources_1/imports/rapidx_basys3/archive_project_summary.txt
 
 <constrs_1>
 ./rapidx_basys3.srcs/constrs_1/imports/Desktop/Basys3_Master.xdc

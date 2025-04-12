@@ -5,7 +5,7 @@ LDFLAGS = -nostdlib -Tlinker.lds
 LDLIBS  = -lgcc
 
 # Each one will be compile into its own program image.
-PROGRAMS = example.c draw_triangle.c stopwatch.c
+PROGRAMS = example.c draw_triangle.c stopwatch.c blinky.c demo1.c
 
 BINFILES   = $(PROGRAMS:.c=.bin)
 BIN64FILES = $(PROGRAMS:.c=.bin64k)
